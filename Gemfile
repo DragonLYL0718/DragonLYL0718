@@ -8,7 +8,7 @@ source "https://rubygems.org"
 #
 # This will help ensure the proper Jekyll version is running.
 # Happy Jekylling!
-gem "jekyll", "~> 4.1"
+gem "jekyll", "~> 3.9"
 
 gem "jekyll-theme-hydejack", "~> 9.1"
 
@@ -24,7 +24,7 @@ gem "jekyll-theme-hydejack", "~> 9.1"
 #    For details, see <https://github.com/kramdown/math-katex#documentation>
 #
 # If you're using the MathJax math engine instead, free to remove the line below:
-gem "kramdown-math-katex"
+# gem "kramdown-math-katex"
 
 # A JavaScript runtime for ruby that helps with running the katex gem above.
 gem "duktape"
@@ -44,6 +44,7 @@ group :jekyll_plugins do
   gem "jekyll-sitemap"
   gem "jekyll-titles-from-headings"
   gem "jekyll-include-cache"
+  gem "github-pages"
 
   # Non-Github Pages plugins:
   gem "jekyll-last-modified-at"

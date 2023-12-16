@@ -9,7 +9,7 @@ cover: true
 
 <!--author-->
 
-I am a master's student in the School of Design at the Southern University of Science and Technology, supervised by
+I am a master's student in the [School of Design](https://designschool.sustech.edu.cn/en) at the [Southern University of Science and Technology](https://www.sustech.edu.cn/en/), supervised by
 [Prof. Seungwoo JE](https://www.seungwooje.com/).
 
 My research in human-computer interaction focuses on the **Haptic Device, Embodiment Illusion, and Body Ownership with
