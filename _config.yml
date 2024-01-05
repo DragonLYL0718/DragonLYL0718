@@ -25,10 +25,10 @@ title: Rayleigh
 # A short description (~150 chars) of the page used for the meta description tag.
 # Can use markdown, but no more than one paragraph (enforced by `>`)
 description:           >
-  Rayleigh is a HCI researcher at SUSTech
+  Rayleigh is an HCI researcher at SUSTech
 
 # A shorter description for the sidebar.
-tagline: Rayleigh is a HCI researcher at SUSTech
+tagline: Rayleigh is an HCI researcher at SUSTech
 
 # A list of keywords for your blog
 keywords:              []
@@ -87,8 +87,8 @@ paginate_path:         /:num/
 # Theme
 # ---------------------------------------------------------------------------------------
 
-theme: jekyll-theme-hydejack
-# remote_theme: hydecorp/hydejack@v9.1.6
+# theme: jekyll-theme-hydejack
+remote_theme: hydecorp/hydejack@v9.1.6
 
 
 # Customizaton
