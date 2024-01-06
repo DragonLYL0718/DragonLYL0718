@@ -1,6 +1,6 @@
 ---
 title: Yilong Lin (Rayleigh)
-layout: list
+layout: pagenew
 hide_description: true
 permalink: /resume/
 ---
@@ -11,7 +11,7 @@ permalink: /resume/
 ## Education
 ---
 - 2018.9 - 2022.7 <br>
-**South China University of Technology | Automation | GPA: 3.31/4** <br>
+**South China University of Technology | Automation | GPA: 3.35/4** <br>
 - 2022.9 - now, expectedgrad‘25 <br>
 **Southern University of Science and Technology | Intelligent Manufacturing and Robotics | GPA: 3.11/4** <br>
 
