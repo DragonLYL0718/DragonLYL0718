@@ -6,7 +6,7 @@ description: >
 permalink: /gallery/sichuan2023/ # 可选的，链接到这个页面的路径
 ---
 
-<div class="gallery-grid">
+<div class="figure-grid">
   <a href="https://raw.githubusercontent.com/DragonLYL0718/PersonalFigure/master/Sichuan2023/Compressed2/_RAY3712.jpg" class="image-link" target="_blank">
           <img src="https://raw.githubusercontent.com/DragonLYL0718/PersonalFigure/master/Sichuan2023/Compressed/_RAY3712.jpg" alt="Sichuan 2023" />
           </a>
