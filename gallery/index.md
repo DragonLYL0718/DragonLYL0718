@@ -1,5 +1,5 @@
 ---
-layout: pagenew
+layout: pagegallery
 title: Gallery
 description: >
   This gallery is currently under construction and will be used to display some photos
