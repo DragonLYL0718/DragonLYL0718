@@ -6,7 +6,7 @@ layout: page
     <style>
     .gallery-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(250px, 0.5fr));
         gap: 20px;
     }
     
@@ -32,8 +32,89 @@ layout: page
         padding: 15px;
         text-align: center;
     }
+
+    a.image-link {
+        border: none; /* 移除边框 */
+        text-decoration: none; /* 移除下划线 */
+        outline: none; /* 移除聚焦时的轮廓 */
+    }
+
+    a.image-link::after {
+        content: none; /* 移除链接后的内容，如果有的话 */
+    }
+
+    a.image-link img {
+        display: block; /* 阻止图片周围出现额外的空间 */
+    }
+
+    /* 模态窗口样式 */
+    .modal {
+        display: none; /* 隐藏模态窗口直到它被触发 */
+        position: fixed; /* 固定定位 */
+        z-index: 1000; /* 确保模态窗口在其他内容之上 */
+        left: 0;
+        top: 0;
+        width: 100%; /* 覆盖整个视口的宽度 */
+        height: 100%; /* 覆盖整个视口的高度 */
+        background-color: rgba(0,0,0,0.9); /* 半透明背景 */
+        display: flex; /* 使用 flexbox 布局 */
+        align-items: center; /* 垂直居中 */
+        justify-content: center; /* 水平居中 */
+    }
+
+    /* 模态内容样式 */
+    .modal-content {
+        max-width: 90%; /* 设置最大宽度为视口的90% */
+        max-height: 90%; /* 设置最大高度为视口的90% */
+        margin: auto; /* 自动外边距 */
+    }
+
+    /* 关闭按钮样式 */
+    .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        cursor: pointer;
+    }
+
     </style>
 </head>
+
+<!-- 在页面底部或外部 JavaScript 文件中添加脚本 -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 创建模态窗口和图片元素
+        var modal = document.createElement('div');
+        modal.classList.add('modal');
+        modal.innerHTML = '<span class="close">&times;</span><img class="modal-content" id="modal-image">';
+        document.body.appendChild(modal);
+
+        // 获取模态窗口元素和关闭按钮
+        var modalImg = document.getElementById("modal-image");
+        var closeBtn = document.querySelector('.modal .close');
+
+        // 函数：打开模态窗口
+        function openModal(imageSrc) {
+            modal.style.display = "block";
+            modalImg.src = imageSrc;
+        }
+
+        // 为每个图片链接添加点击事件监听器
+        document.querySelectorAll('.image-link').forEach(function(link) {
+            link.addEventListener('click', function(event) {
+            event.preventDefault(); // 阻止链接默认打开新标签页的行为
+            openModal(this.href); // 传递原图链接到打开模态窗口的函数
+            });
+        });
+
+        // 点击关闭按钮隐藏模态窗口
+        closeBtn.addEventListener('click', function() {
+            modal.style.display = "none";
+        });
+    });
+</script>
 
 <body>
     {{ content }}
