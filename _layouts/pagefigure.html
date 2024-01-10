@@ -4,100 +4,70 @@ layout: pagegallery
 
 <head>
     <style>
-    /* 模态窗口样式 */
-    .modal {
-        display: none; /* Hidden by default */
-        position: fixed; /* Stay in place */
-        z-index: 10000; /* Sit on top */
-        left: 0;
-        top: 0;
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
-        overflow: auto; /* Enable scroll if needed */
-        background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
-        display: flex; /* 使用 flexbox 布局 */
-        align-items: center; /* 垂直居中 */
-        justify-content: center; /* 水平居中 */
-    }
+        /* 基础样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 100000;
+            overflow-y: auto; /* 允许在模态内容过高时滚动 */
+        }
 
-    .modal-content {
-        margin: auto;
-        display: block;
-        max-width: 100%; /* 设置最大宽度为视口的90% */
-        max-height: 100%; /* 设置最大高度为视口的90% */
-        -webkit-animation-name: zoom;
-        -webkit-animation-duration: 0.6s;
-        animation-name: zoom;
-        animation-duration: 0.6s;
-    }
+        .modal:target {
+            display: block;
+        }
 
-    @-webkit-keyframes zoom {
-    from {-webkit-transform:scale(0)} 
-    to {-webkit-transform:scale(1)}
-    }
-    
-    @keyframes zoom {
-    from {transform:scale(0)} 
-    to {transform:scale(1)}
-    }
+        .modal-content {
+            position: fixed; /* 使用fixed定位直接相对于视口定位 */
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto; /* 水平和垂直居中 */
+            width: auto; /* 使图片自动调整宽度 */
+            max-width: 100%; /* 最大宽度不超过视口 */
+            height: auto; /* 使图片自动调整高度 */
+            max-height: 100%; /* 最大高度不超过视口 */
+            overflow: auto; /* 如果需要，提供滚动条 */
+            background: none; /* 无背景 */
+        }
+        
+        /* 图片样式 */
+        .modal-content img {
+            display: block; /* 块级显示 */
+            width: auto; /* 自动宽度 */
+            max-width: 100%; /* 最大宽度为容器宽度 */
+            height: auto; /* 自动高度 */
+            max-height: 100%; /* 最大高度为容器高度 */
+            margin: auto; /* 居中显示 */
+        }
 
-    /* The Close Button */
-    .close {
-    position: absolute;
-    top: 15px;
-    right: 35px;
-    color: #f1f1f1;
-    font-size: 40px;
-    font-weight: bold;
-    transition: 0.3s;
-    cursor: pointer;
-    }
+        .close-modal {
+            position: fixed; /* 固定定位，总是显示在右上角 */
+            top: 10px; /* 与顶部的距离 */
+            right: 10px; /* 与右边的距离 */
+            width: 32px; /* 宽度 */
+            height: 32px; /* 高度 */
+            background: #FFFFFF; /* 背景色 */
+            border-radius: 16px; /* 圆角 */
+            text-align: center; /* 文本居中 */
+            line-height: 32px; /* 行高，使×垂直居中 */
+            font-size: 24px; /* 字体大小 */
+            cursor: pointer; /* 鼠标样式 */
+            text-decoration: none; /* 无文本装饰 */
+            color: #000000; /* 字体颜色 */
+        }
 
-    .close:hover,
-    .close:focus {
-    color: #bbb;
-    text-decoration: none;
-    cursor: pointer;
-    }
-
+        .close-modal:hover {
+            background: #f3f3f3; /* 鼠标悬停时的背景色 */
+        }
     </style>
 </head>
 
 <body>
-
-    <!-- 在页面底部或外部 JavaScript 文件中添加脚本 -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // 创建模态窗口和图片元素
-            var modal = document.createElement('div');
-            modal.classList.add('modal');
-            modal.innerHTML = '<span class="close">&times;</span><img class="modal-content" id="modal-image">';
-            document.body.appendChild(modal);
-
-            // 获取模态窗口元素和关闭按钮
-            var modalImg = document.getElementById("modal-image");
-            var closeBtn = document.querySelector('.modal .close');
-
-            // 函数：打开模态窗口
-            function openModal(imageSrc) {
-                modal.style.display = "block";
-                modalImg.src = imageSrc;
-            }
-
-            // 为每个图片链接添加点击事件监听器
-            document.querySelectorAll('.image-link').forEach(function(link) {
-                link.addEventListener('click', function(event) {
-                event.preventDefault(); // 阻止链接默认打开新标签页的行为
-                openModal(this.href); // 传递原图链接到打开模态窗口的函数
-                });
-            });
-
-            // 点击关闭按钮隐藏模态窗口
-            closeBtn.addEventListener('click', function() {
-                modal.style.display = "none";
-            });
-        });
-    </script>
-
     {{ content }}
 </body>
