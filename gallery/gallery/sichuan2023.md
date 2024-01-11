@@ -8,14 +8,14 @@ permalink: /gallery/sichuan2023/ # 可选的，链接到这个页面的路径
 
 <div class="figure-grid">
   <a href="https://raw.githubusercontent.com/DragonLYL0718/PersonalFigure/master/Sichuan2023/Compressed/_RAY3712.jpg" class="image-link">
-          <img src="https://raw.githubusercontent.com/DragonLYL0718/PersonalFigure/master/Sichuan2023/Compressed2/_RAY3712.jpg" alt="Sichuan 2023" />
-          </a>
-<a href="https://raw.githubusercontent.com/DragonLYL0718/PersonalFigure/master/Sichuan2023/Compressed/_RAY3715.jpg" class="image-link">
-          <img src="https://raw.githubusercontent.com/DragonLYL0718/PersonalFigure/master/Sichuan2023/Compressed2/_RAY3715.jpg" alt="Sichuan 2023" />
-          </a>
-<a href="https://raw.githubusercontent.com/DragonLYL0718/PersonalFigure/master/Sichuan2023/Compressed/_RAY3723.jpg" class="image-link">
-          <img src="https://raw.githubusercontent.com/DragonLYL0718/PersonalFigure/master/Sichuan2023/Compressed2/_RAY3723.jpg" alt="Sichuan 2023" />
-          </a>
+    <img src="https://raw.githubusercontent.com/DragonLYL0718/PersonalFigure/master/Sichuan2023/Compressed2/_RAY3712.jpg" alt="Sichuan 2023" />
+  </a>
+  <!-- <a href="https://raw.githubusercontent.com/DragonLYL0718/PersonalFigure/master/Sichuan2023/Compressed/_RAY3715.jpg" class="image-link"> -->
+    <img src="https://raw.githubusercontent.com/DragonLYL0718/PersonalFigure/master/Sichuan2023/Compressed2/_RAY3715.jpg" alt="Sichuan 2023" class="img"/>
+  <!-- </a> -->
+<!-- <a href="https://raw.githubusercontent.com/DragonLYL0718/PersonalFigure/master/Sichuan2023/Compressed/_RAY3723.jpg" class="image-link"> -->
+          <img src="https://raw.githubusercontent.com/DragonLYL0718/PersonalFigure/master/Sichuan2023/Compressed2/_RAY3723.jpg" alt="Sichuan 2023" class="img"/>
+          <!-- </a> -->
 <a href="https://raw.githubusercontent.com/DragonLYL0718/PersonalFigure/master/Sichuan2023/Compressed/_RAY3760.jpg" class="image-link">
           <img src="https://raw.githubusercontent.com/DragonLYL0718/PersonalFigure/master/Sichuan2023/Compressed2/_RAY3760.jpg" alt="Sichuan 2023" />
           </a>
