@@ -11,9 +11,47 @@ layout: page
     }
 
     .figure-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 0.5fr));
-        gap: 20px 20px;
+        column-count: 3; /* 三列布局 */
+        column-gap: 20px; /* 列之间的间隙 */
+        row-gap: 20px; /* 行之间的间隙 */
+        max-width: 100%; /* 确保容器不会超过其父元素的宽度 */
+        margin: 0 auto; /* 水平居中 */
+    }
+
+    .figure-grid img {
+        width: 100%; /* 使图片响应式 */
+        break-inside: avoid; /* 防止图片在列中断开 */
+        margin-bottom: 20px; /* 图片间的间距 */
+    }
+
+    .figure-grid a {
+        text-decoration: none; /* 移除链接下划线 */
+        border: none; /* 移除链接边框 */
+        outline: none; /* 移除点击时的轮廓 */
+    }
+
+    .figure-grid a img {
+        display: block; /* 防止图片下方出现间隙 */
+        width: 100%; /* 使图片响应式 */
+        break-inside: avoid; /* 防止图片在列中断开 */
+        margin-bottom: 20px; /* 图片间的间距 */
+    }
+
+    .figure-grid a::after {
+        content: none !important;; /* 移除伪元素的内容 */
+    }   
+
+    /* 可选：针对小屏幕调整列数 */
+    @media screen and (max-width: 768px) {
+        .figure-grid {
+            column-count: 2;
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        .figure-grid {
+            column-count: 1;
+        }
     }
     
     .card {
