@@ -8,7 +8,7 @@ layout: pagegallery
     .modal {
         display: none; /* Hidden by default */
         position: fixed; /* Stay in place */
-        z-index: 10; /* Sit on top */
+        z-index: 10000; /* Sit on top */
         left: 0;
         top: 0;
         width: 100%; /* Full width */
@@ -23,8 +23,8 @@ layout: pagegallery
     .modal-content {
         margin: auto;
         display: block;
-        max-width: 90%; /* 设置最大宽度为视口的90% */
-        max-height: 90%; /* 设置最大高度为视口的90% */
+        max-width: 100%; /* 设置最大宽度为视口的90% */
+        max-height: 100%; /* 设置最大高度为视口的90% */
         -webkit-animation-name: zoom;
         -webkit-animation-duration: 0.6s;
         animation-name: zoom;
@@ -59,9 +59,55 @@ layout: pagegallery
     text-decoration: none;
     cursor: pointer;
     }
+
     </style>
 </head>
 
 <body>
+
+    <!-- 在页面底部或外部 JavaScript 文件中添加脚本 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 创建模态窗口和图片元素
+            var modal = document.createElement('div');
+            modal.classList.add('modal');
+            modal.innerHTML = '<span class="close">&times;</span><img class="modal-content" id="modal-image">';
+            document.body.appendChild(modal);
+
+            // 获取模态窗口元素和关闭按钮
+            var modalImg = document.getElementById("modal-image");
+            var closeBtn = document.querySelector('.modal .close');
+
+            // 函数：打开模态窗口
+            function openModal(imageSrc) {
+                modal.style.display = "block";
+                modalImg.src = imageSrc;
+            }
+
+            // 为每个图片链接添加点击事件监听器
+            document.querySelectorAll('.image-link').forEach(function(link) {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault(); // 阻止链接默认打开新标签页的行为
+                    openModal(this.href); // 传递原图链接到打开模态窗口的函数
+                });
+            });
+
+            document.querySelectorAll('.img').forEach(function(link) {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault(); // 阻止链接默认打开新标签页的行为
+                    modal.style.display = "block";
+                    modalImg.src = "https://raw.githubusercontent.com/DragonLYL0718/PersonalFigure/master/Sichuan2023/Compressed/_RAY3715.jpg";
+                    console.log('img is clicked')
+                });
+            });
+
+            // 点击关闭按钮隐藏模态窗口
+            closeBtn.addEventListener('click', function() {
+                modal.style.display = "none";
+                console.log('close');
+            });
+        });
+    </script>
+
     {{ content }}
 </body>
