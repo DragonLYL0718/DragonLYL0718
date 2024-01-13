@@ -45,7 +45,7 @@ Nargiz Askarbekkyzy, **Yilong Lin**, Kongpyung (Justin) Moon, Andrea Bianchi, Se
 ---
 <ul>
     <li><strong>Product Realization | TA | SUSTech | Spring 2023</strong></li>
-    <li><strong>Scalable HCI Symposium | Volunteer | ACM SIGCHI/SUSTech | Winter 2024</strong></li>
+    <li><strong><a href="https://ScalableHCI.github.io">Scalable HCI Symposium</a> | Volunteer/Lecturer | ACM SIGCHI/SUSTech | Winter 2024</strong></li>
 </ul>
 
 ## Talks

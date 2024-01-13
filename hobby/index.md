@@ -22,4 +22,12 @@ I visited many places in 2023 but couldn't process photos due to a busy year.
       </a>
     </div>
   </div>
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/hobby/macao2023/">
+        <img src="https://raw.githubusercontent.com/DragonLYL0718/PersonalFigure/master/Macao2023/Compressed2/_RAY3477.jpg"/>
+        <div class="card-text">Macao&Zhuhai, China</div>
+      </a>
+    </div>
+  </div>
 </div>
