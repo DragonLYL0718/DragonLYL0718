@@ -56,8 +56,8 @@ menu:
     url:               /publications/
   - title:             Hobbies
     url:               /hobby/
-  # - title:             Projects
-  #   url:               /projects/
+  - title:             Projects
+    url:               /projects/
   - title:             Resume
     url:               /resume/
   # - title:             About

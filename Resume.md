@@ -33,6 +33,8 @@ Nargiz Askarbekkyzy, **Yilong Lin**, Kongpyung (Justin) Moon, Andrea Bianchi, Se
 **DJI RoboMaster Robotics Competition | Third Prize in SCUT**
 - 2018 - 2019 <br>
 **Boeing Automatic Control Competition | Third Prize in SCUT**
+- 2018 - 2019 <br>
+**Second Class Scholarship at School Level**
 
 ## Experience
 ---
@@ -67,4 +69,4 @@ Nargiz Askarbekkyzy, **Yilong Lin**, Kongpyung (Justin) Moon, Andrea Bianchi, Se
 
 ## Hobby
 ---
-**photography**
+**Photography**
