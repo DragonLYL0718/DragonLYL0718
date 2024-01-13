@@ -2,12 +2,14 @@
 layout: pagegallery
 title: Hobbies
 description: >
-  My hobbies are traveling and photography, but due to limited time, I have yet to be able to travel as much as I would like to, with fewer and fewer time for photo processing. I'm considering getting a film camera or a Fuji camera (being lazy). This gallery is currently under construction and will be used to display some photos
+  My hobbies are traveling and photography, but due to limited time, I have yet to be able to travel as much as I would like to, with fewer and fewer time for photo processing. I'm considering getting a film camera or a Fuji camera (being lazy). This gallery is currently under construction.
 permalink: /hobby/
 ---
 
 1. this list will be replaced by the toc
 {:toc .large-only}
+
+**I compressed the images to increase the page loading speed, causing color breaks. Refine soon.**
 
 ## 2023
 
