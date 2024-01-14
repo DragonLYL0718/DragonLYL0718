@@ -54,12 +54,12 @@ menu:
   #   url:               /docs/
   - title:             Publications
     url:               /publications/
-  - title:             Hobbies
-    url:               /hobby/
   - title:             Projects
     url:               /projects/
   - title:             Resume
     url:               /resume/
+  - title:             Hobbies
+    url:               /hobby/
   # - title:             About
   #   url:               /about/
 
