@@ -6,7 +6,7 @@ layout: page
     <style>
     .gallery-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 0.5fr));
+        grid-template-columns: repeat(auto-fit, minmax(250px, 0.33fr));
         gap: 20px;
     }
 
@@ -44,11 +44,17 @@ layout: page
     /* 可选：针对小屏幕调整列数 */
     @media screen and (max-width: 768px) {
         .figure-grid {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 0.5fr));
+        }
+        .figure-grid {
             column-count: 2;
         }
     }
 
     @media screen and (max-width: 480px) {
+        .figure-grid {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
         .figure-grid {
             column-count: 1;
         }
@@ -70,6 +76,8 @@ layout: page
         width: 100%;
         height: auto;
         display: block;
+        object-fit: cover;
+        aspect-ratio: 3 / 2;
     }
     
     .card-text {
