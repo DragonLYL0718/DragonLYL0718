@@ -60,6 +60,8 @@ menu:
     url:               /resume/
   - title:             Hobbies
     url:               /hobby/
+  - title:             IDG
+    url:               https://www.seungwooje.com/members
   # - title:             About
   #   url:               /about/
 
