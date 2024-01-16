@@ -12,7 +12,7 @@ permalink: /publications/
 
 <div style="display: flex; align-items: center; justify-content: space-between;">
   <div style="flex: 1; padding-right: 10px;">
-    <img src="{{ site.baseurl }}/assets/img/Designing2023.jpg" alt="Designing visuo-haptic illusions for Virtual Reality applications using floor-based shape-changing displays" />
+    <a href="/projects/visuohaptic" target="_blank"><img src="{{ site.baseurl }}/projects/Graduate/visuohaptic/1.PNG" alt="Designing visuo-haptic illusions for Virtual Reality applications using floor-based shape-changing displays" /></a>
   </div>
   <div style="flex: 2; padding-left: 10px;">
     <h2>

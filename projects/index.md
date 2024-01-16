@@ -6,6 +6,8 @@ description: >
 permalink: /projects/
 ---
 
+# Page under construction!!!
+
 1. this list will be replaced by the toc
 {:toc .large-only}
 
@@ -15,17 +17,36 @@ permalink: /projects/
 
 ---
 
+<div class="gallery-grid" >
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/projects/pinarray">
+        <img src="/projects/Graduate/Confidential.jpg"/>
+        <div class="card-text">Pin-array</div>
+      </a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/projects/visuohaptic">
+        <img src="/projects/Graduate/visuohaptic/1.PNG"/>
+        <div class="card-text">Visuo-haptic Illusions</div>
+      </a>
+    </div>
+  </div>
+</div>
+
 ## Undergraduate
 
 ---
 
-<!-- <div class="gallery-grid" >
+<div class="gallery-grid" >
   <div class="card">
     <div class="image-overlay-container">
-      <a href="/hobby/sichuan2023/">
+      <a href="/projects/smartcar">
         <img src="/projects/Undergraduate/Smartcar/smartcar.jpg"/>
-        <div class="card-text">Smart car</div>
+        <div class="card-text">Smart Car</div>
       </a>
     </div>
   </div>
-</div> -->
+</div>

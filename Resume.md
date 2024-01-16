@@ -11,9 +11,9 @@ permalink: /resume/
 ## Education
 ---
 - 2018.9 - 2022.7 <br>
-**South China University of Technology | Automation | GPA: 3.35/4** <br>
+**[South China University of Technology](https://www.scut.edu.cn/en/) | Automation | GPA: 3.35/4** <br>
 - 2022.9 - now, expectedgrad‘25 <br>
-**Southern University of Science and Technology | Intelligent Manufacturing and Robotics | GPA: 3.11/4** <br>
+**[Southern University of Science and Technology](https://www.sustech.edu.cn/en/) | Intelligent Manufacturing and Robotics | GPA: 3.11/4** <br>
 
 ## Research Interests
 ---
@@ -21,14 +21,14 @@ permalink: /resume/
 
 ## Publications
 ---
-- **Designing visuo-haptic illusions for Virtual Reality applications using floor-based shape-changing displays** <br>
+- **[Designing visuo-haptic illusions for Virtual Reality applications using floor-based shape-changing displays](https://dl.designresearchsociety.org/iasdr/iasdr2023/fullpapers/164/)** <br>
 Nargiz Askarbekkyzy, **Yilong Lin**, Kongpyung (Justin) Moon, Andrea Bianchi, Seungwoo Je <br>
 *In Proceedings of IASDR 2023.*
 
 ## Honors
 ---
 - 2019 - 2020 <br>
-**National University Intelligent Car Race | Baidu Intelligent Transportation Group | National First Price**
+**[National University Intelligent Car Race](https://www.smartcar.zone/) | Baidu Intelligent Transportation Group | National First Price**
 - 2018 - 2019 <br>
 **DJI RoboMaster Robotics Competition | Third Prize in SCUT**
 - 2018 - 2019 <br>
@@ -65,7 +65,7 @@ Nargiz Askarbekkyzy, **Yilong Lin**, Kongpyung (Justin) Moon, Andrea Bianchi, Se
 
 ## References
 ---
-**Seungwoo JE | Immersive Design Group Director, Assistant Professor at SUSTech**
+**[Prof. Seungwoo JE](https://www.seungwooje.com/) | Immersive Design Group Director, Assistant Professor at SUSTech**
 
 ## Hobby
 ---
