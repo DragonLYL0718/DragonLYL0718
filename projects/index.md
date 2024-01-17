@@ -18,14 +18,6 @@ permalink: /projects/
 ---
 
 <div class="gallery-grid" >
-  <!-- <div class="card">
-    <div class="image-overlay-container">
-      <a href="/projects/pinarray">
-        <img src="/projects/Graduate/Confidential.jpg"/>
-        <div class="card-text">Pin-array</div>
-      </a>
-    </div>
-  </div> -->
   <div class="card">
     <div class="image-overlay-container">
       <a href="/projects/visuohaptic">
@@ -34,6 +26,30 @@ permalink: /projects/
       </a>
     </div>
   </div>
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/projects/pinarray">
+        <img src="/projects/Graduate/Confidential.jpg"/>
+        <div class="card-text">Pin-array</div>
+      </a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/projects/locomotion">
+        <img src="/projects/Graduate/Confidential.jpg"/>
+        <div class="card-text">Locomotion Platform</div>
+      </a>
+    </div>
+  </div>
+  <!-- <div class="card">
+    <div class="image-overlay-container">
+      <a href="/projects/pinarray">
+        <img src="/projects/Graduate/Confidential.jpg"/>
+        <div class="card-text">Pin-array</div>
+      </a>
+    </div>
+  </div> -->
 </div>
 
 ## Undergraduate
@@ -49,4 +65,15 @@ permalink: /projects/
       </a>
     </div>
   </div>
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/projects/soccercar">
+        <img src="/projects/Undergraduate/DJI/1.jpg"/>
+        <div class="card-text">Soccer Car</div>
+      </a>
+    </div>
+  </div>
 </div>
+
+<br>
+The following are some small projects, and most of them are not well documented.

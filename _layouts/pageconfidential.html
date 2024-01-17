@@ -7,11 +7,14 @@ layout: page
 </head>
 
 <body>
-    <!-- Firebase App (必需) -->
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
-
-    <!-- Firebase Authentication -->
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
-
+    <script type="module" src="/assets/js/login.js"></script>
+    <div id="login">
+        <!-- <input type="email" id="login-email" placeholder="Email"> -->
+        <input type="password" id="login-password" placeholder="Password">
+        <button id="login-btn">Login</button>
+    </div>
+    
+    <div id="abstract" style="display: none;"><h3>Abstract</h3></div>
+    <div id="abstractcontent">Please enter the password</div>
     {{ content }}
 </body>
