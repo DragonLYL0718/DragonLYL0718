@@ -6,7 +6,7 @@ description: >
 permalink: /projects/
 ---
 
-# Page under construction!!!
+<!-- # Page under construction!!! -->
 
 1. this list will be replaced by the toc
 {:toc .large-only}
