@@ -40,7 +40,7 @@ permalink: /projects/
 
 ---
 
-<!-- <div class="gallery-grid" >
+<div class="gallery-grid" >
   <div class="card">
     <div class="image-overlay-container">
       <a href="/projects/smartcar">
@@ -49,4 +49,4 @@ permalink: /projects/
       </a>
     </div>
   </div>
-</div> -->
+</div>
