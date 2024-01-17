@@ -25,6 +25,9 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app); // Initialize the Firebase auth service
 const db = getFirestore(app); // Initialize the Firestore service
+const firebaseConfigElement = document.getElementById('firebaseConfig');
+const collectionName = firebaseConfigElement.getAttribute('data-collection');
+const documentName = firebaseConfigElement.getAttribute('data-document');
 
 document.getElementById('login-btn').addEventListener('click', login);
 abstractcontent = document.getElementById('abstractcontent');
@@ -69,9 +72,9 @@ function login() {
 }
 
 async function requestData2() {
-    console.log('requestData2');
+    // console.log('requestData2');
     // You already have a reference to the 'test' document in 'table1' collection
-    var documentRef = doc(db, 'pinarray', 'content');
+    var documentRef = doc(db, collectionName, documentName);
     
     try {
         const docSnapshot = await getDoc(documentRef);

@@ -76,4 +76,22 @@ permalink: /projects/
 </div>
 
 <br>
-The following are some small projects, and most of them are not well documented.
+The following are some small projects that are not well documented.
+<div class="gallery-grid" >
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/projects/intelligentcurtain">
+        <img src="/projects/Figure/IntelligentCurtain.png"/>
+        <div class="card-text">Intelligent Curtain</div>
+      </a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/projects/snakegame">
+        <img src="/projects/Figure/SnakeGame.png"/>
+        <div class="card-text">Snake Game</div>
+      </a>
+    </div>
+  </div>
+</div>

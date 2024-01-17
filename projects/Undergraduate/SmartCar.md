@@ -1,5 +1,5 @@
 ---
-layout: pagegallery # 或者是你想要使用的任何布局
+layout: page # 或者是你想要使用的任何布局
 title: Competition Project
 description: >
   This is the National University Intelligent Car Race competition project, and we won the national first prize.
@@ -11,6 +11,8 @@ permalink: /projects/smartcar
 
 ### Abstract
 This project mainly uses a convolutional neural network to realize the regression task and target detection task, complete the prediction of car steering as well as the detection of traffic markers, complete the model training based on the Baidu AIstudio platform as well as the PaddlePaddle deep learning framework and achieve the deployment of the model for the mobile terminal on the edgeboard lite deep learning computing card. This project uses methods such as multi-threaded operation and the automatic collection and organization of markers. Traditional PID algorithms collect data automatically, which effectively reduces the workload of simple repetitive work, significantly improves the utilization rate of the car's computational resources as well as the speed of the program, and realizes that the car runs at high speeds and smoothly on the track.
+
+**Keywords:** Stm32f4, PaddlePaddle, Deep Learning, Multi-threaded Operation, PID Algorithm
 
 ---
 

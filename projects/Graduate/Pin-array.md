@@ -4,4 +4,6 @@ title: Industrial Confidential Project
 description: >
   The content can only be accessed by people who have been invited.
 permalink: /projects/pinarray
+firebase_collection: pinarray
+firebase_document: content
 ---
