@@ -43,29 +43,30 @@ function login() {
     
     // Make sure email and password are not empty
     if (!email || !password) {
-        abstractcontent.innerHTML = "Email and password must be provided";
+        abstractcontent.innerHTML = "password must be provided";
         return;
     }
 
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             // Signed in successfully
-            requestData2();
             document.getElementById('login').style.display = 'none';
+            abstractcontent.innerHTML = "Loading...";
+            requestData2();
         })
         .catch((error) => {
             // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            if (errorCode === 'auth/invalid-email') {
-                console.error("The email address is not valid.");
-            } else if (errorCode === 'auth/user-not-found') {
-                console.error("No user corresponding to the given email.");
-            } else if (errorCode === 'auth/wrong-password') {
-                console.error("Wrong password provided for that user.");
-            } else {
-                console.error(errorMessage);
-            }
+            // var errorCode = error.code;
+            // var errorMessage = error.message;
+            // if (errorCode === 'auth/invalid-email') {
+            //     console.error("The email address is not valid.");
+            // } else if (errorCode === 'auth/user-not-found') {
+            //     console.error("No user corresponding to the given email.");
+            // } else if (errorCode === 'auth/wrong-password') {
+            //     console.error("Wrong password provided for that user.");
+            // } else {
+            //     console.error(errorMessage);
+            // }
             // You can also show the error message to the user with UI elements
             abstractcontent.innerHTML = "Password is incorrect";
         });
