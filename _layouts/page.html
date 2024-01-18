@@ -1,0 +1,27 @@
+---
+layout: base
+---
+
+<article class="page mb6" role="article">
+  <header>
+    <h1 class="page-title">{{ page.title }}</h1>
+    {% include components/message.html text=page.description hide=page.hide_description %}
+  </header>
+
+  {{ content }}
+</article>
+
+{% include components/dingbat.html %}
+{% include body/comments.html %}
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G3P4GRGGCC"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-G3P4GRGGCC');
+    </script>
+</head>
