@@ -28,6 +28,14 @@ permalink: /projects/
   </div>
   <div class="card">
     <div class="image-overlay-container">
+      <a href="/projects/armdeformation">
+        <img src="/projects/Graduate/Confidential.jpg"/>
+        <div class="card-text">ArmDeformation</div>
+      </a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="image-overlay-container">
       <a href="/projects/pinarray">
         <img src="/projects/Graduate/Confidential.jpg"/>
         <div class="card-text">Pin-array</div>
