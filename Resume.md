@@ -21,6 +21,11 @@ permalink: /resume/
 
 ## Publications
 ---
+
+- **ArmDeformation: Inducing the Sensation of Arm Deformation in Virtual Reality Using Skin-Stretching** <br>
+**Yilong Lin**, Peng Zhang, Eyal Ofek, Seungwoo Je <br>
+*In Proceedings of CHI 2024.* (CONDITIONALLY ACCEPTED)
+
 - **[Designing visuo-haptic illusions for Virtual Reality applications using floor-based shape-changing displays](https://dl.designresearchsociety.org/iasdr/iasdr2023/fullpapers/164/)** <br>
 Nargiz Askarbekkyzy, **Yilong Lin**, Kongpyung (Justin) Moon, Andrea Bianchi, Seungwoo Je <br>
 *In Proceedings of IASDR 2023.*
