@@ -5,10 +5,28 @@ hide_description: true
 permalink: /publications/
 ---
 
-## 2023
-
 1. this list will be replaced by the toc
 {:toc .large-only}
+
+## 2024
+
+<div style="display: flex; align-items: center; justify-content: space-between;">
+  <div style="flex: 1; padding-right: 10px;">
+    <img src="/assets/img/Template.png" alt="ArmDeformation: Inducing the Sensation of Arm Deformation in Virtual Reality Using Skin-Stretching" />
+  </div>
+  <div style="flex: 2; padding-left: 10px;">
+    <h2>
+        <a>ArmDeformation: Inducing the Sensation of Arm Deformation in Virtual Reality Using Skin-Stretching</a>
+    </h2>
+    <p>
+        <strong>Yilong Lin</strong>, Peng Zhang, Eyal Ofek, Seungwoo Je <br>
+        In Proceedings of CHI 2024. (CONDITIONALLY ACCEPTED).
+    </p>
+    <!-- 其他你想要的标记 -->
+  </div>
+</div>
+
+## 2023
 
 <div style="display: flex; align-items: center; justify-content: space-between;">
   <div style="flex: 1; padding-right: 10px;">
@@ -19,7 +37,7 @@ permalink: /publications/
         <a href="https://dl.designresearchsociety.org/iasdr/iasdr2023/fullpapers/164/" target="_blank">Designing visuo-haptic illusions for Virtual Reality applications using floor-based shape-changing displays</a>
     </h2>
     <p>
-        Nargiz Askarbekkyzy, Yilong Lin, Kongpyung (Justin) Moon, Andrea Bianchi, Seungwoo Je <br>
+        Nargiz Askarbekkyzy, <strong>Yilong Lin</strong>, Kongpyung (Justin) Moon, Andrea Bianchi, Seungwoo Je <br>
         In Proceedings of IASDR 2023.
     </p>
     <!-- 其他你想要的标记 -->
