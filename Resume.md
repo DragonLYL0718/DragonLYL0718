@@ -10,10 +10,10 @@ permalink: /resume/
 
 ## Education
 ---
-- 2018.9 - 2022.7 <br>
-**[South China University of Technology](https://www.scut.edu.cn/en/) | Automation | GPA: 3.35/4** <br>
 - 2022.9 - now, expectedgrad‘25 <br>
 **[Southern University of Science and Technology](https://www.sustech.edu.cn/en/) | Intelligent Manufacturing and Robotics | GPA: 3.11/4** <br>
+- 2018.9 - 2022.7 <br>
+**[South China University of Technology](https://www.scut.edu.cn/en/) | Automation | GPA: 3.35/4** <br>
 
 ## Research Interests
 ---
@@ -49,15 +49,15 @@ Nargiz Askarbekkyzy, **Yilong Lin**, Kongpyung (Justin) Moon, Andrea Bianchi, Se
 ## Serivce
 ---
 <ul>
-    <li><strong>Product Realization | TA | SUSTech | Spring 2023</strong></li>
     <li><strong><a href="https://ScalableHCI.github.io">Scalable HCI Symposium</a> | Volunteer/Lecturer | ACM SIGCHI/SUSTech | Winter 2024</strong></li>
+    <li><strong>Product Realization | TA | SUSTech | Spring 2023</strong></li>
 </ul>
 
 ## Talks
 ---
 <ul>
-    <li><strong>DS Sharing Talk | SUSTech | Winter 2022</strong></li>
     <li><strong>DS Sharing Talk | SUSTech | Fall 2023</strong></li>
+    <li><strong>DS Sharing Talk | SUSTech | Winter 2022</strong></li>
 </ul>
 
 ## Skills
