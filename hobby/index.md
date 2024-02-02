@@ -17,7 +17,7 @@ I visited many places in 2023 but couldn't process photos due to a busy year. I 
   <div class="card">
     <div class="image-overlay-container">
       <a href="/hobby/sichuan2023/">
-        <img src="https://cdn.jsdelivr.net/gh/DragonLYL0718/PersonalFigure/Sichuan2023/Compressed2/_RAY4361.webp"/>
+        <img src="https://personalfigure.oss-cn-shenzhen.aliyuncs.com/sichuan2023c/_RAY4361.webp"/>
         <div class="card-text">Sichuan, China</div>
       </a>
     </div>
@@ -25,7 +25,7 @@ I visited many places in 2023 but couldn't process photos due to a busy year. I 
   <div class="card">
     <div class="image-overlay-container" >
       <a href="/hobby/macao2023/">
-        <img src="https://cdn.jsdelivr.net/gh/DragonLYL0718/PersonalFigure/Macao2023/Compressed2/_RAY3477.webp"/>
+        <img src="https://personalfigure.oss-cn-shenzhen.aliyuncs.com/macao2023c/_RAY3477.webp"/>
         <div class="card-text">Macao&Zhuhai, China</div>
       </a>
     </div>
@@ -33,7 +33,7 @@ I visited many places in 2023 but couldn't process photos due to a busy year. I 
   <div class="card">
     <div class="image-overlay-container">
       <a href="/hobby/henan2023/">
-        <img src="https://cdn.jsdelivr.net/gh/DragonLYL0718/PersonalFigure/Henan2023/Compressed2/_RAY3341.webp"/>
+        <img src="https://personalfigure.oss-cn-shenzhen.aliyuncs.com/henan2023c/_RAY3341.webp"/>
         <div class="card-text">Henan, China</div>
       </a>
     </div>
@@ -41,7 +41,7 @@ I visited many places in 2023 but couldn't process photos due to a busy year. I 
   <div class="card">
     <div class="image-overlay-container">
       <a href="/hobby/other2023/">
-        <img src="https://cdn.jsdelivr.net/gh/DragonLYL0718/PersonalFigure/Guangdong2023/Compressed2/_RAY2636.webp"/>
+        <img src="https://personalfigure.oss-cn-shenzhen.aliyuncs.com/guangdong2023c/_RAY2636.webp"/>
         <div class="card-text">Others, China</div>
       </a>
     </div>
