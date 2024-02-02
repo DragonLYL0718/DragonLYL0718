@@ -9,8 +9,6 @@ permalink: /hobby/
 1. this list will be replaced by the toc
 {:toc .large-only}
 
-**I compressed the images to increase the page loading speed, causing color breaks. Refine soon.**
-
 ## 2023
 
 I visited many places in 2023 but couldn't process photos due to a busy year. I feel like my photography is not as inspiring as it could be, and most of the time I'm just taking tourist photos. I want to rethink what photography means to me and make it more meaningful. Initially, I took up photography as a hobby to fill up my free time, but now my time is getting limited, and I need to make some adjustments.
