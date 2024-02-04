@@ -11,14 +11,14 @@ permalink: /hobby/
 
 ## 2023
 
-I visited many places in 2023 but couldn't process photos due to a busy year. I feel like my photography is not as inspiring as it could be, and most of the time I'm just taking tourist photos. I want to rethink what photography means to me and make it more meaningful. Initially, I took up photography as a hobby to fill up my free time, but now my time is getting limited, and I need to make some adjustments.
+<!-- I visited many places in 2023 but couldn't process photos due to a busy year. I feel like my photography is not as inspiring as it could be, and most of the time I'm just taking tourist photos. I want to rethink what photography means to me and make it more meaningful. Initially, I took up photography as a hobby to fill up my free time, but now my time is getting limited, and I need to make some adjustments. -->
 
 <div class="gallery-grid" >
   <div class="card">
     <div class="image-overlay-container">
       <a href="/hobby/hongkong2023/">
         <img src="https://hobbyfigure.oss-cn-hongkong.aliyuncs.com/hongkong2023c/_RAY4539.webp"/>
-        <div class="card-text">Hongkong, China</div>
+        <div class="card-text">Hong Kong, China</div>
       </a>
     </div>
   </div>

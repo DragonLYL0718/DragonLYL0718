@@ -1,6 +1,6 @@
 ---
 layout: pagefigure # 或者是你想要使用的任何布局
-title: Hongkong
+title: Hong Kong
 description: >
   2023.10.28
 permalink: /hobby/hongkong2023/ # 可选的，链接到这个页面的路径
