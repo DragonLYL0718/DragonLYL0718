@@ -7,7 +7,7 @@ permalink: /hobby/macao2023/ # 可选的，链接到这个页面的路径
 ---
 
 <div class="figure-grid">
-<!-- <a href="https://hobbyfigure.oss-cn-hongkong.aliyuncs.com/macao2023/_RAY3353.webp" class="image-link">
+<a href="https://hobbyfigure.oss-cn-hongkong.aliyuncs.com/macao2023/_RAY3353.webp" class="image-link">
           <img src="https://hobbyfigure.oss-cn-hongkong.aliyuncs.com/macao2023c/_RAY3353.webp" alt="macao2023" />
           </a>
 <a href="https://hobbyfigure.oss-cn-hongkong.aliyuncs.com/macao2023/_RAY3356.webp" class="image-link">
@@ -24,11 +24,11 @@ permalink: /hobby/macao2023/ # 可选的，链接到这个页面的路径
           </a>
 <a href="https://hobbyfigure.oss-cn-hongkong.aliyuncs.com/macao2023/_RAY3394.webp" class="image-link">
           <img src="https://hobbyfigure.oss-cn-hongkong.aliyuncs.com/macao2023c/_RAY3394.webp" alt="macao2023" />
-          </a> -->
+          </a>
 <a href="https://hobbyfigure.oss-cn-hongkong.aliyuncs.com/macao2023/_RAY3424.webp" class="image-link">
           <img src="https://hobbyfigure.oss-cn-hongkong.aliyuncs.com/macao2023c/_RAY3424.webp" alt="macao2023" />
           </a>
-<!-- <a href="https://hobbyfigure.oss-cn-hongkong.aliyuncs.com/macao2023/_RAY3452.webp" class="image-link">
+<a href="https://hobbyfigure.oss-cn-hongkong.aliyuncs.com/macao2023/_RAY3452.webp" class="image-link">
           <img src="https://hobbyfigure.oss-cn-hongkong.aliyuncs.com/macao2023c/_RAY3452.webp" alt="macao2023" />
           </a>
 <a href="https://hobbyfigure.oss-cn-hongkong.aliyuncs.com/macao2023/_RAY3467.webp" class="image-link">
@@ -84,5 +84,5 @@ permalink: /hobby/macao2023/ # 可选的，链接到这个页面的路径
           </a>
 <a href="https://hobbyfigure.oss-cn-hongkong.aliyuncs.com/macao2023/_RAY3626.webp" class="image-link">
           <img src="https://hobbyfigure.oss-cn-hongkong.aliyuncs.com/macao2023c/_RAY3626.webp" alt="macao2023" />
-          </a> -->
+          </a>
 </div>
