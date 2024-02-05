@@ -29,6 +29,14 @@ layout: compress
   {% include head/index.html %}
   <style>
     /* #_navbar { display: none } */
+    
+    .large-only {
+        position: fixed !important; /* 固定位置 */
+        top: 20% !important; /* 顶部对齐 */
+        overflow-y: auto; /* 如果目录很长，允许滚动 */
+    }
+
+
     #dark-mode-toggle {
         position: fixed;   /* 使用固定定位 */
         bottom: 20px;        /* 距离页面顶部10px */
@@ -44,15 +52,14 @@ layout: compress
         justify-content: center; /* 水平居中内容 */
         align-items: center;     /* 垂直居中内容 */
         overflow: hidden;        /* 防止内容溢出 */
-        background-color: #ffffff; /* 按钮背景色 */
+        background-color: var(--body-card); /* 按钮背景色 */
         cursor: pointer;          /* 鼠标悬停时显示手形指针 */
         box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* 添加一些阴影效果 */
         z-index: 1000;    /* 确保按钮在页面最上层 */
     }
 
-    #dark-mode-toggle img {
-        width: 70%;       /* 控制图标大小，相对于按钮大小 */
-        height: auto;     /* 保持图标的纵横比 */
+    #dark-mode-toggle:hover {
+        opacity: 1; /* 鼠标悬停时增加不透明度 */
     }
 
     body {
@@ -89,8 +96,13 @@ layout: compress
 
 <body class="{% include_cached base-classes %}">
     {% include body/index.html %}
-    <button id="dark-mode-toggle">
-        <img src="/assets/img/dark-theme.svg" alt="Switch Mode">
+    <button id="dark-mode-toggle" title="Toggle Dark Mode" style="width: 40px; height: 40px;">
+        <svg width="30px" height="30px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <g fill="var(--body-cardcolor)" fill-rule="nonzero">
+                <path d="M12,22 C17.5228475,22 22,17.5228475 22,12 C22,6.4771525 17.5228475,2 12,2 C6.4771525,2 2,6.4771525 2,12 C2,17.5228475 6.4771525,22 12,22 Z M12,20.5 L12,3.5 C16.6944204,3.5 20.5,7.30557963 20.5,12 C20.5,16.6944204 16.6944204,20.5 12,20.5 Z">
+                </path>
+            </g>
+        </svg>
     </button>
     <script>
         (function() {
@@ -123,3 +135,4 @@ layout: compress
         })();
     </script>
 </body>
+
