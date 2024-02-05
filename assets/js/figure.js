@@ -8,7 +8,6 @@ function initModalFunctionality() {
         modal.innerHTML = '<span class="close">&times;</span><img class="modal-content" id="modal-image">';
         document.body.appendChild(modal);
         modal.style.display = "none";
-        console.log('Modal functionality initialized.');
     }
     
     var modalImg = document.getElementById("modal-image");
@@ -29,7 +28,6 @@ function initModalFunctionality() {
     closeBtn.addEventListener('click', function() {
         modal.style.display = "none";
     });
-    console.log('Modal functionality Upadated.');
 }
 
 // Ensure that the initModalFunctionality function is called after the DOM is fully loaded.
