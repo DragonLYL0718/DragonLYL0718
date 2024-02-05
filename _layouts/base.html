@@ -28,12 +28,14 @@ layout: compress
 <head>
   {% include head/index.html %}
   <style>
+    /* #_navbar { display: none } */
     #dark-mode-toggle {
         position: fixed;   /* 使用固定定位 */
         bottom: 20px;        /* 距离页面顶部10px */
         left: 20px;
         width: 40px;      /* 按钮宽度 */
         height: 40px;     /* 按钮高度 */
+        opacity: 0.6; /* 半透明 */
         border-radius: 50%; /* 圆形按钮 */
         border: none;     /* 无边框 */
         outline: none;    /* 聚焦时无轮廓 */
@@ -86,7 +88,7 @@ layout: compress
 </head>
 
 <body class="{% include_cached base-classes %}">
-  {% include body/index.html %}
+    {% include body/index.html %}
     <button id="dark-mode-toggle">
         <img src="/assets/img/dark-theme.svg" alt="Switch Mode">
     </button>

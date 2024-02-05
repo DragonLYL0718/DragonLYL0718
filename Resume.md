@@ -11,9 +11,9 @@ permalink: /resume/
 ## Education
 ---
 - 2022.9 - now, expectedgrad‘25 <br>
-**[Southern University of Science and Technology](https://www.sustech.edu.cn/en/) | Intelligent Manufacturing and Robotics | GPA: 3.11/4** <br>
+**[Southern University of Science and Technology](https://www.sustech.edu.cn/en/) | Intelligent Manufacturing and Robotics** <br>
 - 2018.9 - 2022.7 <br>
-**[South China University of Technology](https://www.scut.edu.cn/en/) | Automation | GPA: 3.35/4** <br>
+**[South China University of Technology](https://www.scut.edu.cn/en/) | Automation** <br>
 
 ## Research Interests
 ---
@@ -34,10 +34,6 @@ Nargiz Askarbekkyzy, **Yilong Lin**, Kongpyung (Justin) Moon, Andrea Bianchi, Se
 ---
 - 2019 - 2020 <br>
 **[National University Intelligent Car Race](https://www.smartcar.zone/) | Baidu Intelligent Transportation Group | National First Price**
-- 2018 - 2019 <br>
-**DJI RoboMaster Robotics Competition | Third Prize in SCUT**
-- 2018 - 2019 <br>
-**Boeing Automatic Control Competition | Third Prize in SCUT**
 - 2018 - 2019 <br>
 **Second Class Scholarship at School Level**
 
@@ -65,8 +61,7 @@ Nargiz Askarbekkyzy, **Yilong Lin**, Kongpyung (Justin) Moon, Andrea Bianchi, Se
 **Programming Languages:** C/C++/C#, Python <br>
 **Embedded system:** Arduino, Stm32, Soldering, PCB Design <br> 
 **Basic 3D Modelling:** Fusion360, SolidWorks <br>
-**Basic Deep learning:** PaddlePaddle, TensorFlow <br>
-**Other:** Unity, Qt, Control theory
+**Other:** Unity, Control theory
 
 ## References
 ---
