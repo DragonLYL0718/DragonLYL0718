@@ -92,32 +92,25 @@ layout: compress
     </button>
     <script>
         (function() {
-            // 直接尝试获取暗模式切换按钮并为其添加事件监听器
             var darkModeToggle = document.getElementById('dark-mode-toggle');
             if (!darkModeToggle) {
-                console.log('Dark mode toggle button not found.');
-                return; // 如果找不到元素，则不执行后续代码
+                return; 
             }
 
-            // 初始化暗模式状态
             var currentMode = localStorage.getItem('darkMode') === 'enabled';
             if (currentMode) {
                 document.body.classList.add('dark-mode');
             }
 
-            // 添加事件监听器来切换暗模式
             darkModeToggle.addEventListener('click', function() {
-                // 确保动画只在点击时触发
                 if (!document.body.classList.contains('animate-transition')) {
                     document.body.classList.add('animate-transition');
 
-                    // 使用 setTimeout 确保类添加后立即切换，避免动画延迟
                     setTimeout(() => {
                         document.body.classList.toggle('dark-mode');
                         var mode = document.body.classList.contains('dark-mode') ? 'enabled' : 'disabled';
                         localStorage.setItem('darkMode', mode);
 
-                        // 动画完成后移除动画类，这里设置的延时应与 CSS 中的动画时间相匹配
                         setTimeout(() => {
                             document.body.classList.remove('animate-transition');
                         }, 1000); // CSS 动画时长
@@ -125,7 +118,6 @@ layout: compress
                 }
             });
 
-            console.log('Dark mode toggle event listener added.');
         })();
     </script>
 </body>
