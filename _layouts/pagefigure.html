@@ -4,6 +4,15 @@ layout: pagegallery
 
 <head>
     <style>
+
+    .image-link img {
+    transition: transform 0.3s ease-in-out; /* 添加平滑的过渡效果 */
+    }
+
+    .image-link img:hover {
+    transform: scale(1.05); /* 鼠标悬停时放大图片 */
+    }
+
     /* 模态窗口样式 */
     .modal {
         display: flexbox; /* 使用 flexbox 布局 */
