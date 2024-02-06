@@ -87,27 +87,21 @@ layout: page
             var grids = document.querySelectorAll('.gallery-grid');
 
 grids.forEach(function(grid) {
-    // Initialize Masonry
     var msnry = new Masonry(grid, {
             itemSelector: '.card',
             columnWidth: '.gallery-grid-sizer',
             percentPosition: true
         });
 
-        // Use imagesLoaded on each grid
         imagesLoaded(grid).on('progress', function() {
-            // Layout Masonry after each image loads
             msnry.layout();
         }).on('always', function() {
-            // Layout Masonry after all images have loaded
             msnry.layout();
         });
     });
 
-    // This may not be necessary if imagesLoaded is used, but it's here as a fallback
     window.addEventListener('load', function() {
         grids.forEach(function(grid) {
-            // Get the Masonry instance for the current grid
             var msnryInstance = Masonry.data(grid);
             if (msnryInstance) {
                 msnryInstance.layout();
