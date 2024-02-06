@@ -147,7 +147,7 @@ layout: pagegallery
     <!-- 引入 Masonry -->
     <script src="/assets/js/masonry.pkgd.min.js"></script>
     <!-- 引入 imagesLoaded -->
-    <script src="/assets/js/imagesLoaded.pkgd.min.js"></script>
+    <script src="/assets/js/imagesloaded.pkgd.min.js"></script>
     <script>
         var grid = document.querySelector('.figure-grid');
         var msnry = new Masonry(grid, {
@@ -157,11 +157,9 @@ layout: pagegallery
         });
 
         imagesLoaded(grid).on('progress', function(instance, image) {
-            console.log('image is loaded');
             msnry.layout(); 
         }).on('always', function() {
             msnry.layout(); 
-            console.log('all images loaded');
         });
 
         window.addEventListener('load', function() {
