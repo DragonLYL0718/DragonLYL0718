@@ -5,9 +5,7 @@ layout: page
 <head>
     <style>
     .gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 0.33fr));
-        gap: 20px;
+        margin: 0 auto; /* 水平居中 */
     }
 
     .card {
@@ -17,10 +15,12 @@ layout: page
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         overflow: hidden;
         transition: all 0.3s ease;
+        width: calc(33% - 20px);
+        margin: 10px;
     }
     
     .card:hover {
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
     }
     
     .card img {
@@ -34,12 +34,91 @@ layout: page
     .card-text {
         padding: 15px;
         text-align: center;
+        font-size: 5vw;
+    }
+
+    .gallery-grid-sizer{
+        width: 33.333%; /* 三列布局 */
+    }
+
+    /* 可选：针对小屏幕调整列数 */
+    @media screen and (max-width: 768px) {
+        .gallery-grid-sizer{
+            width: 50%; /* 小屏幕上一列布局 */
+        }
+        .card {
+            width: calc(50% - 10px); /* 两列布局 */
+            margin: 5px;
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        .gallery-grid-sizer{
+            width: 100%; /* 小屏幕上一列布局 */
+        }
+        .card {
+            width: 100%; /* 两列布局 */
+            margin: 5px 0;
+        }
+    }
+
+    @media (min-width: 300px) {
+        .card-text {
+            font-size: calc(9px + (0.3vw - 3px)); /* 当视口宽度从600px增加时，字体大小会从18px开始增加，但增加的速率小于1vw */
+        }
+    }
+
+    @media (min-width: 600px) {
+        .card-text {
+            font-size: calc(10px + (1vw - 6px)); /* 当视口宽度从600px增加时，字体大小会从18px开始增加，但增加的速率小于1vw */
+        }
+    }
+
+    /* 当视口宽度大于1000px时，设置.card-text的字体大小固定为18px */
+    @media (min-width: 1000px) {
+        .card-text {
+            font-size: 14px; /* 固定字体大小为18px */
+        }
     }
     </style>
 </head>
 
 <body>
-    <!-- <script src="/assets/js/gallery.js"></script> -->
-    <!-- <link rel='dns-prefetch' href='//cdn.jsdelivr.net'/> -->
     {{ content }}
+    <!-- 引入 Masonry -->
+    <script src="/assets/js/masonry.pkgd.min.js"></script>
+    <!-- 引入 imagesLoaded -->
+    <script src="/assets/js/imagesloaded.pkgd.min.js"></script>
+    <script>
+            var grids = document.querySelectorAll('.gallery-grid');
+
+grids.forEach(function(grid) {
+    // Initialize Masonry
+    var msnry = new Masonry(grid, {
+            itemSelector: '.card',
+            columnWidth: '.gallery-grid-sizer',
+            percentPosition: true
+        });
+
+        // Use imagesLoaded on each grid
+        imagesLoaded(grid).on('progress', function() {
+            // Layout Masonry after each image loads
+            msnry.layout();
+        }).on('always', function() {
+            // Layout Masonry after all images have loaded
+            msnry.layout();
+        });
+    });
+
+    // This may not be necessary if imagesLoaded is used, but it's here as a fallback
+    window.addEventListener('load', function() {
+        grids.forEach(function(grid) {
+            // Get the Masonry instance for the current grid
+            var msnryInstance = Masonry.data(grid);
+            if (msnryInstance) {
+                msnryInstance.layout();
+            }
+        });
+    });
+    </script>
 </body>
