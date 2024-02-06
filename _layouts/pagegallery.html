@@ -34,7 +34,7 @@ layout: page
     .card-text {
         padding: 15px;
         text-align: center;
-        font-size: 5vw;
+        font-size: 10px;
     }
 
     .gallery-grid-sizer{
@@ -62,20 +62,14 @@ layout: page
         }
     }
 
-    @media (min-width: 300px) {
+    @media (min-width: 480px) {
         .card-text {
-            font-size: calc(9px + (0.3vw - 3px)); /* 当视口宽度从600px增加时，字体大小会从18px开始增加，但增加的速率小于1vw */
-        }
-    }
-
-    @media (min-width: 600px) {
-        .card-text {
-            font-size: calc(10px + (1vw - 6px)); /* 当视口宽度从600px增加时，字体大小会从18px开始增加，但增加的速率小于1vw */
+            font-size: calc(10px + (1vw - 4.8px)); /* 当视口宽度从600px增加时，字体大小会从18px开始增加，但增加的速率小于1vw */
         }
     }
 
     /* 当视口宽度大于1000px时，设置.card-text的字体大小固定为18px */
-    @media (min-width: 1000px) {
+    @media (min-width: 768px) {
         .card-text {
             font-size: 14px; /* 固定字体大小为18px */
         }
