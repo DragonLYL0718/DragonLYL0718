@@ -9,6 +9,20 @@ permalink: /hobby/
 1. this list will be replaced by the toc
 {:toc .large-only}
 
+## 2024
+
+<div class="gallery-grid" >
+  <div class="gallery-grid-sizer"></div>
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/hobby/shenzhen2024/">
+        <img src="https://hobbyfigure.oss-cn-hongkong.aliyuncs.com/hongkong2023c/_RAY4539.webp"/>
+        <div class="card-text">Shenzhen, China</div>
+      </a>
+    </div>
+  </div>
+</div>
+
 ## 2023
 
 <div class="gallery-grid" >
