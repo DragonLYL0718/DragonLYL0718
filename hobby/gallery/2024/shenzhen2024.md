@@ -11,7 +11,7 @@ permalink: /hobby/shenzhen2024/ # 可选的，链接到这个页面的路径
   <div class="card">
     <div class="image-overlay-container">
       <a href="/hobby/shenzhen2024/1">
-        <img src="https://hobbyfigure.oss-cn-hongkong.aliyuncs.com/hongkong2023c/_RAY4539.webp"/>
+        <img src="https://hobbyfigure.oss-cn-hongkong.aliyuncs.com/shenzhen2024-1c/_RAY5114.webp"/>
         <div class="card-text">Shenzhen Observatory, Dapeng Fortress</div>
       </a>
     </div>
