@@ -16,4 +16,12 @@ permalink: /hobby/shenzhen2024/ # 可选的，链接到这个页面的路径
       </a>
     </div>
   </div>
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/hobby/shenzhen2024/2">
+        <img src="https://hobbyfigure.oss-cn-hongkong.aliyuncs.com/shenzhen2024-2c/_RAY4874.webp"/>
+        <div class="card-text">Dafen Village</div>
+      </a>
+    </div>
+  </div>
 </div>
