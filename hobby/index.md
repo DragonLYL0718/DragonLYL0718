@@ -69,6 +69,14 @@ permalink: /hobby/
   </div>
   <div class="card">
     <div class="image-overlay-container">
+      <a href="/hobby/shenzhen2023/">
+        <img src="https://hobbyfigure.oss-cn-hongkong.aliyuncs.com/shenzhen2023c/_RAY1712-已增强-NR.webp"/>
+        <div class="card-text">Shenzhen, China</div>
+      </a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="image-overlay-container">
       <a href="/hobby/other2023/">
         <img src="https://hobbyfigure.oss-cn-hongkong.aliyuncs.com/guangdong2023c/_RAY2636.webp"/>
         <div class="card-text">Others, China</div>
