@@ -12,7 +12,6 @@ permalink: /hobby/
 ## 2024
 
 <div class="gallery-grid" >
-  <div class="gallery-grid-sizer"></div>
   <div class="card">
     <div class="image-overlay-container">
       <a href="/hobby/shenzhen2024/">
@@ -26,7 +25,6 @@ permalink: /hobby/
 ## 2023
 
 <div class="gallery-grid" >
-  <div class="gallery-grid-sizer"></div>
   <div class="card">
     <div class="image-overlay-container">
       <a href="/hobby/hongkong2023/">

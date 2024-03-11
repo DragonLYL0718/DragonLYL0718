@@ -5,7 +5,10 @@ layout: page
 <head>
     <style>
     .gallery-grid {
-        margin: 0 auto; /* 水平居中 */
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 3fr)); /* Change from auto-fit to auto-fill */
+        gap: 10px;
+        padding: 0px; /* Optional: Added padding around the grid for better spacing */
     }
 
     .card {
@@ -15,14 +18,14 @@ layout: page
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         overflow: hidden;
         transition: all 0.3s ease;
-        width: calc(33% - 20px);
-        margin: 10px;
+        /* Removed width specification to let grid manage the layout */
+        margin: 10px; /* This margin can conflict with grid's gap, consider removing or adjusting */
     }
-    
+
     .card:hover {
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
     }
-    
+
     .card img {
         width: 100%;
         height: auto;
@@ -30,48 +33,39 @@ layout: page
         object-fit: cover;
         aspect-ratio: 3 / 2;
     }
-    
+
     .card-text {
         padding: 15px;
         text-align: center;
         font-size: 10px;
     }
 
-    .gallery-grid-sizer{
-        width: 33.333%; /* 三列布局 */
-    }
-
-    /* 可选：针对小屏幕调整列数 */
+    /* For small screens, you might want to adjust the grid or text sizes further. */
     @media screen and (max-width: 768px) {
-        .gallery-grid-sizer{
-            width: 50%; /* 小屏幕上一列布局 */
-        }
-        .card {
-            width: calc(50% - 10px); /* 两列布局 */
-            margin: 5px;
+        .gallery-grid {
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust column width for smaller screens */
         }
     }
 
     @media screen and (max-width: 480px) {
-        .gallery-grid-sizer{
-            width: 100%; /* 小屏幕上一列布局 */
+        .gallery-grid {
+            grid-template-columns: 1fr; /* Single column view for very small screens */
         }
-        .card {
-            width: 100%; /* 两列布局 */
-            margin: 5px 0;
-        }
-    }
-
-    @media (min-width: 480px) {
         .card-text {
-            font-size: calc(10px + (1vw - 4.8px)); /* 当视口宽度从600px增加时，字体大小会从18px开始增加，但增加的速率小于1vw */
+            font-size: 12px; /* Increase font size for readability on small screens */
         }
     }
 
-    /* 当视口宽度大于1000px时，设置.card-text的字体大小固定为18px */
+    @media (min-width: 480px) and (max-width: 768px) {
+        .card-text {
+            font-size: calc(10px + (2vw - 4.8px)); /* Adjust font scaling based on viewport width */
+        }
+    }
+
+    /* Adjusting this media query to only apply for widths greater than 768px */
     @media (min-width: 768px) {
         .card-text {
-            font-size: 14px; /* 固定字体大小为18px */
+            font-size: 14px; /* Fixed font size for larger screens */
         }
     }
     </style>
@@ -79,34 +73,4 @@ layout: page
 
 <body>
     {{ content }}
-    <!-- 引入 Masonry -->
-    <script src="/assets/js/masonry.pkgd.min.js"></script>
-    <!-- 引入 imagesLoaded -->
-    <script src="/assets/js/imagesloaded.pkgd.min.js"></script>
-    <script>
-            var grids = document.querySelectorAll('.gallery-grid');
-
-grids.forEach(function(grid) {
-    var msnry = new Masonry(grid, {
-            itemSelector: '.card',
-            columnWidth: '.gallery-grid-sizer',
-            percentPosition: true
-        });
-
-        imagesLoaded(grid).on('progress', function() {
-            msnry.layout();
-        }).on('always', function() {
-            msnry.layout();
-        });
-    });
-
-    window.addEventListener('load', function() {
-        grids.forEach(function(grid) {
-            var msnryInstance = Masonry.data(grid);
-            if (msnryInstance) {
-                msnryInstance.layout();
-            }
-        });
-    });
-    </script>
 </body>

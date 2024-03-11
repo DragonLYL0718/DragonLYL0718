@@ -18,7 +18,6 @@ permalink: /projects/
 ---
 
 <div class="gallery-grid" >
-  <div class="gallery-grid-sizer"></div>
   <div class="card">
     <div class="image-overlay-container">
       <a href="/projects/visuohaptic">
@@ -66,7 +65,6 @@ permalink: /projects/
 ---
 
 <div class="gallery-grid" >
-  <div class="gallery-grid-sizer"></div>
   <div class="card">
     <div class="image-overlay-container">
       <a href="/projects/smartcar">
@@ -88,7 +86,6 @@ permalink: /projects/
 <br>
 The following are some small projects that are not well documented.
 <div class="gallery-grid" >
-  <div class="gallery-grid-sizer"></div>
   <div class="card">
     <div class="image-overlay-container">
       <a href="/projects/intelligentcurtain">
