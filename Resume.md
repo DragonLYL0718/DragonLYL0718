@@ -42,7 +42,7 @@ Nargiz Askarbekkyzy, **Yilong Lin**, Kongpyung (Justin) Moon, Andrea Bianchi, Se
 - 2019 - 2021 <br>
 **AI Future Innovation Lab (AI未来创新实验室), SCUT**
 
-## Serivce
+## Service
 ---
 <ul>
     <li><strong><a href="https://ScalableHCI.github.io">Scalable HCI Symposium</a> | Volunteer/Lecturer | ACM SIGCHI/SUSTech | Winter 2024</strong></li>
