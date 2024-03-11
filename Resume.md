@@ -37,10 +37,10 @@ Nargiz Askarbekkyzy, **Yilong Lin**, Kongpyung (Justin) Moon, Andrea Bianchi, Se
 - 2018 - 2019 <br>
 **Second Class Scholarship at School Level**
 
-## Experience
+<!-- ## Experience
 ---
 - 2019 - 2021 <br>
-**AI Future Innovation Lab (AI未来创新实验室), SCUT**
+**AI Future Innovation Lab (AI未来创新实验室), SCUT** -->
 
 ## Service
 ---
@@ -70,3 +70,21 @@ Nargiz Askarbekkyzy, **Yilong Lin**, Kongpyung (Justin) Moon, Andrea Bianchi, Se
 ## Hobby
 ---
 **Photography**
+
+<div class="download-link">
+    <a href="\assets\file\Resume_Yilong.pdf" target="_blank" title="Download PDF">
+    <img src="\assets\img\Download.webp" alt="Download">
+    </a>
+</div>
+
+<style>
+    .mb6 {
+        position: relative; /* 这样才能将下载图标相对于此元素定位 */
+    }
+
+    .mb6 .download-link {
+        position: absolute; /* 绝对定位 */
+        top: -1px; /* 放在容器的顶部 */
+        right: 0; /* 放在容器的右边 */
+    }
+</style>
