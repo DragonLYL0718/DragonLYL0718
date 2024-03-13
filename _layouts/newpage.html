@@ -10,8 +10,8 @@ layout: page
 
         .mb6 .dark-mode-toggle {
             position: absolute;   /* 使用固定定位 */
-            top: -120px;        /* 距离页面顶部10px */
-            right: 0px;
+            top: -125px;        /* 距离页面顶部10px */
+            right: 20px;
             width: 40px;      /* 按钮宽度 */
             height: 40px;     /* 按钮高度 */
             opacity: 0.6; /* 半透明 */
@@ -57,6 +57,12 @@ layout: page
             --body-cardcolor: rgb(204, 204, 204); /* 暗模式卡片文字颜色 */
             background-color: var(--body-bg); /* 使用CSS变量设置背景色 */
             color: var(--body-color); /* 使用CSS变量设置文字颜色 */
+        }
+
+        @media screen and (max-width: 1984px) {
+            .mb6 .dark-mode-toggle {
+                top: -120px; /* 小屏幕上一列布局 */
+            }
         }
 
         @media screen and (max-width: 1376px) {
