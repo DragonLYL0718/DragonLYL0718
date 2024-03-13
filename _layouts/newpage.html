@@ -4,12 +4,6 @@ layout: page
 
 <head>
     <style>
-        .large-only {
-            position: fixed !important; /* 固定位置 */
-            top: 20% !important; /* 顶部对齐 */
-            overflow-y: auto; /* 如果目录很长，允许滚动 */
-        }
-    
         .mb6 {
             position: relative; /* 这样才能将下载图标相对于此元素定位 */
         }
@@ -29,10 +23,10 @@ layout: page
             justify-content: center; /* 水平居中内容 */
             align-items: center;     /* 垂直居中内容 */
             overflow: hidden;        /* 防止内容溢出 */
-            background-color: var(--body-card); /* 按钮背景色 */
+            background-color: var(--body-bg); /* 按钮背景色 */
             cursor: pointer;          /* 鼠标悬停时显示手形指针 */
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* 添加一些阴影效果 */
-            z-index: 1000;    /* 确保按钮在页面最上层 */
+            box-shadow: none;
+            z-index: 100;    /* 确保按钮在页面最上层 */
         }
     
         .dark-mode-toggle:hover {
@@ -67,13 +61,15 @@ layout: page
 
         @media screen and (max-width: 1376px) {
             .mb6 .dark-mode-toggle {
-                top: -110px; /* 小屏幕上一列布局 */
+                top: -105px; /* 小屏幕上一列布局 */
             }
         }
 
         @media screen and (max-width: 672px) {
             .mb6 .dark-mode-toggle {
                 top: -100px; /* 小屏幕上一列布局 */
+                width: 30px;      /* 按钮宽度 */
+                height: 30px;     /* 按钮高度 */
             }
         }
     </style>

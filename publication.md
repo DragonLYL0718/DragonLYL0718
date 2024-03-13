@@ -1,6 +1,6 @@
 ---
 title: Publications
-layout: page
+layout: newpage
 hide_description: true
 permalink: /publications/
 ---
