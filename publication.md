@@ -20,7 +20,7 @@ permalink: /publications/
     </h2>
     <p>
         <strong>Yilong Lin</strong>, Peng Zhang, Eyal Ofek, Seungwoo Je <br>
-        In Proceedings of CHI 2024. (CONDITIONALLY ACCEPTED).
+        In Proceedings of CHI 2024.
     </p>
     <!-- 其他你想要的标记 -->
   </div>

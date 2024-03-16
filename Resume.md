@@ -61,11 +61,12 @@ Nargiz Askarbekkyzy, **Yilong Lin**, Kongpyung (Justin) Moon, Andrea Bianchi, Se
 **Programming Languages:** C/C++/C#, Python <br>
 **Embedded system:** Arduino, Stm32, Soldering, PCB Design <br> 
 **Basic 3D Modelling:** Fusion360, SolidWorks <br>
-**Other:** Unity, Control theory
+**Linguistic:** Chinese Native, English Fluent (Toefl 95) <br>
+**Other:** Unity
 
 ## References
 ---
-**[Prof. Seungwoo JE](https://www.seungwooje.com/) | Immersive Design Group Director, Assistant Professor at SUSTech**
+**[Prof. Seungwoo JE](http://immersivedesignresearch.com/seungwoo) | Immersive Design Group Director, Assistant Professor at SUSTech**
 
 ## Hobby
 ---
