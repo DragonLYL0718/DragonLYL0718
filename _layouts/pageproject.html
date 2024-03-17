@@ -1,0 +1,20 @@
+---
+layout: newpage
+---
+
+<head>
+    <link href="\assets\js\lightbox.css" rel="stylesheet" />
+</head>
+
+<body>
+    {{ content }}
+    <script src="\assets\js\lightbox-plus-jquery.js"></script>
+    <script>
+        lightbox.option({
+          'resizeDuration': 200,
+          'wrapAround': true,
+          'fitImagesInViewport': true,
+          'disableScrolling': true,
+        })
+    </script>
+</body>

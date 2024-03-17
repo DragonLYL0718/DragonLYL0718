@@ -1,8 +1,11 @@
 ---
-layout: page
+layout: newpage
 title: Clock Configuration
 permalink: /projects/epaper/clock
 ---
+
+1. this list will be replaced by the toc
+{:toc .large-only}
 
 ## The following are suggestions for low power consumption
 
