@@ -19,6 +19,8 @@
 # You may also provide a location, e.g.: en-us, de_AT.
 lang:                  en
 
+languages: ["en", "cn"]
+
 # The title of your blog. Used in the sidebar and the browser tab.
 title: Rayleigh
 
@@ -345,6 +347,7 @@ plugins:
   - jekyll-titles-from-headings
   - jekyll-include-cache
   - jekyll-last-modified-at
+  - jekyll-multiple-languages-plugin
 
 
 # SEO Tag
