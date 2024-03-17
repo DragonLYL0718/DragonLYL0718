@@ -4,6 +4,17 @@ layout: newpage
 
 <head>
     <link href="\assets\js\lightbox.css" rel="stylesheet" />
+    <style>
+        .image-link{
+            text-decoration: none; /* 移除链接下划线 */
+            border: none; /* 移除链接边框 */
+            outline: none; /* 移除点击时的轮廓 */
+        }
+
+        .image-link:after {
+            content: none !important;; /* 移除伪元素的内容 */
+        } 
+    </style>
 </head>
 
 <body>

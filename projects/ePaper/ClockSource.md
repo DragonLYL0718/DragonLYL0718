@@ -12,6 +12,6 @@ $$
 C'_L=2 \times (C_{1,2}-C_{stray})
 $$
 
-Where $C'_L$ is the load capacitance value given in the crystal specification sheet, $$C_{1,2}$$ is the capacitance to be installed in the actual circuit on both sides, and $$C_{stray}$$ is the parasitic capacitance of the microcontroller pins and PCB alignment.
+Where $$C'_L$$ is the load capacitance value given in the crystal specification sheet, $$C_{1,2}$$ is the capacitance to be installed in the actual circuit on both sides, and $$C_{stray}$$ is the parasitic capacitance of the microcontroller pins and PCB alignment.
 
-To get the total C'_L required, the capacitance of each side $$C_{1,2}$$ should be slightly larger because the parallel equivalent of the two capacitors is affected by the parasitic capacitance of the PCB alignment.
+To get the total $$C'_L$$ required, the capacitance of each side $$C_{1,2}$$ should be slightly larger because the parallel equivalent of the two capacitors is affected by the parasitic capacitance of the PCB alignment.
