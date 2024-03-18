@@ -20,6 +20,14 @@ permalink: /hobby/
       </a>
     </div>
   </div>
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/hobby/shantou2024/">
+        <img src="https://hobbyfigure.oss-cn-hongkong.aliyuncs.com/2024shantouc/_RAY5431.webp"/>
+        <div class="card-text">Shantou, China</div>
+      </a>
+    </div>
+  </div>
 </div>
 
 ## 2023
