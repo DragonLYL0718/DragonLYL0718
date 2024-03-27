@@ -33,13 +33,13 @@ The guidelines mentioned below were initially created by ChatGPT 4 and have been
 - Select “New Project”.
 
 <a href="https://pageasset.oss-cn-hongkong.aliyuncs.com/project/epaper/cubemx/New%20Project.webp" data-lightbox="roadtrip" class="image-link">
-    <img src="https://pageasset.oss-cn-hongkong.aliyuncs.com/project/epaper/cubemx/New%20Project.webp" alt="New Project" style="width:100%;max-width:1000px" loading="lazy">
+    <img src="https://pageasset.oss-cn-hongkong.aliyuncs.com/project/epaper/cubemx/New%20Project.webp" alt="New Project" style="max-width:100%" loading="lazy">
 </a>
 
 - Choose the STM32WLE5CCU6 microcontroller from the MCU list.
 
 <a href="https://pageasset.oss-cn-hongkong.aliyuncs.com/project/epaper/cubemx/Choose%20MCU.webp" data-lightbox="roadtrip" class="image-link">
-    <img src="https://pageasset.oss-cn-hongkong.aliyuncs.com/project/epaper/cubemx/Choose%20MCU.webp" alt="Choose MCU" style="width:100%;max-width:1000px" loading="lazy">
+    <img src="https://pageasset.oss-cn-hongkong.aliyuncs.com/project/epaper/cubemx/Choose%20MCU.webp" alt="Choose MCU" style="max-width:100%" loading="lazy">
 </a>
 
 ### Configure Clock Settings
@@ -48,7 +48,7 @@ The guidelines mentioned below were initially created by ChatGPT 4 and have been
 - Go to the “Clock Configuration” tab.
 - Set the clock speeds to the minimum required for your application to reduce power consumption.
 <a href="https://pageasset.oss-cn-hongkong.aliyuncs.com/project/epaper/cubemx/Clock%20Configuration.webp" data-lightbox="roadtrip" class="image-link">
-    <img src="https://pageasset.oss-cn-hongkong.aliyuncs.com/project/epaper/cubemx/Clock%20Configuration.webp" alt="Choose MCU" style="width:100%;max-width:1000px" loading="lazy">
+    <img src="https://pageasset.oss-cn-hongkong.aliyuncs.com/project/epaper/cubemx/Clock%20Configuration.webp" alt="Choose MCU" style="max-width:100%" loading="lazy">
 </a>
 [More details](/projects/epaper/clock)
 
@@ -66,9 +66,34 @@ For this project, I used EasyEDA. <br/>
 
 - The power supply scheme on page 64 gives information on connecting power to the MCU and the necessary components like capacitors. [More Information](/projects/epaper/powersupply)
 
+- I connect VDD directly to VBAT due to the absence of a battery backup, which aligns with minimizing the design's complexity.
+- Decoupling capacitors are essential for stabilizing the power supply voltage and filtering out high-frequency noise. The STM32WLE5CCU6 datasheet specifies these capacitors' recommended values and placements for optimal performance. Close attention to the datasheet recommendations will ensure that the MCU operates reliably under varying conditions and minimizes potential interference to sensitive analog circuits.<br/>
+<a href="https://pageasset.oss-cn-hongkong.aliyuncs.com/project/epaper/pcb/PowerDecoupling.webp" data-lightbox="roadtrip" class="image-link">
+    <img src="https://pageasset.oss-cn-hongkong.aliyuncs.com/project/epaper/pcb/PowerDecoupling.webp" alt="Decoupling" style="max-width:100%" loading="lazy">
+</a>
+- I chose to use two LDOs (Low Dropout Linear Regulators) to power the VDD (digital power supply) and VDDA (analog power supply) separately to maintain analog power supply stability and reduce power supply noise interference. This is especially important when designing circuits that involve precision analog signal processing, such as ADCs (analog to digital converters), DACs (digital to analog converters), or other analog interfaces. The following explains in detail why this is done:
+    - **Isolation from Digital Noise**: Digital circuits operate with high power supply noise, mainly caused by the large number of fast switching actions in digital circuits. If transmitted to the analog power supply, this noise may seriously affect the quality of the analog signal. Using a separate LDO to supply power to the analog circuits, the noise caused by the digital circuits can be effectively isolated, thus protecting the analog circuit portion from being affected.
+    - **Improving power quality**: Analog circuits usually require a higher purity from the power supply than digital circuits. Using a separate LDO to power the analog circuits ensures that they receive a more stable and cleaner power supply, improving the overall circuit performance.
+    - **Optimized power management**: In some application scenarios, the operating states of the analog and digital parts may differ. For example, only the analog circuits may be required to operate in low-power mode. In this case, the power supply of the digital part can be turned off separately while keeping the power supply of the analog part unchanged to optimize power consumption.
+    - **Improved Design Flexibility**: Designing power supplies for analog and digital circuits separately provides greater design flexibility, allowing for optimization of power supply voltage selection, filtering design, etc., based on the specific needs of the analog and digital circuits.<br/>
+<a href="https://pageasset.oss-cn-hongkong.aliyuncs.com/project/epaper/pcb/LDO.webp" data-lightbox="roadtrip" class="image-link">
+    <img src="https://pageasset.oss-cn-hongkong.aliyuncs.com/project/epaper/pcb/LDO.webp" alt="LDO" style="max-width:100%" loading="lazy">
+</a>
+
 ### Clock Configuration:
 
-The clock tree on page 38 details the internal and external clock sources, which is crucial for configuring the microcontroller's clock system to drive the e-ink display.
+The clock tree on page 38 details the internal and external clock sources, which are crucial for configuring the microcontroller's clock system to drive the e-ink display.
+
+- In our PCB design, we use a 16MHz external crystal oscillator.<br/>
+<a href="https://pageasset.oss-cn-hongkong.aliyuncs.com/project/epaper/pcb/ClockConfiguration.webp" data-lightbox="roadtrip" class="image-link">
+    <img src="https://pageasset.oss-cn-hongkong.aliyuncs.com/project/epaper/pcb/ClockConfiguration.webp" alt="LDO" style="max-width:100%" loading="lazy">
+</a>
+
+### Stlink:
+- STLink is a debugger and programmer from STMicroelectronics that allows developers to program and debug firmware for STM32 microcontrollers and STM8 microcontrollers. It typically connects to the developer's PC via a USB interface and connects to the target microcontroller via a JTAG or SWD interface. In this project, I used SWD to connect to the target controller.<br/>
+<a href="https://pageasset.oss-cn-hongkong.aliyuncs.com/project/epaper/pcb/Stlink.webp" data-lightbox="roadtrip" class="image-link">
+    <img src="https://pageasset.oss-cn-hongkong.aliyuncs.com/project/epaper/pcb/Stlink.webp" alt="Stlink" style="max-width:100%" loading="lazy">
+</a>
 
 ### Pinout Information:
 
