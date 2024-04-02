@@ -60,6 +60,7 @@ The guidelines mentioned below were initially created by ChatGPT 4 and have been
 For this project, I used EasyEDA. <br/>
 [stm32wle5c8.pdf](https://pageasset.oss-cn-hongkong.aliyuncs.com/project/epaper/pcb/stm32wle5c8.pdf)<br/>
 [More Information for Minimum Board](/projects/epaper/minimumboard)
+<font color="#dd0000">The external crystal and UART are not working correctly, and the following is being troubleshot.</font>
 
 ### Block Diagram
 
