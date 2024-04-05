@@ -29,7 +29,7 @@ permalink: /projects/
   </div>
   <div class="card">
     <div class="image-overlay-container">
-      <a href="/projects/armdeformation">
+      <a href="/projects/armdeformation/">
         <img src="\projects\Graduate\ArmDeformation\armdef.webp"/>
         <div class="card-text">ArmDeformation</div>
       </a>
