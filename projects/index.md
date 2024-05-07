@@ -37,6 +37,14 @@ permalink: /projects/
   </div>
   <div class="card">
     <div class="image-overlay-container">
+      <a href="/projects/tabot/">
+        <img src="https://pageasset.oss-cn-hongkong.aliyuncs.com/project/2024%20TaBot/2024%20Tabot.webp"/>
+        <div class="card-text">Tabot</div>
+      </a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="image-overlay-container">
       <a href="/projects/epaper/">
         <img src="https://pageasset.oss-cn-hongkong.aliyuncs.com/project/epaper/cubemx/New%20Project.webp"/>
         <div class="card-text">ePaper</div>
@@ -48,14 +56,6 @@ permalink: /projects/
       <a href="/projects/pinarray">
         <img src="/projects/Graduate/Confidential.jpg"/>
         <div class="card-text">Pin-array</div>
-      </a>
-    </div>
-  </div>
-  <div class="card">
-    <div class="image-overlay-container">
-      <a href="/projects/locomotion">
-        <img src="/projects/Graduate/Confidential.jpg"/>
-        <div class="card-text">Locomotion Platform</div>
       </a>
     </div>
   </div>

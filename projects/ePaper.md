@@ -121,3 +121,6 @@ The clock tree on page 38 details the internal and external clock sources, which
 ---
 
 ### ePaper Driver
+The design of our driver boards references the schematic design from [Waveshare](https://www.waveshare.net/w/upload/8/85/2.9inch_e-Paper_Schematic.pdf).
+
+You can also find our schematic and PCB layout design here: [Link](https://github.com/DragonLYL0718/InkScreenDisplay/tree/master/PCB/DriverBoard).
