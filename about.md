@@ -13,7 +13,7 @@ redirect_from:
 
 <!--author-->
 
-I am a master's student in the School of Design at the Southern University of Science and Technology, supervised by [Prof. Seungwoo JE](https://www.seungwooje.com/). 
+I am a master's student in the School of Design at the Southern University of Science and Technology, supervised by [Prof. Seungwoo JE](https://www.seungwooje.com/). I will join the [WIT LAB](https://sites.google.com/view/kaist-witlab/) in October as an intern under the supervision of Prof. Ian Oakley.
 
 My research in human-computer interaction focuses on the **Haptic Device, Embodiment Illusion, and Body Ownership with virtual reality**.
 

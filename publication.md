@@ -12,6 +12,22 @@ permalink: /publications/
 
 <div style="display: flex; align-items: center; justify-content: space-between;">
   <div style="flex: 1; padding-right: 10px;">
+    <img src="\assets\img\Template.webp" alt="ArmDeformation: Inducing the Sensation of Arm Deformation in Virtual Reality Using Skin-Stretching" />
+  </div>
+  <div style="flex: 2; padding-left: 10px;">
+    <h2>
+        <a>VibroArm: Enhancing the Sensation of Forearm Deformation in Virtual Reality Using Vibrotactile Funneling Illusion</a>
+    </h2>
+    <p>
+        <strong>Yilong Lin</strong>, Tianze Xie, Yingjie Chang, Hu Luo, Dangxiao Wang, Seungwoo Je <br>
+        In Proceedings of ISMAR 2024 (To appear).
+    </p>
+    <!-- 其他你想要的标记 -->
+  </div>
+</div>
+
+<div style="display: flex; align-items: center; justify-content: space-between;">
+  <div style="flex: 1; padding-right: 10px;">
     <a href="/projects/armdeformation/" target="_blank"><img src="\projects\Graduate\ArmDeformation\armdef.webp" alt="ArmDeformation: Inducing the Sensation of Arm Deformation in Virtual Reality Using Skin-Stretching" /></a>
   </div>
   <div style="flex: 2; padding-left: 10px;">

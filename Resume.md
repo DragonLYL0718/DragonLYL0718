@@ -22,13 +22,23 @@ permalink: /resume/
 ## Publications
 ---
 
-- **ArmDeformation: Inducing the Sensation of Arm Deformation in Virtual Reality Using Skin-Stretching** <br>
+- **VibroArm: Enhancing the Sensation of Forearm Deformation in Virtual Reality Using Vibrotactile Funneling Illusion** <br>
+**Yilong Lin**, Tianze Xie, Yingjie Chang, Hu Luo, Dangxiao Wang, Seungwoo Je <br>
+*In Proceedings of ISMAR 2024 (To appear).*
+
+- **[ArmDeformation: Inducing the Sensation of Arm Deformation in Virtual Reality Using Skin-Stretching](https://dl.acm.org/doi/10.1145/3613904.3642518)** <br>
 **Yilong Lin**, Peng Zhang, Eyal Ofek, Seungwoo Je <br>
 *In Proceedings of CHI 2024.*
 
 - **[Designing visuo-haptic illusions for Virtual Reality applications using floor-based shape-changing displays](https://dl.designresearchsociety.org/iasdr/iasdr2023/fullpapers/164/)** <br>
 Nargiz Askarbekkyzy, **Yilong Lin**, Kongpyung (Justin) Moon, Andrea Bianchi, Seungwoo Je <br>
 *In Proceedings of IASDR 2023.*
+
+## Project
+---
+- **TaBot: Designing an Al-empowered Robotic Table to Promote Balanced Conversational Experiences** <br>
+[X - Group](https://www.hci-xgroup.com/), [Immersive Design Group](https://immersivedesignresearch.com/). <br>
+*Shenzhen Art Museum (New Venue)*
 
 ## Honors
 ---
@@ -45,6 +55,7 @@ Nargiz Askarbekkyzy, **Yilong Lin**, Kongpyung (Justin) Moon, Andrea Bianchi, Se
 ## Service
 ---
 <ul>
+    <li><strong>Summer School 2024 | Volunteer | Shool of Design, SUSTech | Summer 2024</strong></li>
     <li><strong><a href="https://ScalableHCI.github.io">Scalable HCI Symposium</a> | Volunteer/Lecturer | ACM SIGCHI/SUSTech | Winter 2024</strong></li>
     <li><strong>Product Realization | TA | SUSTech | Spring 2023</strong></li>
 </ul>
@@ -72,7 +83,7 @@ Nargiz Askarbekkyzy, **Yilong Lin**, Kongpyung (Justin) Moon, Andrea Bianchi, Se
 ---
 **Photography**
 
-<div class="download-link">
+<!-- <div class="download-link">
     <a href="\assets\file\Resume_Yilong.pdf" target="_blank" title="Download PDF">
     <img src="\assets\img\Download.webp" alt="Download">
     </a>
@@ -88,4 +99,4 @@ Nargiz Askarbekkyzy, **Yilong Lin**, Kongpyung (Justin) Moon, Andrea Bianchi, Se
         top: -1px; /* 放在容器的顶部 */
         right: 0; /* 放在容器的右边 */
     }
-</style>
+</style> -->
