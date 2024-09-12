@@ -36,7 +36,7 @@ Nargiz Askarbekkyzy, **Yilong Lin**, Kongpyung (Justin) Moon, Andrea Bianchi, Se
 
 ## Project
 ---
-- **TaBot: Designing an Al-empowered Robotic Table to Promote Balanced Conversational Experiences** <br>
+- **[TaBot: Designing an Al-empowered Robotic Table to Promote Balanced Conversational Experiences](/projects/tabot/)** <br>
 [X - Group](https://www.hci-xgroup.com/), [Immersive Design Group](https://immersivedesignresearch.com/). <br>
 *Shenzhen Art Museum (New Venue)*
 
