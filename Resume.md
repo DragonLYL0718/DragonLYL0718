@@ -15,6 +15,10 @@ permalink: /resume/
 - 2018.9 - 2022.7 <br>
 **[South China University of Technology](https://www.scut.edu.cn/en/) | Automation** <br>
 
+## Experience
+- 2024.9 - now<br>
+**[Korea Advanced Institute of Science & Technology](https://www.kaist.ac.kr/en/) | [Wearable and Interactive Technology Lab](https://sites.google.com/view/kaist-witlab/) | Visting Student Research** <br>
+
 ## Research Interests
 ---
 **HCI, Haptics, wearable, visuo-haptic illusion, VR, and embedded systems**
