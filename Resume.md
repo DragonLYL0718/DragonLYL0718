@@ -51,10 +51,12 @@ Nargiz Askarbekkyzy, **Yilong Lin**, Kongpyung (Justin) Moon, Andrea Bianchi, Se
 - 2018 - 2019 <br>
 **Second Class Scholarship at School Level**
 
-<!-- ## Experience
+## Invited reviewer
 ---
-- 2019 - 2021 <br>
-**AI Future Innovation Lab (AI未来创新实验室), SCUT** -->
+<ul>
+    <li><strong>ACM UIST '24</strong></li>
+    <li><strong>SIGGRAPH Asia '24</strong></li>
+</ul>
 
 ## Service
 ---
