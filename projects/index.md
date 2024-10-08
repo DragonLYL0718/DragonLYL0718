@@ -21,6 +21,14 @@ permalink: /projects/
 <div class="gallery-grid" >
   <div class="card">
     <div class="image-overlay-container">
+      <a href="/projects/vibroarm">
+        <img src="https://pageasset.oss-cn-hongkong.aliyuncs.com/project/2024%20vibroarm/vibroarm.webp"/>
+        <div class="card-text">VibroArm</div>
+      </a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="image-overlay-container">
       <a href="/projects/visuohaptic">
         <img src="/projects/Graduate/visuohaptic/1.PNG"/>
         <div class="card-text">Visuo-haptic Illusions</div>

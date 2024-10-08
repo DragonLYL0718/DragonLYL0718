@@ -17,7 +17,7 @@ permalink: /resume/
 
 ## Experience
 - 2024.9 - now<br>
-**[Korea Advanced Institute of Science & Technology](https://www.kaist.ac.kr/en/) | [Wearable and Interactive Technology Lab](https://sites.google.com/view/kaist-witlab/) | Visting Student Research** <br>
+**[Korea Advanced Institute of Science & Technology](https://www.kaist.ac.kr/en/) | [Wearable and Interactive Technology Lab](https://sites.google.com/view/kaist-witlab/) | Visting Student Researcher** <br>
 
 ## Research Interests
 ---
@@ -28,7 +28,7 @@ permalink: /resume/
 
 - **VibroArm: Enhancing the Sensation of Forearm Deformation in Virtual Reality Using Vibrotactile Funneling Illusion** <br>
 **Yilong Lin**, Tianze Xie, Yingjie Chang, Hu Luo, Dangxiao Wang, Seungwoo Je <br>
-*In Proceedings of ISMAR 2024 (To appear).*
+*In Proceedings of ISMAR 2024.*
 
 - **[ArmDeformation: Inducing the Sensation of Arm Deformation in Virtual Reality Using Skin-Stretching](https://dl.acm.org/doi/10.1145/3613904.3642518)** <br>
 **Yilong Lin**, Peng Zhang, Eyal Ofek, Seungwoo Je <br>
