@@ -21,7 +21,7 @@ permalink: /projects/
 <div class="gallery-grid" >
   <div class="card">
     <div class="image-overlay-container">
-      <a href="/projects/vibroarm">
+      <a href="/projects/vibroarm/">
         <img src="https://pageasset.oss-cn-hongkong.aliyuncs.com/project/2024%20vibroarm/vibroarm.webp"/>
         <div class="card-text">VibroArm</div>
       </a>
