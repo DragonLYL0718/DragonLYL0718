@@ -3,6 +3,7 @@ layout: page # 或者是你想要使用的任何布局
 title: Research Project.
 description: >
   Research Project.
+hide_description: true
 permalink: /projects/armdeformation/
 ---
 

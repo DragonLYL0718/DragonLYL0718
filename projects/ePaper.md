@@ -5,7 +5,7 @@ permalink: /projects/epaper/
 ---
 
 1. this list will be replaced by the toc
-{:toc .large-only}
+   {:toc .large-only}
 
 ## Description
 
@@ -75,22 +75,23 @@ For this project, I used EasyEDA. <br/>
   <a href="https://pageasset.oss-cn-hongkong.aliyuncs.com/project/epaper/pcb/PowerDecoupling.webp" data-lightbox="roadtrip" class="image-link">
   <img src="https://pageasset.oss-cn-hongkong.aliyuncs.com/project/epaper/pcb/PowerDecoupling.webp" alt="Decoupling" style="max-width:100%" loading="lazy">
   </a>
-- I chose to use two LDOs (Low Dropout Linear Regulators) to power the VDD (digital power supply) and VDDA (analog power supply) separately to maintain analog power supply stability and reduce power supply noise interference. This is especially important when designing circuits that involve precision analog signal processing, such as ADCs (analog to digital converters), DACs (digital to analog converters), or other analog interfaces. The following explains in detail why this is done: 
-- **Isolation from Digital Noise**: Digital circuits operate with high power supply noise, mainly caused by the large number of fast switching actions in digital circuits. If transmitted to the analog power supply, this noise may seriously affect the quality of the analog signal. Using a separate LDO to supply power to the analog circuits, the noise caused by the digital circuits can be effectively isolated, thus protecting the analog circuit portion from being affected. 
-- **Improving power quality**: Analog circuits usually require a higher purity from the power supply than digital circuits. Using a separate LDO to power the analog circuits ensures that they receive a more stable and cleaner power supply, improving the overall circuit performance. 
-- **Optimized power management**: In some application scenarios, the operating states of the analog and digital parts may differ. For example, only the analog circuits may be required to operate in low-power mode. In this case, the power supply of the digital part can be turned off separately while keeping the power supply of the analog part unchanged to optimize power consumption. 
+- I chose to use two LDOs (Low Dropout Linear Regulators) to power the VDD (digital power supply) and VDDA (analog power supply) separately to maintain analog power supply stability and reduce power supply noise interference. This is especially important when designing circuits that involve precision analog signal processing, such as ADCs (analog to digital converters), DACs (digital to analog converters), or other analog interfaces. The following explains in detail why this is done:
+- **Isolation from Digital Noise**: Digital circuits operate with high power supply noise, mainly caused by the large number of fast switching actions in digital circuits. If transmitted to the analog power supply, this noise may seriously affect the quality of the analog signal. Using a separate LDO to supply power to the analog circuits, the noise caused by the digital circuits can be effectively isolated, thus protecting the analog circuit portion from being affected.
+- **Improving power quality**: Analog circuits usually require a higher purity from the power supply than digital circuits. Using a separate LDO to power the analog circuits ensures that they receive a more stable and cleaner power supply, improving the overall circuit performance.
+- **Optimized power management**: In some application scenarios, the operating states of the analog and digital parts may differ. For example, only the analog circuits may be required to operate in low-power mode. In this case, the power supply of the digital part can be turned off separately while keeping the power supply of the analog part unchanged to optimize power consumption.
 - **Improved Design Flexibility**: Designing power supplies for analog and digital circuits separately provides greater design flexibility, allowing for optimization of power supply voltage selection, filtering design, etc., based on the specific needs of the analog and digital circuits.<br/>
   <a href="https://pageasset.oss-cn-hongkong.aliyuncs.com/project/epaper/pcb/LDO.webp" data-lightbox="roadtrip" class="image-link">
   <img src="https://pageasset.oss-cn-hongkong.aliyuncs.com/project/epaper/pcb/LDO.webp" alt="LDO" style="max-width:100%" loading="lazy">
   </a>
 
 ### USART & Power Supply
+
 - The USB Type-C interface has double-sided pluggability and high-speed data transfer capability. It simplifies connectivity and provides enhanced power supply capabilities. Integrating UART communication usually requires a USB-to-serial converter, and the CH340 is a popular choice. This chip converts USB signals to UART signals, allowing the microcontroller to communicate with the computer via the Type-C interface.
 - The type-C's VBUS and GND pins serve as the power supply, while the CC1 and CC2 pins are responsible for cable orientation detection, following standard USB functionality configurations. The CH340 chip, with its VCC, GND, TXD, and RXD pins, is the key to enabling data transfer. These pins are connected to the power supply, ground, and the microcontroller's UART receive and transmit pins, respectively, facilitating the smooth flow of data.
 - The TPD4E1U06DCKR is an ESD protection device commonly used to protect the USB data lines D+ and D- from damage caused by electrostatic discharge.
 - Ensuring that the power supply is stable is critical in PCB design. It is standard practice to utilize capacitors for decoupling and filtering, which helps stabilize the power supply and reduce high-frequency noise. In your design, C14 is a decoupling capacitor connected in parallel with the VBUS line to provide stability. In addition, resistors R5 and R6 provide overcurrent protection to ensure the safety of the Type-C interface.
 - When designing the layout, keeping the traces short and length-matched for USB data lines D+ and D-is critical. This helps ensure signal integrity and reduces transmission delays. To further ensure the reliability of the design, place the decoupling capacitor as close as possible to the power pin of the CH340.
-<a href="https://pageasset.oss-cn-hongkong.aliyuncs.com/project/epaper/pcb/UART.webp" data-lightbox="roadtrip" class="image-link">
+  <a href="https://pageasset.oss-cn-hongkong.aliyuncs.com/project/epaper/pcb/UART.webp" data-lightbox="roadtrip" class="image-link">
   <img src="https://pageasset.oss-cn-hongkong.aliyuncs.com/project/epaper/pcb/UART.webp" alt="UART" style="max-width:100%" loading="lazy">
   </a>
 
@@ -99,9 +100,9 @@ For this project, I used EasyEDA. <br/>
 The clock tree on page 38 details the internal and external clock sources, which are crucial for configuring the microcontroller's clock system to drive the e-ink display.
 
 - In our PCB design, we use a 16MHz external crystal oscillator.<br/>
-<a href="https://pageasset.oss-cn-hongkong.aliyuncs.com/project/epaper/pcb/ClockConfiguration.webp" data-lightbox="roadtrip" class="image-link">
+  <a href="https://pageasset.oss-cn-hongkong.aliyuncs.com/project/epaper/pcb/ClockConfiguration.webp" data-lightbox="roadtrip" class="image-link">
   <img src="https://pageasset.oss-cn-hongkong.aliyuncs.com/project/epaper/pcb/ClockConfiguration.webp" alt="LDO" style="max-width:100%" loading="lazy">
-  </a> 
+  </a>
 
 ### Stlink:
 
@@ -121,6 +122,7 @@ The clock tree on page 38 details the internal and external clock sources, which
 ---
 
 ### ePaper Driver
+
 The design of our driver boards references the schematic design from [Waveshare](https://www.waveshare.net/w/upload/8/85/2.9inch_e-Paper_Schematic.pdf).
 
 You can also find our schematic and PCB layout design here: [Link](https://github.com/DragonLYL0718/InkScreenDisplay/tree/master/PCB/DriverBoard).
