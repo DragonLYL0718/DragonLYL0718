@@ -54,6 +54,7 @@ Nargiz Askarbekkyzy, **Yilong Lin**, Kongpyung (Justin) Moon, Andrea Bianchi, Se
 ## Invited reviewer
 ---
 <ul>
+    <li><strong>ACM CHI '25</strong></li>
     <li><strong>ACM UIST '24</strong></li>
     <li><strong>SIGGRAPH Asia '24</strong></li>
 </ul>
