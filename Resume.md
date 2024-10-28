@@ -7,17 +7,18 @@ permalink: /resume/
 
 1. this ordered seed list will be replaced by the toc
 {:toc .large-only}
-
+PDF (available upon request)
 ## Education
 ---
 - 2022.9 - now, expectedgrad‘25 <br>
-**[Southern University of Science and Technology](https://www.sustech.edu.cn/en/) | Intelligent Manufacturing and Robotics** <br>
+  **[Southern University of Science and Technology](https://www.sustech.edu.cn/en/) | Intelligent Manufacturing and Robotics** <br>
 - 2018.9 - 2022.7 <br>
-**[South China University of Technology](https://www.scut.edu.cn/en/) | Automation** <br>
+  **[South China University of Technology](https://www.scut.edu.cn/en/) | Automation** <br>
 
 ## Experience
+---
 - 2024.9 - now<br>
-**[Korea Advanced Institute of Science & Technology](https://www.kaist.ac.kr/en/) | [Wearable and Interactive Technology Lab](https://sites.google.com/view/kaist-witlab/) | Visting Student Researcher** <br>
+  **[Korea Advanced Institute of Science & Technology](https://www.kaist.ac.kr/en/) | [Wearable and Interactive Technology Lab](https://sites.google.com/view/kaist-witlab/) | Visting Student Researcher** <br>
 
 ## Research Interests
 ---
@@ -25,31 +26,28 @@ permalink: /resume/
 
 ## Publications
 ---
-
 - **VibroArm: Enhancing the Sensation of Forearm Deformation in Virtual Reality Using Vibrotactile Funneling Illusion** <br>
-**Yilong Lin**, Tianze Xie, Yingjie Chang, Hu Luo, Dangxiao Wang, Seungwoo Je <br>
-*In Proceedings of ISMAR 2024.*
-
+  **Yilong Lin**, Tianze Xie, Yingjie Chang, Hu Luo, Dangxiao Wang, Seungwoo Je <br>
+  _In Proceedings of ISMAR 2024._
 - **[ArmDeformation: Inducing the Sensation of Arm Deformation in Virtual Reality Using Skin-Stretching](https://dl.acm.org/doi/10.1145/3613904.3642518)** <br>
-**Yilong Lin**, Peng Zhang, Eyal Ofek, Seungwoo Je <br>
-*In Proceedings of CHI 2024.*
-
+  **Yilong Lin**, Peng Zhang, Eyal Ofek, Seungwoo Je <br>
+  _In Proceedings of CHI 2024._
 - **[Designing visuo-haptic illusions for Virtual Reality applications using floor-based shape-changing displays](https://dl.designresearchsociety.org/iasdr/iasdr2023/fullpapers/164/)** <br>
-Nargiz Askarbekkyzy, **Yilong Lin**, Kongpyung (Justin) Moon, Andrea Bianchi, Seungwoo Je <br>
-*In Proceedings of IASDR 2023.*
+  Nargiz Askarbekkyzy, **Yilong Lin**, Kongpyung (Justin) Moon, Andrea Bianchi, Seungwoo Je <br>
+  _In Proceedings of IASDR 2023._
 
 ## Project
 ---
 - **[TaBot: Designing an Al-empowered Robotic Table to Promote Balanced Conversational Experiences](/projects/tabot/)** <br>
-[X - Group](https://www.hci-xgroup.com/), [Immersive Design Group](https://immersivedesignresearch.com/). <br>
-*Shenzhen Art Museum (New Venue)*
+  [X - Group](https://www.hci-xgroup.com/), [Immersive Design Group](https://immersivedesignresearch.com/). <br>
+  _Shenzhen Art Museum (New Venue)_
 
 ## Honors
 ---
 - 2019 - 2020 <br>
-**[National University Intelligent Car Race](https://www.smartcar.zone/) | Baidu Intelligent Transportation Group | National First Price**
+  **[National University Intelligent Car Race](https://www.smartcar.zone/) | Baidu Intelligent Transportation Group | National First Price**
 - 2018 - 2019 <br>
-**Second Class Scholarship at School Level**
+  **Second Class Scholarship at School Level**
 
 ## Invited reviewer
 ---
@@ -74,10 +72,18 @@ Nargiz Askarbekkyzy, **Yilong Lin**, Kongpyung (Justin) Moon, Andrea Bianchi, Se
     <li><strong>DS Sharing Talk | SUSTech | Winter 2022</strong></li>
 </ul>
 
+## Activities
+---
+<ul>
+    <li><strong>ISUVR 2024 | USA | Nov. 2024</strong></li>
+    <li><strong>Maker Faire Shenzhen | China | Nov. 2023</strong></li>
+    <li><strong>China Hi-Tech Fair Design Week | Shenzhen, China | Nov. 2023</strong></li>
+</ul>
+
 ## Skills
 ---
 **Programming Languages:** C/C++/C#, Python <br>
-**Embedded system:** Arduino, Stm32, Soldering, PCB Design <br> 
+**Embedded system:** Arduino, Stm32, Soldering, PCB Design <br>
 **Basic 3D Modelling:** Fusion360, SolidWorks <br>
 **Linguistic:** Chinese Native, English Fluent (Toefl 95) <br>
 **Other:** Unity
@@ -89,21 +95,3 @@ Nargiz Askarbekkyzy, **Yilong Lin**, Kongpyung (Justin) Moon, Andrea Bianchi, Se
 ## Hobby
 ---
 **Photography**
-
-<!-- <div class="download-link">
-    <a href="\assets\file\Resume_Yilong.pdf" target="_blank" title="Download PDF">
-    <img src="\assets\img\Download.webp" alt="Download">
-    </a>
-</div>
-
-<style>
-    .mb6 {
-        position: relative; /* 这样才能将下载图标相对于此元素定位 */
-    }
-
-    .mb6 .download-link {
-        position: absolute; /* 绝对定位 */
-        top: -1px; /* 放在容器的顶部 */
-        right: 0; /* 放在容器的右边 */
-    }
-</style> -->
