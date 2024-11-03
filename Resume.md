@@ -75,7 +75,8 @@ PDF (available upon request)
 ## Activities
 ---
 <ul>
-    <li><strong>ISUVR 2024 | USA | Nov. 2024</strong></li>
+    <li><strong>2024 DESIGN 3.0 FORUM | Korea | Nov. 2024</strong></li>
+    <li><strong>ISUVR 2024 | USA | Oct. 2024</strong></li>
     <li><strong>Maker Faire Shenzhen | China | Nov. 2023</strong></li>
     <li><strong>China Hi-Tech Fair Design Week | Shenzhen, China | Nov. 2023</strong></li>
 </ul>
