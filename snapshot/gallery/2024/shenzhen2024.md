@@ -9,7 +9,7 @@ permalink: /snapshots/shenzhen2024/ # 可选的，链接到这个页面的路径
 <div class="gallery-grid" >
   <div class="card">
     <div class="image-overlay-container">
-      <a href="/hobby/shenzhen2024/1">
+      <a href="/snapshots/shenzhen2024/1">
         <img src="https://hobbyfigure.oss-cn-hongkong.aliyuncs.com/shenzhen2024-1c/_RAY5114.webp"/>
         <div class="card-text">Shenzhen Observatory, Dapeng Fortress</div>
       </a>
@@ -17,7 +17,7 @@ permalink: /snapshots/shenzhen2024/ # 可选的，链接到这个页面的路径
   </div>
   <div class="card">
     <div class="image-overlay-container">
-      <a href="/hobby/shenzhen2024/2">
+      <a href="/snapshots/shenzhen2024/2">
         <img src="https://hobbyfigure.oss-cn-hongkong.aliyuncs.com/shenzhen2024-2c/_RAY4874.webp"/>
         <div class="card-text">Dafen Village</div>
       </a>
