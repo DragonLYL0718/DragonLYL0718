@@ -1,9 +1,9 @@
 ---
 layout: pagegallery
-title: Hobbies
+title: Snapshots
 # description: >
 #   My hobbies are traveling and photography, but due to limited time, I have yet to be able to travel as much as I would like to, with fewer and fewer time for photo processing. I'm considering getting a film camera or a Fuji camera (being lazy). This page is currently under construction.
-permalink: /hobby/
+permalink: /snapshots/
 ---
 
 1. this list will be replaced by the toc
