@@ -14,7 +14,7 @@ permalink: /snapshots/
 <div class="gallery-grid" >
   <div class="card">
     <div class="image-overlay-container">
-      <a href="/hobby/daejeon2024/">
+      <a href="/snapshots/daejeon2024/">
         <img src="https://hobbyfigure.oss-cn-hongkong.aliyuncs.com/2024daejeonc/_RAY8410.webp"/>
         <div class="card-text">Daejeon, South Korean</div>
       </a>
@@ -22,7 +22,7 @@ permalink: /snapshots/
   </div>
   <div class="card">
     <div class="image-overlay-container">
-      <a href="/hobby/usa2024/">
+      <a href="/snapshots/usa2024/">
         <img src="https://hobbyfigure.oss-cn-hongkong.aliyuncs.com/2024usa2c/_RAY6088.webp"/>
         <div class="card-text">USA</div>
       </a>
@@ -30,7 +30,7 @@ permalink: /snapshots/
   </div>
   <div class="card">
     <div class="image-overlay-container">
-      <a href="/hobby/shenzhen2024/">
+      <a href="/snapshots/shenzhen2024/">
         <img src="https://hobbyfigure.oss-cn-hongkong.aliyuncs.com/shenzhen2024-1c/_RAY5114.webp"/>
         <div class="card-text">Shenzhen, China</div>
       </a>
@@ -38,7 +38,7 @@ permalink: /snapshots/
   </div>
   <div class="card">
     <div class="image-overlay-container">
-      <a href="/hobby/shantou2024/">
+      <a href="/snapshots/shantou2024/">
         <img src="https://hobbyfigure.oss-cn-hongkong.aliyuncs.com/2024shantouc/_RAY5431.webp"/>
         <div class="card-text">Shantou, China</div>
       </a>
@@ -51,7 +51,7 @@ permalink: /snapshots/
 <div class="gallery-grid" >
   <div class="card">
     <div class="image-overlay-container">
-      <a href="/hobby/hongkong2023/">
+      <a href="/snapshots/hongkong2023/">
         <img src="https://hobbyfigure.oss-cn-hongkong.aliyuncs.com/hongkong2023c/_RAY4539.webp"/>
         <div class="card-text">Hong Kong, China</div>
       </a>
@@ -59,7 +59,7 @@ permalink: /snapshots/
   </div>
   <div class="card">
     <div class="image-overlay-container">
-      <a href="/hobby/sichuan2023/">
+      <a href="/snapshots/sichuan2023/">
         <img src="https://hobbyfigure.oss-cn-hongkong.aliyuncs.com/sichuan2023c/_RAY4361.webp"/>
         <div class="card-text">Sichuan, China</div>
       </a>
@@ -67,7 +67,7 @@ permalink: /snapshots/
   </div>
   <div class="card">
     <div class="image-overlay-container" >
-      <a href="/hobby/macao2023/">
+      <a href="/snapshots/macao2023/">
         <img src="https://hobbyfigure.oss-cn-hongkong.aliyuncs.com/macao2023c/_RAY3477.webp"/>
         <div class="card-text">Macao&Zhuhai, China</div>
       </a>
@@ -75,7 +75,7 @@ permalink: /snapshots/
   </div>
   <div class="card">
     <div class="image-overlay-container">
-      <a href="/hobby/henan2023/">
+      <a href="/snapshots/henan2023/">
         <img src="https://hobbyfigure.oss-cn-hongkong.aliyuncs.com/henan2023c/_RAY3341.webp"/>
         <div class="card-text">Henan, China</div>
       </a>
@@ -83,7 +83,7 @@ permalink: /snapshots/
   </div>
   <div class="card">
     <div class="image-overlay-container">
-      <a href="/hobby/huizhou2023/">
+      <a href="/snapshots/huizhou2023/">
         <img src="https://hobbyfigure.oss-cn-hongkong.aliyuncs.com/huizhou2023c/_RAY2285.webp"/>
         <div class="card-text">Huizhou, China</div>
       </a>
@@ -91,7 +91,7 @@ permalink: /snapshots/
   </div>
   <div class="card">
     <div class="image-overlay-container">
-      <a href="/hobby/shenzhen2023/">
+        <a href="/snapshots/shenzhen2023/">
         <img src="https://hobbyfigure.oss-cn-hongkong.aliyuncs.com/shenzhen2023c/_RAY1712-已增强-NR.webp"/>
         <div class="card-text">Shenzhen, China</div>
       </a>
@@ -99,7 +99,7 @@ permalink: /snapshots/
   </div>
   <div class="card">
     <div class="image-overlay-container">
-      <a href="/hobby/other2023/">
+      <a href="/snapshots/other2023/">
         <img src="https://hobbyfigure.oss-cn-hongkong.aliyuncs.com/guangdong2023c/_RAY2636.webp"/>
         <div class="card-text">Others, China</div>
       </a>

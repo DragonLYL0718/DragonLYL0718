@@ -3,7 +3,7 @@ layout: pagefigure # 或者是你想要使用的任何布局
 title: Shenzhen
 description: >
   Shenzhen Observatory, Dapeng Fortress
-permalink: /hobby/shenzhen2024/ # 可选的，链接到这个页面的路径
+permalink: /snapshots/shenzhen2024/ # 可选的，链接到这个页面的路径
 ---
 
 <div class="gallery-grid" >

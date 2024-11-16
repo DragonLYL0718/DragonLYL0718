@@ -3,7 +3,7 @@ layout: pagefigure # 或者是你想要使用的任何布局
 title: Shantou
 description: >
   2024.3.8 - 2024.3.10
-permalink: /hobby/shantou2024/ # 可选的，链接到这个页面的路径
+permalink: /snapshots/shantou2024/ # 可选的，链接到这个页面的路径
 ---
 
 <div class="figure-grid">
