@@ -1,0 +1,20 @@
+{% assign alt = include.alt %}
+{% unless alt %}{% capture alt %}<div class="hr pb0"></div>{% endcapture %}{% endunless %}
+
+{% if include.text.size > 0 %}
+{% unless include.hide %}
+<p class="{{ include.class | default:'note-sm' }}" {% if include.property %}property="{{ include.property }}" {% endif
+  %} data-desc="{{ include.text }}" data-desc-zh="{{ include.text_zh }}">
+  {% if page.lang == 'zh' or site.lang == 'zh' %}
+  {{ include.text_zh | default: include.text | markdownify | replace:"
+<p>","" | replace:"</p>","" }}
+{% else %}
+{{ include.text | markdownify | replace:"<p>","" | replace:"</p>","" }}
+{% endif %}
+</p>
+{% else %}
+{{ alt }}
+{% endunless %}
+{% else %}
+{{ alt }}
+{% endif %}

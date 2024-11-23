@@ -1,0 +1,107 @@
+<script>
+    function switchLanguage(lang) {
+        console.log('切换语言:', lang);
+        console.log('之前的HTML lang:', document.documentElement.lang);
+
+        localStorage.setItem('preferred_lang', lang);
+
+        // 设置 HTML 的 lang 属性
+        document.documentElement.lang = lang;
+
+        console.log('之后的HTML lang:', document.documentElement.lang);
+
+        const event = new Event('languageChanged');
+        document.dispatchEvent(event);
+
+        // 立即更新所有内容
+        updateAllContent(lang);
+    }
+
+    function updateAllContent(lang) {
+        // 更新菜单文本
+        const menuItems = document.querySelectorAll('.sidebar-nav-item');
+        menuItems.forEach(item => {
+            const titleZh = item.getAttribute('data-title-zh');
+            const titleEn = item.getAttribute('data-title');
+
+            if (lang === 'zh' && titleZh) {
+                item.textContent = titleZh;
+            } else if (titleEn) {
+                item.textContent = titleEn;
+            }
+        });
+
+        // 更新页面内容
+        const enContents = document.querySelectorAll('.en-content');
+        const zhContents = document.querySelectorAll('.zh-content');
+
+        if (lang === 'zh') {
+            enContents.forEach(content => content.style.display = 'none');
+            zhContents.forEach(content => content.style.display = 'block');
+        } else {
+            enContents.forEach(content => content.style.display = 'block');
+            zhContents.forEach(content => content.style.display = 'none');
+        }
+    }
+
+    // 在页面加载时检查并应用保存的语言偏好
+    document.addEventListener('DOMContentLoaded', function () {
+        const savedLang = localStorage.getItem('preferred_lang');
+        if (savedLang) {
+            document.documentElement.lang = savedLang;
+            updateAllContent(savedLang);
+        }
+    });
+
+    // 在页面内容变化时重新应用语言设置（用于处理页面切换）
+    const observer = new MutationObserver(function (mutations) {
+        const savedLang = localStorage.getItem('preferred_lang');
+        if (savedLang) {
+            updateAllContent(savedLang);
+        }
+    });
+
+    // 开始观察页面内容变化
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+</script>
+
+<!-- 添加语言切换按钮 -->
+<div class="lang-switch-container">
+    {% for lang in site.languages %}
+    {% if forloop.first != true %} | {% endif %}
+    <button class="lang-switch {% if lang == site.lang %}active{% endif %}" onclick="switchLanguage('{{ lang }}')"
+        data-lang="{{ lang }}">
+        {{ lang | upcase }}
+    </button>
+    {% endfor %}
+</div>
+
+<style>
+    .lang-switch-container {
+        text-align: center;
+        margin: 1rem 0;
+    }
+
+    .lang-switch {
+        background: none;
+        border: none;
+        padding: 0.2rem 0.5rem;
+        cursor: pointer;
+        font-size: 0.9rem;
+        color: var(--body-color);
+    }
+
+    .lang-switch.active {
+        font-weight: bold;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 3px;
+    }
+
+    .lang-switch:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 3px;
+    }
+</style>

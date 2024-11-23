@@ -1,19 +1,14 @@
 ---
-layout: page
+layout: about
 ---
 
 <head>
     <script>
         // 在页面加载时获取语言设置
         document.addEventListener('DOMContentLoaded', function () {
-            console.log('页面加载完成');
-            console.log('HTML lang:', document.documentElement.lang);
-            console.log('页面标题元素:', document.querySelector('.page-title'));
-            console.log('页面标题HTML:', document.querySelector('.page-title')?.outerHTML);
             const lang = document.documentElement.lang;
             console.log('Current language:', lang);
             updatePageContent(lang);
-            updateTitleAndDesc(lang);
         });
 
         // 更新页面内容的函数
@@ -23,63 +18,7 @@ layout: page
                 // 根据语言设置切换标题
                 darkModeToggle.title = lang === 'zh' ? '切换暗色模式' : 'Toggle Dark Mode';
             }
-
-            // 更新内容显示
-            const enContent = document.querySelector('.en-content');
-            const zhContent = document.querySelector('.zh-content');
-            if (enContent && zhContent) {
-                if (lang === 'zh') {
-                    enContent.style.display = 'none';
-                    zhContent.style.display = 'block';
-                } else {
-                    enContent.style.display = 'block';
-                    zhContent.style.display = 'none';
-                }
-            }
         }
-
-        // 更新标题和描述的函数
-        function updateTitleAndDesc(lang) {
-            const title = document.querySelector('.page-title');
-            const desc = document.querySelector('.message');
-
-            console.log('更新标题和描述');
-            console.log('当前语言:', lang);
-            console.log('标题元素:', title);
-            if (title) {
-                console.log('data-title:', title.getAttribute('data-title'));
-                console.log('data-title-zh:', title.getAttribute('data-title-zh'));
-            }
-
-            if (lang === 'zh') {
-                if (title) {
-                    const zhTitle = title.getAttribute('data-title-zh');
-                    console.log('设置中文标题:', zhTitle);
-                    title.textContent = zhTitle || title.getAttribute('data-title');
-                }
-                if (desc) {
-                    const zhDesc = desc.getAttribute('data-desc-zh');
-                    desc.textContent = zhDesc || desc.getAttribute('data-desc');
-                }
-            } else {
-                if (title) {
-                    console.log('设置英文标题:', title.getAttribute('data-title'));
-                    title.textContent = title.getAttribute('data-title');
-                }
-                if (desc) {
-                    desc.textContent = desc.getAttribute('data-desc');
-                }
-            }
-        }
-
-        // 监听语言变化
-        document.addEventListener('languageChanged', function (e) {
-            console.log('语言改变事件触发');
-            const currentLang = document.documentElement.lang;
-            console.log('当前语言:', currentLang);
-            updatePageContent(currentLang);
-            updateTitleAndDesc(currentLang);
-        });
     </script>
     <style>
         .mb6 {
@@ -217,5 +156,30 @@ layout: page
             });
 
         })();
+        document.addEventListener('DOMContentLoaded', function () {
+            function updateContent(lang) {
+                const enContent = document.querySelector('.en-content');
+                const zhContent = document.querySelector('.zh-content');
+
+                if (lang === 'zh') {
+                    enContent.style.display = 'none';
+                    zhContent.style.display = 'block';
+                } else {
+                    enContent.style.display = 'block';
+                    zhContent.style.display = 'none';
+                }
+            }
+
+            // 初始更新
+            const savedLang = localStorage.getItem('preferred_lang');
+            if (savedLang) {
+                updateContent(savedLang);
+            }
+
+            // 监听语言变化
+            document.addEventListener('languageChanged', function (e) {
+                updateContent(document.documentElement.lang);
+            });
+        });
     </script>
 </body>
