@@ -434,3 +434,8 @@ jekyll_compose:
             links:
                 - title: Project Link
                   url: https://example.com
+
+# 在适当的位置添加
+assets:
+    js:
+        - /assets/js/lang-switcher.js
