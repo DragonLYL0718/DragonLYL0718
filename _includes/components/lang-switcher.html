@@ -17,7 +17,7 @@
         const event = new Event('languageChanged');
         document.dispatchEvent(event);
 
-        updateAllContent(lang);
+        window.updateAllContent(lang);
     }
 
     window.updateAllContent = function (lang) {
@@ -52,8 +52,22 @@
         const savedLang = localStorage.getItem('preferred_lang');
         if (savedLang) {
             document.documentElement.lang = savedLang;
-            updateAllContent(savedLang);
+            window.updateAllContent(savedLang);
         }
+    });
+
+    // 监听页面内容变化
+    const observer = new MutationObserver(function (mutations) {
+        const savedLang = localStorage.getItem('preferred_lang');
+        if (savedLang) {
+            window.updateAllContent(savedLang);
+        }
+    });
+
+    // 开始观察页面内容变化
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
     });
 </script>
 
