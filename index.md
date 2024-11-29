@@ -1,6 +1,7 @@
 ---
 layout: newabout
 title: About
+title_zh: 简介
 no_link_title: false
 no_excerpt: false
 hide_image: false

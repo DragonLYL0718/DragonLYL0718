@@ -1,8 +1,8 @@
 ---
 title: Publications
-title_zh: 论文
+title_zh: 出版物
 description: List of my academic publications
-description_zh: 我的学术论文列表
+description_zh: 出版物列表
 layout: newpage
 hide_description: false
 permalink: /publications/

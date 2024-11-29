@@ -6,12 +6,7 @@ layout: page
     <script>
         // 在页面加载时获取语言设置
         document.addEventListener('DOMContentLoaded', function () {
-            console.log('页面加载完成');
-            console.log('HTML lang:', document.documentElement.lang);
-            console.log('页面标题元素:', document.querySelector('.page-title'));
-            console.log('页面标题HTML:', document.querySelector('.page-title')?.outerHTML);
             const lang = document.documentElement.lang;
-            console.log('Current language:', lang);
             updatePageContent(lang);
             updateTitleAndDesc(lang);
         });
@@ -41,20 +36,11 @@ layout: page
         // 更新标题和描述的函数
         function updateTitleAndDesc(lang) {
             const title = document.querySelector('.page-title');
-            const desc = document.querySelector('.message');
-
-            console.log('更新标题和描述');
-            console.log('当前语言:', lang);
-            console.log('标题元素:', title);
-            if (title) {
-                console.log('data-title:', title.getAttribute('data-title'));
-                console.log('data-title-zh:', title.getAttribute('data-title-zh'));
-            }
+            const desc = document.querySelector('.note-sm');
 
             if (lang === 'zh') {
                 if (title) {
                     const zhTitle = title.getAttribute('data-title-zh');
-                    console.log('设置中文标题:', zhTitle);
                     title.textContent = zhTitle || title.getAttribute('data-title');
                 }
                 if (desc) {
@@ -63,7 +49,6 @@ layout: page
                 }
             } else {
                 if (title) {
-                    console.log('设置英文标题:', title.getAttribute('data-title'));
                     title.textContent = title.getAttribute('data-title');
                 }
                 if (desc) {
@@ -74,9 +59,7 @@ layout: page
 
         // 监听语言变化
         document.addEventListener('languageChanged', function (e) {
-            console.log('语言改变事件触发');
             const currentLang = document.documentElement.lang;
-            console.log('当前语言:', currentLang);
             updatePageContent(currentLang);
             updateTitleAndDesc(currentLang);
         });
