@@ -5,7 +5,7 @@
         EN
     </button> |
     <button class="lang-switch" onclick="switchLanguage('zh')" data-lang="zh">
-        ZH
+        中文（开发中）
     </button>
 </div>
 
@@ -13,6 +13,7 @@
     .lang-switch-container {
         text-align: center;
         margin: 1rem 0;
+        color: #fff;
     }
 
     .lang-switch {
@@ -21,7 +22,9 @@
         padding: 0.2rem 0.5rem;
         cursor: pointer;
         font-size: 0.9rem;
-        color: var(--body-color);
+        color: #fff;
+        text-decoration: none;
+        border-bottom-color: rgba(255, 255, 255, 0.2);
     }
 
     .lang-switch.active {
@@ -33,5 +36,11 @@
     .lang-switch:hover {
         background: rgba(255, 255, 255, 0.2);
         border-radius: 3px;
+        text-decoration-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .lang-switch-container>span {
+        color: #fff;
+        opacity: 0.7;
     }
 </style>

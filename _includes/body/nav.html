@@ -48,48 +48,7 @@
   </li>
   {% endfor %}
   {% endif %}
-
-  <!-- 语言切换按钮 -->
-  <li class="lang-switch-item">
-    {% for lang in site.languages %}
-    <a href="javascript:void(0)" class="lang-switch {% if lang == page.lang %}active{% endif %}"
-      onclick="switchLanguage('{{ lang }}')" data-lang="{{ lang }}">
-      {% if lang == 'zh' %}
-      中文（开发中）
-      {% else %}
-      {{ lang | upcase }}
-      {% endif %}
-    </a>
-    {% if forloop.first %} | {% endif %}
-    {% endfor %}
-  </li>
 </ul>
-
-<style>
-  .lang-switch-item {
-    margin-top: 1rem;
-    text-align: center;
-  }
-
-  .lang-switch {
-    display: inline-block;
-    padding: 0.2rem 0.5rem;
-    color: var(--body-color);
-    text-decoration: none;
-    font-size: 0.9rem;
-  }
-
-  .lang-switch.active {
-    font-weight: bold;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 3px;
-  }
-
-  .lang-switch:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 3px;
-  }
-</style>
 
 <script>
   // 获取 HTML 标签的 lang 属性

@@ -6,7 +6,6 @@
   theme_color=page.theme_color image=image color=color %}{% endcapture %}
   {% if page.cover %}{{ sidebar }}{% endif %}
   {% include_cached body/menu.html %}
-  {% include components/lang-switcher.html %}
   {% include body/main.html %}
   {% unless page.cover %}{{ sidebar }}{% endunless %}
 </hy-push-state>
