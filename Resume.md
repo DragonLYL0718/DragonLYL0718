@@ -26,7 +26,7 @@ PDF (available upon request)
 
 ## Publications
 ---
-- **VibroArm: Enhancing the Sensation of Forearm Deformation in Virtual Reality Using Vibrotactile Funneling Illusion** <br>
+- **[VibroArm: Enhancing the Sensation of Forearm Deformation in Virtual Reality Using Vibrotactile Funneling Illusion](https://ieeexplore.ieee.org/abstract/document/10765489)** <br>
   **Yilong Lin**, Tianze Xie, Yingjie Chang, Hu Luo, Dangxiao Wang, Seungwoo Je <br>
   _In Proceedings of ISMAR 2024._
 - **[ArmDeformation: Inducing the Sensation of Arm Deformation in Virtual Reality Using Skin-Stretching](https://dl.acm.org/doi/10.1145/3613904.3642518)** <br>

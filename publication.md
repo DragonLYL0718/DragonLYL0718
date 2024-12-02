@@ -19,7 +19,7 @@ permalink: /publications/
   </div>
   <div style="flex: 2; padding-left: 10px;">
     <h2>
-        <a>VibroArm: Enhancing the Sensation of Forearm Deformation in Virtual Reality Using Vibrotactile Funneling Illusion</a>
+        <a href="https://ieeexplore.ieee.org/abstract/document/10765489" target="_blank"> VibroArm: Enhancing the Sensation of Forearm Deformation in Virtual Reality Using Vibrotactile Funneling Illusion</a>
     </h2>
     <p>
         <strong>Yilong Lin</strong>, Tianze Xie, Yingjie Chang, Hu Luo, Dangxiao Wang, Seungwoo Je <br>
