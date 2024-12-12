@@ -49,7 +49,7 @@ apple_touch_icon: https://pageasset.oss-cn-hongkong.aliyuncs.com/weblogo.webp
 author:
     # Used by `jekyll-feed`:
     name: Yilong Lin
-    email: lylrayleigh@gmail.com
+    # email:
     # # Used by `jekyll-seo-tag`:
     # twitter:             <username>
 

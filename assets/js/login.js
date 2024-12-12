@@ -39,9 +39,9 @@ keywordscontent = document.getElementById('keywordscontent');
  * @function login
  */
 function login() {
-    var email = "lylrayleigh@gmail.com";
+    var email = "";
     var password = document.getElementById('login-password').value;
-    
+
     // Make sure email and password are not empty
     if (!email || !password) {
         abstractcontent.innerHTML = "password must be provided";
@@ -64,7 +64,7 @@ async function requestData2() {
     // console.log('requestData2');
     // You already have a reference to the 'test' document in 'table1' collection
     var documentRef = doc(db, collectionName, documentName);
-    
+
     try {
         const docSnapshot = await getDoc(documentRef);
         if (docSnapshot.exists()) {

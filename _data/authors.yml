@@ -2,30 +2,30 @@
 # Must be the same as `author` in `_config.yml`.
 # Change `author1` to your shortname.
 author1:
-  name:              Yilong Lin (Rayleigh)
-  email:             lylrayleigh@gmail.com
+  name: Yilong Lin (Rayleigh)
+  email:
 
   # Used at the bottom of each page and at the top of the `about` layout
   # Markdown enabled, can use multiple paragraphs (enabled by `|`)
-  about:             |
+  about: |
     ## Hi, I'm Yilong Lin (Rayleigh), an HCI researcher from Shenzhen, China.
 
   # This photo will be used in the about section
   picture:
-    path:            https://pageasset.oss-cn-hongkong.aliyuncs.com/aboutlogo.webp
+    path: https://pageasset.oss-cn-hongkong.aliyuncs.com/aboutlogo.webp
     # srcset is optional, but can be used to provide higher res versions for retina displays
     srcset:
-      1x:            https://pageasset.oss-cn-hongkong.aliyuncs.com/aboutlogo.webp
-      2x:            https://pageasset.oss-cn-hongkong.aliyuncs.com/aboutlogo.webp
+      1x: https://pageasset.oss-cn-hongkong.aliyuncs.com/aboutlogo.webp
+      2x: https://pageasset.oss-cn-hongkong.aliyuncs.com/aboutlogo.webp
 
   # Social media icons in sidebar
   # Comment/uncommet to show/hide
   # Rearrange to change the order in which they appear
   social:
     # twitter:         <username>
-    github:          https://github.com/DragonLYL0718
-    google-scholar:  https://scholar.google.com/citations?hl=en&user=tKLzDo8AAAAJ
-    email:           lylrayleigh@gmail.com
+    github: https://github.com/DragonLYL0718
+    google-scholar: https://scholar.google.com/citations?hl=en&user=tKLzDo8AAAAJ
+    # email:
     # rss:             https://<url>/feed.xml
     # facebook:        <username>
     # google:          https://scholar.google.com/citations?hl=en&user=tKLzDo8AAAAJ
@@ -38,7 +38,7 @@ author1:
     # lastfm:          <username>
     # instagram:       <username>
     # flickr:          <string@string>
-    500px:           https://500px.com.cn/LYLrayleigh
+    500px: https://500px.com.cn/LYLrayleigh
     # dribbble:        <username>
     # behance:         <username>
     # deviantart:      <username>
@@ -62,7 +62,6 @@ author1:
     # paypal:          <username>
     # download:        <url>
     # keybase          <username>
-
 # Another author (optional)
 # author2:
 #   name:              <firtname> <lastname>

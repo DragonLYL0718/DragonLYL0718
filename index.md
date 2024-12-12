@@ -18,6 +18,8 @@ My research in human-computer interaction focuses on the **Haptic Device, Embodi
 virtual reality**.
 
 If you are interested in collaborating with me, please feel free to send me email!
+
+<strong>Email: lyl + (my english name) + (at) gmail (dot) com</strong>
 </div>
 
 <div class="zh-content" markdown="1" style="display: none;">
@@ -26,5 +28,7 @@ If you are interested in collaborating with me, please feel free to send me emai
 我的人机交互研究主要集中在**触觉设备、具身错觉以及虚拟现实中的身体所有权**等方向。
 
 如果您对合作感兴趣，欢迎随时与我联系！
+
+<strong>邮件: lyl + (我的英文名) + (at) gmail (dot) com</strong>
 </div>
 </div>
