@@ -14,9 +14,9 @@ permalink: /snapshots/
 <div class="gallery-grid" >
   <div class="card">
     <div class="image-overlay-container">
-      <a href="/snapshots/daejeon2024/">
+      <a href="/snapshots/korea2024/">
         <img src="https://hobbyfigure.oss-cn-hongkong.aliyuncs.com/2024daejeonc/_RAY8410.webp"/>
-        <div class="card-text">Daejeon, South Korean</div>
+        <div class="card-text">South Korea</div>
       </a>
     </div>
   </div>
