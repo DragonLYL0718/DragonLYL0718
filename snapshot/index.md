@@ -15,7 +15,7 @@ permalink: /snapshots/
   <div class="card">
     <div class="image-overlay-container">
       <a href="/snapshots/korea2024/">
-        <img src="https://hobbyfigure.oss-cn-hongkong.aliyuncs.com/2024daejeonc/_RAY8410.webp"/>
+        <img src="https://hobbyfigure.oss-cn-hongkong.aliyuncs.com/2024seoulc/_RAY9435.webp"/>
         <div class="card-text">South Korea</div>
       </a>
     </div>

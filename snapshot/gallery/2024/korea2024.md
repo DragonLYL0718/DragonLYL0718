@@ -18,7 +18,7 @@ permalink: /snapshots/korea2024/ # 可选的，链接到这个页面的路径
   <div class="card">
     <div class="image-overlay-container">
       <a href="/snapshots/korea2024/seoul">
-        <img src="https://hobbyfigure.oss-cn-hongkong.aliyuncs.com/2024daejeonc/_RAY8410.webp"/>
+        <img src="https://hobbyfigure.oss-cn-hongkong.aliyuncs.com/2024seoulc/_RAY9435.webp"/>
         <div class="card-text">Seoul</div>
       </a>
     </div>
