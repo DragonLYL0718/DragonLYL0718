@@ -90,42 +90,31 @@ layout: pagegallery
     <script defer src="/assets/js/masonry.pkgd.min.js"></script>
     <script defer src="/assets/js/imagesloaded.pkgd.min.js"></script>
     <script>
-        function initializeGallery() {
-            setTimeout(() => {
-                var grid = document.querySelector('.figure-grid');
+        var grid = document.querySelector('.figure-grid');
+        var msnry = new Masonry(grid, {
+            itemSelector: '.figure-grid-item',
+            columnWidth: '.figure-grid-sizer',
+            percentPosition: true
+        });
 
-                var msnry = new Masonry(grid, {
-                    itemSelector: '.figure-grid-item',
-                    columnWidth: '.figure-grid-sizer',
-                    percentPosition: true,
-                    transitionDuration: 0
-                });
+        imagesLoaded(grid).on('progress', function (instance, image) {
+            msnry.layout();
+        }).on('always', function () {
+            msnry.layout();
+        });
 
-                const observer = lozad('.lozad', {
-                    loaded: function (el) {
-                        el.classList.add('loaded');
-                        msnry.layout();
-                    },
-                    error: function (el) {
-                    }
-                });
 
-                observer.observe();
-
-                imagesLoaded(grid).on('always', function () {
-                    msnry.layout();
-                    msnry.options.transitionDuration = '0.3s';
-                });
-            }, 100);
-        }
-
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initializeGallery);
-        } else {
-            initializeGallery();
-        }
+        // 延迟加载图片
+        const observer = lozad('.lozad', {
+            load: function (el) {
+                console.log('loading element');
+                msnry.layout();
+            }
+        });
+        observer.observe();
 
         window.addEventListener('load', function () {
+            msnry.layout();
         });
     </script>
 
