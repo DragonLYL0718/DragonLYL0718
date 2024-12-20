@@ -55,4 +55,4 @@ gem 'wdm' if Gem.win_platform?
 gem "tzinfo-data" if Gem.win_platform?
 
 
-gem "posix-spawn", "0.3.15"
+gem "posix-spawn", "0.3.13"
