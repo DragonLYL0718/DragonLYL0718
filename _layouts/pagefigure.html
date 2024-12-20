@@ -90,31 +90,29 @@ layout: pagegallery
             percentPosition: true
         });
 
-        if (!window.lozadObserver) {
-            window.lozadObserver = lozad('.lozad', {
-                rootMargin: '50px 0px',
-                threshold: 0.1,
-                loaded: function (el) {
-                    console.log('图片加载完成:', el.getAttribute('data-src'));
-                    el.classList.add('loaded');
-                    msnry.layout();
-                }
-            });
-
-            window.lozadObserver.observe();
-            console.log('已初始化懒加载观察器');
-        } else {
-            console.log('懒加载观察器已存在，跳过初始化');
+        if (window.lozadObserver && window.lozadObserver.observer) {
+            window.lozadObserver.observer.disconnect();
         }
 
-        const images = document.querySelectorAll('.lozad');
-        console.log('发现懒加载图片数量:', images.length);
+        window.lozadObserver = lozad('.lozad', {
+            rootMargin: '50px 0px',
+            threshold: 0.1,
+            loaded: function (el) {
+                el.classList.add('loaded');
+                imagesLoaded(el, function () {
+                    msnry.layout();
+                });
+            }
+        });
+
+        window.lozadObserver.observe();
 
         imagesLoaded(grid).on('progress', function (instance, image) {
-            console.log('图片加载进度:', image.img.src);
-            if (image.isLoaded) {
+            msnry.layout();
+        }).on('always', function () {
+            setTimeout(function () {
                 msnry.layout();
-            }
+            }, 100);
         });
     </script>
 
