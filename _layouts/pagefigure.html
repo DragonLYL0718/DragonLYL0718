@@ -39,7 +39,7 @@ layout: pagegallery
 
         .figure-grid a::after {
             content: none !important;
-            /* 移除伪元素的内容 */
+            /* 移除伪元��的内容 */
         }
 
         .figure-grid-sizer,
@@ -96,51 +96,100 @@ layout: pagegallery
 <body>
     {{ content }}
     <script>
-        var grid = document.querySelector('.figure-grid');
-        // 初始化 Masonry
-        var msnry = new Masonry(grid, {
-            itemSelector: '.figure-grid-item',
-            columnWidth: '.figure-grid-sizer',
-            percentPosition: true
-        });
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('DOM 加载完成');
 
-        console.log(msnry);
+            // 初始化 Masonry
+            var grid = document.querySelector('.figure-grid');
+            console.log('Grid 元素:', grid);
 
-        // 初始化懒加载
-        try {
-            const observer = lozad('.lozad', {
-                loaded: function (el) {
-                    // 图片加载完成后重新布局
-                    console.log(el);
-                    imagesLoaded(el, function () {
-                        msnry.layout();
-                    });
-                }
+            if (!grid) {
+                console.warn('未找到 .figure-grid 元素');
+                return;
+            }
+
+            // 检查图片元素
+            const images = document.querySelectorAll('.lozad');
+            console.log('找到的懒加载图片数量:', images.length);
+            images.forEach((img, index) => {
+                console.log(`图片 ${index + 1}:`, {
+                    'data-src': img.dataset.src,
+                    'class': img.className,
+                    'parent': img.parentElement.outerHTML
+                });
             });
 
-            // 开始观察
-            if (typeof observer.observe === 'function') {
-                observer.observe();
-            } else {
-                console.error('Lozad observer not properly initialized');
+            var msnry = new Masonry(grid, {
+                itemSelector: '.figure-grid-item',
+                columnWidth: '.figure-grid-sizer',
+                percentPosition: true
+            });
+            console.log('Masonry 初始化完成');
+
+            // 初始化懒加载
+            try {
+                console.log('开始初始化 Lozad');
+                const observer = lozad('.lozad', {
+                    loaded: function (el) {
+                        console.log('图片开始加载:', el.dataset.src);
+
+                        // 添加图片加载错误处理
+                        el.onerror = function () {
+                            console.error('图片加载失败:', el.dataset.src);
+                            console.log('完整的图片元素:', el.outerHTML);
+                        };
+
+                        // 图片加载完成后重新布局
+                        if (el.complete) {
+                            console.log('图片已完成加载:', el.dataset.src);
+                            msnry.layout();
+                        } else {
+                            el.addEventListener('load', function () {
+                                console.log('图片加载成功:', el.dataset.src);
+                                msnry.layout();
+                            });
+                        }
+                    }
+                });
+
+                // 开始观察
+                if (typeof observer.observe === 'function') {
+                    observer.observe();
+                    console.log('Lozad 观察器启动成功');
+                } else {
+                    console.error('Lozad observer 初始化失败');
+                    console.log('observer 对象:', observer);
+                }
+            } catch (error) {
+                console.error('初始化 lozad 时发生错误:', error);
+                console.log('错误堆栈:', error.stack);
             }
-        } catch (error) {
-            console.error('Error initializing lozad:', error);
-        }
 
-        console.log(msnry);
-
-        // 监听所有图片加载
-        imagesLoaded(grid).on('progress', function (instance, image) {
-            msnry.layout();
-        }).on('always', function () {
-            msnry.layout();
-        });
-
-        window.addEventListener('load', function () {
-            // 窗口大小改变时重新布局
-            window.addEventListener('resize', debounce(function () {
+            // 监听所有图片加载
+            console.log('设置 imagesLoaded 监听器');
+            imagesLoaded(grid).on('progress', function (instance, image) {
+                console.log('图片加载进度:', {
+                    'src': image.img.src,
+                    'isLoaded': image.isLoaded
+                });
                 msnry.layout();
+            }).on('always', function (instance) {
+                console.log('所有图片加载完成');
+                console.log('成功加载的图片数量:', instance.images.length);
+                msnry.layout();
+            }).on('fail', function (instance) {
+                console.error('部分图片加载失败');
+                instance.images.forEach(function (image) {
+                    if (!image.isLoaded) {
+                        console.error('加载失败的图片:', image.img.src);
+                    }
+                });
+            });
+
+            // 添加窗口大小改变事件监听
+            window.addEventListener('resize', debounce(function () {
+                console.log('窗口大小改变，重新布局');
+                if (msnry) msnry.layout();
             }, 250));
         });
 
@@ -152,6 +201,25 @@ layout: pagegallery
                 timeout = setTimeout(() => func.apply(this, arguments), wait);
             };
         }
+
+        // 添加网络状态监听
+        window.addEventListener('online', function () {
+            console.log('网络已连接');
+        });
+        window.addEventListener('offline', function () {
+            console.log('网络已断开');
+        });
+
+        // 添加资源加载失败监听
+        window.addEventListener('error', function (e) {
+            if (e.target.tagName === 'IMG' || e.target.tagName === 'SCRIPT') {
+                console.error('资源加载失败:', {
+                    'type': e.target.tagName,
+                    'src': e.target.src || e.target.href,
+                    'error': e
+                });
+            }
+        }, true);
     </script>
     <script src="\assets\js\lightbox-plus-jquery.js"></script>
     <script>
