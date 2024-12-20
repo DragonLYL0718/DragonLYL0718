@@ -92,6 +92,14 @@ layout: pagegallery
             /* 鼠标悬停时放大图片 */
         }
     </style>
+    <script>
+        // Add error handling for image loading
+        window.addEventListener('error', function (e) {
+            if (e.target.tagName === 'IMG') {
+                console.error('图片加载失败:', e.target.src);
+            }
+        }, true);
+    </script>
 </head>
 
 <body>
@@ -110,59 +118,44 @@ layout: pagegallery
         function initializeGallery() {
             console.log('开始初始化图片库');
 
-            // 检查 DOM 元素
-            var grid = document.querySelector('.figure-grid');
-            console.log('找到 Grid 元素: ' + (grid ? 'yes' : 'no'));
+            // Add delay to ensure DOM is fully ready
+            setTimeout(() => {
+                var grid = document.querySelector('.figure-grid');
+                if (!grid) {
+                    console.error('找不到图片网格容器 (.figure-grid)');
+                    return;
+                }
 
-            if (!grid) {
-                console.warn('未找到 .figure-grid 元素，终止初始化');
-                return;
-            }
-
-            // 检查图片元素
-            const images = document.querySelectorAll('.lozad');
-            console.log(`找到 ${images.length} 个懒加载图片`);
-
-            // 输出每个图片的信息
-            images.forEach((img, index) => {
-                console.log(`图片 ${index + 1} 信息: ${img.dataset.src}`);
-            });
-
-            try {
-                console.log('开始初始化 Masonry');
+                // Initialize Masonry first
                 var msnry = new Masonry(grid, {
                     itemSelector: '.figure-grid-item',
                     columnWidth: '.figure-grid-sizer',
-                    percentPosition: true
+                    percentPosition: true,
+                    transitionDuration: 0 // Disable animation initially
                 });
-                console.log('Masonry 初始化成功');
 
-                // 初始化懒加载
-                console.log('开始初始化 Lozad');
+                // Initialize lozad with callbacks
                 const observer = lozad('.lozad', {
                     loaded: function (el) {
-                        console.log(`图片加载事件触发: ${el.dataset.src}`);
-                        msnry.layout();
+                        el.classList.add('loaded');
+                        msnry.layout(); // Relayout after each image loads
+                        console.log('图片已加载:', el.dataset.src);
+                    },
+                    error: function (el) {
+                        console.error('图片加载失败:', el.dataset.src);
                     }
                 });
 
+                // Start observing
                 observer.observe();
-                console.log('Lozad 观察器启动成功');
 
-                // 监听所有图片加载
-                imagesLoaded(grid).on('progress', function (instance, image) {
-                    console.log(`图片加载进度更新: ${image.img.src}`);
+                // Use imagesLoaded to ensure proper layout
+                imagesLoaded(grid).on('always', function () {
                     msnry.layout();
-                }).on('always', function () {
-                    console.log('所有图片加载完成');
-                    msnry.layout();
+                    msnry.options.transitionDuration = '0.3s'; // Re-enable animations
+                    console.log('所有图片加载完成，布局已更新');
                 });
-
-            } catch (error) {
-                console.error('初始化过程中发生错误:', error);
-                console.log(`错误详情: ${error.message}`);
-                console.log(`错误堆栈: ${error.stack}`);
-            }
+            }, 100);
         }
 
         // 确保在 DOM 加载完成后执行
