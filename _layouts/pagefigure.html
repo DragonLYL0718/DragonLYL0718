@@ -13,22 +13,6 @@ layout: pagegallery
         window.addEventListener('error', function (e) {
             console.error('脚本加载错误:', e);
         }, true);
-
-        // Add error handling for script loading
-        window.addEventListener('load', function () {
-            if (typeof Masonry === 'undefined') {
-                console.error('Masonry 库加载失败');
-            }
-            if (typeof imagesLoaded === 'undefined') {
-                console.error('imagesLoaded 库加载失败');
-            }
-            if (typeof lozad === 'undefined') {
-                console.error('lozad 库加载失败');
-            }
-            if (typeof lightbox === 'undefined') {
-                console.error('lightbox 库加载失败');
-            }
-        });
     </script>
     <style>
         .figure-grid {
@@ -53,7 +37,7 @@ layout: pagegallery
 
         .figure-grid a img {
             display: block;
-            /* 防止图片下方出现间隙 */
+            /* 防止图���下方出现间隙 */
             width: 100%;
             /* 使图片响应式 */
             break-inside: avoid;
@@ -118,78 +102,48 @@ layout: pagegallery
 
 <body>
     {{ content }}
-    <script defer>
-        console.log('脚本块开始执行');
-        // 立即执行的调试信息
-        console.log('脚本块开始执行');
-
-        // 检查必要的依赖
-        console.log('检查依赖项:');
-        console.log('Masonry: ' + (typeof Masonry !== 'undefined'));
-        console.log('imagesLoaded: ' + (typeof imagesLoaded !== 'undefined'));
-        console.log('lozad: ' + (typeof lozad !== 'undefined'));
-
-        // 主要初始化函数
+    <script>
+        // 将所有初始化逻辑合并到一个完整的函数中
         function initializeGallery() {
             console.log('开始初始化图片库');
 
-            // Add delay to ensure DOM is fully ready
-            setTimeout(() => {
-                var grid = document.querySelector('.figure-grid');
-                if (!grid) {
-                    console.error('找不到图片网格容器 (.figure-grid)');
-                    return;
-                }
+            var grid = document.querySelector('.figure-grid');
+            if (!grid) {
+                console.error('找不到图片网格容器 (.figure-grid)');
+                return;
+            }
 
-                // Initialize Masonry first
-                var msnry = new Masonry(grid, {
-                    itemSelector: '.figure-grid-item',
-                    columnWidth: '.figure-grid-sizer',
-                    percentPosition: true,
-                    transitionDuration: 0 // Disable animation initially
-                });
+            // 初始化 Masonry
+            var msnry = new Masonry(grid, {
+                itemSelector: '.figure-grid-item',
+                columnWidth: '.figure-grid-sizer',
+                percentPosition: true,
+                transitionDuration: 0
+            });
 
-                // Initialize lozad with callbacks
-                const observer = lozad('.lozad', {
-                    loaded: function (el) {
-                        el.classList.add('loaded');
-                        msnry.layout(); // Relayout after each image loads
-                        console.log('图片已加载:', el.dataset.src);
-                    },
-                    error: function (el) {
-                        console.error('图片加载失��:', el.dataset.src);
-                    }
-                });
-
-                // Start observing
-                observer.observe();
-
-                // Use imagesLoaded to ensure proper layout
-                imagesLoaded(grid).on('always', function () {
+            // 初始化 lozad
+            const observer = lozad('.lozad', {
+                loaded: function (el) {
+                    el.classList.add('loaded');
                     msnry.layout();
-                    msnry.options.transitionDuration = '0.3s'; // Re-enable animations
-                    console.log('所有图片加载完成，布局已更新');
-                });
-            }, 100);
+                    console.log('图片已加载:', el.dataset.src);
+                }
+            });
+            observer.observe();
+
+            // 使用 imagesLoaded
+            imagesLoaded(grid).on('always', function () {
+                msnry.layout();
+                msnry.options.transitionDuration = '0.3s';
+                console.log('所有图片加载完成');
+            });
         }
 
-        // 确保在 DOM 加载完成后执行
-        if (document.readyState === 'loading') {
-            console.log('等待 DOM 加载完成...');
-            document.addEventListener('DOMContentLoaded', initializeGallery);
-        } else {
-            console.log('DOM 已加载，直接初始化');
-            initializeGallery();
-        }
-
-        // 添加页面加载完成的检查
-        window.addEventListener('load', function () {
-            console.log('页面完全加载完成');
-        });
-    </script>
-
-    <script>
+        // DOM 加载完成后的初始化
         document.addEventListener('DOMContentLoaded', function () {
+            console.log('DOM 加载完成');
+
+            // 初始化 Lightbox
             if (typeof lightbox !== 'undefined') {
                 lightbox.option({
                     'resizeDuration': 200,
@@ -200,10 +154,8 @@ layout: pagegallery
                 console.log('Lightbox 初始化成功');
             }
 
-            // Then initialize gallery
+            // 初始化图片库
             initializeGallery();
         });
-
-        // Rest of your initialization code...
     </script>
 </body>
