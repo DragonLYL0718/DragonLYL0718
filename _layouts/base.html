@@ -31,6 +31,15 @@ layout: compress
 <html lang="{{ page.lang | default: site.lang | default: 'en' }}">
 
 <head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G3P4GRGGCC"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-G3P4GRGGCC');
+  </script>
+
   <script>
     // 在页面加载前检查保存的语言偏好
     const savedLang = localStorage.getItem('preferred_lang');
