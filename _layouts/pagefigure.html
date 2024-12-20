@@ -3,14 +3,8 @@ layout: pagegallery
 ---
 
 <head>
-    <link href="/assets/js/lightbox.js" rel="stylesheet" />
-    <script>
-        // 立即添加基础调试
-        console.log('页面开始加载');
-        window.debugLog = function (msg) {
-            console.log(`[Debug ${new Date().toISOString()}]:`, msg);
-        };
-    </script>
+    <link href="/assets/js/lightbox.css" rel="stylesheet" />
+    <script>console.log('页面开始加载');</script>
     <script src="/assets/js/lozad.js"></script>
     <script src="/assets/js/masonry.pkgd.min.js"></script>
     <script src="/assets/js/imagesloaded.pkgd.min.js"></script>
@@ -104,21 +98,21 @@ layout: pagegallery
     {{ content }}
     <script>
         // 立即执行的调试信息
-        debugLog('脚本块开始执行');
+        console.log('脚本块开始执行');
 
         // 检查必要的依赖
-        debugLog('检查依赖项:');
-        debugLog('Masonry: ' + (typeof Masonry !== 'undefined'));
-        debugLog('imagesLoaded: ' + (typeof imagesLoaded !== 'undefined'));
-        debugLog('lozad: ' + (typeof lozad !== 'undefined'));
+        console.log('检查依赖项:');
+        console.log('Masonry: ' + (typeof Masonry !== 'undefined'));
+        console.log('imagesLoaded: ' + (typeof imagesLoaded !== 'undefined'));
+        console.log('lozad: ' + (typeof lozad !== 'undefined'));
 
         // 主要初始化函数
         function initializeGallery() {
-            debugLog('开始初始化图片库');
+            console.log('开始初始化图片库');
 
             // 检查 DOM 元素
             var grid = document.querySelector('.figure-grid');
-            debugLog('找到 Grid 元素: ' + (grid ? 'yes' : 'no'));
+            console.log('找到 Grid 元素: ' + (grid ? 'yes' : 'no'));
 
             if (!grid) {
                 console.warn('未找到 .figure-grid 元素，终止初始化');
@@ -127,66 +121,66 @@ layout: pagegallery
 
             // 检查图片元素
             const images = document.querySelectorAll('.lozad');
-            debugLog(`找到 ${images.length} 个懒加载图片`);
+            console.log(`找到 ${images.length} 个懒加载图片`);
 
             // 输出每个图片的信息
             images.forEach((img, index) => {
-                debugLog(`图片 ${index + 1} 信息: ${img.dataset.src}`);
+                console.log(`图片 ${index + 1} 信息: ${img.dataset.src}`);
             });
 
             try {
-                debugLog('开始初始化 Masonry');
+                console.log('开始初始化 Masonry');
                 var msnry = new Masonry(grid, {
                     itemSelector: '.figure-grid-item',
                     columnWidth: '.figure-grid-sizer',
                     percentPosition: true
                 });
-                debugLog('Masonry 初始化成功');
+                console.log('Masonry 初始化成功');
 
                 // 初始化懒加载
-                debugLog('开始初始化 Lozad');
+                console.log('开始初始化 Lozad');
                 const observer = lozad('.lozad', {
                     loaded: function (el) {
-                        debugLog(`图片加载事件触发: ${el.dataset.src}`);
+                        console.log(`图片加载事件触发: ${el.dataset.src}`);
                         msnry.layout();
                     }
                 });
 
                 observer.observe();
-                debugLog('Lozad 观察器启动成功');
+                console.log('Lozad 观察器启动成功');
 
                 // 监听所有图片加载
                 imagesLoaded(grid).on('progress', function (instance, image) {
-                    debugLog(`图片加载进度更新: ${image.img.src}`);
+                    console.log(`图片加载进度更新: ${image.img.src}`);
                     msnry.layout();
                 }).on('always', function () {
-                    debugLog('所有图片加载完成');
+                    console.log('所有图片加载完成');
                     msnry.layout();
                 });
 
             } catch (error) {
                 console.error('初始化过程中发生错误:', error);
-                debugLog(`错误详情: ${error.message}`);
-                debugLog(`错误堆栈: ${error.stack}`);
+                console.log(`错误详情: ${error.message}`);
+                console.log(`错误堆栈: ${error.stack}`);
             }
         }
 
         // 确保在 DOM 加载完成后执行
         if (document.readyState === 'loading') {
-            debugLog('等待 DOM 加载完成...');
+            console.log('等待 DOM 加载完成...');
             document.addEventListener('DOMContentLoaded', initializeGallery);
         } else {
-            debugLog('DOM 已加载，直接初始化');
+            console.log('DOM 已加载，直接初始化');
             initializeGallery();
         }
 
         // 添加页面加载完成的检查
         window.addEventListener('load', function () {
-            debugLog('页面完全加载完成');
+            console.log('页面完全加载完成');
         });
     </script>
 
-    <script src="{{ site.baseurl }}/assets/js/lightbox-plus-jquery.js"></script>
+    <script src="/assets/js/lightbox-plus-jquery.js"></script>
     <script>
         lightbox.option({
             'resizeDuration': 200,
@@ -194,6 +188,6 @@ layout: pagegallery
             'fitImagesInViewport': true,
             'disableScrolling': true
         });
-        debugLog('Lightbox 配置完成');
+        console.log('Lightbox 配置完成');
     </script>
 </body>
