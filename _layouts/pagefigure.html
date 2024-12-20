@@ -4,10 +4,16 @@ layout: pagegallery
 
 <head>
     <link href="/assets/js/lightbox.css" rel="stylesheet" />
-    <script>console.log('页面开始加载');</script>
-    <script src="/assets/js/lozad.js"></script>
-    <script src="/assets/js/masonry.pkgd.min.js"></script>
-    <script src="/assets/js/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/js/lightbox-plus-jquery.js"></script>
+    <script defer src="/assets/js/lozad.js"></script>
+    <script defer src="/assets/js/masonry.pkgd.min.js"></script>
+    <script defer src="/assets/js/imagesloaded.pkgd.min.js"></script>
+    <script>
+        console.log('页面开始加载');
+        window.addEventListener('error', function (e) {
+            console.error('脚本加载错误:', e);
+        }, true);
+    </script>
     <style>
         .figure-grid {
             margin: 0 auto;
@@ -92,19 +98,12 @@ layout: pagegallery
             /* 鼠标悬停时放大图片 */
         }
     </style>
-    <script>
-        // Add error handling for image loading
-        window.addEventListener('error', function (e) {
-            if (e.target.tagName === 'IMG') {
-                console.error('图片加载失败:', e.target.src);
-            }
-        }, true);
-    </script>
 </head>
 
 <body>
     {{ content }}
-    <script>
+    <script defer>
+        console.log('脚本块开始执行');
         // 立即执行的调试信息
         console.log('脚本块开始执行');
 
@@ -142,7 +141,7 @@ layout: pagegallery
                         console.log('图片已加载:', el.dataset.src);
                     },
                     error: function (el) {
-                        console.error('图片加载失败:', el.dataset.src);
+                        console.error('图片加载失��:', el.dataset.src);
                     }
                 });
 
@@ -173,14 +172,19 @@ layout: pagegallery
         });
     </script>
 
-    <script src="/assets/js/lightbox-plus-jquery.js"></script>
     <script>
-        lightbox.option({
-            'resizeDuration': 200,
-            'wrapAround': true,
-            'fitImagesInViewport': true,
-            'disableScrolling': true
+        document.addEventListener('DOMContentLoaded', function () {
+            if (typeof lightbox !== 'undefined') {
+                lightbox.option({
+                    'resizeDuration': 200,
+                    'wrapAround': true,
+                    'fitImagesInViewport': true,
+                    'disableScrolling': true
+                });
+                console.log('Lightbox 配置完成');
+            } else {
+                console.error('Lightbox 未加载');
+            }
         });
-        console.log('Lightbox 配置完成');
     </script>
 </body>
