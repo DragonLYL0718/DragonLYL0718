@@ -4,10 +4,6 @@ layout: pagegallery
 
 <head>
     <link href="/assets/js/lightbox.css" rel="stylesheet" />
-    <script>console.log('页面开始加载');</script>
-    <script src="/assets/js/lozad.js"></script>
-    <script src="/assets/js/masonry.pkgd.min.js"></script>
-    <script src="/assets/js/imagesloaded.pkgd.min.js"></script>
     <style>
         .figure-grid {
             margin: 0 auto;
@@ -90,23 +86,13 @@ layout: pagegallery
 
 <body>
     {{ content }}
+    <script defer src="/assets/js/lozad.js"></script>
+    <script defer src="/assets/js/masonry.pkgd.min.js"></script>
+    <script defer src="/assets/js/imagesloaded.pkgd.min.js"></script>
     <script>
-        console.log('脚本块开始执行');
-
-        console.log('检查依赖项:');
-        console.log('Masonry: ' + (typeof Masonry !== 'undefined'));
-        console.log('imagesLoaded: ' + (typeof imagesLoaded !== 'undefined'));
-        console.log('lozad: ' + (typeof lozad !== 'undefined'));
-
         function initializeGallery() {
-            console.log('开始初始化图片库');
-
             setTimeout(() => {
                 var grid = document.querySelector('.figure-grid');
-                if (!grid) {
-                    console.error('找不到图片网格容器 (.figure-grid)');
-                    return;
-                }
 
                 var msnry = new Masonry(grid, {
                     itemSelector: '.figure-grid-item',
@@ -119,10 +105,8 @@ layout: pagegallery
                     loaded: function (el) {
                         el.classList.add('loaded');
                         msnry.layout();
-                        console.log('图片已加载:', el.dataset.src);
                     },
                     error: function (el) {
-                        console.error('图片加载失败:', el.dataset.src);
                     }
                 });
 
@@ -131,21 +115,17 @@ layout: pagegallery
                 imagesLoaded(grid).on('always', function () {
                     msnry.layout();
                     msnry.options.transitionDuration = '0.3s';
-                    console.log('所有图片加载完成，布局已更新');
                 });
             }, 100);
         }
 
         if (document.readyState === 'loading') {
-            console.log('等待 DOM 加载完成...');
             document.addEventListener('DOMContentLoaded', initializeGallery);
         } else {
-            console.log('DOM 已加载，直接初始化');
             initializeGallery();
         }
 
         window.addEventListener('load', function () {
-            console.log('页面完全加载完成');
         });
     </script>
 
@@ -157,6 +137,5 @@ layout: pagegallery
             'fitImagesInViewport': true,
             'disableScrolling': true
         });
-        console.log('Lightbox 配置完成');
     </script>
 </body>
