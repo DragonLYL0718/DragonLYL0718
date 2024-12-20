@@ -84,50 +84,23 @@ layout: pagegallery
     {{ content }}
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            console.log('DOM 加载完成');
-
             var grid = document.querySelector('.figure-grid');
-            console.log('Grid 元素:', grid);
-
-            if (!grid) {
-                console.warn('未找到 .figure-grid 元素');
-                return;
-            }
 
             const images = document.querySelectorAll('.lozad');
-            console.log('找到的懒加载图片数量:', images.length);
-            images.forEach((img, index) => {
-                console.log(`图片 ${index + 1}:`, {
-                    'data-src': img.dataset.src,
-                    'class': img.className,
-                    'parent': img.parentElement.outerHTML
-                });
-            });
 
             var msnry = new Masonry(grid, {
                 itemSelector: '.figure-grid-item',
                 columnWidth: '.figure-grid-sizer',
                 percentPosition: true
             });
-            console.log('Masonry 初始化完成');
 
             try {
-                console.log('开始初始化 Lozad');
                 const observer = lozad('.lozad', {
                     loaded: function (el) {
-                        console.log('图片开始加载:', el.dataset.src);
-
-                        el.onerror = function () {
-                            console.error('图片加载失败:', el.dataset.src);
-                            console.log('完整的图片元素:', el.outerHTML);
-                        };
-
                         if (el.complete) {
-                            console.log('图片已完成加载:', el.dataset.src);
                             msnry.layout();
                         } else {
                             el.addEventListener('load', function () {
-                                console.log('图片加载成功:', el.dataset.src);
                                 msnry.layout();
                             });
                         }
@@ -136,29 +109,19 @@ layout: pagegallery
 
                 if (typeof observer.observe === 'function') {
                     observer.observe();
-                    console.log('Lozad 观察器启动成功');
                 } else {
                     console.error('Lozad observer 初始化失败');
-                    console.log('observer 对象:', observer);
                 }
             } catch (error) {
                 console.error('初始化 lozad 时发生错误:', error);
                 console.log('错误堆栈:', error.stack);
             }
 
-            console.log('设置 imagesLoaded 监听器');
             imagesLoaded(grid).on('progress', function (instance, image) {
-                console.log('图片加载进度:', {
-                    'src': image.img.src,
-                    'isLoaded': image.isLoaded
-                });
                 msnry.layout();
             }).on('always', function (instance) {
-                console.log('所有图片加载完成');
-                console.log('成功加载的图片数量:', instance.images.length);
                 msnry.layout();
             }).on('fail', function (instance) {
-                console.error('部分图片加载失败');
                 instance.images.forEach(function (image) {
                     if (!image.isLoaded) {
                         console.error('加载失败的图片:', image.img.src);
@@ -167,7 +130,6 @@ layout: pagegallery
             });
 
             window.addEventListener('resize', debounce(function () {
-                console.log('窗口大小改变，重新布局');
                 if (msnry) msnry.layout();
             }, 250));
         });
@@ -179,23 +141,6 @@ layout: pagegallery
                 timeout = setTimeout(() => func.apply(this, arguments), wait);
             };
         }
-
-        window.addEventListener('online', function () {
-            console.log('网络已连接');
-        });
-        window.addEventListener('offline', function () {
-            console.log('网络已断开');
-        });
-
-        window.addEventListener('error', function (e) {
-            if (e.target.tagName === 'IMG' || e.target.tagName === 'SCRIPT') {
-                console.error('资源加载失败:', {
-                    'type': e.target.tagName,
-                    'src': e.target.src || e.target.href,
-                    'error': e
-                });
-            }
-        }, true);
     </script>
     <script src="\assets\js\lightbox-plus-jquery.js"></script>
     <script>
@@ -207,3 +152,4 @@ layout: pagegallery
         });
     </script>
 </body>
+<!-- 注意注释格式 -->
