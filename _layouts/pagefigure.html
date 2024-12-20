@@ -3,10 +3,17 @@ layout: pagegallery
 ---
 
 <head>
-    <link href="\assets\js\lightbox.css" rel="stylesheet" />
-    <script src="/assets/js/lozad.js"></script>
-    <script src="/assets/js/masonry.pkgd.min.js"></script>
-    <script src="/assets/js/imagesloaded.pkgd.min.js"></script>
+    <link href="{{ site.baseurl }}/assets/js/lightbox.css" rel="stylesheet" />
+    <script>
+        // 立即添加基础调试
+        console.log('页面开始加载');
+        window.debugLog = function (msg) {
+            console.log(`[Debug ${new Date().toISOString()}]:`, msg);
+        };
+    </script>
+    <script src="{{ site.baseurl }}/assets/js/lozad.js"></script>
+    <script src="{{ site.baseurl }}/assets/js/masonry.pkgd.min.js"></script>
+    <script src="{{ site.baseurl }}/assets/js/imagesloaded.pkgd.min.js"></script>
     <style>
         .figure-grid {
             margin: 0 auto;
@@ -39,7 +46,7 @@ layout: pagegallery
 
         .figure-grid a::after {
             content: none !important;
-            /* 移除伪元��的内容 */
+            /* 移除伪元的内容 */
         }
 
         .figure-grid-sizer,
@@ -96,132 +103,90 @@ layout: pagegallery
 <body>
     {{ content }}
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            console.log('DOM 加载完成');
+        // 立即执行的调试信息
+        debugLog('脚本块开始执行');
 
-            // 初始化 Masonry
+        // 检查必要的依赖
+        debugLog('检查依赖项:');
+        debugLog('Masonry: ' + (typeof Masonry !== 'undefined'));
+        debugLog('imagesLoaded: ' + (typeof imagesLoaded !== 'undefined'));
+        debugLog('lozad: ' + (typeof lozad !== 'undefined'));
+
+        // 主要初始化函数
+        function initializeGallery() {
+            debugLog('开始初始化图片库');
+
+            // 检查 DOM 元素
             var grid = document.querySelector('.figure-grid');
-            console.log('Grid 元素:', grid);
+            debugLog('找到 Grid 元素: ' + (grid ? 'yes' : 'no'));
 
             if (!grid) {
-                console.warn('未找到 .figure-grid 元素');
+                console.warn('未找到 .figure-grid 元素，终止初始化');
                 return;
             }
 
             // 检查图片元素
             const images = document.querySelectorAll('.lozad');
-            console.log('找到的懒加载图片数量:', images.length);
+            debugLog(`找到 ${images.length} 个懒加载图片`);
+
+            // 输出每个图片的信息
             images.forEach((img, index) => {
-                console.log(`图片 ${index + 1}:`, {
-                    'data-src': img.dataset.src,
-                    'class': img.className,
-                    'parent': img.parentElement.outerHTML
-                });
+                debugLog(`图片 ${index + 1} 信息: ${img.dataset.src}`);
             });
 
-            var msnry = new Masonry(grid, {
-                itemSelector: '.figure-grid-item',
-                columnWidth: '.figure-grid-sizer',
-                percentPosition: true
-            });
-            console.log('Masonry 初始化完成');
-
-            // 初始化懒加载
             try {
-                console.log('开始初始化 Lozad');
+                debugLog('开始初始化 Masonry');
+                var msnry = new Masonry(grid, {
+                    itemSelector: '.figure-grid-item',
+                    columnWidth: '.figure-grid-sizer',
+                    percentPosition: true
+                });
+                debugLog('Masonry 初始化成功');
+
+                // 初始化懒加载
+                debugLog('开始初始化 Lozad');
                 const observer = lozad('.lozad', {
                     loaded: function (el) {
-                        console.log('图片开始加载:', el.dataset.src);
-
-                        // 添加图片加载错误处理
-                        el.onerror = function () {
-                            console.error('图片加载失败:', el.dataset.src);
-                            console.log('完整的图片元素:', el.outerHTML);
-                        };
-
-                        // 图片加载完成后重新布局
-                        if (el.complete) {
-                            console.log('图片已完成加载:', el.dataset.src);
-                            msnry.layout();
-                        } else {
-                            el.addEventListener('load', function () {
-                                console.log('图片加载成功:', el.dataset.src);
-                                msnry.layout();
-                            });
-                        }
+                        debugLog(`图片加载事件触发: ${el.dataset.src}`);
+                        msnry.layout();
                     }
                 });
 
-                // 开始观察
-                if (typeof observer.observe === 'function') {
-                    observer.observe();
-                    console.log('Lozad 观察器启动成功');
-                } else {
-                    console.error('Lozad observer 初始化失败');
-                    console.log('observer 对象:', observer);
-                }
+                observer.observe();
+                debugLog('Lozad 观察器启动成功');
+
+                // 监听所有图片加载
+                imagesLoaded(grid).on('progress', function (instance, image) {
+                    debugLog(`图片加载进度更新: ${image.img.src}`);
+                    msnry.layout();
+                }).on('always', function () {
+                    debugLog('所有图片加载完成');
+                    msnry.layout();
+                });
+
             } catch (error) {
-                console.error('初始化 lozad 时发生错误:', error);
-                console.log('错误堆栈:', error.stack);
+                console.error('初始化过程中发生错误:', error);
+                debugLog(`错误详情: ${error.message}`);
+                debugLog(`错误堆栈: ${error.stack}`);
             }
-
-            // 监听所有图片加载
-            console.log('设置 imagesLoaded 监听器');
-            imagesLoaded(grid).on('progress', function (instance, image) {
-                console.log('图片加载进度:', {
-                    'src': image.img.src,
-                    'isLoaded': image.isLoaded
-                });
-                msnry.layout();
-            }).on('always', function (instance) {
-                console.log('所有图片加载完成');
-                console.log('成功加载的图片数量:', instance.images.length);
-                msnry.layout();
-            }).on('fail', function (instance) {
-                console.error('部分图片加载失败');
-                instance.images.forEach(function (image) {
-                    if (!image.isLoaded) {
-                        console.error('加载失败的图片:', image.img.src);
-                    }
-                });
-            });
-
-            // 添加窗口大小改变事件监听
-            window.addEventListener('resize', debounce(function () {
-                console.log('窗口大小改变，重新布局');
-                if (msnry) msnry.layout();
-            }, 250));
-        });
-
-        // 防抖函数
-        function debounce(func, wait) {
-            let timeout;
-            return function () {
-                clearTimeout(timeout);
-                timeout = setTimeout(() => func.apply(this, arguments), wait);
-            };
         }
 
-        // 添加网络状态监听
-        window.addEventListener('online', function () {
-            console.log('网络已连接');
-        });
-        window.addEventListener('offline', function () {
-            console.log('网络已断开');
-        });
+        // 确保在 DOM 加载完成后执行
+        if (document.readyState === 'loading') {
+            debugLog('等待 DOM 加载完成...');
+            document.addEventListener('DOMContentLoaded', initializeGallery);
+        } else {
+            debugLog('DOM 已加载，直接初始化');
+            initializeGallery();
+        }
 
-        // 添加资源加载失败监听
-        window.addEventListener('error', function (e) {
-            if (e.target.tagName === 'IMG' || e.target.tagName === 'SCRIPT') {
-                console.error('资源加载失败:', {
-                    'type': e.target.tagName,
-                    'src': e.target.src || e.target.href,
-                    'error': e
-                });
-            }
-        }, true);
+        // 添加页面加载完成的检查
+        window.addEventListener('load', function () {
+            debugLog('页面完全加载完成');
+        });
     </script>
-    <script src="\assets\js\lightbox-plus-jquery.js"></script>
+
+    <script src="{{ site.baseurl }}/assets/js/lightbox-plus-jquery.js"></script>
     <script>
         lightbox.option({
             'resizeDuration': 200,
@@ -229,5 +194,6 @@ layout: pagegallery
             'fitImagesInViewport': true,
             'disableScrolling': true
         });
+        debugLog('Lightbox 配置完成');
     </script>
 </body>
