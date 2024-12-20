@@ -90,13 +90,15 @@ layout: pagegallery
             percentPosition: true
         });
 
-        const observer = lozad('.lozad', {
-            loaded: function (el) {
-                el.classList.add('loaded');
-                msnry.layout();
-            }
-        });
-        observer.observe();
+        if (typeof window.lazyLoadObserver === 'undefined') {
+            window.lazyLoadObserver = lozad('.lozad', {
+                loaded: function (el) {
+                    el.classList.add('loaded');
+                    msnry.layout();
+                }
+            });
+            window.lazyLoadObserver.observe();
+        }
 
         imagesLoaded(grid).on('progress', function (instance, image) {
             if (image.isLoaded) {
@@ -105,7 +107,7 @@ layout: pagegallery
         });
 
         window.addEventListener('load', function () {
-            observer.observe();
+            window.lazyLoadObserver.observe();
             msnry.layout();
         });
     </script>
