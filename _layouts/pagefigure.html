@@ -104,11 +104,14 @@ layout: pagegallery
             percentPosition: true
         });
 
+        console.log(msnry);
+
         // 初始化懒加载
         try {
             const observer = lozad('.lozad', {
                 loaded: function (el) {
                     // 图片加载完成后重新布局
+                    console.log(el);
                     imagesLoaded(el, function () {
                         msnry.layout();
                     });
@@ -124,6 +127,8 @@ layout: pagegallery
         } catch (error) {
             console.error('Error initializing lozad:', error);
         }
+
+        console.log(msnry);
 
         // 监听所有图片加载
         imagesLoaded(grid).on('progress', function (instance, image) {
