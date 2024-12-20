@@ -13,6 +13,13 @@ layout: pagegallery
         window.addEventListener('error', function (e) {
             console.error('脚本加载错误:', e);
         }, true);
+
+        // 确保所有必需的脚本都已加载
+        function checkScriptsLoaded() {
+            return typeof Masonry !== 'undefined' &&
+                typeof imagesLoaded !== 'undefined' &&
+                typeof lozad !== 'undefined';
+        }
     </script>
     <style>
         .figure-grid {
@@ -37,7 +44,7 @@ layout: pagegallery
 
         .figure-grid a img {
             display: block;
-            /* 防止图���下方出现间隙 */
+            /* 防止图片下方出现间隙 */
             width: 100%;
             /* 使图片响应式 */
             break-inside: avoid;
@@ -103,59 +110,54 @@ layout: pagegallery
 <body>
     {{ content }}
     <script>
-        // 将所有初始化逻辑合并到一个完整的函数中
+        // 修改初始化函数，添加错误处理
         function initializeGallery() {
             console.log('开始初始化图片库');
 
-            var grid = document.querySelector('.figure-grid');
-            if (!grid) {
-                console.error('找不到图片网格容器 (.figure-grid)');
-                return;
-            }
-
-            // 初始化 Masonry
-            var msnry = new Masonry(grid, {
-                itemSelector: '.figure-grid-item',
-                columnWidth: '.figure-grid-sizer',
-                percentPosition: true,
-                transitionDuration: 0
-            });
-
-            // 初始化 lozad
-            const observer = lozad('.lozad', {
-                loaded: function (el) {
-                    el.classList.add('loaded');
-                    msnry.layout();
-                    console.log('图片已加载:', el.dataset.src);
+            try {
+                if (!checkScriptsLoaded()) {
+                    throw new Error('必需的脚本未完全加载');
                 }
-            });
-            observer.observe();
 
-            // 使用 imagesLoaded
-            imagesLoaded(grid).on('always', function () {
-                msnry.layout();
-                msnry.options.transitionDuration = '0.3s';
-                console.log('所有图片加载完成');
-            });
+                var grid = document.querySelector('.figure-grid');
+                if (!grid) {
+                    throw new Error('找不到图片网格容器 (.figure-grid)');
+                }
+
+                // 初始化 Masonry
+                var msnry = new Masonry(grid, {
+                    itemSelector: '.figure-grid-item',
+                    columnWidth: '.figure-grid-sizer',
+                    percentPosition: true,
+                    transitionDuration: 0
+                });
+
+                // 初始化 lozad
+                const observer = lozad('.lozad', {
+                    loaded: function (el) {
+                        el.classList.add('loaded');
+                        msnry.layout();
+                        console.log('图片已加载:', el.dataset.src);
+                    }
+                });
+                observer.observe();
+
+                // 使用 imagesLoaded
+                imagesLoaded(grid).on('always', function () {
+                    msnry.layout();
+                    msnry.options.transitionDuration = '0.3s';
+                    console.log('所有图片加载完成');
+                });
+            } catch (error) {
+                console.error('初始化图片库时出错:', error);
+            }
         }
 
-        // DOM 加载完成后的初始化
-        document.addEventListener('DOMContentLoaded', function () {
-            console.log('DOM 加载完成');
-
-            // 初始化 Lightbox
-            if (typeof lightbox !== 'undefined') {
-                lightbox.option({
-                    'resizeDuration': 200,
-                    'wrapAround': true,
-                    'fitImagesInViewport': true,
-                    'disableScrolling': true
-                });
-                console.log('Lightbox 初始化成功');
-            }
-
-            // 初始化图片库
+        // 确保 DOM 加载完成后再初始化
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeGallery);
+        } else {
             initializeGallery();
-        });
+        }
     </script>
 </body>
