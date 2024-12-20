@@ -75,20 +75,13 @@ layout: pagegallery
             transform: scale(1.05);
         }
     </style>
-    <script>
-        window.addEventListener('error', function (e) {
-            if (e.target.tagName === 'IMG') {
-                console.error('图片加载失败:', e.target.src);
-            }
-        }, true);
-    </script>
 </head>
 
 <body>
     {{ content }}
-    <script defer src="/assets/js/lozad.js"></script>
-    <script defer src="/assets/js/masonry.pkgd.min.js"></script>
-    <script defer src="/assets/js/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/js/lozad.js"></script>
+    <script src="/assets/js/masonry.pkgd.min.js"></script>
+    <script src="/assets/js/imagesloaded.pkgd.min.js"></script>
     <script>
         var grid = document.querySelector('.figure-grid');
         var msnry = new Masonry(grid, {
