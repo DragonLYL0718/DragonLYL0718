@@ -5,9 +5,21 @@ layout: pagegallery
 <head>
     <link href="/assets/js/lightbox.css" rel="stylesheet" />
     <script src="/assets/js/lightbox-plus-jquery.js"></script>
+    <script>
+        console.log('lightbox-plus-jquery.js 加载完成');
+    </script>
     <script defer src="/assets/js/lozad.js"></script>
+    <script>
+        console.log('lozad.js 加载完成');
+    </script>
     <script defer src="/assets/js/masonry.pkgd.min.js"></script>
+    <script>
+        console.log('masonry.pkgd.min.js 加载完成');
+    </script>
     <script defer src="/assets/js/imagesloaded.pkgd.min.js"></script>
+    <script>
+        console.log('imagesloaded.pkgd.min.js 加载完成');
+    </script>
     <script>
         console.log('页面开始加载');
         window.addEventListener('error', function (e) {
@@ -53,7 +65,7 @@ layout: pagegallery
 
         .figure-grid a::after {
             content: none !important;
-            /* 移除伪元的内容 */
+            /* 移除伪元��内容 */
         }
 
         .figure-grid-sizer,
