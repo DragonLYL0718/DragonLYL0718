@@ -15,7 +15,7 @@ permalink: /publications/
 
 <div style="display: flex; align-items: center; justify-content: space-between;">
   <div style="flex: 1; padding-right: 10px;">
-    <a href="/projects/vibroarm/" target="_blank"><img src="https://pageasset.oss-cn-hongkong.aliyuncs.com/project/2024%20vibroarm/vibroarm.webp" alt="VibroArm: Enhancing the Sensation of Forearm Deformation in Virtual Reality Using Vibrotactile Funneling Illusion" /></a>
+    <a href="/projects/vibroarm/" target="_blank"><img src="https://pageasset.rayleigh-lin.top/project/2024%20vibroarm/vibroarm.webp" alt="VibroArm: Enhancing the Sensation of Forearm Deformation in Virtual Reality Using Vibrotactile Funneling Illusion" /></a>
   </div>
   <div style="flex: 2; padding-left: 10px;">
     <h2>

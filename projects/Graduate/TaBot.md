@@ -16,5 +16,5 @@ and paces, tone of voice, word choice, and language patterns, etc.) and provide 
 through non-verbal movements. This work was exhibited at Shenzhen Art Museum (New Venue).
 
 <video controls preload="none">
-  <source src="https://pageasset.oss-cn-hongkong.aliyuncs.com/project/2024%20TaBot/2024%20TaBot.mp4" type="video/mp4">
+  <source src="https://pageasset.rayleigh-lin.top/project/2024%20TaBot/2024%20TaBot.mp4" type="video/mp4">
 </video>

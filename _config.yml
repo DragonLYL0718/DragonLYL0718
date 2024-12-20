@@ -41,9 +41,9 @@ keywords: []
 # A (square) logo for your site.
 # If provided, it will be shown at the top of the sidebar.
 # It also used by the `jekyll-seo-tag` plugin.
-logo: https://pageasset.oss-cn-hongkong.aliyuncs.com/logo.webp
-favicon: https://pageasset.oss-cn-hongkong.aliyuncs.com/weblogo.webp
-apple_touch_icon: https://pageasset.oss-cn-hongkong.aliyuncs.com/weblogo.webp
+logo: https://pageasset.rayleigh-lin.top/logo.webp
+favicon: https://pageasset.rayleigh-lin.top/weblogo.webp
+apple_touch_icon: https://pageasset.rayleigh-lin.top/weblogo.webp
 
 # This should be the same author as first entry in `_data/authors.yml`.
 author:
@@ -108,7 +108,7 @@ remote_theme: hydecorp/hydejack@v9.1.6
 # ----------------------------------------------------------------------------------------
 
 # Sidebar image and theme color of the site.
-accent_image: https://pageasset.oss-cn-hongkong.aliyuncs.com/sidebar-bg.webp
+accent_image: https://pageasset.rayleigh-lin.top/sidebar-bg.webp
 accent_color: rgb(79,177,186)
 
 # This is used for the `theme-color` meta tag,

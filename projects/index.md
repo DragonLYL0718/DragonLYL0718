@@ -26,7 +26,7 @@ permalink: /projects/
   <div class="card">
     <div class="image-overlay-container">
       <a href="/projects/vibroarm/">
-        <img src="https://pageasset.oss-cn-hongkong.aliyuncs.com/project/2024%20vibroarm/vibroarm.webp"/>
+        <img src="https://pageasset.rayleigh-lin.top/project/2024%20vibroarm/vibroarm.webp"/>
         <div class="card-text">VibroArm</div>
       </a>
     </div>
@@ -50,7 +50,7 @@ permalink: /projects/
   <div class="card">
     <div class="image-overlay-container">
       <a href="/projects/tabot/">
-        <img src="https://pageasset.oss-cn-hongkong.aliyuncs.com/project/2024%20TaBot/2024%20Tabot.webp"/>
+        <img src="https://pageasset.rayleigh-lin.top/project/2024%20TaBot/2024%20Tabot.webp"/>
         <div class="card-text">Tabot</div>
       </a>
     </div>
@@ -58,7 +58,7 @@ permalink: /projects/
   <div class="card">
     <div class="image-overlay-container">
       <a href="/projects/epaper/">
-        <img src="https://pageasset.oss-cn-hongkong.aliyuncs.com/project/epaper/cubemx/New%20Project.webp"/>
+        <img src="https://pageasset.rayleigh-lin.top/project/epaper/cubemx/New%20Project.webp"/>
         <div class="card-text">ePaper</div>
       </a>
     </div>
@@ -127,7 +127,7 @@ The following are some small projects that are not well documented.
   <div class="card">
     <div class="image-overlay-container">
       <a href="/projects/vibroarm/">
-        <img src="https://pageasset.oss-cn-hongkong.aliyuncs.com/project/2024%20vibroarm/vibroarm.webp"/>
+        <img src="https://pageasset.rayleigh-lin.top/project/2024%20vibroarm/vibroarm.webp"/>
         <div class="card-text">VibroArm</div>
       </a>
     </div>
@@ -151,7 +151,7 @@ The following are some small projects that are not well documented.
   <div class="card">
     <div class="image-overlay-container">
       <a href="/projects/tabot/">
-        <img src="https://pageasset.oss-cn-hongkong.aliyuncs.com/project/2024%20TaBot/2024%20Tabot.webp"/>
+        <img src="https://pageasset.rayleigh-lin.top/project/2024%20TaBot/2024%20Tabot.webp"/>
         <div class="card-text">Tabot</div>
       </a>
     </div>
@@ -159,7 +159,7 @@ The following are some small projects that are not well documented.
   <div class="card">
     <div class="image-overlay-container">
       <a href="/projects/epaper/">
-        <img src="https://pageasset.oss-cn-hongkong.aliyuncs.com/project/epaper/cubemx/New%20Project.webp"/>
+        <img src="https://pageasset.rayleigh-lin.top/project/epaper/cubemx/New%20Project.webp"/>
         <div class="card-text">墨水屏</div>
       </a>
     </div>
