@@ -90,25 +90,27 @@ layout: pagegallery
             percentPosition: true
         });
 
-        if (typeof window.lazyLoadObserver === 'undefined') {
-            window.lazyLoadObserver = lozad('.lozad', {
-                loaded: function (el) {
-                    el.classList.add('loaded');
-                    msnry.layout();
-                }
-            });
-            window.lazyLoadObserver.observe();
-        }
-
-        imagesLoaded(grid).on('progress', function (instance, image) {
-            if (image.isLoaded) {
+        const observer = lozad('.lozad', {
+            rootMargin: '50px 0px',
+            threshold: 0.1,
+            loaded: function (el) {
+                console.log('图片加载完成:', el.getAttribute('data-src'));
+                el.classList.add('loaded');
                 msnry.layout();
             }
         });
 
-        window.addEventListener('load', function () {
-            window.lazyLoadObserver.observe();
-            msnry.layout();
+        observer.observe();
+        console.log('已初始化懒加载观察器');
+
+        const images = document.querySelectorAll('.lozad');
+        console.log('发现懒加载图片数量:', images.length);
+
+        imagesLoaded(grid).on('progress', function (instance, image) {
+            console.log('图片加载进度:', image.img.src);
+            if (image.isLoaded) {
+                msnry.layout();
+            }
         });
     </script>
 
