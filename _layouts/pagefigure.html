@@ -9,9 +9,21 @@ layout: pagegallery
             margin: 0 auto;
         }
 
-        .figure-grid img {
+        .figure-grid-sizer,
+        .figure-grid-item {
+            width: 33.333%;
+        }
+
+        .figure-grid img,
+        .figure-grid a img {
             width: 100%;
+            height: auto;
+            display: block;
             break-inside: avoid;
+        }
+
+        .figure-grid-item img {
+            padding: 5px 5px;
         }
 
         .figure-grid a {
@@ -20,35 +32,34 @@ layout: pagegallery
             outline: none;
         }
 
-        .figure-grid a img {
-            display: block;
-            width: 100%;
-            break-inside: avoid;
-        }
-
         .figure-grid a::after {
             content: none !important;
         }
 
-        .figure-grid-sizer,
         .figure-grid-item {
-            width: 33.333%;
+            background-color: rgba(79, 177, 186, 0.5);
+            transition: background-color 0.3s ease-in-out;
         }
 
-        .figure-grid-item img {
-            width: 100%;
-            height: auto;
-            display: block;
-            padding: 5px 5px;
+        .figure-grid-item.loaded {
+            background-color: transparent;
         }
 
         .figure-grid-item img.lozad:not([src]) {
-            min-height: 1000px;
-            background-color: #f3f3f3;
+            min-height: 300px;
+            visibility: hidden;
         }
 
-        .figure-grid-item img.lozad {
-            opacity: 1;
+        .figure-grid-item img.loaded {
+            visibility: visible;
+        }
+
+        .image-link img {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .image-link img:hover {
+            transform: scale(1.05);
         }
 
         @media screen and (max-width: 768px) {
@@ -65,14 +76,6 @@ layout: pagegallery
             .figure-grid-item {
                 width: 100%;
             }
-        }
-
-        .image-link img {
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .image-link img:hover {
-            transform: scale(1.05);
         }
     </style>
 </head>
@@ -99,6 +102,7 @@ layout: pagegallery
             threshold: 0.1,
             loaded: function (el) {
                 el.classList.add('loaded');
+                el.closest('.figure-grid-item').classList.add('loaded');
                 imagesLoaded(el, function () {
                     msnry.layout();
                 });
