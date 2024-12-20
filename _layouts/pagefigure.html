@@ -90,23 +90,22 @@ layout: pagegallery
             percentPosition: true
         });
 
-        imagesLoaded(grid).on('progress', function (instance, image) {
-            msnry.layout();
-        }).on('always', function () {
-            msnry.layout();
-        });
-
-
-        // 延迟加载图片
         const observer = lozad('.lozad', {
-            load: function (el) {
-                console.log('loading element');
+            loaded: function (el) {
+                el.classList.add('loaded');
                 msnry.layout();
             }
         });
         observer.observe();
 
+        imagesLoaded(grid).on('progress', function (instance, image) {
+            if (image.isLoaded) {
+                msnry.layout();
+            }
+        });
+
         window.addEventListener('load', function () {
+            observer.observe();
             msnry.layout();
         });
     </script>
