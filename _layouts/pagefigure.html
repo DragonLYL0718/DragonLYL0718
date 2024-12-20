@@ -13,6 +13,22 @@ layout: pagegallery
         window.addEventListener('error', function (e) {
             console.error('脚本加载错误:', e);
         }, true);
+
+        // Add error handling for script loading
+        window.addEventListener('load', function () {
+            if (typeof Masonry === 'undefined') {
+                console.error('Masonry 库加载失败');
+            }
+            if (typeof imagesLoaded === 'undefined') {
+                console.error('imagesLoaded 库加载失败');
+            }
+            if (typeof lozad === 'undefined') {
+                console.error('lozad 库加载失败');
+            }
+            if (typeof lightbox === 'undefined') {
+                console.error('lightbox 库加载失败');
+            }
+        });
     </script>
     <style>
         .figure-grid {
@@ -181,10 +197,13 @@ layout: pagegallery
                     'fitImagesInViewport': true,
                     'disableScrolling': true
                 });
-                console.log('Lightbox 配置完成');
-            } else {
-                console.error('Lightbox 未加载');
+                console.log('Lightbox 初始化成功');
             }
+
+            // Then initialize gallery
+            initializeGallery();
         });
+
+        // Rest of your initialization code...
     </script>
 </body>
