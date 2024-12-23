@@ -23,4 +23,12 @@ permalink: /snapshots/korea2024/ # 可选的，链接到这个页面的路径
       </a>
     </div>
   </div>
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/snapshots/korea2024/gyeongju">
+        <img src="https://hobbyfigure.rayleigh-lin.top/2024GyeongjuC/_RAY9907.webp"/>
+        <div class="card-text">Gyeongju</div>
+      </a>
+    </div>
+  </div>
 </div>
