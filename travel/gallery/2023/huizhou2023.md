@@ -2,7 +2,7 @@
 layout: pagefigure # 或者是你想要使用的任何布局
 title: Huizhou
 description: >
-permalink: /snapshots/huizhou2023/ # 可选的，链接到这个页面的路径
+permalink: /travel/huizhou2023/ # 可选的，链接到这个页面的路径
 ---
 
 <div class="figure-grid">

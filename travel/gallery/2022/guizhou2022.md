@@ -3,7 +3,7 @@ layout: pagefigure
 title: Guizhou
 description: >
   2022.7.3 - 2022.7.6
-permalink: /snapshots/guizhou2022/
+permalink: /travel/guizhou2022/
 ---
 
 <div class="figure-grid">

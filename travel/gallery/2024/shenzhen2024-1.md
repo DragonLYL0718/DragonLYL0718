@@ -3,7 +3,7 @@ layout: pagefigure # 或者是你想要使用的任何布局
 title: Shenzhen Observatory, Dapeng Fortress
 description: >
   2024.1.21
-permalink: /snapshots/shenzhen2024/1 # 可选的，链接到这个页面的路径
+permalink: /travel/shenzhen2024/1 # 可选的，链接到这个页面的路径
 ---
 
 <div class="figure-grid">
