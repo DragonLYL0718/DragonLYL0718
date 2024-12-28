@@ -133,3 +133,24 @@ permalink: /travel/
     </div>
   </div>
 </div>
+
+## 2021
+
+<div class="gallery-grid" >
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/travel/shanghai2021/">
+        <img src="https://hobbyfigure.rayleigh-lin.top/2021ShanghaiC/IMG_0751.webp"/>
+        <div class="card-text">Shanghai, China</div>
+      </a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/travel/hangzhou2021/">
+        <img src="https://hobbyfigure.rayleigh-lin.top/2021HangzhouC/IMG_1046.webp"/>
+        <div class="card-text">Hangzhou, China</div>
+      </a>
+    </div>
+  </div>
+</div>
