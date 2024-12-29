@@ -153,4 +153,12 @@ permalink: /travel/
       </a>
     </div>
   </div>
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/travel/foshan2021/">
+        <img src="https://hobbyfigure.rayleigh-lin.top/2021FoshanC/_MG_9917.webp"/>
+        <div class="card-text">Foshan, China</div>
+      </a>
+    </div>
+  </div>
 </div>
