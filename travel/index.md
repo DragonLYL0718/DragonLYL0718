@@ -109,7 +109,7 @@ permalink: /travel/
 
 ---
 
-**(Under construction) The following photos were taken before I created this website, and they are not well organized. Unfortunately, I lost some photos from the places I visited.**
+**(Under construction) The following photos were taken before I created this website. Unfortunately, I lost some photos from the places I visited.**
 
 ---
 
@@ -158,6 +158,14 @@ permalink: /travel/
       <a href="/travel/foshan2021/">
         <img src="https://hobbyfigure.rayleigh-lin.top/2021FoshanC/_MG_9917.webp"/>
         <div class="card-text">Foshan, China</div>
+      </a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/travel/huizhou2021/">
+        <img src="https://hobbyfigure.rayleigh-lin.top/2021HuizhouC/_MG_9813.webp"/>
+        <div class="card-text">Huizhou, China</div>
       </a>
     </div>
   </div>
