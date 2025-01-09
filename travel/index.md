@@ -132,6 +132,14 @@ permalink: /travel/
       </a>
     </div>
   </div>
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/travel/huizhou2022/">
+        <img src="https://hobbyfigure.rayleigh-lin.top/2022HuizhouC/_DSC1165.webp"/>
+        <div class="card-text">Huizhou, China</div>
+      </a>
+    </div>
+  </div>
 </div>
 
 ## 2021
