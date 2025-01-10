@@ -178,3 +178,16 @@ permalink: /travel/
     </div>
   </div>
 </div>
+
+## 2020
+
+<div class="gallery-grid" >
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/travel/guangzhou2020/">
+        <img src="https://hobbyfigure.rayleigh-lin.top/2020GuangzhouC/IMG_9056.webp"/>
+        <div class="card-text">Guangzhou, China</div>
+      </a>
+    </div>
+  </div>
+</div>
