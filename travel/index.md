@@ -9,6 +9,19 @@ permalink: /travel/
 1. this list will be replaced by the toc
 {:toc .large-only}
 
+## 2025
+
+<div class="gallery-grid" >
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/travel/korea2025/">
+        <img src="https://hobbyfigure.rayleigh-lin.top/2025DaeguC/_RAY0228.webp"/>
+        <div class="card-text">South Korea</div>
+      </a>
+    </div>
+  </div>
+</div>
+
 ## 2024
 
 <div class="gallery-grid" >
