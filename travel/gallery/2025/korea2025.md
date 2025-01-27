@@ -2,7 +2,7 @@
 layout: pagegallery # 或者是你想要使用的任何布局
 title: Korea
 description: >
-  Daegu
+  Daegu, Seoul, Gangneung
 permalink: /travel/korea2025/ # 可选的，链接到这个页面的路径
 ---
 
@@ -12,6 +12,22 @@ permalink: /travel/korea2025/ # 可选的，链接到这个页面的路径
       <a href="/travel/korea2025/daegu">
         <img src="https://hobbyfigure.rayleigh-lin.top/2025DaeguC/_RAY0374.webp"/>
         <div class="card-text">Daegu</div>
+      </a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/travel/korea2025/seoul">
+        <img src="https://hobbyfigure.rayleigh-lin.top/2025SeoulC/_RAY0866.webp"/>
+        <div class="card-text">Seoul</div>
+      </a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/travel/korea2025/gangneung">
+        <img src="https://hobbyfigure.rayleigh-lin.top/2025GangneungC/_RAY1120.webp"/>
+        <div class="card-text">Gangneung</div>
       </a>
     </div>
   </div>

@@ -153,6 +153,14 @@ permalink: /travel/
       </a>
     </div>
   </div>
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/travel/guangzhou2022/">
+        <img src="https://hobbyfigure.rayleigh-lin.top/2022GuangzhouC/火炉山白天.webp"/>
+        <div class="card-text">Guangzhou, China</div>
+      </a>
+    </div>
+  </div>
 </div>
 
 ## 2021
