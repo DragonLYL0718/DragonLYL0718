@@ -20,6 +20,14 @@ permalink: /travel/
       </a>
     </div>
   </div>
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/travel/wuxi2025/">
+        <img src="https://hobbyfigure.rayleigh-lin.top/2025WuxiC/_RAY1686.webp"/>
+        <div class="card-text">China, Wuxi</div>
+      </a>
+    </div>
+  </div>
 </div>
 
 ## 2024
