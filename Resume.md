@@ -12,6 +12,7 @@ PDF (available upon request)
 ---
 - 2022.9 - now, expectedgrad‘25 <br>
   **[Southern University of Science and Technology](https://www.sustech.edu.cn/en/) | Intelligent Manufacturing and Robotics** <br>
+  Advisor: Prof. Seungwoo Je
 - 2018.9 - 2022.7 <br>
   **[South China University of Technology](https://www.scut.edu.cn/en/) | Automation** <br>
 
@@ -19,6 +20,7 @@ PDF (available upon request)
 ---
 - 2024.9 - now<br>
   **[Korea Advanced Institute of Science & Technology](https://www.kaist.ac.kr/en/) | [Wearable and Interactive Technology Lab](https://sites.google.com/view/kaist-witlab/) | Visting Student Researcher** <br>
+  Advisor: Prof. Ian Oakley
 
 ## Research Interests
 ---
