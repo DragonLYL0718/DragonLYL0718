@@ -57,30 +57,6 @@ PDF (available upon request)
     <li><strong>SIGGRAPH Asia '24</strong></li>
 </ul>
 
-## Service
----
-<ul>
-    <li><strong>Summer School 2024 | Volunteer | Shool of Design, SUSTech | Summer 2024</strong></li>
-    <li><strong><a href="https://ScalableHCI.github.io">Scalable HCI Symposium</a> | Volunteer/Lecturer | ACM SIGCHI/SUSTech | Winter 2024</strong></li>
-    <li><strong>Product Realization | TA | SUSTech | Spring 2023</strong></li>
-</ul>
-
-## Talks
----
-<ul>
-    <li><strong>DS Sharing Talk | SUSTech | Fall 2023</strong></li>
-    <li><strong>DS Sharing Talk | SUSTech | Winter 2022</strong></li>
-</ul>
-
-## Activities
----
-<ul>
-    <li><strong>2024 DESIGN 3.0 FORUM | Korea | Nov. 2024</strong></li>
-    <li><strong>ISUVR 2024 | USA | Oct. 2024</strong></li>
-    <li><strong>Maker Faire Shenzhen | China | Nov. 2023</strong></li>
-    <li><strong>China Hi-Tech Fair Design Week | Shenzhen, China | Nov. 2023</strong></li>
-</ul>
-
 ## Skills
 ---
 **Programming Languages:** C/C++/C#, Python <br>
