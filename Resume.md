@@ -54,6 +54,7 @@ PDF (available upon request)
 ## Invited reviewer
 ---
 <ul>
+    <li><strong>AHs '25</strong></li>
     <li><strong>ACM CHI '25</strong></li>
     <li><strong>ACM UIST '24</strong></li>
     <li><strong>SIGGRAPH Asia '24</strong></li>
