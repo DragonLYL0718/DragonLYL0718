@@ -28,6 +28,14 @@ permalink: /travel/
       </a>
     </div>
   </div>
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/travel/newyork2025/">
+        <img src="https://hobbyfigure.rayleigh-lin.top/2025NewYorkC/_RAY2385.webp"/>
+        <div class="card-text">New York</div>
+      </a>
+    </div>
+  </div>
 </div>
 
 ## 2024
