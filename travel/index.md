@@ -236,3 +236,16 @@ permalink: /travel/
     </div>
   </div>
 </div>
+
+## 2014
+
+<div class="gallery-grid" >
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/travel/anhui2014/">
+        <img src="https://hobbyfigure.rayleigh-lin.top/2014AnhuiC/IMG_5180(1).webp"/>
+        <div class="card-text">Anhui, China</div>
+      </a>
+    </div>
+  </div>
+</div>
