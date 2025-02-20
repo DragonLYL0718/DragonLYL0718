@@ -237,7 +237,7 @@ permalink: /travel/
   </div>
 </div>
 
-## 2014
+## pre-2018
 
 <div class="gallery-grid" >
   <div class="card">
@@ -245,6 +245,14 @@ permalink: /travel/
       <a href="/travel/anhui2014/">
         <img src="https://hobbyfigure.rayleigh-lin.top/2014AnhuiC/IMG_5180(1).webp"/>
         <div class="card-text">Anhui, China</div>
+      </a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/travel/hongkong2011/">
+        <img src="https://hobbyfigure.rayleigh-lin.top/2011HongkongC/DSC00053.webp"/>
+        <div class="card-text">Hong Kong</div>
       </a>
     </div>
   </div>
