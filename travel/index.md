@@ -260,6 +260,8 @@ permalink: /travel/
     <div class="image-overlay-container">
       <a href="/travel/yunnan2010/">
         <img src="https://hobbyfigure.rayleigh-lin.top/2010YunnanC/SAM_0142.webp"/>
+        <div class="card-text">Yunnan, China</div>
       </a>
     </div>
+  </div>
 </div>
