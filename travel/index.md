@@ -248,22 +248,22 @@ permalink: /travel/
       </a>
     </div>
   </div>
-  <!-- <div class="card">
+  <div class="card">
     <div class="image-overlay-container">
       <a href="/travel/guangxi2015/">
-        <img src="https://hobbyfigure.rayleigh-lin.top/2015GuangxiC/IMG_1001.webp"/>
-        <div class="card-text">Guangxi, China</div>
+        <img src="https://hobbyfigure.rayleigh-lin.top/2015GuangxiC/IMG_20150803_104454.webp"/>
+        <div class="card-text">Guangxi & Guizhou, China</div>
       </a>
     </div>
   </div>
   <div class="card">
     <div class="image-overlay-container">
       <a href="/travel/jiangsu2015/">
-        <img src="https://hobbyfigure.rayleigh-lin.top/2015JiangsuC/IMG_1001.webp"/>
+        <img src="https://hobbyfigure.rayleigh-lin.top/2015JiangsuC/IMG_20150725_152605_HDR.webp"/>
         <div class="card-text">Jiangsu, China</div>
       </a>
     </div>
-  </div> -->
+  </div>
   <div class="card">
     <div class="image-overlay-container">
       <a href="/travel/anhui2014/">
