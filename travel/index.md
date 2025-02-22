@@ -242,9 +242,41 @@ permalink: /travel/
 <div class="gallery-grid" >
   <div class="card">
     <div class="image-overlay-container">
+      <a href="/travel/xiamen2018/">
+        <img src="https://hobbyfigure.rayleigh-lin.top/2018XiamenC/IMG_20180620_084347.webp"/>
+        <div class="card-text">Xiamen, China</div>
+      </a>
+    </div>
+  </div>
+  <!-- <div class="card">
+    <div class="image-overlay-container">
+      <a href="/travel/guangxi2015/">
+        <img src="https://hobbyfigure.rayleigh-lin.top/2015GuangxiC/IMG_1001.webp"/>
+        <div class="card-text">Guangxi, China</div>
+      </a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/travel/jiangsu2015/">
+        <img src="https://hobbyfigure.rayleigh-lin.top/2015JiangsuC/IMG_1001.webp"/>
+        <div class="card-text">Jiangsu, China</div>
+      </a>
+    </div>
+  </div> -->
+  <div class="card">
+    <div class="image-overlay-container">
       <a href="/travel/anhui2014/">
         <img src="https://hobbyfigure.rayleigh-lin.top/2014AnhuiC/IMG_5180(1).webp"/>
         <div class="card-text">Anhui, China</div>
+      </a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/travel/shandong2013/">
+        <img src="https://hobbyfigure.rayleigh-lin.top/2013ShandongC/DSC01121.webp"/>
+        <div class="card-text">Shandong, China</div>
       </a>
     </div>
   </div>
