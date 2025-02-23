@@ -136,12 +136,6 @@ permalink: /travel/
   </div>
 </div>
 
----
-
-**(Under construction) The following photos were taken before I created this website. Unfortunately, I lost some photos from the places I visited.**
-
----
-
 ## 2022
 
 <div class="gallery-grid" >
