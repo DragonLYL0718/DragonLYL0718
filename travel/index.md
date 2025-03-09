@@ -30,9 +30,9 @@ permalink: /travel/
   </div>
   <div class="card">
     <div class="image-overlay-container">
-      <a href="/travel/newyork2025/">
+      <a href="/travel/usa2025/">
         <img src="https://hobbyfigure.rayleigh-lin.top/2025NewYorkC/_RAY2385.webp"/>
-        <div class="card-text">New York</div>
+        <div class="card-text">USA</div>
       </a>
     </div>
   </div>
