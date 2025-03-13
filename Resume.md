@@ -18,7 +18,7 @@ PDF (available upon request)
 
 ## Experience
 ---
-- 2024.9 - now<br>
+- 2024.9 - 2025.3<br>
   **[Korea Advanced Institute of Science & Technology](https://www.kaist.ac.kr/en/) | [Wearable and Interactive Technology Lab](https://sites.google.com/view/kaist-witlab/) | Visting Student Researcher** <br>
   Advisor: Prof. Ian Oakley
 
