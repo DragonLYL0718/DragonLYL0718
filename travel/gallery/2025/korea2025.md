@@ -47,4 +47,12 @@ permalink: /travel/korea2025/ # 可选的，链接到这个页面的路径
       </a>
     </div>
   </div>
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/travel/korea2025/busan">
+        <img src="https://hobbyfigure.rayleigh-lin.top/2025BusanC/_RAY3327.webp"/>
+        <div class="card-text">Busan</div>
+      </a>
+    </div>
+  </div>
 </div>
