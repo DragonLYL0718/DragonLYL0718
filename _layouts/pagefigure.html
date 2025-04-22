@@ -99,164 +99,161 @@ layout: pagegallery
     <script src="/assets/js/lightbox-plus-jquery.js"></script>
 
     <script>
-        // 立即执行的调试输出，检查脚本是否加载
-        console.log('脚本开始加载', new Date().toISOString());
-
-        // 定义全局变量
+        // 全局变量和状态
+        var masonryGrid = null;
         var masonryInitialized = false;
-        var masonryInstance = null;
-        var mutationObserver = null;
-        var checkInterval = null;
-        var urlObserver = null;
+        var checkTimer = null;
 
-        // 安全检查依赖项
-        function checkDependencies() {
-            try {
-                if (typeof Masonry === 'undefined') {
-                    console.error('错误: Masonry库未找到！');
-                    return false;
+        // 立即执行初始化函数
+        (function () {
+            console.log('开始初始化过程', new Date().toISOString());
+
+            // 首次尝试初始化
+            tryInitMasonry();
+
+            // 设置定时检查，每500ms检查一次
+            checkTimer = setInterval(function () {
+                tryInitMasonry();
+
+                // 如果已经初始化成功且5秒后，停止检查
+                if (masonryInitialized && Date.now() - startTime > 5000) {
+                    console.log('初始化成功且运行5秒后，停止定时检查');
+                    clearInterval(checkTimer);
                 }
+            }, 500);
 
-                if (typeof imagesLoaded === 'undefined') {
-                    console.error('错误: imagesLoaded库未找到！');
-                    return false;
+            // 记录启动时间
+            var startTime = Date.now();
+
+            // 20秒后无论如何都清除定时器，防止无限运行
+            setTimeout(function () {
+                if (checkTimer) {
+                    console.log('20秒后自动清除定时器');
+                    clearInterval(checkTimer);
+                    checkTimer = null;
                 }
+            }, 20000);
+        })();
 
-                if (typeof lozad === 'undefined') {
-                    console.error('错误: lozad库未找到！');
-                    return false;
-                }
-                return true;
-            } catch (e) {
-                console.error('检查依赖项时出错:', e);
-                return false;
-            }
-        }
-
-        // 使用MutationObserver监听DOM变化，适用于Jekyll页面跳转
-        function setupMutationObserver() {
+        // 尝试初始化Masonry
+        function tryInitMasonry() {
             try {
-                console.log('设置MutationObserver监听DOM变化');
-                // 如果已经存在观察器，先断开连接
-                if (mutationObserver) {
-                    mutationObserver.disconnect();
-                }
-
-                mutationObserver = new MutationObserver(function (mutations) {
-                    if (masonryInitialized) return;
-
-                    for (var i = 0; i < mutations.length; i++) {
-                        if (mutations[i].type === 'childList') {
-                            if (document.querySelector('.figure-grid') &&
-                                !document.querySelector('.figure-grid.masonry-initialized')) {
-                                console.log('在DOM变化后发现.figure-grid元素');
-                                initMasonry();
-                                break;
-                            }
-                        }
-                    }
-                });
-
-                mutationObserver.observe(document.body, {
-                    childList: true,
-                    subtree: true
-                });
-                console.log('MutationObserver已设置完成');
-            } catch (e) {
-                console.error('设置MutationObserver时出错:', e);
-            }
-        }
-
-        // 定期检查是否需要初始化Masonry
-        function startPeriodicCheck() {
-            try {
-                console.log('开始定期检查.figure-grid元素');
-                // 清除之前的定时器
-                if (checkInterval) {
-                    clearInterval(checkInterval);
-                }
-
-                checkInterval = setInterval(function () {
-                    if (masonryInitialized) {
-                        clearInterval(checkInterval);
-                        return;
-                    }
-
-                    if (document.querySelector('.figure-grid') &&
-                        !document.querySelector('.figure-grid.masonry-initialized')) {
-                        console.log('在定期检查中发现.figure-grid元素');
-                        initMasonry();
-                        if (masonryInitialized) {
-                            console.log('清除定期检查定时器');
-                            clearInterval(checkInterval);
-                            checkInterval = null;
-                        }
-                    }
-                }, 500); // 每500毫秒检查一次
-            } catch (e) {
-                console.error('启动定期检查时出错:', e);
-            }
-        }
-
-        // 监听页面卸载事件，清理资源
-        function setupCleanup() {
-            try {
-                window.addEventListener('beforeunload', function () {
-                    if (mutationObserver) {
-                        mutationObserver.disconnect();
-                        mutationObserver = null;
-                    }
-
-                    if (checkInterval) {
-                        clearInterval(checkInterval);
-                        checkInterval = null;
-                    }
-
-                    if (urlObserver) {
-                        urlObserver.disconnect();
-                        urlObserver = null;
-                    }
-
-                    masonryInstance = null;
-                    masonryInitialized = false;
-                });
-            } catch (e) {
-                console.error('设置资源清理时出错:', e);
-            }
-        }
-
-        // 安全地添加事件监听器
-        function safeAddEventListener(element, event, handler) {
-            try {
-                if (element && typeof element.addEventListener === 'function') {
-                    element.addEventListener(event, handler);
+                // 如果已经初始化，刷新布局后返回
+                if (masonryInitialized && masonryGrid) {
+                    masonryGrid.layout();
                     return true;
                 }
-                return false;
+
+                // 检查必要的库是否存在
+                if (typeof Masonry === 'undefined' || typeof imagesLoaded === 'undefined' || typeof lozad === 'undefined') {
+                    console.log('必要库未加载，等待下一次检查');
+                    return false;
+                }
+
+                // 查找网格元素
+                var grid = document.querySelector('.figure-grid');
+                if (!grid) {
+                    console.log('未找到.figure-grid元素，等待下一次检查');
+                    return false;
+                }
+
+                // 检查是否已初始化
+                if (grid.classList.contains('masonry-initialized')) {
+                    console.log('网格已初始化，跳过');
+                    masonryInitialized = true;
+                    return true;
+                }
+
+                console.log('找到网格元素，开始初始化Masonry');
+
+                // 尝试初始化Masonry
+                try {
+                    masonryGrid = new Masonry(grid, {
+                        itemSelector: '.figure-grid-item',
+                        columnWidth: '.figure-grid-sizer',
+                        percentPosition: true
+                    });
+
+                    // 标记已初始化
+                    grid.classList.add('masonry-initialized');
+                    masonryInitialized = true;
+                    console.log('Masonry初始化成功');
+
+                    // 初始化懒加载
+                    initLazyLoad();
+
+                    // 初始化图片加载监听
+                    initImagesLoaded(grid);
+
+                    // 初始化Lightbox
+                    initLightbox();
+
+                    return true;
+                } catch (e) {
+                    console.error('Masonry初始化失败', e);
+                    return false;
+                }
             } catch (e) {
-                console.error('添加事件监听器时出错:', e);
+                console.error('尝试初始化过程中出错:', e);
                 return false;
             }
         }
 
-        // 初始化所有功能
-        function init() {
+        // 初始化懒加载
+        function initLazyLoad() {
             try {
-                if (!checkDependencies()) {
-                    console.warn('依赖项检查失败，等待500ms后重试');
-                    setTimeout(init, 500);
-                    return;
-                }
+                var observer = lozad('.lozad', {
+                    rootMargin: '50px 0px',
+                    threshold: 0.1,
+                    loaded: function (el) {
+                        try {
+                            el.classList.add('loaded');
+                            var item = el.closest('.figure-grid-item');
+                            if (item) item.classList.add('loaded');
 
-                // 尝试初始化Masonry
-                initMasonry();
+                            // 图片加载后重新布局
+                            if (masonryGrid) {
+                                setTimeout(function () {
+                                    masonryGrid.layout();
+                                }, 100);
+                            }
+                        } catch (e) {
+                            console.error('懒加载回调出错:', e);
+                        }
+                    }
+                });
+                observer.observe();
+                console.log('懒加载设置完成');
+            } catch (e) {
+                console.error('初始化懒加载出错:', e);
+            }
+        }
 
-                // 设置额外的初始化机制
-                setupMutationObserver();
-                startPeriodicCheck();
-                setupCleanup();
+        // 初始化图片加载监听
+        function initImagesLoaded(grid) {
+            try {
+                imagesLoaded(grid).on('progress', function () {
+                    if (masonryGrid) masonryGrid.layout();
+                }).on('always', function () {
+                    if (masonryGrid) {
+                        setTimeout(function () {
+                            masonryGrid.layout();
+                        }, 100);
 
-                // 初始化 lightbox
+                        setTimeout(function () {
+                            masonryGrid.layout();
+                        }, 500);
+                    }
+                });
+                console.log('图片加载监听设置完成');
+            } catch (e) {
+                console.error('初始化图片加载监听出错:', e);
+            }
+        }
+
+        // 初始化Lightbox
+        function initLightbox() {
+            try {
                 if (typeof lightbox !== 'undefined') {
                     lightbox.option({
                         'resizeDuration': 200,
@@ -264,209 +261,35 @@ layout: pagegallery
                         'fitImagesInViewport': true,
                         'disableScrolling': true
                     });
-                } else {
-                    console.warn('警告: lightbox库未找到');
-                }
-
-                // 设置Jekyll特定事件监听
-                setupJekyllEvents();
-            } catch (e) {
-                console.error('初始化过程中出错:', e);
-            }
-        }
-
-        // 设置Jekyll特定事件
-        function setupJekyllEvents() {
-            try {
-                // Jekyll页面切换完成后可能触发的事件
-                safeAddEventListener(document, 'page:load', function () {
-                    console.log('Jekyll页面加载事件触发');
-                    masonryInitialized = false; // 重置状态
-                    initMasonry();
-                });
-
-                safeAddEventListener(document, 'turbolinks:load', function () {
-                    console.log('Turbolinks加载事件触发');
-                    masonryInitialized = false; // 重置状态
-                    initMasonry();
-                });
-
-                // 监听URL变化，但使用更安全的方式
-                try {
-                    var lastUrl = location.href;
-                    urlObserver = new MutationObserver(function (mutations) {
-                        if (lastUrl !== location.href) {
-                            lastUrl = location.href;
-                            console.log('URL变化检测到，重置状态并尝试初始化Masonry');
-                            masonryInitialized = false;
-                            setTimeout(function () {
-                                initMasonry();
-                            }, 500);
-                        }
-                    });
-
-                    urlObserver.observe(document, { subtree: true, childList: true });
-                } catch (e) {
-                    console.error('设置URL观察器时出错:', e);
+                    console.log('Lightbox设置完成');
                 }
             } catch (e) {
-                console.error('设置Jekyll事件时出错:', e);
+                console.error('初始化Lightbox出错:', e);
             }
         }
 
-        // 初始化 masonry 布局
-        function initMasonry() {
-            try {
-                if (masonryInitialized) {
-                    console.log('Masonry已初始化，跳过');
-                    return;
+        // 监听页面可见性变化（无事件监听器替代方案）
+        var lastVisibilityState = document.visibilityState;
+        setInterval(function () {
+            if (document.visibilityState !== lastVisibilityState) {
+                lastVisibilityState = document.visibilityState;
+                if (document.visibilityState === 'visible' && masonryGrid) {
+                    setTimeout(function () {
+                        masonryGrid.layout();
+                    }, 200);
                 }
-
-                console.log('正在查找.figure-grid元素...');
-
-                var grid = document.querySelector('.figure-grid');
-                if (!grid) {
-                    console.warn('未找到.figure-grid元素，无法初始化Masonry');
-                    return;
-                }
-
-                // 标记grid已经初始化
-                if (grid.classList.contains('masonry-initialized')) {
-                    console.log('Masonry已经初始化过，跳过');
-                    masonryInitialized = true;
-                    return;
-                }
-
-                console.log('开始初始化Masonry布局');
-
-                try {
-                    masonryInstance = new Masonry(grid, {
-                        itemSelector: '.figure-grid-item',
-                        columnWidth: '.figure-grid-sizer',
-                        percentPosition: true
-                    });
-
-                    // 添加标记，表示已初始化
-                    grid.classList.add('masonry-initialized');
-                    masonryInitialized = true;
-                    console.log('Masonry初始化完成');
-
-                    // 设置懒加载
-                    setupLazyLoading(grid);
-
-                    // 监听所有图片加载事件
-                    setupImageEvents(grid);
-                } catch (layoutError) {
-                    console.error('创建Masonry实例时出错:', layoutError);
-                    // 清理任何部分初始化
-                    masonryInitialized = false;
-                    if (grid.classList.contains('masonry-initialized')) {
-                        grid.classList.remove('masonry-initialized');
-                    }
-                    throw layoutError;
-                }
-            } catch (error) {
-                console.error('Masonry初始化失败:', error);
             }
-        }
+        }, 500);
 
-        // 设置懒加载
-        function setupLazyLoading(grid) {
-            try {
-                var observer = lozad('.lozad', {
-                    rootMargin: '50px 0px',
-                    threshold: 0.1,
-                    loaded: function (el) {
-                        try {
-                            console.log('图片已加载:', el.src);
-                            el.classList.add('loaded');
-                            var item = el.closest('.figure-grid-item');
-                            if (item) item.classList.add('loaded');
-
-                            // 图片加载后重新布局
-                            if (masonryInstance && typeof imagesLoaded === 'function') {
-                                imagesLoaded(el, function () {
-                                    if (masonryInstance) {
-                                        console.log('图片完全加载，重新排列Masonry');
-                                        masonryInstance.layout();
-                                    }
-                                });
-                            }
-                        } catch (e) {
-                            console.error('图片加载处理时出错:', e);
-                        }
-                    }
-                });
-                observer.observe();
-                console.log('懒加载观察器已设置');
-            } catch (e) {
-                console.error('设置懒加载时出错:', e);
+        // 检测URL变化（无事件监听器替代方案）
+        var lastUrl = location.href;
+        setInterval(function () {
+            if (location.href !== lastUrl) {
+                lastUrl = location.href;
+                console.log('URL变化检测到，重置初始化状态');
+                masonryInitialized = false;
+                setTimeout(tryInitMasonry, 500);
             }
-        }
-
-        // 设置图片事件
-        function setupImageEvents(grid) {
-            try {
-                if (typeof imagesLoaded === 'function' && masonryInstance) {
-                    imagesLoaded(grid).on('progress', function (instance, image) {
-                        if (masonryInstance) {
-                            console.log('图片加载进度更新，重新排列');
-                            masonryInstance.layout();
-                        }
-                    }).on('always', function () {
-                        if (masonryInstance) {
-                            console.log('所有图片加载完成，最终排列');
-                            setTimeout(function () {
-                                if (masonryInstance) masonryInstance.layout();
-                            }, 100);
-
-                            // 添加额外的延迟布局，确保在较慢的设备上也能正确排列
-                            setTimeout(function () {
-                                if (masonryInstance) {
-                                    console.log('延迟500ms后再次排列，确保稳定布局');
-                                    masonryInstance.layout();
-                                }
-                            }, 500);
-                        }
-                    });
-
-                    // 为页面导航添加事件处理
-                    safeAddEventListener(document, 'visibilitychange', function () {
-                        if (document.visibilityState === 'visible' && masonryInstance) {
-                            console.log('页面变为可见，重新排列Masonry');
-                            setTimeout(function () {
-                                if (masonryInstance) masonryInstance.layout();
-                            }, 200);
-                        }
-                    });
-                }
-            } catch (e) {
-                console.error('设置图片事件时出错:', e);
-            }
-        }
-
-        // 安全地加载所有功能
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', init);
-        } else {
-            // 如果DOMContentLoaded已经触发，直接初始化
-            console.log('DOM已经加载完成，直接初始化');
-            init();
-        }
-
-        // 确保在window load时也尝试初始化
-        window.addEventListener('load', function () {
-            console.log('页面完全加载完成');
-            if (!masonryInitialized) {
-                console.log('在window.load事件中尝试再次初始化Masonry');
-                init();
-            } else if (masonryInstance) {
-                console.log('在window.load事件中重新布局已初始化的Masonry');
-                masonryInstance.layout();
-            }
-        });
-
-        // 在DOM解析完成之前尝试主动检查脚本是否运行
-        console.log('脚本完全加载，等待DOM事件...');
+        }, 500);
     </script>
 </body>
