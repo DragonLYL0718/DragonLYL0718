@@ -1,0 +1,92 @@
+---
+# Copyright (c) 2019 Florian Klampfer
+<https: //qwtel.com />
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see
+<http: //www.gnu.org/licenses />.
+
+layout: compress
+---
+
+{% assign plugins = site.plugins | default:site.gems %}
+
+{% assign author = site.data.authors[page.author] | default:site.data.authors.first[1] | default:site.author %}
+
+{% assign image = page.accent_image | default:site.accent_image | default:'/assets/img/sidebar-bg.jpg' %}
+{% assign color = page.accent_color | default:site.accent_color | default:'rgb(79,177,186)' %}
+{% assign theme_color = page.theme_color | default:site.theme_color | default:'rgb(8,46,57)' %}
+
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G3P4GRGGCC"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-G3P4GRGGCC');
+  </script>
+
+  <script>
+    // 在页面加载前检查保存的语言偏好
+    const savedLang = localStorage.getItem('preferred_lang');
+    if (savedLang) {
+      document.documentElement.lang = savedLang;
+    }
+  </script>
+  {% include head/index.html %}
+  <style>
+    .large-only {
+      position: fixed !important;
+      top: 20% !important;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+
+<body class="{% include_cached base-classes %}">
+  {% include body/index.html %}
+  <script>
+    // 确保页面加载后应用正确的语言设置
+    document.addEventListener('DOMContentLoaded', function () {
+      const savedLang = localStorage.getItem('preferred_lang');
+      if (savedLang) {
+        document.documentElement.lang = savedLang;
+        // 触发语言改变事件
+        const event = new Event('languageChanged');
+        document.dispatchEvent(event);
+      }
+    });
+
+    // 监听页面内容变化
+    const observer = new MutationObserver(function (mutations) {
+      const savedLang = localStorage.getItem('preferred_lang');
+      if (savedLang) {
+        // 更新所有需要翻译的内容
+        const event = new Event('languageChanged');
+        document.dispatchEvent(event);
+      }
+    });
+
+    // 开始观察页面内容变化
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+  </script>
+</body>
+
+</html>

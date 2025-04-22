@@ -1,0 +1,25 @@
+---
+layout: newpage
+---
+
+<head>
+
+</head>
+
+<body>
+    <div id="firebaseConfig" data-collection="{{ page.firebase_collection }}" data-document="{{ page.firebase_document }}"></div>
+    <script type="module" src="/assets/js/login.js"></script>
+
+    <div id="login">
+        <input type="password" id="login-password" placeholder="Password">
+        <button id="login-btn">Login</button>
+    </div>
+    
+    <div id="abstract" style="display: none;"><h3>Abstract</h3></div>
+    <div id="abstractcontent">Please enter the password</div>
+    <br>
+    <div id="keywords" style="display: none;"><strong>Keywords: </strong>
+    </div><div id="keywordscontent"></div>
+    <br>
+    {{ content }}
+</body>

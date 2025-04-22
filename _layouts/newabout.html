@@ -1,0 +1,185 @@
+---
+layout: about
+---
+
+<head>
+    <script>
+        // 在页面加载时获取语言设置
+        document.addEventListener('DOMContentLoaded', function () {
+            const lang = document.documentElement.lang;
+            console.log('Current language:', lang);
+            updatePageContent(lang);
+        });
+
+        // 更新页面内容的函数
+        function updatePageContent(lang) {
+            const darkModeToggle = document.querySelector('.dark-mode-toggle');
+            if (darkModeToggle) {
+                // 根据语言设置切换标题
+                darkModeToggle.title = lang === 'zh' ? '切换暗色模式' : 'Toggle Dark Mode';
+            }
+        }
+    </script>
+    <style>
+        .mb6 {
+            position: relative;
+        }
+
+        .mb6 .dark-mode-toggle {
+            position: absolute;
+            top: -125px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            opacity: 0.6;
+            border-radius: 50%;
+            border: none;
+            outline: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background-color: var(--body-bg);
+            cursor: pointer;
+            box-shadow: none;
+            z-index: 50;
+        }
+
+        .dark-mode-toggle:hover {
+            opacity: 1;
+            /* 鼠标悬停时增加不透明度 */
+        }
+
+        .animate-transition {
+            transition: background-color 1s, color 1s;
+        }
+
+        .dark-mode {
+            background-color: rgb(42, 45, 47);
+            color: rgb(204, 204, 204);
+        }
+
+        .dark-mode a {
+            color: rgb(204, 204, 204);
+        }
+
+        :root {
+            --body-card: #FFFFFF;
+            /* 明亮模式背景色，默认白色 */
+            --body-cardcolor: #000000;
+            /* 明亮模式文字颜色，默认黑色 */
+        }
+
+        body.dark-mode {
+            --body-bg: rgb(42, 45, 47);
+            /* 暗模式背景色 */
+            --body-color: rgb(180, 180, 180);
+            /* 暗模式文字颜色 */
+            --body-card: rgb(49, 52, 54);
+            /* 暗模式卡片背景色 */
+            --body-cardcolor: rgb(204, 204, 204);
+            /* 暗模式卡片文字颜色 */
+            background-color: var(--body-bg);
+            /* 使用CSS变量设置背景色 */
+            color: var(--body-color);
+            /* 使用CSS变量设置文字颜色 */
+        }
+
+        @media screen and (max-width: 1984px) {
+            .mb6 .dark-mode-toggle {
+                top: -120px;
+                /* 小屏幕上一列布局 */
+            }
+        }
+
+        @media screen and (max-width: 1376px) {
+            .mb6 .dark-mode-toggle {
+                top: -105px;
+                /* 小屏幕上一列布局 */
+            }
+        }
+
+        @media screen and (max-width: 672px) {
+            .mb6 .dark-mode-toggle {
+                top: -100px;
+                /* 小屏幕上一列布局 */
+                width: 30px;
+                /* 按钮宽度 */
+                height: 30px;
+                /* 按钮高度 */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    {{ content }}
+    <button class="dark-mode-toggle" title="{% if page.lang == 'zh' %}切换暗色模式{% else %}Toggle Dark Mode{% endif %}"
+        style="width: 40px; height: 40px;">
+        <svg width="30px" height="30px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <g fill="var(--body-cardcolor)" fill-rule="nonzero">
+                <path
+                    d="M12,22 C17.5228475,22 22,17.5228475 22,12 C22,6.4771525 17.5228475,2 12,2 C6.4771525,2 2,6.4771525 2,12 C2,17.5228475 6.4771525,22 12,22 Z M12,20.5 L12,3.5 C16.6944204,3.5 20.5,7.30557963 20.5,12 C20.5,16.6944204 16.6944204,20.5 12,20.5 Z">
+                </path>
+            </g>
+        </svg>
+    </button>
+    <script>
+        (function () {
+            var darkModeToggles = document.querySelectorAll('.dark-mode-toggle');
+            if (darkModeToggles.length === 0) {
+                return;
+            }
+
+            var currentMode = localStorage.getItem('darkMode') === 'enabled';
+            if (currentMode) {
+                document.body.classList.add('dark-mode');
+            }
+
+            darkModeToggles.forEach(function (toggle) {
+                toggle.addEventListener('click', function () {
+                    if (!document.body.classList.contains('animate-transition')) {
+                        document.body.classList.add('animate-transition');
+
+                        setTimeout(() => {
+                            document.body.classList.toggle('dark-mode');
+                            var mode = document.body.classList.contains('dark-mode') ? 'enabled' : 'disabled';
+                            localStorage.setItem('darkMode', mode);
+
+                            setTimeout(() => {
+                                document.body.classList.remove('animate-transition');
+                            }, 1000);
+                        }, 0);
+                    }
+                });
+            });
+
+        })();
+        document.addEventListener('DOMContentLoaded', function () {
+            function updateContent(lang) {
+                const enContent = document.querySelector('.en-content');
+                const zhContent = document.querySelector('.zh-content');
+
+                if (lang === 'zh') {
+                    enContent.style.display = 'none';
+                    zhContent.style.display = 'block';
+                } else {
+                    enContent.style.display = 'block';
+                    zhContent.style.display = 'none';
+                }
+            }
+
+            // 初始更新
+            const savedLang = localStorage.getItem('preferred_lang');
+            if (savedLang) {
+                updateContent(savedLang);
+            }
+
+            // 监听语言变化
+            document.addEventListener('languageChanged', function (e) {
+                updateContent(document.documentElement.lang);
+            });
+        });
+    </script>
+</body>

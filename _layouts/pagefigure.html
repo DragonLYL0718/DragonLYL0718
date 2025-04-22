@@ -1,0 +1,936 @@
+---
+layout: pagegallery
+---
+
+<head>
+    <script>
+        // 在头部最前面添加路径修复脚本
+        (function () {
+            try {
+                // 检测GitHub Pages环境并调整基础路径
+                if (window.location.hostname.indexOf('github.io') !== -1) {
+                    var pathSegments = window.location.pathname.split('/');
+                    var repoName = pathSegments[1] || '';
+                    window.adjustedBasePath = '/' + repoName;
+                } else {
+                    window.adjustedBasePath = '';
+                }
+                console.log("设置基础路径:", window.adjustedBasePath);
+
+                // 动态调整CSS链接
+                document.addEventListener('DOMContentLoaded', function () {
+                    var cssLinks = document.querySelectorAll('link[rel="stylesheet"]');
+                    cssLinks.forEach(function (link) {
+                        if (link.href.indexOf('/assets/') !== -1 && link.href.indexOf(window.adjustedBasePath) === -1) {
+                            var newHref = link.href.replace(/\/assets\//, window.adjustedBasePath + '/assets/');
+                            link.href = newHref;
+                        }
+                    });
+                });
+
+                // 提前声明全局错误处理
+                window.addEventListener('error', function (e) {
+                    console.log("捕获到JS错误:", e.message, "在", e.filename, "行", e.lineno);
+                });
+            } catch (e) {
+                console.log("初始化路径出错:", e);
+            }
+        })();
+    </script>
+    <link href="/assets/js/lightbox.css" rel="stylesheet" />
+    <style>
+        /* 导航按钮样式 */
+        .content-nav {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .nav-button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            background-color: #f0f0f0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-button.active {
+            background-color: rgba(79, 177, 186, 0.8);
+            color: white;
+        }
+
+        /* 内容区域样式 */
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        /* 图片网格样式 */
+        .figure-grid {
+            margin: 0 auto;
+        }
+
+        .figure-grid-sizer,
+        .figure-grid-item {
+            width: 33.333%;
+            /* 恢复为3列布局 */
+        }
+
+        .figure-grid img,
+        .figure-grid a img {
+            width: 100%;
+            height: auto;
+            display: block;
+            break-inside: avoid;
+        }
+
+        .figure-grid-item img {
+            padding: 5px 5px;
+        }
+
+        .figure-grid a {
+            text-decoration: none;
+            border: none;
+            outline: none;
+        }
+
+        .figure-grid a::after {
+            content: none !important;
+        }
+
+        .figure-grid-item {
+            background-color: rgba(79, 177, 186, 0.5);
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .figure-grid-item.loaded {
+            background-color: transparent;
+        }
+
+        .figure-grid-item img.lozad:not([src]) {
+            min-height: 300px;
+            visibility: hidden;
+        }
+
+        .figure-grid-item img.loaded {
+            visibility: visible;
+        }
+
+        .image-link img {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .image-link img:hover {
+            transform: scale(1.05);
+        }
+
+        /* 视频网格样式 */
+        .video-grid {
+            margin: 0 auto;
+        }
+
+        .video-grid-sizer,
+        .video-item {
+            width: 50%;
+        }
+
+        .video-item {
+            position: relative;
+            overflow: hidden;
+            background-color: rgba(79, 177, 186, 0.5);
+            border-radius: 5px;
+            transition: background-color 0.3s ease-in-out;
+            margin-bottom: 20px;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+        /* 视频容器，支持不同比例 */
+        .video-item .video-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 16:9标准比例 */
+        .video-item .video-container.ratio-16-9 {
+            padding-bottom: 56.25%;
+            height: 0;
+        }
+
+        /* 4:3比例 */
+        .video-item .video-container.ratio-4-3 {
+            padding-bottom: 75%;
+            height: 0;
+        }
+
+        /* 1:1比例（正方形） */
+        .video-item .video-container.ratio-1-1 {
+            padding-bottom: 100%;
+            height: 0;
+        }
+
+        /* 9:16比例（竖屏视频） */
+        .video-item .video-container.ratio-9-16 {
+            padding-bottom: 177.78%;
+            height: 0;
+        }
+
+        /* 视频标题 */
+        .video-title {
+            padding: 10px;
+            font-size: 14px;
+            margin-top: 5px;
+            text-align: center;
+        }
+
+        .video-item.loaded {
+            background-color: transparent;
+        }
+
+        .video-item .video-container iframe.video-lozad:not([src]),
+        .video-item .video-container video.video-lozad:not([src]) {
+            min-height: 200px;
+            visibility: hidden;
+        }
+
+        .video-item iframe.loaded,
+        .video-item video.loaded {
+            visibility: visible;
+        }
+
+        .video-item .video-container iframe,
+        .video-item .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* 电影部分样式 */
+        .film-grid {
+            margin: 0 auto;
+        }
+
+        .film-grid-sizer,
+        .film-grid-item {
+            width: 33.333%;
+            /* 改为3列与figure-grid一致 */
+        }
+
+        .film-grid img,
+        .film-grid a img {
+            width: 100%;
+            height: auto;
+            display: block;
+            break-inside: avoid;
+        }
+
+        .film-grid-item img {
+            padding: 5px 5px;
+        }
+
+        .film-grid a {
+            text-decoration: none;
+            border: none;
+            outline: none;
+        }
+
+        .film-grid a::after {
+            content: none !important;
+        }
+
+        .film-grid-item {
+            background-color: rgba(79, 177, 186, 0.5);
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .film-grid-item.loaded {
+            background-color: transparent;
+        }
+
+        .film-grid-item img.film-lozad:not([src]) {
+            min-height: 300px;
+            visibility: hidden;
+        }
+
+        .film-grid-item img.loaded {
+            visibility: visible;
+        }
+
+        .film-grid .image-link img {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .film-grid .image-link img:hover {
+            transform: scale(1.05);
+        }
+
+        @media screen and (max-width: 768px) {
+
+            .figure-grid-sizer,
+            .figure-grid-item {
+                width: 50%;
+                /* 中等屏幕上是2列 */
+            }
+
+            .video-grid-sizer,
+            .video-item {
+                width: 50%;
+            }
+
+            .film-grid-sizer,
+            .film-grid-item {
+                width: 50%;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+
+            .figure-grid-sizer,
+            .figure-grid-item {
+                width: 100%;
+            }
+
+            .video-grid-sizer,
+            .video-item {
+                width: 100%;
+            }
+
+            .film-grid-sizer,
+            .film-grid-item {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 导航按钮 -->
+    <div class="content-nav" style="display: none;">
+        <button class="nav-button image-button active" data-target="image-section" style="display: none;">Digital
+            Photo</button>
+        <button class="nav-button film-button" data-target="film-section" style="display: none;">Film Photo</button>
+        <button class="nav-button video-button" data-target="video-section" style="display: none;">Video</button>
+        <!-- 预留位置用于未来扩展 -->
+    </div>
+
+    <!-- 内容区域 -->
+    <div id="content-container">
+        <div id="image-section" class="content-section active">
+            {{ content }}
+        </div>
+
+        <div id="video-section" class="content-section">
+            <!-- 视频内容会直接放在页面中，不是通过front matter -->
+            <div id="video-container"></div>
+        </div>
+
+        <!-- 预留位置用于未来扩展 -->
+        <div id="film-section" class="content-section">
+            <div id="film-container"></div>
+        </div>
+    </div>
+
+    <!-- 图片脚本 -->
+    <script src="/assets/js/lozad.js"></script>
+    <script src="/assets/js/masonry.pkgd.min.js"></script>
+    <script src="/assets/js/imagesloaded.pkgd.min.js"></script>
+    <script>
+        // 全局错误处理
+        window.onerror = function (msg, url, line, col, error) {
+            console.log("全局错误:", msg, "在", url, "行", line);
+            return false;
+        };
+
+        // 添加调试信息输出
+        console.log("开始加载页面...");
+        console.log("当前页面URL:", window.location.href);
+
+        // 检查资源是否正确加载
+        function checkResourcesLoaded() {
+            console.log("检查资源加载状态:");
+            console.log("- Masonry 加载状态:", typeof Masonry !== 'undefined' ? "已加载" : "未加载");
+            console.log("- imagesLoaded 加载状态:", typeof imagesLoaded !== 'undefined' ? "已加载" : "未加载");
+            console.log("- lozad 加载状态:", typeof lozad !== 'undefined' ? "已加载" : "未加载");
+            console.log("- lightbox 加载状态:", typeof lightbox !== 'undefined' ? "已加载" : "未加载");
+
+            var imageGrid = document.querySelector('.figure-grid');
+            console.log("- 图片网格元素:", imageGrid ? "存在" : "不存在");
+            if (imageGrid) {
+                console.log("  图片网格内容:", imageGrid.innerHTML.trim() ? "有内容" : "无内容");
+            }
+
+            console.log("- 导航按钮容器:", document.querySelector('.content-nav') ? "存在" : "不存在");
+        }
+
+        // 尝试手动加载关键资源
+        function loadMissingResources() {
+            console.log("尝试手动加载缺失资源...");
+
+            if (typeof Masonry === 'undefined') {
+                var masonryScript = document.createElement('script');
+                masonryScript.src = window.adjustedBasePath + '/assets/js/masonry.pkgd.min.js';
+                masonryScript.onload = function () { console.log("Masonry 已手动加载"); delayedInit(); };
+                document.head.appendChild(masonryScript);
+            }
+
+            if (typeof imagesLoaded === 'undefined') {
+                var imagesLoadedScript = document.createElement('script');
+                imagesLoadedScript.src = window.adjustedBasePath + '/assets/js/imagesloaded.pkgd.min.js';
+                imagesLoadedScript.onload = function () { console.log("imagesLoaded 已手动加载"); delayedInit(); };
+                document.head.appendChild(imagesLoadedScript);
+            }
+
+            if (typeof lozad === 'undefined') {
+                var lozadScript = document.createElement('script');
+                lozadScript.src = window.adjustedBasePath + '/assets/js/lozad.js';
+                lozadScript.onload = function () { console.log("lozad 已手动加载"); delayedInit(); };
+                document.head.appendChild(lozadScript);
+            }
+
+            if (typeof lightbox === 'undefined') {
+                var lightboxScript = document.createElement('script');
+                lightboxScript.src = window.adjustedBasePath + '/assets/js/lightbox-plus-jquery.js';
+                lightboxScript.onload = function () { console.log("lightbox 已手动加载"); delayedInit(); };
+                document.head.appendChild(lightboxScript);
+            }
+        }
+
+        // 在初始化masonry之前修复图片路径
+        function fixImagePaths() {
+            console.log("修复图片路径...");
+            if (!window.adjustedBasePath) return;
+
+            var images = document.querySelectorAll('img[data-src]');
+            images.forEach(function (img) {
+                if (img.dataset.src && img.dataset.src.startsWith('/') && !img.dataset.src.startsWith(window.adjustedBasePath)) {
+                    console.log("修正图片路径:", img.dataset.src, "->", window.adjustedBasePath + img.dataset.src);
+                    img.dataset.src = window.adjustedBasePath + img.dataset.src;
+                }
+            });
+
+            var links = document.querySelectorAll('a[href][data-lightbox]');
+            links.forEach(function (link) {
+                if (link.href && link.href.indexOf('/assets/') !== -1 && link.href.indexOf(window.adjustedBasePath) === -1) {
+                    console.log("修正链接路径:", link.href);
+                    link.href = link.href.replace(/\/assets\//, window.adjustedBasePath + '/assets/');
+                }
+            });
+        }
+
+        // 添加安全执行函数，防止错误中断
+        function safeExecute(fn, fallback) {
+            try {
+                return fn();
+            } catch (e) {
+                console.log("函数执行错误:", e);
+                if (typeof fallback === 'function') {
+                    return fallback();
+                }
+                return null;
+            }
+        }
+
+        // 页面加载时先移动内容并初始化所有媒体类型
+        function handleInitialContent() {
+            try {
+                // 查找所有具有data-type属性的容器
+                var containers = document.querySelectorAll('[data-type]');
+                var hasVideo = false;
+                var hasFilm = false;
+                var hasImage = document.querySelector('.figure-grid') !== null && document.querySelector('.figure-grid').innerHTML.trim() !== '';
+
+                console.log("处理内容: 找到", containers.length, "个容器, 图片网格存在:", hasImage);
+
+                containers.forEach(function (container) {
+                    try {
+                        var type = container.getAttribute('data-type');
+                        console.log("处理容器类型:", type);
+
+                        if (type === 'video') {
+                            // 将视频内容移动到视频容器
+                            var videoContainer = document.getElementById('video-container');
+                            if (videoContainer) {
+                                videoContainer.appendChild(container.cloneNode(true));
+                                // 标记原始容器为已处理，但不移除它
+                                container.setAttribute('data-processed', 'true');
+                                hasVideo = true;
+                            } else {
+                                console.log("错误: 找不到视频容器");
+                            }
+                        } else if (type === 'film') {
+                            // 将胶片内容移动到胶片容器
+                            var filmContainer = document.getElementById('film-container');
+                            if (filmContainer) {
+                                filmContainer.appendChild(container.cloneNode(true));
+                                // 标记原始容器为已处理，但不移除它
+                                container.setAttribute('data-processed', 'true');
+                                hasFilm = true;
+                            } else {
+                                console.log("错误: 找不到胶片容器");
+                            }
+                        }
+                    } catch (e) {
+                        console.log("处理容器错误:", e);
+                    }
+                });
+
+                // 处理完内容后，移除原始容器
+                containers.forEach(function (container) {
+                    if (container.getAttribute('data-processed') === 'true') {
+                        try {
+                            container.remove();
+                        } catch (e) {
+                            console.log("移除容器错误:", e);
+                        }
+                    }
+                });
+
+                // 对图片进行再次布局确保正确显示
+                if (hasImage) {
+                    var grid = document.querySelector('.figure-grid');
+                    if (grid && typeof Masonry !== 'undefined') {
+                        setTimeout(function () {
+                            try {
+                                var msnry = Masonry.data(grid);
+                                if (msnry) msnry.layout();
+                            } catch (e) {
+                                console.log("重新布局错误:", e);
+                            }
+                        }, 100);
+                    }
+                }
+
+                console.log("内容处理结果: 视频:", hasVideo, "胶片:", hasFilm, "图片:", hasImage);
+                return { hasVideo: hasVideo, hasFilm: hasFilm, hasImage: hasImage };
+            } catch (e) {
+                console.log("handleInitialContent错误:", e);
+                return { hasVideo: false, hasFilm: false, hasImage: false };
+            }
+        }
+
+        // 处理导航按钮显示的函数
+        function updateNavigationButtons(hasImage, hasVideo, hasFilm) {
+            try {
+                var contentNav = document.querySelector('.content-nav');
+                if (!contentNav) {
+                    console.log("找不到导航按钮容器");
+                    return;
+                }
+
+                // 计算有多少种内容类型
+                var contentTypeCount = (hasImage ? 1 : 0) + (hasVideo ? 1 : 0) + (hasFilm ? 1 : 0);
+
+                console.log("内容类型数量:", contentTypeCount, "图片:", hasImage, "视频:", hasVideo, "胶片:", hasFilm);
+
+                // 确保所有按钮都存在
+                var imageButton = document.querySelector('.image-button');
+                var videoButton = document.querySelector('.video-button');
+                var filmButton = document.querySelector('.film-button');
+
+                if (!imageButton || !videoButton || !filmButton) {
+                    console.log("找不到所有导航按钮");
+                    return;
+                }
+
+                // 默认所有按钮都不显示
+                imageButton.style.display = 'none';
+                videoButton.style.display = 'none';
+                filmButton.style.display = 'none';
+
+                // 如果只有一种内容类型或没有内容，隐藏整个导航栏
+                if (contentTypeCount <= 1) {
+                    contentNav.style.display = 'none';
+                    console.log("只有一种或没有内容类型，隐藏导航栏");
+                } else {
+                    // 否则，显示导航栏，并根据内容类型显示相应按钮
+                    contentNav.style.display = 'flex';
+                    console.log("显示导航栏，有", contentTypeCount, "种内容类型");
+
+                    // 只有在确定有内容后才显示对应按钮
+                    if (hasImage) {
+                        imageButton.style.display = 'inline-block';
+                    }
+
+                    if (hasVideo) {
+                        videoButton.style.display = 'inline-block';
+                    }
+
+                    if (hasFilm) {
+                        filmButton.style.display = 'inline-block';
+                    }
+                }
+
+                // 如果没有图片内容，但有视频内容，默认显示视频部分
+                if (!hasImage && hasVideo) {
+                    imageButton.classList.remove('active');
+                    videoButton.classList.add('active');
+                    document.getElementById('image-section').classList.remove('active');
+                    document.getElementById('video-section').classList.add('active');
+                }
+
+                // 如果没有图片和视频内容，但有胶片内容，默认显示胶片部分
+                if (!hasImage && !hasVideo && hasFilm) {
+                    imageButton.classList.remove('active');
+                    filmButton.classList.add('active');
+                    document.getElementById('image-section').classList.remove('active');
+                    document.getElementById('film-section').classList.add('active');
+                }
+            } catch (e) {
+                console.log("更新导航按钮错误:", e);
+            }
+        }
+
+        // 修复脚本标签src路径
+        function fixScriptPaths() {
+            var scripts = document.querySelectorAll('script[src]');
+            scripts.forEach(function (script) {
+                if (script.src && script.src.indexOf('/assets/') !== -1 &&
+                    script.src.indexOf(window.adjustedBasePath) === -1) {
+                    var newSrc = script.src.replace(/\/assets\//, window.adjustedBasePath + '/assets/');
+                    console.log("修正脚本路径:", script.src, "->", newSrc);
+
+                    // 创建新脚本元素替换旧的
+                    var newScript = document.createElement('script');
+                    newScript.src = newSrc;
+                    script.parentNode.replaceChild(newScript, script);
+                }
+            });
+        }
+
+        // 尝试清除可能的缓存问题
+        function clearCacheProblem() {
+            console.log("尝试清除缓存问题...");
+
+            // 修复脚本路径
+            fixScriptPaths();
+
+            // 强制重新获取可能被缓存的资源
+            var scripts = document.querySelectorAll('script[src]');
+            scripts.forEach(function (script) {
+                if (!script.src.includes('?')) {
+                    console.log("重新加载资源:", script.src);
+                    var newScript = document.createElement('script');
+                    newScript.src = script.src + '?ver=' + new Date().getTime();
+                    newScript.onload = function () {
+                        console.log("资源重新加载成功:", script.src);
+                        // 资源重新加载后，再次尝试初始化
+                        delayedInit();
+                    };
+                    script.parentNode.replaceChild(newScript, script);
+                }
+            });
+        }
+
+        // 立即执行初始检查和路径修复
+        fixScriptPaths();
+        checkResourcesLoaded();
+
+        // 启动延迟初始化
+        loadMissingResources();
+        delayedInit();
+
+        // 页面加载后再次检查
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log("DOM完全加载");
+            safeExecute(function () {
+                checkResourcesLoaded();
+                fixImagePaths();
+                // 再次尝试加载资源和初始化
+                loadMissingResources();
+                delayedInit();
+            });
+        });
+
+        // 如果4秒后图片或按钮仍未正确加载，尝试清除缓存问题
+        setTimeout(function () {
+            console.log("执行4秒检查...");
+            if (!document.querySelector('.figure-grid-item.loaded')) {
+                console.log("检测到可能的资源加载问题，尝试修复...");
+                clearCacheProblem();
+                loadMissingResources();
+            }
+        }, 4000);
+    </script>
+
+    <script>
+        // 修复lightbox脚本的路径
+        document.addEventListener('DOMContentLoaded', function () {
+            var lightboxScript = document.createElement('script');
+            lightboxScript.src = (window.adjustedBasePath || '') + '/assets/js/lightbox-plus-jquery.js?v=' + new Date().getTime();
+            document.body.appendChild(lightboxScript);
+
+            lightboxScript.onload = function () {
+                console.log("Lightbox脚本加载成功");
+                if (typeof lightbox !== 'undefined') {
+                    lightbox.option({
+                        'resizeDuration': 200,
+                        'wrapAround': true,
+                        'fitImagesInViewport': true,
+                        'disableScrolling': true
+                    });
+                }
+            };
+        });
+    </script>
+
+    <script>
+        // 延迟初始化函数，确保资源正确加载
+        function delayedInit() {
+            safeExecute(function () {
+                console.log("尝试执行delayedInit...");
+                checkResourcesLoaded();
+
+                // 如果必要的库没有加载成功，则等待并重试
+                if (typeof Masonry === 'undefined' || typeof imagesLoaded === 'undefined' || typeof lozad === 'undefined') {
+                    console.log("关键库未加载，将在500ms后重试...");
+                    setTimeout(delayedInit, 500); // 500毫秒后重试
+                    return;
+                }
+
+                console.log("所有库已加载，开始初始化...");
+
+                // 修复图片路径
+                fixImagePaths();
+
+                // 直接初始化图片
+                initMasonry();
+
+                // 处理内容
+                var initialContent = handleInitialContent();
+                console.log("内容初始化结果:", initialContent);
+
+                // 立即设置按钮事件
+                setupButtonHandlers();
+
+                // 更新按钮显示
+                updateNavigationButtons(
+                    initialContent.hasImage,
+                    initialContent.hasVideo,
+                    initialContent.hasFilm
+                );
+            });
+        }
+
+        // 设置按钮事件处理的函数，提取为单独函数以便复用
+        function setupButtonHandlers() {
+            safeExecute(function () {
+                var navButtons = document.querySelectorAll('.nav-button');
+
+                // 在处理之前先移除所有旧的事件监听器
+                navButtons.forEach(function (button) {
+                    // 克隆节点以移除所有事件监听器
+                    var newButton = button.cloneNode(true);
+                    button.parentNode.replaceChild(newButton, button);
+                });
+
+                // 重新获取新按钮并添加事件
+                navButtons = document.querySelectorAll('.nav-button');
+                navButtons.forEach(function (button) {
+                    button.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        var target = this.getAttribute('data-target');
+                        console.log("按钮点击:", target);
+
+                        // 更新按钮状态
+                        navButtons.forEach(function (btn) {
+                            btn.classList.remove('active');
+                        });
+                        this.classList.add('active');
+
+                        // 更新内容显示
+                        var sections = document.querySelectorAll('.content-section');
+                        sections.forEach(function (section) {
+                            section.classList.remove('active');
+                        });
+
+                        var targetSection = document.getElementById(target);
+                        if (targetSection) {
+                            targetSection.classList.add('active');
+
+                            // 根据切换的部分初始化相应的功能
+                            if (target === 'image-section') {
+                                setTimeout(function () {
+                                    safeExecute(initMasonry);
+                                }, 100);
+                            } else if (target === 'video-section') {
+                                setTimeout(function () {
+                                    safeExecute(initVideoLazyLoad);
+                                }, 100);
+                            } else if (target === 'film-section') {
+                                setTimeout(function () {
+                                    safeExecute(initFilmMasonry);
+                                }, 100);
+                            }
+                        } else {
+                            console.log("找不到目标部分:", target);
+                        }
+                    });
+                });
+
+                console.log("按钮事件处理器设置完成");
+            });
+        }
+
+        // 只有当图片部分是可见的时才初始化masonry
+        function initMasonry() {
+            if (!document.querySelector('.figure-grid')) return;
+
+            var grid = document.querySelector('.figure-grid');
+            var msnry = new Masonry(grid, {
+                itemSelector: '.figure-grid-item',
+                columnWidth: '.figure-grid-sizer',
+                percentPosition: true
+            });
+
+            if (window.lozadObserver && window.lozadObserver.observer) {
+                window.lozadObserver.observer.disconnect();
+            }
+
+            window.lozadObserver = lozad('.lozad', {
+                rootMargin: '50px 0px',
+                threshold: 0.1,
+                loaded: function (el) {
+                    el.classList.add('loaded');
+                    var item = el.closest('.figure-grid-item');
+                    if (item) item.classList.add('loaded');
+                    imagesLoaded(el, function () {
+                        msnry.layout();
+                    });
+                }
+            });
+
+            window.lozadObserver.observe();
+
+            imagesLoaded(grid).on('progress', function (instance, image) {
+                msnry.layout();
+            }).on('always', function () {
+                setTimeout(function () {
+                    msnry.layout();
+                }, 100);
+            });
+        }
+
+        // 初始化懒加载视频
+        function initVideoLazyLoad() {
+            // 修复视频路径
+            var videoSources = document.querySelectorAll('video source[data-src], iframe[data-src]');
+            videoSources.forEach(function (source) {
+                if (source.dataset.src && source.dataset.src.startsWith('/') && !source.dataset.src.startsWith(window.adjustedBasePath)) {
+                    console.log("修正视频路径:", source.dataset.src);
+                    source.dataset.src = window.adjustedBasePath + source.dataset.src;
+                }
+            });
+
+            var videoGrid = document.querySelector('.video-grid');
+            if (!videoGrid) return;
+
+            // 初始化视频网格的Masonry
+            var videoMasonry = new Masonry(videoGrid, {
+                itemSelector: '.video-item',
+                columnWidth: '.video-grid-sizer',
+                percentPosition: true
+            });
+
+            var videoObserver = lozad('.video-lozad', {
+                rootMargin: '50px 0px',
+                threshold: 0.1,
+                loaded: function (el) {
+                    el.classList.add('loaded');
+                    var videoItem = el.closest('.video-item');
+                    if (videoItem) {
+                        videoItem.classList.add('loaded');
+
+                        // 加载后重新布局Masonry
+                        setTimeout(function () {
+                            videoMasonry.layout();
+                        }, 100);
+                    }
+
+                    // 如果是iframe，设置src属性
+                    if (el.tagName.toLowerCase() === 'iframe') {
+                        el.src = el.dataset.src;
+                    }
+                    // 如果是video元素，处理source标签
+                    else if (el.tagName.toLowerCase() === 'video') {
+                        var sources = el.querySelectorAll('source');
+                        sources.forEach(function (source) {
+                            source.src = source.dataset.src;
+                        });
+                        el.load(); // 重新加载视频
+                    }
+                }
+            });
+            videoObserver.observe();
+
+            // 监听窗口大小变化，重新布局
+            window.addEventListener('resize', function () {
+                videoMasonry.layout();
+            });
+
+            return videoMasonry;
+        }
+
+        // 初始化懒加载胶片图片
+        function initFilmMasonry() {
+            if (!document.querySelector('.film-grid')) return;
+
+            var grid = document.querySelector('.film-grid');
+            var msnry = new Masonry(grid, {
+                itemSelector: '.film-grid-item',
+                columnWidth: '.film-grid-sizer',
+                percentPosition: true
+            });
+
+            var filmObserver = lozad('.film-lozad', {
+                rootMargin: '50px 0px',
+                threshold: 0.1,
+                loaded: function (el) {
+                    el.classList.add('loaded');
+                    var item = el.closest('.film-grid-item');
+                    if (item) item.classList.add('loaded');
+                    imagesLoaded(el, function () {
+                        msnry.layout();
+                    });
+                }
+            });
+
+            filmObserver.observe();
+
+            imagesLoaded(grid).on('progress', function (instance, image) {
+                msnry.layout();
+            }).on('always', function () {
+                setTimeout(function () {
+                    msnry.layout();
+                }, 100);
+            });
+        }
+
+        // 在页面加载完成前先直接初始化图片
+        var initImagesDirectly = function () {
+            safeExecute(function () {
+                // 直接初始化图片
+                initMasonry();
+                // 初始化lightbox
+                if (typeof lightbox !== 'undefined') {
+                    lightbox.option({
+                        'resizeDuration': 200,
+                        'wrapAround': true,
+                        'fitImagesInViewport': true,
+                        'disableScrolling': true
+                    });
+                }
+            });
+        };
+    </script>
+</body>

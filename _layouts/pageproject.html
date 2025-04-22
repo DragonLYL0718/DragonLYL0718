@@ -1,0 +1,37 @@
+---
+layout: newpage
+---
+
+<head>
+    <link href="\assets\js\lightbox.css" rel="stylesheet" />
+    <style>
+        .image-link{
+            text-decoration: none; /* 移除链接下划线 */
+            border: none; /* 移除链接边框 */
+            outline: none; /* 移除点击时的轮廓 */
+        }
+
+        .image-link:after {
+            content: none !important;; /* 移除伪元素的内容 */
+        }
+        /* 使视频宽度与页面宽度相同 */
+        video {
+            width: 100%;
+            height: auto;
+        }
+</style>
+    </style>
+</head>
+
+<body>
+    {{ content }}
+    <script src="\assets\js\lightbox-plus-jquery.js"></script>
+    <script>
+        lightbox.option({
+          'resizeDuration': 200,
+          'wrapAround': true,
+          'fitImagesInViewport': true,
+          'disableScrolling': true,
+        })
+    </script>
+</body>
