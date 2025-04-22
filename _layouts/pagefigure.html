@@ -3,33 +3,6 @@ layout: pagegallery
 ---
 
 <head>
-    <script>
-        (function () {
-            try {
-                if (window.location.hostname.indexOf('github.io') !== -1) {
-                    var pathSegments = window.location.pathname.split('/');
-                    var repoName = pathSegments[1] || '';
-                    window.adjustedBasePath = '/' + repoName;
-                } else {
-                    window.adjustedBasePath = '';
-                }
-
-                document.addEventListener('DOMContentLoaded', function () {
-                    var cssLinks = document.querySelectorAll('link[rel="stylesheet"]');
-                    cssLinks.forEach(function (link) {
-                        if (link.href.indexOf('/assets/') !== -1 && link.href.indexOf(window.adjustedBasePath) === -1) {
-                            var newHref = link.href.replace(/\/assets\//, window.adjustedBasePath + '/assets/');
-                            link.href = newHref;
-                        }
-                    });
-                });
-
-                window.addEventListener('error', function (e) {
-                });
-            } catch (e) {
-            }
-        })();
-    </script>
     <link href="/assets/js/lightbox.css" rel="stylesheet" />
     <style>
         .content-nav {
@@ -81,6 +54,7 @@ layout: pagegallery
 
         .figure-grid-item img {
             padding: 5px 5px;
+            border-radius: 15px;
         }
 
         .figure-grid a {
@@ -94,7 +68,7 @@ layout: pagegallery
         }
 
         .figure-grid-item {
-            background-color: rgba(79, 177, 186, 0.5);
+            background-color: transparent;
             transition: background-color 0.3s ease-in-out;
         }
 
@@ -131,7 +105,7 @@ layout: pagegallery
         .video-item {
             position: relative;
             overflow: hidden;
-            background-color: rgba(79, 177, 186, 0.5);
+            background-color: transparent;
             border-radius: 5px;
             transition: background-color 0.3s ease-in-out;
             margin-bottom: 20px;
@@ -144,26 +118,7 @@ layout: pagegallery
             overflow: hidden;
             border-radius: 4px;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .video-item .video-container.ratio-16-9 {
-            padding-bottom: 56.25%;
-            height: 0;
-        }
-
-        .video-item .video-container.ratio-4-3 {
-            padding-bottom: 75%;
-            height: 0;
-        }
-
-        .video-item .video-container.ratio-1-1 {
-            padding-bottom: 100%;
-            height: 0;
-        }
-
-        .video-item .video-container.ratio-9-16 {
-            padding-bottom: 177.78%;
-            height: 0;
+            height: auto;
         }
 
         .video-title {
@@ -190,11 +145,9 @@ layout: pagegallery
 
         .video-item .video-container iframe,
         .video-item .video-container video {
-            position: absolute;
-            top: 0;
-            left: 0;
+            display: block;
             width: 100%;
-            height: 100%;
+            height: auto;
             border: none;
         }
 
@@ -217,6 +170,7 @@ layout: pagegallery
 
         .film-grid-item img {
             padding: 5px 5px;
+            border-radius: 15px;
         }
 
         .film-grid a {
@@ -230,7 +184,7 @@ layout: pagegallery
         }
 
         .film-grid-item {
-            background-color: rgba(79, 177, 186, 0.5);
+            background-color: transparent;
             transition: background-color 0.3s ease-in-out;
         }
 
@@ -318,64 +272,12 @@ layout: pagegallery
     <script src="/assets/js/lozad.js"></script>
     <script src="/assets/js/masonry.pkgd.min.js"></script>
     <script src="/assets/js/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/js/lightbox-plus-jquery.js"></script>
+
     <script>
         window.onerror = function (msg, url, line, col, error) {
             return false;
         };
-
-        function checkResourcesLoaded() {
-            var imageGrid = document.querySelector('.figure-grid');
-            if (imageGrid) {
-            }
-        }
-
-        function loadMissingResources() {
-            if (typeof Masonry === 'undefined') {
-                var masonryScript = document.createElement('script');
-                masonryScript.src = window.adjustedBasePath + '/assets/js/masonry.pkgd.min.js';
-                masonryScript.onload = function () { delayedInit(); };
-                document.head.appendChild(masonryScript);
-            }
-
-            if (typeof imagesLoaded === 'undefined') {
-                var imagesLoadedScript = document.createElement('script');
-                imagesLoadedScript.src = window.adjustedBasePath + '/assets/js/imagesloaded.pkgd.min.js';
-                imagesLoadedScript.onload = function () { delayedInit(); };
-                document.head.appendChild(imagesLoadedScript);
-            }
-
-            if (typeof lozad === 'undefined') {
-                var lozadScript = document.createElement('script');
-                lozadScript.src = window.adjustedBasePath + '/assets/js/lozad.js';
-                lozadScript.onload = function () { delayedInit(); };
-                document.head.appendChild(lozadScript);
-            }
-
-            if (typeof lightbox === 'undefined') {
-                var lightboxScript = document.createElement('script');
-                lightboxScript.src = window.adjustedBasePath + '/assets/js/lightbox-plus-jquery.js';
-                lightboxScript.onload = function () { delayedInit(); };
-                document.head.appendChild(lightboxScript);
-            }
-        }
-
-        function fixImagePaths() {
-            if (!window.adjustedBasePath) return;
-
-            var images = document.querySelectorAll('img[data-src]');
-            images.forEach(function (img) {
-                if (img.dataset.src && img.dataset.src.startsWith('/') && !img.dataset.src.startsWith(window.adjustedBasePath)) {
-                    img.dataset.src = window.adjustedBasePath + img.dataset.src;
-                }
-            });
-
-            var links = document.querySelectorAll('a[href][data-lightbox]');
-            links.forEach(function (link) {
-                if (link.href && link.href.indexOf('/assets/') !== -1 && link.href.indexOf(window.adjustedBasePath) === -1) {
-                    link.href = link.href.replace(/\/assets\//, window.adjustedBasePath + '/assets/');
-                }
-            });
-        }
 
         function safeExecute(fn, fallback) {
             try {
@@ -388,133 +290,54 @@ layout: pagegallery
             }
         }
 
-        function handleInitialContent() {
-            try {
-                var containers = document.querySelectorAll('[data-type]');
-                var hasVideo = false;
-                var hasFilm = false;
-                var hasImage = document.querySelector('.figure-grid') !== null && document.querySelector('.figure-grid').innerHTML.trim() !== '';
+        function loadMissingResources() {
+            if (typeof Masonry === 'undefined') {
+                var masonryScript = document.createElement('script');
+                masonryScript.src = '/assets/js/masonry.pkgd.min.js';
+                masonryScript.onload = function () { delayedInit(); };
+                document.head.appendChild(masonryScript);
+            }
 
-                containers.forEach(function (container) {
-                    try {
-                        var type = container.getAttribute('data-type');
-                        if (type === 'video') {
-                            var videoContainer = document.getElementById('video-container');
-                            if (videoContainer) {
-                                videoContainer.appendChild(container.cloneNode(true));
-                                container.setAttribute('data-processed', 'true');
-                                hasVideo = true;
-                            } else {
-                            }
-                        } else if (type === 'film') {
-                            var filmContainer = document.getElementById('film-container');
-                            if (filmContainer) {
-                                filmContainer.appendChild(container.cloneNode(true));
-                                container.setAttribute('data-processed', 'true');
-                                hasFilm = true;
-                            } else {
-                            }
-                        }
-                    } catch (e) {
-                    }
-                });
+            if (typeof imagesLoaded === 'undefined') {
+                var imagesLoadedScript = document.createElement('script');
+                imagesLoadedScript.src = '/assets/js/imagesloaded.pkgd.min.js';
+                imagesLoadedScript.onload = function () { delayedInit(); };
+                document.head.appendChild(imagesLoadedScript);
+            }
 
-                containers.forEach(function (container) {
-                    if (container.getAttribute('data-processed') === 'true') {
-                        try {
-                            container.remove();
-                        } catch (e) {
-                        }
-                    }
-                });
+            if (typeof lozad === 'undefined') {
+                var lozadScript = document.createElement('script');
+                lozadScript.src = '/assets/js/lozad.js';
+                lozadScript.onload = function () { delayedInit(); };
+                document.head.appendChild(lozadScript);
+            }
 
-                if (hasImage) {
-                    var grid = document.querySelector('.figure-grid');
-                    if (grid && typeof Masonry !== 'undefined') {
-                        setTimeout(function () {
-                            try {
-                                var msnry = Masonry.data(grid);
-                                if (msnry) msnry.layout();
-                            } catch (e) {
-                            }
-                        }, 100);
-                    }
-                }
-
-                return { hasVideo: hasVideo, hasFilm: hasFilm, hasImage: hasImage };
-            } catch (e) {
-                return { hasVideo: false, hasFilm: false, hasImage: false };
+            if (typeof lightbox === 'undefined') {
+                var lightboxScript = document.createElement('script');
+                lightboxScript.src = '/assets/js/lightbox-plus-jquery.js';
+                lightboxScript.onload = function () { delayedInit(); };
+                document.head.appendChild(lightboxScript);
             }
         }
 
-        function updateNavigationButtons(hasImage, hasVideo, hasFilm) {
-            try {
-                var contentNav = document.querySelector('.content-nav');
-                if (!contentNav) {
-                    return;
-                }
+        loadMissingResources();
+        delayedInit();
 
-                var contentTypeCount = (hasImage ? 1 : 0) + (hasVideo ? 1 : 0) + (hasFilm ? 1 : 0);
-
-                var imageButton = document.querySelector('.image-button');
-                var videoButton = document.querySelector('.video-button');
-                var filmButton = document.querySelector('.film-button');
-
-                if (!imageButton || !videoButton || !filmButton) {
-                    return;
-                }
-
-                imageButton.style.display = 'none';
-                videoButton.style.display = 'none';
-                filmButton.style.display = 'none';
-
-                if (contentTypeCount <= 1) {
-                    contentNav.style.display = 'none';
-                } else {
-                    contentNav.style.display = 'flex';
-                    if (hasImage) {
-                        imageButton.style.display = 'inline-block';
-                    }
-                    if (hasVideo) {
-                        videoButton.style.display = 'inline-block';
-                    }
-                    if (hasFilm) {
-                        filmButton.style.display = 'inline-block';
-                    }
-                }
-
-                if (!hasImage && hasVideo) {
-                    imageButton.classList.remove('active');
-                    videoButton.classList.add('active');
-                    document.getElementById('image-section').classList.remove('active');
-                    document.getElementById('video-section').classList.add('active');
-                }
-
-                if (!hasImage && !hasVideo && hasFilm) {
-                    imageButton.classList.remove('active');
-                    filmButton.classList.add('active');
-                    document.getElementById('image-section').classList.remove('active');
-                    document.getElementById('film-section').classList.add('active');
-                }
-            } catch (e) {
-            }
-        }
-
-        function fixScriptPaths() {
-            var scripts = document.querySelectorAll('script[src]');
-            scripts.forEach(function (script) {
-                if (script.src && script.src.indexOf('/assets/') !== -1 &&
-                    script.src.indexOf(window.adjustedBasePath) === -1) {
-                    var newSrc = script.src.replace(/\/assets\//, window.adjustedBasePath + '/assets/');
-                    var newScript = document.createElement('script');
-                    newScript.src = newSrc;
-                    script.parentNode.replaceChild(newScript, script);
-                }
+        document.addEventListener('DOMContentLoaded', function () {
+            safeExecute(function () {
+                loadMissingResources();
+                delayedInit();
             });
-        }
+        });
+
+        setTimeout(function () {
+            if (!document.querySelector('.figure-grid-item.loaded')) {
+                clearCacheProblem();
+                loadMissingResources();
+            }
+        }, 2000);
 
         function clearCacheProblem() {
-            fixScriptPaths();
             var scripts = document.querySelectorAll('script[src]');
             scripts.forEach(function (script) {
                 if (!script.src.includes('?')) {
@@ -528,118 +351,177 @@ layout: pagegallery
             });
         }
 
-        fixScriptPaths();
-        checkResourcesLoaded();
-
-        loadMissingResources();
-        delayedInit();
-
-        document.addEventListener('DOMContentLoaded', function () {
-            safeExecute(function () {
-                checkResourcesLoaded();
-                fixImagePaths();
-                loadMissingResources();
-                delayedInit();
-            });
-        });
-
-        setTimeout(function () {
-            if (!document.querySelector('.figure-grid-item.loaded')) {
-                clearCacheProblem();
-                loadMissingResources();
-            }
-        }, 4000);
-    </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var lightboxScript = document.createElement('script');
-            lightboxScript.src = (window.adjustedBasePath || '') + '/assets/js/lightbox-plus-jquery.js?v=' + new Date().getTime();
-            document.body.appendChild(lightboxScript);
-
-            lightboxScript.onload = function () {
-                if (typeof lightbox !== 'undefined') {
-                    lightbox.option({
-                        'resizeDuration': 200,
-                        'wrapAround': true,
-                        'fitImagesInViewport': true,
-                        'disableScrolling': true
-                    });
-                }
-            };
-        });
-    </script>
-
-    <script>
         function delayedInit() {
             safeExecute(function () {
-                checkResourcesLoaded();
-
                 if (typeof Masonry === 'undefined' || typeof imagesLoaded === 'undefined' || typeof lozad === 'undefined') {
-                    setTimeout(delayedInit, 500);
+                    setTimeout(delayedInit, 200);
                     return;
                 }
 
-                fixImagePaths();
-                initMasonry();
-
-                var initialContent = handleInitialContent();
-
-                setupButtonHandlers();
-
-                updateNavigationButtons(
-                    initialContent.hasImage,
-                    initialContent.hasVideo,
-                    initialContent.hasFilm
-                );
+                initPage();
             });
         }
 
-        function setupButtonHandlers() {
-            safeExecute(function () {
-                var navButtons = document.querySelectorAll('.nav-button');
+        function initPage() {
+            var initialContent = handleInitialContent();
 
-                navButtons.forEach(function (button) {
-                    var newButton = button.cloneNode(true);
-                    button.parentNode.replaceChild(newButton, button);
+            setupButtonHandlers();
+
+            updateNavigationButtons(
+                initialContent.hasImage,
+                initialContent.hasVideo,
+                initialContent.hasFilm
+            );
+
+            initMasonry();
+
+            if (typeof lightbox !== 'undefined') {
+                lightbox.option({
+                    'resizeDuration': 200,
+                    'wrapAround': true,
+                    'fitImagesInViewport': true,
+                    'disableScrolling': true
                 });
+            }
+        }
 
-                navButtons = document.querySelectorAll('.nav-button');
-                navButtons.forEach(function (button) {
-                    button.addEventListener('click', function (e) {
-                        e.preventDefault();
-                        var target = this.getAttribute('data-target');
+        function handleInitialContent() {
+            var containers = document.querySelectorAll('[data-type]');
+            var hasVideo = false;
+            var hasFilm = false;
+            var hasImage = document.querySelector('.figure-grid') !== null &&
+                document.querySelector('.figure-grid').innerHTML.trim() !== '';
 
-                        navButtons.forEach(function (btn) {
-                            btn.classList.remove('active');
-                        });
-                        this.classList.add('active');
+            containers.forEach(function (container) {
+                var type = container.getAttribute('data-type');
+                if (type === 'video') {
+                    var videoContainer = document.getElementById('video-container');
+                    if (videoContainer) {
+                        videoContainer.appendChild(container.cloneNode(true));
+                        container.setAttribute('data-processed', 'true');
+                        hasVideo = true;
+                    }
+                } else if (type === 'film') {
+                    var filmContainer = document.getElementById('film-container');
+                    if (filmContainer) {
+                        filmContainer.appendChild(container.cloneNode(true));
+                        container.setAttribute('data-processed', 'true');
+                        hasFilm = true;
+                    }
+                }
+            });
 
-                        var sections = document.querySelectorAll('.content-section');
-                        sections.forEach(function (section) {
-                            section.classList.remove('active');
-                        });
+            containers.forEach(function (container) {
+                if (container.getAttribute('data-processed') === 'true') {
+                    container.remove();
+                }
+            });
 
-                        var targetSection = document.getElementById(target);
-                        if (targetSection) {
-                            targetSection.classList.add('active');
+            if (hasImage) {
+                var grid = document.querySelector('.figure-grid');
+                if (grid && typeof Masonry !== 'undefined') {
+                    setTimeout(function () {
+                        var msnry = Masonry.data(grid);
+                        if (msnry) msnry.layout();
+                    }, 100);
+                }
+            }
 
-                            if (target === 'image-section') {
-                                setTimeout(function () {
-                                    safeExecute(initMasonry);
-                                }, 100);
-                            } else if (target === 'video-section') {
-                                setTimeout(function () {
-                                    safeExecute(initVideoLazyLoad);
-                                }, 100);
-                            } else if (target === 'film-section') {
-                                setTimeout(function () {
-                                    safeExecute(initFilmMasonry);
-                                }, 100);
-                            }
-                        } else {
-                        }
+            return { hasVideo: hasVideo, hasFilm: hasFilm, hasImage: hasImage };
+        }
+
+        function updateNavigationButtons(hasImage, hasVideo, hasFilm) {
+            var contentNav = document.querySelector('.content-nav');
+            if (!contentNav) {
+                return;
+            }
+
+            var contentTypeCount = (hasImage ? 1 : 0) + (hasVideo ? 1 : 0) + (hasFilm ? 1 : 0);
+
+            var imageButton = document.querySelector('.image-button');
+            var videoButton = document.querySelector('.video-button');
+            var filmButton = document.querySelector('.film-button');
+
+            if (!imageButton || !videoButton || !filmButton) {
+                return;
+            }
+
+            imageButton.style.display = 'none';
+            videoButton.style.display = 'none';
+            filmButton.style.display = 'none';
+
+            if (contentTypeCount <= 1) {
+                contentNav.style.display = 'none';
+            } else {
+                contentNav.style.display = 'flex';
+                if (hasImage) {
+                    imageButton.style.display = 'inline-block';
+                }
+                if (hasVideo) {
+                    videoButton.style.display = 'inline-block';
+                }
+                if (hasFilm) {
+                    filmButton.style.display = 'inline-block';
+                }
+            }
+
+            if (!hasImage && hasVideo) {
+                imageButton.classList.remove('active');
+                videoButton.classList.add('active');
+                document.getElementById('image-section').classList.remove('active');
+                document.getElementById('video-section').classList.add('active');
+            }
+
+            if (!hasImage && !hasVideo && hasFilm) {
+                imageButton.classList.remove('active');
+                filmButton.classList.add('active');
+                document.getElementById('image-section').classList.remove('active');
+                document.getElementById('film-section').classList.add('active');
+            }
+        }
+
+        function setupButtonHandlers() {
+            var navButtons = document.querySelectorAll('.nav-button');
+
+            navButtons.forEach(function (button) {
+                var newButton = button.cloneNode(true);
+                button.parentNode.replaceChild(newButton, button);
+            });
+
+            navButtons = document.querySelectorAll('.nav-button');
+            navButtons.forEach(function (button) {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    var target = this.getAttribute('data-target');
+
+                    navButtons.forEach(function (btn) {
+                        btn.classList.remove('active');
                     });
+                    this.classList.add('active');
+
+                    var sections = document.querySelectorAll('.content-section');
+                    sections.forEach(function (section) {
+                        section.classList.remove('active');
+                    });
+
+                    var targetSection = document.getElementById(target);
+                    if (targetSection) {
+                        targetSection.classList.add('active');
+
+                        if (target === 'image-section') {
+                            setTimeout(function () {
+                                safeExecute(function () { initMasonry(); });
+                            }, 100);
+                        } else if (target === 'video-section') {
+                            setTimeout(function () {
+                                safeExecute(function () { initVideoLazyLoad(); });
+                            }, 100);
+                        } else if (target === 'film-section') {
+                            setTimeout(function () {
+                                safeExecute(function () { initFilmMasonry(); });
+                            }, 100);
+                        }
+                    }
                 });
             });
         }
@@ -670,10 +552,9 @@ layout: pagegallery
                     });
                 }
             });
-
             window.lozadObserver.observe();
 
-            imagesLoaded(grid).on('progress', function (instance, image) {
+            imagesLoaded(grid).on('progress', function () {
                 msnry.layout();
             }).on('always', function () {
                 setTimeout(function () {
@@ -683,13 +564,6 @@ layout: pagegallery
         }
 
         function initVideoLazyLoad() {
-            var videoSources = document.querySelectorAll('video source[data-src], iframe[data-src]');
-            videoSources.forEach(function (source) {
-                if (source.dataset.src && source.dataset.src.startsWith('/') && !source.dataset.src.startsWith(window.adjustedBasePath)) {
-                    source.dataset.src = window.adjustedBasePath + source.dataset.src;
-                }
-            });
-
             var videoGrid = document.querySelector('.video-grid');
             if (!videoGrid) return;
 
@@ -758,7 +632,7 @@ layout: pagegallery
 
             filmObserver.observe();
 
-            imagesLoaded(grid).on('progress', function (instance, image) {
+            imagesLoaded(grid).on('progress', function () {
                 msnry.layout();
             }).on('always', function () {
                 setTimeout(function () {
@@ -766,19 +640,5 @@ layout: pagegallery
                 }, 100);
             });
         }
-
-        var initImagesDirectly = function () {
-            safeExecute(function () {
-                initMasonry();
-                if (typeof lightbox !== 'undefined') {
-                    lightbox.option({
-                        'resizeDuration': 200,
-                        'wrapAround': true,
-                        'fitImagesInViewport': true,
-                        'disableScrolling': true
-                    });
-                }
-            });
-        };
     </script>
 </body>
