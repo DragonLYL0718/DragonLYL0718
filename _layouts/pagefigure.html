@@ -147,65 +147,70 @@ layout: pagegallery
     <script src="{{ '/assets/js/lightbox-plus-jquery.js' | relative_url }}"></script>
 
     <script>
-        console.log("DEBUG: pagefigure.html script executing. Step 1: Script start.");
-
-        // ---- State Setup (Simplified) ----
-        console.log("DEBUG: Step 2: Setting up window.galleryState (simplified).");
-        window.galleryState = window.galleryState || {};
-        console.log("DEBUG: Step 3: window.galleryState setup complete.");
-
-        // ---- Function Definitions (Simplified) ----
-        console.log("DEBUG: Step 4: Defining placeholder functions.");
-        function initializeGallery() {
-            console.log("########## DEBUG: initializeGallery CALLED (Simplified) ##########");
-            const grid = document.querySelector('.figure-grid');
-            if (grid) {
-                console.log("DEBUG: Found .figure-grid element (Simplified).");
-                // Do nothing else for now
-            } else {
-                console.warn("DEBUG: Did NOT find .figure-grid element (Simplified).");
-            }
-        }
-
-        function setupMutationObserver() {
-            console.log("########## DEBUG: setupMutationObserver CALLED (Simplified) ##########");
-            // Try to initialize immediately
-            if (initializeGallery()) {
-                console.log("DEBUG: Initial attempt in setupMutationObserver worked (Simplified).");
-            } else {
-                console.log("DEBUG: Initial attempt in setupMutationObserver failed, would normally start observer (Simplified).");
-                // Do not actually start observer for this test
-            }
-        }
-        console.log("DEBUG: Step 5: Placeholder functions defined.");
-
-        // ---- Initialization Logic (Simplified) ----
-        console.log("DEBUG: Step 6: Starting simplified initialization logic.");
-
-        // Attempt immediate initialization or setup observer
         try {
+            console.log("DEBUG: pagefigure.html script executing. Step 1: Script start.");
+
+            // ---- State Setup (Simplified) ----
+            console.log("DEBUG: Step 2: Setting up window.galleryState (simplified).");
+            window.galleryState = window.galleryState || {};
+            console.log("DEBUG: Step 3: window.galleryState setup complete.");
+
+            // ---- Function Definitions (Simplified) ----
+            console.log("DEBUG: Step 4: Defining placeholder functions.");
+            function initializeGallery() {
+                console.log("########## DEBUG: initializeGallery CALLED (Simplified) ##########");
+                const grid = document.querySelector('.figure-grid');
+                if (grid) {
+                    console.log("DEBUG: Found .figure-grid element (Simplified).");
+                    // Do nothing else for now
+                } else {
+                    console.warn("DEBUG: Did NOT find .figure-grid element (Simplified).");
+                }
+            }
+
+            function setupMutationObserver() {
+                console.log("########## DEBUG: setupMutationObserver CALLED (Simplified) ##########");
+                // Try to initialize immediately
+                if (initializeGallery()) {
+                    console.log("DEBUG: Initial attempt in setupMutationObserver worked (Simplified).");
+                } else {
+                    console.log("DEBUG: Initial attempt in setupMutationObserver failed, would normally start observer (Simplified).");
+                    // Do not actually start observer for this test
+                }
+            }
+            console.log("DEBUG: Step 5: Placeholder functions defined.");
+
+            // ---- Initialization Logic (Simplified) ----
+            console.log("DEBUG: Step 6: Starting simplified initialization logic.");
+
+            // Attempt immediate initialization or setup observer
+            // Note: Still wrapped in the outer try-catch
             setupMutationObserver();
             console.log("DEBUG: Step 7: Initial setupMutationObserver call complete (Simplified).");
-        } catch (e) {
-            console.error("ERROR during simplified setupMutationObserver call:", e);
-        }
 
-        // Fallback for full page loads (Ctrl+R)
-        try {
+
+            // Fallback for full page loads (Ctrl+R)
+            // Note: Still wrapped in the outer try-catch
             window.addEventListener('load', () => {
-                console.log("########## DEBUG: WINDOW.LOAD CALLBACK FIRED! (Simplified) ##########");
-                // Only initialize if the observer hasn't already succeeded
-                if (!window.galleryState.isGalleryInitialized) { // Note: this flag is never set to true in simplified version
-                    console.warn("WARN: Calling initializeGallery from load event (Simplified).");
-                    initializeGallery();
+                try {
+                    console.log("########## DEBUG: WINDOW.LOAD CALLBACK FIRED! (Simplified) ##########");
+                    // Only initialize if the observer hasn't already succeeded
+                    if (!window.galleryState.isGalleryInitialized) { // Note: this flag is never set to true in simplified version
+                        console.warn("WARN: Calling initializeGallery from load event (Simplified).");
+                        initializeGallery();
+                    }
+                } catch (loadError) {
+                    console.error("ERROR inside window.load listener:", loadError);
                 }
             });
             console.log("DEBUG: Step 8: Fallback window.load listener attached (Simplified).");
-        } catch (e) {
-            console.error("ERROR attaching simplified window.load listener:", e);
-        }
 
-        console.log("DEBUG: Step 9: End of simplified pagefigure.html script block.");
+            console.log("DEBUG: Step 9: End of simplified pagefigure.html script block.");
+
+        } catch (globalError) {
+            // Catch any error that might occur anywhere between Step 1 and Step 9
+            console.error("########## FATAL ERROR CAUGHT IN GLOBAL TRY-CATCH ##########", globalError);
+        }
 
         /*
         // ---- ORIGINAL CODE COMMENTED OUT FOR TESTING ----
