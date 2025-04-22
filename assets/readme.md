@@ -7,3 +7,5 @@ Hydejack 拦截了链接点击。
 关键： 这个过程通常不会触发标准的 DOMContentLoaded 或 window.load 事件，因为整个文档并没有重新加载。
 因此，我们的脚本虽然运行了，但它所依赖的启动事件从未发生。我们之前尝试监听的 turbo:load 或 turbolinks:load 显然也不是 Hydejack 使用的事件。
 解决方案：使用 MutationObserver
+
+script 不可以使用 // 注释，否则会报错
