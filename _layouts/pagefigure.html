@@ -3,7 +3,7 @@ layout: pagegallery
 ---
 
 <head>
-    <link href="/assets/js/lightbox.css" rel="stylesheet" />
+    <link href="{{ '/assets/js/lightbox.css' | relative_url }}" rel="stylesheet" />
     <style>
         /* 基本样式 */
         .figure-grid {
@@ -39,14 +39,12 @@ layout: pagegallery
         /* 网格项样式 */
         .figure-grid-item {
             width: 33.333%;
-            padding: 5px;
-            /* 在项周围添加内边距 */
+            /* 设置左右内边距为 5px，上下为 0 */
+            padding: 0 5px;
             box-sizing: border-box;
-            /* 让内边距包含在宽度内 */
-            float: left;
-            /* Masonry 需要 */
+            /* 设置下方外边距为 10px */
             margin-bottom: 10px;
-            /* 增加垂直间距 */
+            float: left;
         }
 
         @media screen and (max-width: 768px) {
@@ -72,7 +70,7 @@ layout: pagegallery
             /* 浅灰色占位背景 */
             min-height: 150px;
             /* 加载前的最小高度 */
-            transition: opacity 0.4s ease-in-out;
+            transition: opacity 0.4s ease-in-out, transform 0.3s ease-in-out;
             opacity: 0;
             /* 初始透明，为淡入效果准备 */
             border-radius: 4px;
@@ -84,6 +82,12 @@ layout: pagegallery
             /* 加载后淡入 */
             background-color: transparent;
             /* 移除占位背景 */
+        }
+
+        /* 图片呼吸/放大效果 */
+        .figure-grid-item a:hover img {
+            transform: scale(1.05);
+            /* 悬停时放大图片 */
         }
 
         /* 确保链接没有下划线 */
@@ -137,10 +141,10 @@ layout: pagegallery
 <body>
     {{ content }}
 
-    <script src="/assets/js/lozad.js"></script>
-    <script src="/assets/js/masonry.pkgd.min.js"></script>
-    <script src="/assets/js/imagesloaded.pkgd.min.js"></script>
-    <script src="/assets/js/lightbox-plus-jquery.js"></script>
+    <script src="{{ '/assets/js/lozad.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/masonry.pkgd.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/imagesloaded.pkgd.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/lightbox-plus-jquery.js' | relative_url }}"></script>
 
     <script>
         console.log("DEBUG: pagefigure.html script executing. Step 1: Script start.");
