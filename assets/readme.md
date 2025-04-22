@@ -1,0 +1,1 @@
+个错误 Identifier 'msnryInstance' has already been declared 确实表明我们的脚本被执行了多次。这通常发生在使用像 Hydejack 主题内置的 PJAX 或 Turbo/Turbolinks 这样的技术时，它们通过 AJAX 加载新页面内容并替换当前页面的部分内容，而不是进行完整的页面刷新。
