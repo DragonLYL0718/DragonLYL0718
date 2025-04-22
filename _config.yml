@@ -11,9 +11,6 @@
 # NOTE: You don't need to provide this property when hosting on GitHub Pages or Netlify.
 # baseurl:               '/hydejack-starter-kit'
 
-# 设置构建目录为doc
-destination: doc
-
 # General settings
 # ---------------------------------------------------------------------------------------
 
