@@ -19,28 +19,10 @@
 layout: base
 ---
 
-<!-- Debug Info -->
-<!-- 
-Current Lang: {{ page.lang | default: site.lang }}
-Title: {{ page.title }}
-Title ZH: {{ page.title_zh }}
-Description: {{ page.description }}
-Description ZH: {{ page.description_zh }}
--->
-
 <article class="page mb6" role="article">
   <header>
-    <h1 class="page-title" data-title="{{ page.title }}" data-title-zh="{{ page.title_zh | default: page.title }}">
-      {% if page.lang == 'zh' or site.lang == 'zh' %}
-      {{ page.title_zh | default: page.title }}
-      {% else %}
-      {{ page.title }}
-      {% endif %}
-    </h1>
-    {% include components/message.html
-    text=page.description
-    text_zh=page.description_zh
-    hide=page.hide_description %}
+    <h1 class="page-title">{{ page.title }}</h1>
+    {% include components/message.html text=page.description hide=page.hide_description %}
   </header>
 
   {{ content }}
