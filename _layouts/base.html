@@ -27,10 +27,8 @@ layout: compress
 {% assign color = page.accent_color | default:site.accent_color | default:'rgb(79,177,186)' %}
 {% assign theme_color = page.theme_color | default:site.theme_color | default:'rgb(8,46,57)' %}
 
-<!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
-
 <head>
+  {% include head/index.html %}
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-G3P4GRGGCC"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -39,54 +37,8 @@ layout: compress
 
     gtag('config', 'G-G3P4GRGGCC');
   </script>
-
-  <script>
-    // 在页面加载前检查保存的语言偏好
-    const savedLang = localStorage.getItem('preferred_lang');
-    if (savedLang) {
-      document.documentElement.lang = savedLang;
-    }
-  </script>
-  {% include head/index.html %}
-  <style>
-    .large-only {
-      position: fixed !important;
-      top: 20% !important;
-      overflow-y: auto;
-    }
-  </style>
 </head>
 
 <body class="{% include_cached base-classes %}">
   {% include body/index.html %}
-  <script>
-    // 确保页面加载后应用正确的语言设置
-    document.addEventListener('DOMContentLoaded', function () {
-      const savedLang = localStorage.getItem('preferred_lang');
-      if (savedLang) {
-        document.documentElement.lang = savedLang;
-        // 触发语言改变事件
-        const event = new Event('languageChanged');
-        document.dispatchEvent(event);
-      }
-    });
-
-    // 监听页面内容变化
-    const observer = new MutationObserver(function (mutations) {
-      const savedLang = localStorage.getItem('preferred_lang');
-      if (savedLang) {
-        // 更新所有需要翻译的内容
-        const event = new Event('languageChanged');
-        document.dispatchEvent(event);
-      }
-    });
-
-    // 开始观察页面内容变化
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true
-    });
-  </script>
 </body>
-
-</html>
