@@ -98,197 +98,82 @@ layout: pagegallery
     <script src="/assets/js/imagesloaded.pkgd.min.js"></script>
     <script src="/assets/js/lightbox-plus-jquery.js"></script>
 
+    <!-- 内联脚本，最简方式实现功能 -->
     <script>
-        // 全局变量和状态
-        var masonryGrid = null;
-        var masonryInitialized = false;
-        var checkTimer = null;
-
-        // 立即执行初始化函数
+        // 直接执行初始化，不使用任何事件监听
         (function () {
-            console.log('开始初始化过程', new Date().toISOString());
+            // 初始化Lightbox
+            if (typeof lightbox !== 'undefined') {
+                lightbox.option({
+                    'resizeDuration': 200,
+                    'wrapAround': true,
+                    'fitImagesInViewport': true,
+                    'disableScrolling': true
+                });
+            }
 
-            // 首次尝试初始化
-            tryInitMasonry();
+            // 设置延迟执行Masonry初始化，确保DOM已加载
+            setTimeout(initMasonry, 500);
+            setTimeout(initMasonry, 1000);
+            setTimeout(initMasonry, 2000);
 
-            // 设置定时检查，每500ms检查一次
-            checkTimer = setInterval(function () {
-                tryInitMasonry();
-
-                // 如果已经初始化成功且5秒后，停止检查
-                if (masonryInitialized && Date.now() - startTime > 5000) {
-                    console.log('初始化成功且运行5秒后，停止定时检查');
-                    clearInterval(checkTimer);
-                }
-            }, 500);
-
-            // 记录启动时间
-            var startTime = Date.now();
-
-            // 20秒后无论如何都清除定时器，防止无限运行
-            setTimeout(function () {
-                if (checkTimer) {
-                    console.log('20秒后自动清除定时器');
-                    clearInterval(checkTimer);
-                    checkTimer = null;
-                }
-            }, 20000);
-        })();
-
-        // 尝试初始化Masonry
-        function tryInitMasonry() {
-            try {
-                // 如果已经初始化，刷新布局后返回
-                if (masonryInitialized && masonryGrid) {
-                    masonryGrid.layout();
-                    return true;
-                }
-
-                // 检查必要的库是否存在
-                if (typeof Masonry === 'undefined' || typeof imagesLoaded === 'undefined' || typeof lozad === 'undefined') {
-                    console.log('必要库未加载，等待下一次检查');
-                    return false;
-                }
-
-                // 查找网格元素
+            // 初始化函数
+            function initMasonry() {
                 var grid = document.querySelector('.figure-grid');
-                if (!grid) {
-                    console.log('未找到.figure-grid元素，等待下一次检查');
-                    return false;
-                }
+                if (!grid) return;
 
-                // 检查是否已初始化
-                if (grid.classList.contains('masonry-initialized')) {
-                    console.log('网格已初始化，跳过');
-                    masonryInitialized = true;
-                    return true;
-                }
+                if (grid.classList.contains('masonry-initialized')) return;
 
-                console.log('找到网格元素，开始初始化Masonry');
-
-                // 尝试初始化Masonry
-                try {
-                    masonryGrid = new Masonry(grid, {
+                // 初始化Masonry
+                if (typeof Masonry !== 'undefined') {
+                    var masonry = new Masonry(grid, {
                         itemSelector: '.figure-grid-item',
                         columnWidth: '.figure-grid-sizer',
                         percentPosition: true
                     });
 
-                    // 标记已初始化
                     grid.classList.add('masonry-initialized');
-                    masonryInitialized = true;
-                    console.log('Masonry初始化成功');
 
                     // 初始化懒加载
-                    initLazyLoad();
+                    if (typeof lozad !== 'undefined') {
+                        var observer = lozad('.lozad', {
+                            loaded: function (el) {
+                                el.classList.add('loaded');
+                                var item = el.closest('.figure-grid-item');
+                                if (item) item.classList.add('loaded');
+
+                                // 强制布局
+                                masonry.layout();
+                            }
+                        });
+                        observer.observe();
+                    }
 
                     // 初始化图片加载监听
-                    initImagesLoaded(grid);
-
-                    // 初始化Lightbox
-                    initLightbox();
-
-                    return true;
-                } catch (e) {
-                    console.error('Masonry初始化失败', e);
-                    return false;
-                }
-            } catch (e) {
-                console.error('尝试初始化过程中出错:', e);
-                return false;
-            }
-        }
-
-        // 初始化懒加载
-        function initLazyLoad() {
-            try {
-                var observer = lozad('.lozad', {
-                    rootMargin: '50px 0px',
-                    threshold: 0.1,
-                    loaded: function (el) {
-                        try {
-                            el.classList.add('loaded');
-                            var item = el.closest('.figure-grid-item');
-                            if (item) item.classList.add('loaded');
-
-                            // 图片加载后重新布局
-                            if (masonryGrid) {
-                                setTimeout(function () {
-                                    masonryGrid.layout();
-                                }, 100);
-                            }
-                        } catch (e) {
-                            console.error('懒加载回调出错:', e);
-                        }
+                    if (typeof imagesLoaded !== 'undefined') {
+                        imagesLoaded(grid).on('progress', function () {
+                            masonry.layout();
+                        });
                     }
-                });
-                observer.observe();
-                console.log('懒加载设置完成');
-            } catch (e) {
-                console.error('初始化懒加载出错:', e);
+                }
             }
-        }
+        })();
 
-        // 初始化图片加载监听
-        function initImagesLoaded(grid) {
-            try {
-                imagesLoaded(grid).on('progress', function () {
-                    if (masonryGrid) masonryGrid.layout();
-                }).on('always', function () {
-                    if (masonryGrid) {
-                        setTimeout(function () {
-                            masonryGrid.layout();
-                        }, 100);
-
-                        setTimeout(function () {
-                            masonryGrid.layout();
-                        }, 500);
+        // 在URL变化时重新初始化（针对SPA网站）
+        var currentUrl = location.href;
+        setInterval(function () {
+            if (location.href !== currentUrl) {
+                currentUrl = location.href;
+                // 延迟重新初始化
+                setTimeout(function () {
+                    var grid = document.querySelector('.figure-grid');
+                    if (grid) {
+                        grid.classList.remove('masonry-initialized');
+                        // 强制重新初始化
+                        var event = new Event('DOMContentLoaded');
+                        document.dispatchEvent(event);
                     }
-                });
-                console.log('图片加载监听设置完成');
-            } catch (e) {
-                console.error('初始化图片加载监听出错:', e);
-            }
-        }
-
-        // 初始化Lightbox
-        function initLightbox() {
-            try {
-                if (typeof lightbox !== 'undefined') {
-                    lightbox.option({
-                        'resizeDuration': 200,
-                        'wrapAround': true,
-                        'fitImagesInViewport': true,
-                        'disableScrolling': true
-                    });
-                    console.log('Lightbox设置完成');
-                }
-            } catch (e) {
-                console.error('初始化Lightbox出错:', e);
-            }
-        }
-
-        // 监听页面可见性变化（无事件监听器替代方案）
-        var lastVisibilityState = document.visibilityState;
-        setInterval(function () {
-            if (document.visibilityState !== lastVisibilityState) {
-                lastVisibilityState = document.visibilityState;
-                if (document.visibilityState === 'visible' && masonryGrid) {
-                    setTimeout(function () {
-                        masonryGrid.layout();
-                    }, 200);
-                }
-            }
-        }, 500);
-
-        // 检测URL变化（无事件监听器替代方案）
-        var lastUrl = location.href;
-        setInterval(function () {
-            if (location.href !== lastUrl) {
-                lastUrl = location.href;
-                console.log('URL变化检测到，重置初始化状态');
-                masonryInitialized = false;
-                setTimeout(tryInitMasonry, 500);
+                }, 500);
             }
         }, 500);
     </script>
