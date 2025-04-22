@@ -1,101 +1,305 @@
 ---
-layout: page
+layout: pagegallery
 ---
 
-<!-- Moved from inner head/body -->
-<link href="{{ '/assets/js/lightbox.css' | relative_url }}" rel="stylesheet" />
+<head>
+    <link href="{{ '/assets/js/lightbox.css' | relative_url }}" rel="stylesheet" />
+    <style>
+        .figure-grid {
+            margin: 0 auto;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
 
-<!-- Temporarily removed the large inline <style> block for testing -->
+        .figure-grid.initialized {
+            opacity: 1;
+        }
 
-<!-- Main content area for the layout -->
-{{ content }}
+        .figure-grid-sizer {
+            width: 33.333%;
+        }
 
-<!-- Scripts should come after content -->
-<script src="{{ '/assets/js/lozad.js' | relative_url }}"></script>
-<script src="{{ '/assets/js/masonry.pkgd.min.js' | relative_url }}"></script>
-<script src="{{ '/assets/js/imagesloaded.pkgd.min.js' | relative_url }}"></script>
-<script src="{{ '/assets/js/lightbox-plus-jquery.js' | relative_url }}"></script>
+        @media screen and (max-width: 768px) {
+            .figure-grid-sizer {
+                width: 50%;
+            }
+        }
 
-<script>
-    try {
+        @media screen and (max-width: 480px) {
+            .figure-grid-sizer {
+                width: 100%;
+            }
+        }
+
+        .figure-grid-item {
+            width: 33.333%;
+            padding: 0 5px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            float: left;
+        }
+
+        @media screen and (max-width: 768px) {
+            .figure-grid-item {
+                width: 50%;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .figure-grid-item {
+                width: 100%;
+            }
+        }
+
+        .figure-grid-item img {
+            display: block;
+            width: 100%;
+            height: auto;
+            background-color: #eee;
+            min-height: 150px;
+            transition: opacity 0.4s ease-in-out, transform 0.3s ease-in-out;
+            opacity: 0;
+            border-radius: 4px;
+        }
+
+        .figure-grid-item img.loaded {
+            opacity: 1;
+            background-color: transparent;
+        }
+
+        .figure-grid-item a:hover img {
+            transform: scale(1.05);
+        }
+
+        .figure-grid a,
+        .figure-grid a:hover,
+        .figure-grid a:visited {
+            text-decoration: none;
+            border: none;
+            outline: none;
+            display: block;
+            background: none;
+        }
+
+        .figure-grid a::after {
+            content: none !important;
+        }
+
+        .lb-dataContainer {
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+
+        .lb-outerContainer {
+            border-radius: 4px;
+        }
+
+        .lb-nav a.lb-prev,
+        .lb-nav a.lb-next {
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .lb-nav a.lb-prev:hover,
+        .lb-nav a.lb-next:hover {
+            opacity: 1;
+        }
+
+        .figure-grid:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    {{ content }}
+
+    <script src="/assets/js/lozad.js"></script>
+    <script src="/assets/js/masonry.pkgd.min.js"></script>
+    <script src="/assets/js/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/js/lightbox-plus-jquery.js"></script>
+
+    <script>
         console.log("DEBUG: pagefigure.html script executing. Step 1: Script start.");
 
-        // ---- State Setup (Simplified) ----
-        console.log("DEBUG: Step 2: Setting up window.galleryState (simplified).");
+        console.log("DEBUG: Step 2: Setting up window.galleryState.");
         window.galleryState = window.galleryState || {};
+        window.galleryState.msnryInstance = null;
+        window.galleryState.isGalleryInitialized = false;
+        window.galleryState.observer = null;
         console.log("DEBUG: Step 3: window.galleryState setup complete.");
 
-        // ---- Function Definitions (Simplified) ----
-        console.log("DEBUG: Step 4: Defining placeholder functions.");
+        console.log("DEBUG: Step 4: Defining helper functions.");
+        function checkLibraries() {
+            console.log("DEBUG: Checking required libraries...");
+            let allLoaded = true;
+            if (typeof jQuery === 'undefined') { console.error('ERROR: jQuery library not loaded.'); allLoaded = false; }
+            if (typeof Masonry === 'undefined') { console.error('ERROR: Masonry library not loaded.'); allLoaded = false; }
+            if (typeof imagesLoaded === 'undefined') { console.error('ERROR: imagesLoaded library not loaded.'); allLoaded = false; }
+            if (typeof lozad === 'undefined') { console.error('ERROR: lozad library not loaded.'); allLoaded = false; }
+            if (typeof lightbox === 'undefined') { console.warn('WARN: lightbox library not loaded.'); }
+            else { console.log("DEBUG: Lightbox library found."); }
+            if (allLoaded) { console.log("DEBUG: All core libraries seem to be loaded."); }
+            else { console.error("ERROR: One or more core libraries failed to load."); }
+            return allLoaded;
+        }
+
         function initializeGallery() {
-            console.log("########## DEBUG: initializeGallery CALLED (Simplified) ##########");
+            console.log(`DEBUG: Attempting to initialize gallery...`);
             const grid = document.querySelector('.figure-grid');
-            if (grid) {
-                console.log("DEBUG: Found .figure-grid element (Simplified).");
-                // Do nothing else for now
-            } else {
-                console.warn("DEBUG: Did NOT find .figure-grid element (Simplified).");
+
+            if (!grid) {
+                console.warn("DEBUG: '.figure-grid' element not found during initialization attempt. Will wait for MutationObserver.");
+                return false;
             }
+
+            if (window.galleryState.observer) {
+                console.log("DEBUG: Grid found, disconnecting MutationObserver.");
+                window.galleryState.observer.disconnect();
+                window.galleryState.observer = null;
+            }
+
+            if (window.galleryState.isGalleryInitialized) {
+                console.log("DEBUG: Gallery already initialized. Skipping core logic, ensuring layout.");
+                if (window.galleryState.msnryInstance) window.galleryState.msnryInstance.layout();
+                return true;
+            }
+
+            if (!checkLibraries()) {
+                return false;
+            }
+
+            if (window.galleryState.msnryInstance && typeof window.galleryState.msnryInstance.destroy === 'function') {
+                console.log("DEBUG: Destroying previous Masonry instance.");
+                try { window.galleryState.msnryInstance.destroy(); } catch (e) { console.warn("WARN: Error destroying previous instance:", e); }
+                window.galleryState.msnryInstance = null;
+            }
+
+            console.log("DEBUG: Initializing Masonry...");
+            try {
+                window.galleryState.msnryInstance = new Masonry(grid, {
+                    itemSelector: '.figure-grid-item',
+                    columnWidth: '.figure-grid-sizer',
+                    percentPosition: true,
+                    gutter: 0
+                });
+                console.log("DEBUG: Masonry instance created.");
+            } catch (error) {
+                console.error("ERROR: Failed to initialize Masonry:", error);
+                return false;
+            }
+
+            console.log("DEBUG: Initializing lozad...");
+            const lozadObserver = lozad('.lozad', {
+                rootMargin: '200px 0px',
+                threshold: 0.1,
+                loaded: function (el) {
+                    el.classList.add('loaded');
+                    imagesLoaded(el.closest('.figure-grid-item'), function () {
+                        if (window.galleryState.msnryInstance) {
+                            window.galleryState.msnryInstance.layout();
+                        } else { console.warn("WARN: Masonry instance gone when image loaded."); }
+                    });
+                }
+            });
+            lozadObserver.observe();
+            console.log("DEBUG: Lozad observer started.");
+
+            console.log("DEBUG: Setting up imagesLoaded for initial grid layout...");
+            imagesLoaded(grid).on('always', function (instance) {
+                console.log("DEBUG: imagesLoaded 'always'. Final layout check.");
+                if (window.galleryState.msnryInstance) {
+                    window.galleryState.msnryInstance.layout();
+                    grid.classList.add('initialized');
+                    console.log("DEBUG: Grid marked as initialized and visible.");
+                }
+            }).on('fail', function (instance) {
+                console.warn(`WARN: imagesLoaded detected ${instance.images.length - instance.progressedCount} failed image(s).`);
+                if (window.galleryState.msnryInstance) window.galleryState.msnryInstance.layout();
+            });
+
+            if (typeof lightbox !== 'undefined') {
+                console.log("DEBUG: Initializing Lightbox2 options...");
+                lightbox.option({
+                    'resizeDuration': 200, 'wrapAround': true, 'fadeDuration': 300,
+                    'imageFadeDuration': 300, 'fitImagesInViewport': true,
+                    'disableScrolling': false, 'alwaysShowNavOnTouchDevices': true
+                });
+                console.log("DEBUG: Lightbox options set.");
+            } else {
+                console.warn("DEBUG: Lightbox library not found. Features disabled.");
+            }
+
+            window.galleryState.isGalleryInitialized = true;
+            console.log("DEBUG: Gallery initialization sequence complete.");
+            return true;
         }
 
         function setupMutationObserver() {
-            console.log("########## DEBUG: setupMutationObserver CALLED (Simplified) ##########");
-            // Try to initialize immediately
-            if (initializeGallery()) {
-                console.log("DEBUG: Initial attempt in setupMutationObserver worked (Simplified).");
-            } else {
-                console.log("DEBUG: Initial attempt in setupMutationObserver failed, would normally start observer (Simplified).");
-                // Do not actually start observer for this test
+            if (window.galleryState.observer) {
+                console.log("DEBUG: MutationObserver already exists. Skipping setup.");
+                return;
             }
-        }
-        console.log("DEBUG: Step 5: Placeholder functions defined.");
+            if (initializeGallery()) {
+                console.log("DEBUG: Grid found immediately on observer setup. Initialization done.");
+                return;
+            }
 
-        // ---- Initialization Logic (Simplified) ----
-        console.log("DEBUG: Step 6: Starting simplified initialization logic.");
+            console.log("DEBUG: Setting up MutationObserver to watch for .figure-grid...");
+            const targetNode = document.body;
+            const config = { childList: true, subtree: true };
 
-        // Attempt immediate initialization or setup observer
-        // Note: Still wrapped in the outer try-catch
-        setupMutationObserver();
-        console.log("DEBUG: Step 7: Initial setupMutationObserver call complete (Simplified).");
-
-
-        // Fallback for full page loads (Ctrl+R)
-        // Note: Still wrapped in the outer try-catch
-        window.addEventListener('load', () => {
-            try {
-                console.log("########## DEBUG: WINDOW.LOAD CALLBACK FIRED! (Simplified) ##########");
-                // Only initialize if the observer hasn't already succeeded
-                if (!window.galleryState.isGalleryInitialized) { // Note: this flag is never set to true in simplified version
-                    console.warn("WARN: Calling initializeGallery from load event (Simplified).");
+            const callback = function (mutationsList, observer) {
+                if (document.querySelector('.figure-grid') && !window.galleryState.isGalleryInitialized) {
+                    console.log("DEBUG: MutationObserver detected potential grid addition. Attempting initialization.");
                     initializeGallery();
                 }
-            } catch (loadError) {
-                console.error("ERROR inside window.load listener:", loadError);
+            };
+
+            window.galleryState.observer = new MutationObserver(callback);
+            window.galleryState.observer.observe(targetNode, config);
+            console.log("DEBUG: MutationObserver started.");
+        }
+        function cleanupGallery() {
+            console.log("DEBUG: Cleaning up gallery state...");
+            if (window.galleryState.observer) {
+                console.log("DEBUG: Disconnecting MutationObserver during cleanup.");
+                window.galleryState.observer.disconnect();
+                window.galleryState.observer = null;
+            }
+            if (window.galleryState.msnryInstance && typeof window.galleryState.msnryInstance.destroy === 'function') {
+                console.log("DEBUG: Destroying Masonry instance during cleanup.");
+                try { window.galleryState.msnryInstance.destroy(); } catch (e) { console.warn("WARN: Error destroying Masonry instance during cleanup:", e); }
+            }
+            window.galleryState.msnryInstance = null;
+            window.galleryState.isGalleryInitialized = false;
+            console.log("DEBUG: Gallery cleanup complete.");
+        }
+
+        console.log("DEBUG: Step 5: Helper functions defined.");
+
+        console.log("DEBUG: Step 6: Starting initialization logic.");
+
+        setupMutationObserver();
+        console.log("DEBUG: Step 7: Initial setupMutationObserver call complete.");
+
+        window.addEventListener('load', () => {
+            console.log("########## DEBUG: WINDOW.LOAD CALLBACK FIRED! ##########");
+            if (!window.galleryState.isGalleryInitialized) {
+                console.warn("WARN: Gallery not initialized before window.load. Attempting via load event.");
+                if (!initializeGallery()) {
+                    console.error("ERROR: Initialization failed even on window.load.");
+                } else if (window.galleryState.msnryInstance) {
+                    console.log("DEBUG: Performing final layout check after load event init.");
+                    setTimeout(() => { if (window.galleryState.msnryInstance) window.galleryState.msnryInstance.layout(); }, 150);
+                }
             }
         });
-        console.log("DEBUG: Step 8: Fallback window.load listener attached (Simplified).");
+        console.log("DEBUG: Step 8: Fallback window.load listener attached.");
 
-        console.log("DEBUG: Step 9: End of simplified pagefigure.html script block.");
+        console.log("DEBUG: Step 9: End of pagefigure.html script block.");
 
-    } catch (globalError) {
-        // Catch any error that might occur anywhere between Step 1 and Step 9
-        console.error("########## FATAL ERROR CAUGHT IN GLOBAL TRY-CATCH ##########", globalError);
-    }
-
-    /*
-    // ---- ORIGINAL CODE COMMENTED OUT FOR TESTING ----
-
-    // function checkLibraries() { ... }
-    // function initializeGallery() { ... (original complex version) ... }
-    // function setupMutationObserver() { ... (original complex version) ... }
-    // function cleanupGallery() { ... }
-
-    // console.log("DEBUG: Step 5: Helper functions defined.");
-    // console.log("DEBUG: Step 6: Starting initialization logic.");
-    // setupMutationObserver();
-    // console.log("DEBUG: Step 7: Initial setupMutationObserver call complete.");
-    // window.addEventListener('load', () => { ... (original complex version) ... });
-    // console.log("DEBUG: Step 8: Fallback window.load listener attached.");
-    // console.log("DEBUG: Step 9: End of pagefigure.html script block.");
-    */
-</script>
+    </script>
+</body>

@@ -1,5 +1,5 @@
 ---
-layout: pagegallery
+layout: pagefigure
 title: Nanchang
 description: >
   2025.4.18 - 2025.4.20
