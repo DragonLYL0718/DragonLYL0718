@@ -1,5 +1,5 @@
 ---
-layout: newpage
+layout: base
 title: Test
 description: >
   This is a test page
