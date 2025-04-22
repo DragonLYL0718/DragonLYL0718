@@ -6,6 +6,9 @@ description: >
 permalink: /test/
 ---
 
+1. this list will be replaced by the toc
+{:toc .large-only}
+
 <div class="content-wrapper" markdown="1">
 <div class="en-content" markdown="1">
 # Welcome to My Website

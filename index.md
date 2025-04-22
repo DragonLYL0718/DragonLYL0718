@@ -1,5 +1,5 @@
 ---
-layout: newabout
+layout: about
 title: About
 title_zh: 简介
 no_link_title: false

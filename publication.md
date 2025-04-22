@@ -3,7 +3,7 @@ title: Publications
 title_zh: 出版物
 description: List of my academic publications
 description_zh: 出版物列表
-layout: newpage
+layout: page
 hide_description: true
 permalink: /publications/
 ---
@@ -45,7 +45,6 @@ permalink: /publications/
         <strong>Yilong Lin</strong>, Tianze Xie, Yingjie Chang, Hu Luo, Dangxiao Wang, Seungwoo Je <br>
         In Proceedings of ISMAR 2024.
     </p>
-    <!-- 其他你想要的标记 -->
   </div>
 </div>
 
@@ -61,7 +60,6 @@ permalink: /publications/
         <strong>Yilong Lin</strong>, Peng Zhang, Eyal Ofek, Seungwoo Je <br>
         In Proceedings of CHI 2024.
     </p>
-    <!-- 其他你想要的标记 -->
   </div>
 </div>
 
@@ -79,6 +77,5 @@ permalink: /publications/
         Nargiz Askarbekkyzy, <strong>Yilong Lin</strong>, Kongpyung (Justin) Moon, Andrea Bianchi, Seungwoo Je <br>
         In Proceedings of IASDR 2023.
     </p>
-    <!-- 其他你想要的标记 -->
   </div>
 </div>

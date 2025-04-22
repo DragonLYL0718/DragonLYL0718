@@ -1,6 +1,6 @@
 ---
 title: Yilong Lin (Rayleigh)
-layout: newpage
+layout: page
 hide_description: true
 permalink: /resume/
 ---

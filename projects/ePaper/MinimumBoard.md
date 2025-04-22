@@ -1,5 +1,5 @@
 ---
-layout: newpage
+layout: page
 title: Minimum Board
 permalink: /projects/epaper/minimumboard
 ---

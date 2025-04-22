@@ -1,5 +1,5 @@
 ---
-layout: newpage
+layout: page
 title: Power Supply
 permalink: /projects/epaper/powersupply
 ---

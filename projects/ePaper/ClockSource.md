@@ -1,5 +1,5 @@
 ---
-layout: newpage
+layout: page
 title: Clock Source
 permalink: /projects/epaper/minimumboard/clocksource
 ---
