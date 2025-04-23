@@ -798,13 +798,6 @@ permalink: /travel/yunnan2025/
         </a>
 </div>
 <div class="film-grid-item">
-        <a href="https://hobbyfigure.rayleigh-lin.top/2025Yunnan/23.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="film-lozad" 
-             data-src="https://hobbyfigure.rayleigh-lin.top/2025YunnanC/23.webp"
-             alt="2025Yunnan"/>
-        </a>
-</div>
-<div class="film-grid-item">
         <a href="https://hobbyfigure.rayleigh-lin.top/2025Yunnan/24.webp" data-lightbox="roadtrip" class="image-link">
         <img class="film-lozad" 
              data-src="https://hobbyfigure.rayleigh-lin.top/2025YunnanC/24.webp"
