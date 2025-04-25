@@ -8,4 +8,9 @@ Hydejack 拦截了链接点击。
 因此，我们的脚本虽然运行了，但它所依赖的启动事件从未发生。我们之前尝试监听的 turbo:load 或 turbolinks:load 显然也不是 Hydejack 使用的事件。
 解决方案：使用 MutationObserver
 
+并在脚本开始执行时直接调用 setupMainObserver（以及处理资源加载）
+
+我们添加的 hydejack:ready 和 hydejack:load 事件监听器没有被触发。这可能是因为：
+这两个都不是 Hydejack 用来表示 AJAX 加载完成的正确事件。
+
 script 不可以使用 // 注释，否则会报错
