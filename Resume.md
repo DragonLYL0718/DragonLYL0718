@@ -52,17 +52,9 @@ PDF (available upon request)
 <ul>
     <li><strong>AHs '25</strong></li>
     <li><strong>ACM CHI '25</strong></li>
-    <li><strong>ACM UIST '24</strong></li>
+    <li><strong>ACM UIST '25, '24</strong></li>
     <li><strong>SIGGRAPH Asia '24</strong></li>
 </ul>
-
-## Skills
----
-**Programming Languages:** C/C++/C#, Python <br>
-**Embedded system:** Arduino, Stm32, Soldering, PCB Design <br>
-**Basic 3D Modelling:** Fusion360, SolidWorks <br>
-**Linguistic:** Chinese Native, English Fluent (Toefl 95) <br>
-**Other:** Unity
 
 ## References
 ---
