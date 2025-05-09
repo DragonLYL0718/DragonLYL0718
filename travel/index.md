@@ -12,7 +12,15 @@ permalink: /travel/
 ## 2025
 
 <div class="gallery-grid" >
-<div class="card">
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/travel/japan2025/">
+        <img src="https://hobbyfigure.rayleigh-lin.top/2025JapanC/_RAY5622.webp"/>
+        <div class="card-text">Japan</div>
+      </a>
+    </div>
+  </div>
+  <div class="card">
     <div class="image-overlay-container">
       <a href="/travel/nanchang2025/">
         <img src="https://hobbyfigure.rayleigh-lin.top/2025NanchangC/_RAY4793.webp"/>
