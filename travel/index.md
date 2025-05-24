@@ -10,6 +10,22 @@ permalink: /travel/
 ## 2025
 
 <div class="gallery-grid" >
+<div class="card">
+    <div class="image-overlay-container">
+      <a href="/travel/hongkong2025/">
+        <img src="https://travelfigure.rayleigh-lin.top/2025/HongkongC/_RAY6287.webp"/>
+        <div class="card-text">Hong Kong, China</div>
+      </a>
+    </div>
+  </div>
+<div class="card">
+    <div class="image-overlay-container">
+      <a href="/travel/jiangmen2025/">
+        <img src="https://travelfigure.rayleigh-lin.top/2025/JiangmenC/_RAY6709.webp"/>
+        <div class="card-text">Jiangmen, China</div>
+      </a>
+    </div>
+  </div>
   <div class="card">
     <div class="image-overlay-container">
       <a href="/travel/japan2025/">
