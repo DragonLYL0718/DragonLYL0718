@@ -2,13 +2,13 @@
 # Must be the same as `author` in `_config.yml`.
 # Change `author1` to your shortname.
 author1:
-  name: Yilong Lin (Rayleigh)
+  name: Yilong Lin (林毅龙, Rayleigh)
   email:
 
   # Used at the bottom of each page and at the top of the `about` layout
   # Markdown enabled, can use multiple paragraphs (enabled by `|`)
   about: |
-    ## Hi, I'm Yilong (Rayleigh) Lin, an HCI researcher from Shenzhen, China.
+    ## Hi, I'm Yilong Lin (林毅龙, Rayleigh), an HCI researcher from Shenzhen, China.
 
   # This photo will be used in the about section
   picture:
@@ -23,7 +23,7 @@ author1:
   # Rearrange to change the order in which they appear
   social:
     # twitter:         <username>
-    github: https://github.com/DragonLYL0718
+    # github: https://github.com/DragonLYL0718
     google-scholar: https://scholar.google.com/citations?hl=en&user=tKLzDo8AAAAJ
     email: lylrayleigh@gmail.com
     # rss:             https://<url>/feed.xml
@@ -38,7 +38,7 @@ author1:
     # lastfm:          <username>
     # instagram:       <username>
     # flickr:          <string@string>
-    500px: https://500px.com.cn/LYLrayleigh
+    # 500px: https://500px.com.cn/LYLrayleigh
     # dribbble:        <username>
     # behance:         <username>
     # deviantart:      <username>

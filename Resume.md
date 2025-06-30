@@ -1,5 +1,5 @@
 ---
-title: Yilong Lin (Rayleigh)
+title: Yilong Lin (林毅龙, Rayleigh)
 layout: page
 hide_description: true
 permalink: /resume/
@@ -10,11 +10,14 @@ permalink: /resume/
 PDF (available upon request)
 ## Education
 ---
-- 2022.9 - now, expectedgrad‘25 <br>
-  **[Southern University of Science and Technology](https://www.sustech.edu.cn/en/) | Intelligent Manufacturing and Robotics** <br>
-  Advisor: Prof. Seungwoo Je
+- Expected: 2025.9 - 2029.7<br>
+  **[University of Birmingham](https://www.birmingham.ac.uk/) | Computer Science | Ph.D.** <br>
+  Advisor: Prof. [Eyal Ofek](https://eyalofek.org/) & Prof. [Massimiliano Di Luca](https://massimilianodiluca.info/)
+- 2022.9 - 2025.7 <br> 
+  **[Southern University of Science and Technology](https://www.sustech.edu.cn/en/) | Intelligent Manufacturing and Robotics | Master** <br>
+  Advisor: Prof. [Seungwoo Je](https://immersivedesignresearch.com/seungwoo)
 - 2018.9 - 2022.7 <br>
-  **[South China University of Technology](https://www.scut.edu.cn/en/) | Automation** <br>
+  **[South China University of Technology](https://www.scut.edu.cn/en/) | Automation | Bachelor** <br>
 
 ## Experience
 ---
@@ -49,12 +52,10 @@ PDF (available upon request)
 
 ## Invited reviewer
 ---
-<ul>
-    <li><strong>AHs '25</strong></li>
-    <li><strong>ACM CHI '25</strong></li>
-    <li><strong>ACM UIST '25, '24</strong></li>
-    <li><strong>SIGGRAPH Asia '24</strong></li>
-</ul>
+- AHs '25
+- ACM CHI '25
+- ACM UIST '25, '24
+- SIGGRAPH Asia '24
 
 ## References
 ---
