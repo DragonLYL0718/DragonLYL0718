@@ -19,7 +19,7 @@ permalink: /publications/
   </div>
   <div class="publication-content">
     <h3 class="publication-title">
-      HapticWings: Enhancing the Experience of Extra Wing Motions in Virtual Reality through Dynamic 2D Weight Shifting
+      <a href="https://dl.acm.org/doi/10.1145/3715336.3735755" target="_blank">HapticWings: Enhancing the Experience of Extra Wing Motions in Virtual Reality through Dynamic 2D Weight Shifting</a>
     </h3>
     <div class="publication-details">
       Yingjie Chang, Junyu Chen, <strong>Yilong Lin</strong>, Xuesong Zhang, Seungwoo Je <br>
