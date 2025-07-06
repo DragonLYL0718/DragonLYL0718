@@ -31,7 +31,7 @@ PDF (available upon request)
 
 ## Publications
 ---
-- **HapticWings: Enhancing the Experience of Extra Wing Motions in Virtual Reality through Dynamic 2D Weight Shifting** <br>
+- **[HapticWings: Enhancing the Experience of Extra Wing Motions in Virtual Reality through Dynamic 2D Weight Shifting](https://dl.acm.org/doi/10.1145/3715336.3735755)** <br>
   Yingjie Chang, Junyu Chen, **Yilong Lin**, Xuesong Zhang, Seungwoo Je <br>
   _In Proceedings of DIS 2025. (To appear)_
 - **[VibroArm: Enhancing the Sensation of Forearm Deformation in Virtual Reality Using Vibrotactile Funneling Illusion](https://ieeexplore.ieee.org/abstract/document/10765489)** <br>
