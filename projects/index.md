@@ -48,14 +48,14 @@ permalink: /projects/
       </a>
     </div>
   </div>
-  <div class="card">
+  <!-- <div class="card">
     <div class="image-overlay-container">
       <a href="/projects/epaper/">
         <img src="https://pageasset.rayleigh-lin.top/project/epaper/cubemx/New%20Project.webp"/>
         <div class="card-text">ePaper</div>
       </a>
     </div>
-  </div>
+  </div> -->
 </div>
 
 ## Undergraduate

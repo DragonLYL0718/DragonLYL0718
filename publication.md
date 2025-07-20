@@ -23,7 +23,7 @@ permalink: /publications/
     </h3>
     <div class="publication-details">
       Yingjie Chang, Junyu Chen, <strong>Yilong Lin</strong>, Xuesong Zhang, Seungwoo Je <br>
-      <em>In Proceedings of DIS 2025. (To appear)</em>
+      <em>In Proceedings of DIS 2025.</em>
     </div>
   </div>
 </div>

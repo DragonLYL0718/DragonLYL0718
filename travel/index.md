@@ -12,6 +12,22 @@ permalink: /travel/
 <div class="gallery-grid" >
 <div class="card">
     <div class="image-overlay-container">
+      <a href="/travel/sichuan2025/">
+        <img src="https://travelfigure.rayleigh-lin.top/2025/SichuanC/_RAY8620-已增强-降噪.webp"/>
+        <div class="card-text">Sichuan, China</div>
+      </a>
+    </div>
+  </div>
+<div class="card">
+    <div class="image-overlay-container">
+      <a href="/travel/xinjiang2025/">
+        <img src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/_RAY7065-已增强-降噪.webp"/>
+        <div class="card-text">Xinjiang, China</div>
+      </a>
+    </div>
+  </div>
+<div class="card">
+    <div class="image-overlay-container">
       <a href="/travel/hongkong2025/">
         <img src="https://travelfigure.rayleigh-lin.top/2025/HongkongC/_RAY6287.webp"/>
         <div class="card-text">Hong Kong, China</div>
@@ -62,7 +78,7 @@ permalink: /travel/
     <div class="image-overlay-container">
       <a href="/travel/wuxi2025/">
         <img src="https://hobbyfigure.rayleigh-lin.top/2025WuxiC/_RAY1686.webp"/>
-        <div class="card-text">China, Wuxi</div>
+        <div class="card-text">Wuxi, China</div>
       </a>
     </div>
   </div>
