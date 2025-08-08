@@ -15,6 +15,21 @@ permalink: /publications/
 
 <div class="publication-item">
   <div class="publication-image">
+    <img src="/assets/img/Template.webp" alt="Designing Hand and Forearm Gestures to Control Virtual Forearm for User-Initiated Forearm Deformation" loading="lazy" />
+  </div>
+  <div class="publication-content">
+    <h3 class="publication-title">
+      <a>Designing Hand and Forearm Gestures to Control Virtual Forearm for User-Initiated Forearm Deformation</a>
+    </h3>
+    <div class="publication-details">
+      <strong>Yilong Lin</strong>, Han Shi, Weitao Jiang, Xuesong Zhang, Hye-Young Jo, Hye-Young Jo, Seungwoo Je <br>
+      <em>To appear in IEEE TVCG, Special Issue on ISMAR 2025.</em>
+    </div>
+  </div>
+</div>
+
+<div class="publication-item">
+  <div class="publication-image">
     <img src="https://pageasset.rayleigh-lin.top/project/2025%20HapticWings/Teaser.webp" alt="HapticWings: Enhancing the Experience of Extra Wing Motions in Virtual Reality through Dynamic 2D Weight Shifting" loading="lazy" />
   </div>
   <div class="publication-content">
