@@ -7,7 +7,7 @@ permalink: /resume/
 
 1. this ordered seed list will be replaced by the toc
 {:toc .large-only}
-PDF (available upon request)
+
 ## Education
 ---
 - Expected: 2025.9 - 2029.7<br>
@@ -48,6 +48,15 @@ PDF (available upon request)
   Nargiz Askarbekkyzy, **Yilong Lin**, Kongpyung (Justin) Moon, Andrea Bianchi, Seungwoo Je <br>
   _In Proceedings of IASDR 2023._
 
+## Patents
+
+- [P1] **一种景观生成系统**<br>
+  CN202411205899, granted
+- **一种景观生成系统**<br>
+  CN202411214664, pending
+- **一种手臂触觉模拟装置及触觉模拟方法**<br>
+  CN202410405743, pending
+
 ## Project
 ---
 - **[TaBot: Designing an Al-empowered Robotic Table to Promote Balanced Conversational Experiences](/projects/tabot/)** <br>
@@ -63,5 +72,5 @@ PDF (available upon request)
 
 ## References
 ---
-**[Prof. Seungwoo JE](http://immersivedesignresearch.com/seungwoo) | Immersive Design Group Director, Assistant Professor at SUSTech**
+**[Prof. Seungwoo JE](http://immersivedesignresearch.com/seungwoo) | Immersive Design Group Director, Assistant Professor at SUSTech** <br>
 **[Prof. Eyal Ofek](https://eyalofek.org/) | Chair of Computer Science, Professor at UoB**

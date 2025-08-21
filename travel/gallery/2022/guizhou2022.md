@@ -6,6 +6,66 @@ description: >
 permalink: /travel/guizhou2022/
 ---
 
+<div data-type="video" class="video-grid">
+These videos are made by <a href="https://space.bilibili.com/366019837" target="_blank">小慢生活录</a>
+<div class="video-grid-sizer"></div>
+<div class="video-item" style="width: 100% !important; padding: 0 10px; box-sizing: border-box;">
+    <div class="video-container" style="position: relative; width: 100%; aspect-ratio: 16/9;">
+        <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=513342325&bvid=BV1pg411f7iY&cid=768639979&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+    </div>
+</div>
+<div class="video-item" style="width: 100% !important; padding: 0 10px; box-sizing: border-box;">
+    <div class="video-container" style="position: relative; width: 100%; aspect-ratio: 16/9;">
+        <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=813324298&bvid=BV1P34y1H7vR&cid=768649147&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+    </div>
+</div>
+<div class="video-item" style="width: 100% !important; padding: 0 10px; box-sizing: border-box;">
+    <div class="video-container" style="position: relative; width: 100%; aspect-ratio: 16/9;">
+        <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=770833474&bvid=BV1pr4y1E7Uy&cid=769440625&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+    </div>
+</div>
+<div class="video-item" style="width: 100% !important; padding: 0 10px; box-sizing: border-box;">
+    <div class="video-container" style="position: relative; width: 100%; aspect-ratio: 16/9;">
+        <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=983337225&bvid=BV1Wt4y147Qv&cid=769498469&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+    </div>
+</div>
+<div class="video-item" style="width: 100% !important; padding: 0 10px; box-sizing: border-box;">
+    <div class="video-container" style="position: relative; width: 100%; aspect-ratio: 16/9;">
+        <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=813259333&bvid=BV1y34y1n75d&cid=771449452&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+    </div>
+</div>
+<div class="video-item" style="width: 100% !important; padding: 0 10px; box-sizing: border-box;">
+    <div class="video-container" style="position: relative; width: 100%; aspect-ratio: 16/9;">
+        <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=343357048&bvid=BV1a94y197BB&cid=770094345&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+    </div>
+</div>
+<div class="video-item" style="width: 100% !important; padding: 0 10px; box-sizing: border-box;">
+    <div class="video-container" style="position: relative; width: 100%; aspect-ratio: 16/9;">
+        <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=898285871&bvid=BV1uN4y1u7eh&cid=771469725&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+    </div>
+</div>
+<div class="video-item" style="width: 100% !important; padding: 0 10px; box-sizing: border-box;">
+    <div class="video-container" style="position: relative; width: 100%; aspect-ratio: 16/9;">
+        <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=555995727&bvid=BV1Ge4y1d71G&cid=772529477&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+    </div>
+</div>
+<div class="video-item" style="width: 100% !important; padding: 0 10px; box-sizing: border-box;">
+    <div class="video-container" style="position: relative; width: 100%; aspect-ratio: 16/9;">
+        <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=215991775&bvid=BV1Ea411H7r9&cid=772517814&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+    </div>
+</div>
+<div class="video-item" style="width: 100% !important; padding: 0 10px; box-sizing: border-box;">
+    <div class="video-container" style="position: relative; width: 100%; aspect-ratio: 16/9;">
+        <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=258486727&bvid=BV18a411S7m1&cid=773381511&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+    </div>
+</div>
+<div class="video-item" style="width: 100% !important; padding: 0 10px; box-sizing: border-box;">
+    <div class="video-container" style="position: relative; width: 100%; aspect-ratio: 16/9;">
+        <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=215980210&bvid=BV1sa411H7x6&cid=773394259&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+    </div>
+</div>
+</div>
+
 <div class="figure-grid">
 <div class="figure-grid-sizer"></div>
 <div class="figure-grid-item">
