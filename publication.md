@@ -15,7 +15,7 @@ permalink: /publications/
 
 <div class="publication-item">
   <div class="publication-image">
-    <img src="/assets/img/Template.webp" alt="Designing Hand and Forearm Gestures to Control Virtual Forearm for User-Initiated Forearm Deformation" loading="lazy" />
+    <img src="https://pageasset.rayleigh-lin.top/project/2025%20ArmMapper/ArmMapper.webp" alt="Designing Hand and Forearm Gestures to Control Virtual Forearm for User-Initiated Forearm Deformation" loading="lazy" />
   </div>
   <div class="publication-content">
     <h3 class="publication-title">

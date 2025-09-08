@@ -10,7 +10,7 @@ permalink: /resume/
 
 ## Education
 ---
-- Expected: 2025.9 - 2029.7<br>
+- 2025.9 - expectedgrad'2029<br>
   **[University of Birmingham](https://www.birmingham.ac.uk/) | Computer Science | Ph.D. (Fully Funded)** <br>
   Advisor: Prof. [Eyal Ofek](https://eyalofek.org/) & Prof. [Massimiliano Di Luca](https://massimilianodiluca.info/)
 - 2022.9 - 2025.7 <br> 
@@ -65,10 +65,10 @@ permalink: /resume/
 
 ## Invited reviewer
 ---
-- AHs '25
-- ACM CHI '25
-- ACM UIST '25, '24
-- SIGGRAPH Asia '24
+- **AHs '25**
+- **ACM CHI '25** (1 Special Recognition for Outstanding Review)
+- **ACM UIST '25, '24** (2 Special Recognitions for Outstanding Reviews)
+- **SIGGRAPH Asia '24**
 
 ## References
 ---
