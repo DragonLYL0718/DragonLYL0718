@@ -58,3 +58,21 @@ permalink: /travel/hongkong2025/ # 可选的，链接到这个页面的路径
         </a>
 </div>
 </div>
+
+<div class="film-grid" data-type="film">
+  <div class="film-grid-sizer"></div>
+<div class="film-grid-item">
+        <a href="https://travelfigure.rayleigh-lin.top/2025/Hongkong/62.webp" data-lightbox="roadtrip" class="image-link">
+        <img class="lozad" 
+             data-src="https://travelfigure.rayleigh-lin.top/2025/HongkongC/62.webp"
+             alt="Hongkong"/>
+        </a>
+</div>
+<div class="film-grid-item">
+        <a href="https://travelfigure.rayleigh-lin.top/2025/Hongkong/63.webp" data-lightbox="roadtrip" class="image-link">
+        <img class="lozad" 
+             data-src="https://travelfigure.rayleigh-lin.top/2025/HongkongC/63.webp"
+             alt="Hongkong"/>
+        </a>
+</div>
+</div>

@@ -247,3 +247,42 @@ permalink: /travel/jiangmen2025/ # 可选的，链接到这个页面的路径
         </a>
 </div>
 </div>
+
+<div class="film-grid" data-type="film">
+  <div class="film-grid-sizer"></div>
+<div class="film-grid-item">
+        <a href="https://travelfigure.rayleigh-lin.top/2025/Jiangmen/42.webp" data-lightbox="roadtrip" class="image-link">
+        <img class="lozad" 
+             data-src="https://travelfigure.rayleigh-lin.top/2025/JiangmenC/42.webp"
+             alt="Jiangmen"/>
+        </a>
+</div>
+<div class="film-grid-item">
+        <a href="https://travelfigure.rayleigh-lin.top/2025/Jiangmen/64.webp" data-lightbox="roadtrip" class="image-link">
+        <img class="lozad" 
+             data-src="https://travelfigure.rayleigh-lin.top/2025/JiangmenC/64.webp"
+             alt="Jiangmen"/>
+        </a>
+</div>
+<div class="film-grid-item">
+        <a href="https://travelfigure.rayleigh-lin.top/2025/Jiangmen/65.webp" data-lightbox="roadtrip" class="image-link">
+        <img class="lozad" 
+             data-src="https://travelfigure.rayleigh-lin.top/2025/JiangmenC/65.webp"
+             alt="Jiangmen"/>
+        </a>
+</div>
+<div class="film-grid-item">
+        <a href="https://travelfigure.rayleigh-lin.top/2025/Jiangmen/66.webp" data-lightbox="roadtrip" class="image-link">
+        <img class="lozad" 
+             data-src="https://travelfigure.rayleigh-lin.top/2025/JiangmenC/66.webp"
+             alt="Jiangmen"/>
+        </a>
+</div>
+<div class="film-grid-item">
+        <a href="https://travelfigure.rayleigh-lin.top/2025/Jiangmen/41.webp" data-lightbox="roadtrip" class="image-link">
+        <img class="lozad" 
+             data-src="https://travelfigure.rayleigh-lin.top/2025/JiangmenC/41.webp"
+             alt="Jiangmen"/>
+        </a>
+</div>
+</div>
