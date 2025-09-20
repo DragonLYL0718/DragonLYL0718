@@ -966,378 +966,378 @@ permalink: /travel/xinjiang2025/
   <div class="film-grid-sizer"></div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/54.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/54.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/15.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/15.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/42.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/42.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/72_副本.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/72_副本.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/531.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/531.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/511.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/511.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/35.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/35.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/62.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/62.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/252.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/252.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/23.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/23.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/22.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/22.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/63.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/63.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/34.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/34.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/73_副本.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/73_副本.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/232.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/232.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/43.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/43.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/14.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/14.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/242.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/242.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/33.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/33.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/64.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/64.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/72.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/72.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/25.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/25.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/71_副本.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/71_副本.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/52.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/52.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/13.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/13.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/262.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/262.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/44.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/44.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/521.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/521.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/45.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/45.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/12.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/12.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/222.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/222.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/53.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/53.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/24.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/24.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/73.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/73.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/65.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/65.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/32.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/32.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/541.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/541.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/66.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/66.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/31.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/31.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/431.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/431.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/46.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/46.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/11.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/11.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/51.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/51.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/451.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/451.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/71.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/71.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/26.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/26.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/21.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/21.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/211.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/211.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/441.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/441.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/36.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/36.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/61.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/61.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/16.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/16.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/41.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/41.webp"
              alt="Xinjiang"/>
         </a>
 </div>
 <div class="film-grid-item">
         <a href="https://travelfigure.rayleigh-lin.top/2025/Xinjiang/461.webp" data-lightbox="roadtrip" class="image-link">
-        <img class="lozad" 
+        <img class="film-lozad" 
              data-src="https://travelfigure.rayleigh-lin.top/2025/XinjiangC/461.webp"
              alt="Xinjiang"/>
         </a>
