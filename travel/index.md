@@ -12,7 +12,7 @@ permalink: /travel/
 <div class="gallery-grid" >
   <div class="card">
     <div class="image-overlay-container">
-      <a href="/travel/birmingham2025/">
+      <a href="/travel/birmingham2025">
         <img src="https://travelfigure.rayleigh-lin.top/2025/BirminghamC/_RAY8926.webp"/>
         <div class="card-text">Birmingham, UK</div>
       </a>
