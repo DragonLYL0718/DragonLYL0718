@@ -209,4 +209,123 @@ permalink: /travel/birmingham2025 # 可选的，链接到这个页面的路径
              alt="Birmingham"/>
         </a>
 </div>
+<div class="figure-grid-item">
+        <a href="https://travelfigure.rayleigh-lin.top/2025/Birmingham/_RAY8965.webp" data-lightbox="roadtrip" class="image-link">
+        <img class="lozad" 
+             data-src="https://travelfigure.rayleigh-lin.top/2025/BirminghamC/_RAY8965.webp"
+             alt="Birmingham"/>
+        </a>
+</div>
+<div class="figure-grid-item">
+        <a href="https://travelfigure.rayleigh-lin.top/2025/Birmingham/_RAY8986.webp" data-lightbox="roadtrip" class="image-link">
+        <img class="lozad" 
+             data-src="https://travelfigure.rayleigh-lin.top/2025/BirminghamC/_RAY8986.webp"
+             alt="Birmingham"/>
+        </a>
+</div>
+<div class="figure-grid-item">
+        <a href="https://travelfigure.rayleigh-lin.top/2025/Birmingham/_RAY8991.webp" data-lightbox="roadtrip" class="image-link">
+        <img class="lozad" 
+             data-src="https://travelfigure.rayleigh-lin.top/2025/BirminghamC/_RAY8991.webp"
+             alt="Birmingham"/>
+        </a>
+</div>
+<div class="figure-grid-item">
+        <a href="https://travelfigure.rayleigh-lin.top/2025/Birmingham/_RAY8964.webp" data-lightbox="roadtrip" class="image-link">
+        <img class="lozad" 
+             data-src="https://travelfigure.rayleigh-lin.top/2025/BirminghamC/_RAY8964.webp"
+             alt="Birmingham"/>
+        </a>
+</div>
+<div class="figure-grid-item">
+        <a href="https://travelfigure.rayleigh-lin.top/2025/Birmingham/_RAY8959.webp" data-lightbox="roadtrip" class="image-link">
+        <img class="lozad" 
+             data-src="https://travelfigure.rayleigh-lin.top/2025/BirminghamC/_RAY8959.webp"
+             alt="Birmingham"/>
+        </a>
+</div>
+<div class="figure-grid-item">
+        <a href="https://travelfigure.rayleigh-lin.top/2025/Birmingham/_RAY8963.webp" data-lightbox="roadtrip" class="image-link">
+        <img class="lozad" 
+             data-src="https://travelfigure.rayleigh-lin.top/2025/BirminghamC/_RAY8963.webp"
+             alt="Birmingham"/>
+        </a>
+</div>
+<div class="figure-grid-item">
+        <a href="https://travelfigure.rayleigh-lin.top/2025/Birmingham/_RAY8974.webp" data-lightbox="roadtrip" class="image-link">
+        <img class="lozad" 
+             data-src="https://travelfigure.rayleigh-lin.top/2025/BirminghamC/_RAY8974.webp"
+             alt="Birmingham"/>
+        </a>
+</div>
+<div class="figure-grid-item">
+        <a href="https://travelfigure.rayleigh-lin.top/2025/Birmingham/_RAY8958.webp" data-lightbox="roadtrip" class="image-link">
+        <img class="lozad" 
+             data-src="https://travelfigure.rayleigh-lin.top/2025/BirminghamC/_RAY8958.webp"
+             alt="Birmingham"/>
+        </a>
+</div>
+<div class="figure-grid-item">
+        <a href="https://travelfigure.rayleigh-lin.top/2025/Birmingham/_RAY8997.webp" data-lightbox="roadtrip" class="image-link">
+        <img class="lozad" 
+             data-src="https://travelfigure.rayleigh-lin.top/2025/BirminghamC/_RAY8997.webp"
+             alt="Birmingham"/>
+        </a>
+</div>
+<div class="figure-grid-item">
+        <a href="https://travelfigure.rayleigh-lin.top/2025/Birmingham/_RAY8994.webp" data-lightbox="roadtrip" class="image-link">
+        <img class="lozad" 
+             data-src="https://travelfigure.rayleigh-lin.top/2025/BirminghamC/_RAY8994.webp"
+             alt="Birmingham"/>
+        </a>
+</div>
+<div class="figure-grid-item">
+        <a href="https://travelfigure.rayleigh-lin.top/2025/Birmingham/_RAY8977.webp" data-lightbox="roadtrip" class="image-link">
+        <img class="lozad" 
+             data-src="https://travelfigure.rayleigh-lin.top/2025/BirminghamC/_RAY8977.webp"
+             alt="Birmingham"/>
+        </a>
+</div>
+<div class="figure-grid-item">
+        <a href="https://travelfigure.rayleigh-lin.top/2025/Birmingham/_RAY8999.webp" data-lightbox="roadtrip" class="image-link">
+        <img class="lozad" 
+             data-src="https://travelfigure.rayleigh-lin.top/2025/BirminghamC/_RAY8999.webp"
+             alt="Birmingham"/>
+        </a>
+</div>
+<div class="figure-grid-item">
+        <a href="https://travelfigure.rayleigh-lin.top/2025/Birmingham/_RAY8992.webp" data-lightbox="roadtrip" class="image-link">
+        <img class="lozad" 
+             data-src="https://travelfigure.rayleigh-lin.top/2025/BirminghamC/_RAY8992.webp"
+             alt="Birmingham"/>
+        </a>
+</div>
+<div class="figure-grid-item">
+        <a href="https://travelfigure.rayleigh-lin.top/2025/Birmingham/_RAY9004.webp" data-lightbox="roadtrip" class="image-link">
+        <img class="lozad" 
+             data-src="https://travelfigure.rayleigh-lin.top/2025/BirminghamC/_RAY9004.webp"
+             alt="Birmingham"/>
+        </a>
+</div>
+<div class="figure-grid-item">
+        <a href="https://travelfigure.rayleigh-lin.top/2025/Birmingham/_RAY8993.webp" data-lightbox="roadtrip" class="image-link">
+        <img class="lozad" 
+             data-src="https://travelfigure.rayleigh-lin.top/2025/BirminghamC/_RAY8993.webp"
+             alt="Birmingham"/>
+        </a>
+</div>
+<div class="figure-grid-item">
+        <a href="https://travelfigure.rayleigh-lin.top/2025/Birmingham/_RAY8985.webp" data-lightbox="roadtrip" class="image-link">
+        <img class="lozad" 
+             data-src="https://travelfigure.rayleigh-lin.top/2025/BirminghamC/_RAY8985.webp"
+             alt="Birmingham"/>
+        </a>
+</div>
+<div class="figure-grid-item">
+        <a href="https://travelfigure.rayleigh-lin.top/2025/Birmingham/_RAY8966.webp" data-lightbox="roadtrip" class="image-link">
+        <img class="lozad" 
+             data-src="https://travelfigure.rayleigh-lin.top/2025/BirminghamC/_RAY8966.webp"
+             alt="Birmingham"/>
+        </a>
+</div>
 </div>

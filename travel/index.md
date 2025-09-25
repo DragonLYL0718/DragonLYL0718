@@ -18,6 +18,14 @@ permalink: /travel/
       </a>
     </div>
   </div>
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/travel/shenzhen2025/">
+        <img src="https://travelfigure.rayleigh-lin.top/2025/ShenzhenC/_RAY8816.webp"/>
+        <div class="card-text">Shenzhen, China</div>
+      </a>
+    </div>
+  </div>
 <div class="card">
     <div class="image-overlay-container">
       <a href="/travel/sichuan2025/">

@@ -70,6 +70,10 @@ menu:
     - title: Travel
       title_zh: 旅行
       url: /travel/
+    - title: VR Lab
+      title_zh: 虚拟现实实验室
+      url: https://virtualrealitylab.netlify.app/
+      external: true
     - title: Immersive Design Group
       title_zh: 沉浸式设计组
       url: https://immersivedesignresearch.com/
