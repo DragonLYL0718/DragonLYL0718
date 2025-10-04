@@ -10,6 +10,14 @@ permalink: /travel/
 ## 2025
 
 <div class="gallery-grid" >
+<div class="card">
+    <div class="image-overlay-container">
+      <a href="/travel/stratford-upon-avon2025">
+        <img src="https://travelfigure.rayleigh-lin.top/2025/Stratford-upon-AvonC/_RAY9170.webp"/>
+        <div class="card-text">Stratford-upon-Avon, UK</div>
+      </a>
+    </div>
+  </div>
   <div class="card">
     <div class="image-overlay-container">
       <a href="/travel/birmingham2025">
