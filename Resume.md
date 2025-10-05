@@ -31,9 +31,9 @@ permalink: /resume/
 
 ## Publications
 ---
-- [J1] **Designing Hand and Forearm Gestures to Control Virtual Forearm for User-Initiated Forearm Deformation** <br>
+- [J1] **[Designing Hand and Forearm Gestures to Control Virtual Forearm for User-Initiated Forearm Deformation](https://doi.ieeecomputersociety.org/10.1109/TVCG.2025.3616825)** <br>
   **Yilong Lin**, Han Shi, Weitao Jiang, Xuesong Zhang, Hye-Young Jo, Hye-Young Jo, Seungwoo Je <br>
-  _To appear in IEEE TVCG, Special Issue on ISMAR 2025._
+  _IEEE TVCG, Special Issue on ISMAR 2025._
 - [C4] **[HapticWings: Enhancing the Experience of Extra Wing Motions in Virtual Reality through Dynamic 2D Weight Shifting](https://dl.acm.org/doi/10.1145/3715336.3735755)** <br>
   (🏆Best paper award)<br>
   Yingjie Chang, Junyu Chen, **Yilong Lin**, Xuesong Zhang, Seungwoo Je <br>
@@ -66,7 +66,7 @@ permalink: /resume/
 ## Invited reviewer
 ---
 - **AHs '25**
-- **ACM CHI '25** (1 Special Recognition for Outstanding Review)
+- **ACM CHI '26, '25** (1 Special Recognition for Outstanding Review)
 - **ACM UIST '25, '24** (2 Special Recognitions for Outstanding Reviews)
 - **SIGGRAPH Asia '24**
 
