@@ -88,8 +88,8 @@ menu:
 # Add links to the footer.
 # Typically you'll want to link to your cookie- or privacy policy (if appliable), etc..
 legal:
-    # - title: STATISTICS
-    #   url: /statistics/
+    - title: STATISTICS
+      url: /statistics/
     # - title:             NOTICE
     #   url:               /NOTICE/
     # - title:             CHANGELOG
