@@ -15,7 +15,9 @@ permalink: /publications/
 
 <div class="publication-item">
   <div class="publication-image">
+    <a href="/publications/armmapper/">
     <img src="https://pageasset.rayleigh-lin.top/project/2025%20ArmMapper/ArmMapper.webp" alt="Designing Hand and Forearm Gestures to Control Virtual Forearm for User-Initiated Forearm Deformation" loading="lazy" />
+    </a>
   </div>
   <div class="publication-content">
     <h3 class="publication-title">
@@ -30,7 +32,9 @@ permalink: /publications/
 
 <div class="publication-item">
   <div class="publication-image">
-    <img src="https://pageasset.rayleigh-lin.top/project/2025%20HapticWings/Teaser.webp" alt="HapticWings: Enhancing the Experience of Extra Wing Motions in Virtual Reality through Dynamic 2D Weight Shifting" loading="lazy" />
+    <a href="/publications/hapticwings/">
+      <img src="https://pageasset.rayleigh-lin.top/project/2025%20HapticWings/Teaser.webp" alt="HapticWings: Enhancing the Experience of Extra Wing Motions in Virtual Reality through Dynamic 2D Weight Shifting" loading="lazy" />
+    </a>
   </div>
   <div class="publication-content">
     <h3 class="publication-title">
@@ -47,7 +51,7 @@ permalink: /publications/
 
 <div class="publication-item">
   <div class="publication-image">
-    <a href="/projects/vibroarm/" target="_blank">
+    <a href="/publications/vibroarm/">
       <img src="https://pageasset.rayleigh-lin.top/project/2024%20vibroarm/vibroarm.webp" alt="VibroArm: Enhancing the Sensation of Forearm Deformation in Virtual Reality Using Vibrotactile Funneling Illusion" loading="lazy" />
     </a>
   </div>
@@ -64,7 +68,7 @@ permalink: /publications/
 
 <div class="publication-item">
   <div class="publication-image">
-    <a href="/projects/armdeformation/" target="_blank">
+    <a href="/publications/armdeformation/">
       <img src="/projects/Graduate/ArmDeformation/armdef.webp" alt="ArmDeformation: Inducing the Sensation of Arm Deformation in Virtual Reality Using Skin-Stretching" loading="lazy" />
     </a>
   </div>
@@ -83,7 +87,7 @@ permalink: /publications/
 
 <div class="publication-item">
   <div class="publication-image">
-    <a href="/projects/visuohaptic" target="_blank">
+    <a href="/publications/visuohaptic">
       <img src="{{ site.baseurl }}/projects/Graduate/visuohaptic/1.PNG" alt="Designing visuo-haptic illusions for Virtual Reality applications using floor-based shape-changing displays" loading="lazy" />
     </a>
   </div>
