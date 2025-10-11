@@ -8,7 +8,7 @@ layout: page
 <body>
     <div class="tab-container">
         <div class="tab-nav">
-            <button class="tab-btn active" onclick="openYear(event, 'All')">All</button>
+            <button class="tab-btn active" data-year="All">All</button>
             {% assign years = site.galleries | map: "year" | uniq %}
             {% assign sorted_years = '' | split: '' %}
             {% assign pre_2018_year = '' %}
@@ -28,11 +28,11 @@ layout: page
             {% endif %}
 
             {% for year in sorted_years %}
-            <button class="tab-btn" onclick="openYear(event, '{{ year }}')">{{ year }}</button>
+            <button class="tab-btn" data-year="{{ year }}">{{ year }}</button>
             {% endfor %}
         </div>
 
-        <input type="text" id="searchInput" onkeyup="filterGalleries()" placeholder="Search for locations...">
+        <input type="text" id="searchInput" placeholder="Search for locations...">
 
         <div id="gallery-content">
         {% for year in sorted_years %}
@@ -61,85 +61,111 @@ layout: page
     </div>
 
     <script>
-    function initGalleryPage() {
-        window.openYear = function(evt, yearName) {
-          var i, tabcontent, tablinks;
-          tabcontent = document.getElementsByClassName("tab-content");
-          for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].classList.remove("is-visible");
-          }
-          tablinks = document.getElementsByClassName("tab-btn");
-          for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].classList.remove("active");
-          }
+    /*
+    ================================================================================
+      Gallery Page Script
+      - Handles tab switching for years.
+      - Handles client-side search/filtering of galleries.
+      - PJAX-aware: Initializes on both direct load and dynamic navigation.
+    ================================================================================
+    */
+    function initGalleryPage(event) {
+        const searchInput = document.getElementById('searchInput');
+        const galleryContent = document.getElementById('gallery-content');
+        const searchResults = document.getElementById('search-results');
+        const tabContainer = document.querySelector('.tab-container');
 
-          if (yearName === "All") {
-            for (i = 0; i < tabcontent.length; i++) {
-              tabcontent[i].classList.add("is-visible");
-            }
-          } else {
-            const targetElement = document.getElementById(yearName);
-            if (targetElement) {
-                targetElement.classList.add("is-visible");
-            }
-          }
-          
-          evt.currentTarget.classList.add("active");
-          // After changing tabs, clear the search and show all galleries
-          const searchInput = document.getElementById('searchInput');
-          if (searchInput) {
-            searchInput.value = '';
-            window.filterGalleries();
-          }
+        /* If the gallery elements don't exist on the page, do nothing. */
+        if (!tabContainer) {
+            return;
         }
 
-        window.filterGalleries = function() {
-            const input = document.getElementById('searchInput');
-            if (!input) return; // Exit if search input doesn't exist
-
-            const filter = input.value.toLowerCase();
-            const galleryContent = document.getElementById('gallery-content');
-            const searchResults = document.getElementById('search-results');
+        const filterGalleries = () => {
+            const filter = searchInput.value.toLowerCase();
             
             if (filter.length > 0) {
-                if (galleryContent) galleryContent.style.display = 'none';
-                if (searchResults) {
-                    searchResults.innerHTML = '';
+                galleryContent.style.display = 'none';
+                searchResults.innerHTML = '';
                 
-                    const allCards = document.querySelectorAll('#gallery-content .card');
-                    let matchesFound = false;
+                const allCards = galleryContent.querySelectorAll('.card');
+                let matchesFound = false;
 
-                    allCards.forEach(card => {
-                        const title = card.querySelector('.card-text');
-                        if (title) {
-                            const txtValue = title.textContent || title.innerText;
-                            if (txtValue.toLowerCase().indexOf(filter) > -1) {
-                                searchResults.appendChild(card.cloneNode(true));
-                                matchesFound = true;
-                            }
+                allCards.forEach(card => {
+                    const title = card.querySelector('.card-text');
+                    if (title) {
+                        const txtValue = title.textContent || title.innerText;
+                        if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                            searchResults.appendChild(card.cloneNode(true));
+                            matchesFound = true;
                         }
-                    });
-
-                    if (!matchesFound) {
-                        searchResults.innerHTML = '<p style="text-align: center; width: 100%;">No locations found.</p>';
                     }
+                });
 
-                    searchResults.style.display = 'grid';
+                if (!matchesFound) {
+                    searchResults.innerHTML = '<p style="text-align: center; width: 100%;">No locations found.</p>';
                 }
-
+                searchResults.style.display = 'grid';
             } else {
-                if (galleryContent) galleryContent.style.display = 'block';
-                if (searchResults) {
-                    searchResults.style.display = 'none';
-                    searchResults.innerHTML = '';
+                galleryContent.style.display = 'block';
+                searchResults.style.display = 'none';
+                searchResults.innerHTML = '';
+            }
+        };
+
+        const openYear = (evt, yearName) => {
+            let i, tabcontent, tablinks;
+            tabcontent = tabContainer.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("is-visible");
+            }
+            tablinks = tabContainer.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+
+            if (yearName === "All") {
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].classList.add("is-visible");
                 }
+            } else {
+                const targetElement = document.getElementById(yearName);
+                if (targetElement) {
+                    targetElement.classList.add("is-visible");
+                }
+            }
+            
+            evt.currentTarget.classList.add("active");
+            
+            searchInput.value = '';
+            filterGalleries();
+        };
+
+        /* Attach event listeners */
+        searchInput.addEventListener('keyup', filterGalleries);
+
+        const tabButtons = tabContainer.querySelectorAll('.tab-btn');
+        tabButtons.forEach(button => {
+            /* Remove old listeners from previous initializations to prevent duplicates */
+            const newButton = button.cloneNode(true);
+            button.parentNode.replaceChild(newButton, button);
+
+            newButton.addEventListener('click', (event) => {
+                openYear(event, newButton.dataset.year);
+            });
+        });
+
+        /* Set initial state for the 'All' tab on first load */
+        if (event && event.type === 'DOMContentLoaded') {
+            const allButton = tabContainer.querySelector('.tab-btn[data-year="All"]');
+            if (allButton && !tabContainer.querySelector('.tab-btn.active')) {
+                 openYear({ currentTarget: allButton }, 'All');
             }
         }
     }
 
-    // Initialize for normal page loads
+    /* Initialize for normal page loads */
     document.addEventListener('DOMContentLoaded', initGalleryPage);
-    // Initialize for Hydejack's PJAX navigation
+    /* Initialize for Hydejack's PJAX navigation */
     window.addEventListener('hy:pjax:end', initGalleryPage);
     </script>
 
