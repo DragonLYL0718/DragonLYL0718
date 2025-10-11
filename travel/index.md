@@ -4,13 +4,22 @@ title: Travel
 permalink: /travel/
 ---
 
-1. this list will be replaced by the toc
-{:toc .large-only}
+<div class="tab-container">
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="openYear(event, 'All')">All</button>
+    <button class="tab-btn" onclick="openYear(event, '2025')">2025</button>
+    <button class="tab-btn" onclick="openYear(event, '2024')">2024</button>
+    <button class="tab-btn" onclick="openYear(event, '2023')">2023</button>
+    <button class="tab-btn" onclick="openYear(event, '2022')">2022</button>
+    <button class="tab-btn" onclick="openYear(event, '2021')">2021</button>
+    <button class="tab-btn" onclick="openYear(event, '2020')">2020</button>
+    <button class="tab-btn" onclick="openYear(event, 'pre-2018')">pre-2018</button>
+  </div>
 
-## 2025
-
-<div class="gallery-grid" >
-<div class="card">
+  <div id="2025" class="tab-content">
+    <h2>2025</h2>
+    <div class="gallery-grid" >
+    <div class="card">
     <div class="image-overlay-container">
       <a href="/travel/leamington-spa2025">
         <img src="https://travelfigure.rayleigh-lin.top/2025/Leamington-SpaC/_RAY9251-Pano.webp"/>
@@ -170,12 +179,13 @@ permalink: /travel/
       </a>
     </div>
   </div>
-</div>
+    </div>
+  </div>
 
-## 2024
-
-<div class="gallery-grid" >
-  <div class="card">
+  <div id="2024" class="tab-content">
+    <h2>2024</h2>
+    <div class="gallery-grid" >
+      <div class="card">
     <div class="image-overlay-container">
       <a href="/travel/daejeon2024/">
         <img src="https://hobbyfigure.rayleigh-lin.top/2024daejeonc/_RAY8410.webp"/>
@@ -255,12 +265,13 @@ permalink: /travel/
       </a>
     </div>
   </div>
-</div>
+    </div>
+  </div>
 
-## 2023
-
-<div class="gallery-grid" >
-  <div class="card">
+  <div id="2023" class="tab-content">
+    <h2>2023</h2>
+    <div class="gallery-grid" >
+      <div class="card">
     <div class="image-overlay-container">
       <a href="/travel/hongkong2023/">
         <img src="https://hobbyfigure.rayleigh-lin.top/hongkong2023c/_RAY4539.webp"/>
@@ -316,12 +327,13 @@ permalink: /travel/
       </a>
     </div>
   </div>
-</div>
+    </div>
+  </div>
 
-## 2022
-
-<div class="gallery-grid" >
-  <div class="card">
+  <div id="2022" class="tab-content">
+    <h2>2022</h2>
+    <div class="gallery-grid" >
+      <div class="card">
     <div class="image-overlay-container">
       <a href="/travel/guizhou2022/">
         <img src="https://hobbyfigure.rayleigh-lin.top/2022guizhouc/_DSC0677.webp"/>
@@ -353,12 +365,13 @@ permalink: /travel/
       </a>
     </div>
   </div>
-</div>
+    </div>
+  </div>
 
-## 2021
-
-<div class="gallery-grid" >
-  <div class="card">
+  <div id="2021" class="tab-content">
+    <h2>2021</h2>
+    <div class="gallery-grid" >
+      <div class="card">
     <div class="image-overlay-container">
       <a href="/travel/shanghai2021/">
         <img src="https://hobbyfigure.rayleigh-lin.top/2021ShanghaiC/IMG_0751.webp"/>
@@ -398,12 +411,13 @@ permalink: /travel/
       </a>
     </div>
   </div>
-</div>
+    </div>
+  </div>
 
-## 2020
-
-<div class="gallery-grid" >
-  <div class="card">
+  <div id="2020" class="tab-content">
+    <h2>2020</h2>
+    <div class="gallery-grid" >
+      <div class="card">
     <div class="image-overlay-container">
       <a href="/travel/guangzhou2020/">
         <img src="https://hobbyfigure.rayleigh-lin.top/2020GuangzhouC/IMG_9056.webp"/>
@@ -411,12 +425,13 @@ permalink: /travel/
       </a>
     </div>
   </div>
-</div>
+    </div>
+  </div>
 
-## pre-2018
-
-<div class="gallery-grid" >
-  <div class="card">
+  <div id="pre-2018" class="tab-content">
+    <h2>pre-2018</h2>
+    <div class="gallery-grid" >
+      <div class="card">
     <div class="image-overlay-container">
       <a href="/travel/xiamen2018/">
         <img src="https://hobbyfigure.rayleigh-lin.top/2018XiamenC/IMG_20180620_084347.webp"/>
@@ -472,4 +487,35 @@ permalink: /travel/
       </a>
     </div>
   </div>
+    </div>
+  </div>
 </div>
+
+<script>
+function openYear(evt, yearName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tab-content");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tab-btn");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  if (yearName === "All") {
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "block";
+    }
+  } else {
+    document.getElementById(yearName).style.display = "block";
+  }
+  
+  evt.currentTarget.className += " active";
+}
+
+// Set "All" as default active tab
+document.addEventListener("DOMContentLoaded", function() {
+  openYear({currentTarget: document.querySelector('.tab-btn')}, 'All');
+});
+</script>

@@ -12,3 +12,49 @@
     margin: 1rem 0;
   }
 }
+
+/* Tab container styles */
+.tab-container {
+  width: 100%;
+  margin: 2rem 0;
+}
+
+.tab-nav {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 2px solid #eee;
+  margin-bottom: 1rem;
+}
+
+.tab-btn {
+  padding: 0.8rem 1.5rem;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #888;
+  transition: all 0.3s ease;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+}
+
+.tab-btn:hover {
+  color: #333;
+  background-color: #f7f7f7;
+}
+
+.tab-btn.active {
+  color: rgb(79, 177, 186);
+  border-bottom-color: rgb(79, 177, 186);
+}
+
+.tab-content {
+  display: none;
+  animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
