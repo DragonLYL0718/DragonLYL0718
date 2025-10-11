@@ -52,3 +52,29 @@ window.addEventListener('hy:pjax:end', myInitializationFunction);
 ### 3. (Alternative) MutationObserver
 
 A `MutationObserver` can be used as a more general solution if the specific theme event is unknown. It can watch for changes in the DOM (like new content being added) and trigger the initialization function. This is a powerful but often more complex solution than using the theme's provided custom event.
+
+### 4. Ready-State Fallback After PJAX Swaps
+
+-   Hydejack may inject new layouts via PJAX after `DOMContentLoaded` is finished, so inline scripts that listen only for that event never run on the first visit.
+-   Gate the initializer with a `dataset` flag, re-use a shared `deferredInit` wrapper, and call it immediately when the document is already `interactive` or `complete` to cover PJAX replacements.
+-   Example pattern:
+    ```javascript
+    function initGalleryPage() {
+      const container = document.querySelector('.tab-container');
+      if (!container || container.dataset.galleryInitialized) return;
+      container.dataset.galleryInitialized = 'true';
+      // setup handlers...
+    }
+
+    const deferredInit = () => requestAnimationFrame(initGalleryPage);
+
+    document.addEventListener('DOMContentLoaded', deferredInit, { once: true });
+    window.addEventListener('hy:pjax:end', deferredInit);
+    window.addEventListener('hy:load', deferredInit);
+
+    if (document.readyState === 'interactive' || document.readyState === 'complete') {
+      deferredInit();
+    }
+    ```
+-   This prevents double-binding while ensuring the UI works on the first navigation without requiring a manual refresh.
+
