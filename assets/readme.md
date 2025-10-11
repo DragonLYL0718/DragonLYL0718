@@ -1,16 +1,54 @@
-个错误 Identifier 'msnryInstance' has already been declared 确实表明我们的脚本被执行了多次。这通常发生在使用像 Hydejack 主题内置的 PJAX 或 Turbo/Turbolinks 这样的技术时，它们通过 AJAX 加载新页面内容并替换当前页面的部分内容，而不是进行完整的页面刷新。
+# Hydejack Theme JavaScript Debugging Notes
 
-这几乎可以肯定是由 Hydejack 主题的 AJAX 页面加载机制（例如 PJAX）引起的。当你不使用 Ctrl+R 刷新，而是通过点击链接导航到这个页面时：
-Hydejack 拦截了链接点击。
-它通过 AJAX 请求获取新页面的内容。
-它将新内容（包括我们的 <script> 块）注入到当前页面的某个部分，替换旧内容。
-关键： 这个过程通常不会触发标准的 DOMContentLoaded 或 window.load 事件，因为整个文档并没有重新加载。
-因此，我们的脚本虽然运行了，但它所依赖的启动事件从未发生。我们之前尝试监听的 turbo:load 或 turbolinks:load 显然也不是 Hydejack 使用的事件。
-解决方案：使用 MutationObserver
+This document contains notes on issues and solutions related to custom JavaScript execution within the Hydejack Jekyll theme, particularly concerning its dynamic page loading (AJAX/PJAX) feature.
 
-并在脚本开始执行时直接调用 setupMainObserver（以及处理资源加载）
+## Problem: Scripts Don't Run on Dynamic Navigation
 
-我们添加的 hydejack:ready 和 hydejack:load 事件监听器没有被触发。这可能是因为：
-这两个都不是 Hydejack 用来表示 AJAX 加载完成的正确事件。
+When navigating to a page with custom scripts by clicking an internal link, the scripts may not execute as expected. However, they work correctly on a full page refresh (e.g., using Ctrl+R).
 
-script 不可以使用 // 注释，否则会报错
+This can manifest in several ways:
+-   Content that should be manipulated by JavaScript remains in its initial state (e.g., hidden tabs not showing).
+-   Event listeners are not attached.
+-   If scripts are re-executed multiple times on subsequent navigations, errors like `Identifier '...' has already been declared` can occur.
+
+## Cause: AJAX/PJAX Page Loading
+
+Hydejack uses a dynamic loading mechanism (PJAX) to create a faster, smoother navigation experience. The process is as follows:
+
+1.  A user clicks an internal link.
+2.  Hydejack intercepts the click.
+3.  It fetches the new page's content via an AJAX request.
+4.  It replaces a portion of the current page's DOM with the new content.
+
+The crucial point is that this **does not trigger a full page reload**. Therefore, standard browser events like `DOMContentLoaded` or `window.load`, which many scripts rely on for initialization, are not fired.
+
+## Solutions and Findings
+
+### 1. Finding the Correct Event Listener
+
+Standard events don't work for dynamic loading. We need to listen for a custom event that Hydejack fires after the new page content has been loaded and inserted into the DOM.
+
+-   **Incorrect Events:** `turbo:load`, `turbolinks:load`, `hydejack:ready`, `hydejack:load`, `hy:load` were tried and did not work reliably.
+-   **Correct Event (for Hydejack v9+):** The correct event to listen for is `hy:pjax:end`.
+
+**Example Implementation:**
+```javascript
+function myInitializationFunction() {
+  // Your setup code here
+}
+
+// For direct page loads/refreshes
+document.addEventListener('DOMContentLoaded', myInitializationFunction);
+
+// For dynamic navigation within Hydejack
+window.addEventListener('hy:pjax:end', myInitializationFunction);
+```
+
+### 2. Script Syntax in HTML
+
+-   **Issue:** It was observed that scripts inside `<script>` tags in HTML files failed to execute if they contained `//` style comments.
+-   **Solution:** Always use `/* ... */` block comments for commenting inside `<script>` tags within HTML files to ensure maximum compatibility.
+
+### 3. (Alternative) MutationObserver
+
+A `MutationObserver` can be used as a more general solution if the specific theme event is unknown. It can watch for changes in the DOM (like new content being added) and trigger the initialization function. This is a powerful but often more complex solution than using the theme's provided custom event.

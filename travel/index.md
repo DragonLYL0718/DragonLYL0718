@@ -16,7 +16,7 @@ permalink: /travel/
     <button class="tab-btn" onclick="openYear(event, 'pre-2018')">pre-2018</button>
   </div>
 
-  <div id="2025" class="tab-content">
+  <div id="2025" class="tab-content is-visible">
     <h2>2025</h2>
     <div class="gallery-grid" >
     <div class="card">
@@ -182,7 +182,7 @@ permalink: /travel/
     </div>
   </div>
 
-  <div id="2024" class="tab-content">
+  <div id="2024" class="tab-content is-visible">
     <h2>2024</h2>
     <div class="gallery-grid" >
       <div class="card">
@@ -268,7 +268,7 @@ permalink: /travel/
     </div>
   </div>
 
-  <div id="2023" class="tab-content">
+  <div id="2023" class="tab-content is-visible">
     <h2>2023</h2>
     <div class="gallery-grid" >
       <div class="card">
@@ -330,7 +330,7 @@ permalink: /travel/
     </div>
   </div>
 
-  <div id="2022" class="tab-content">
+  <div id="2022" class="tab-content is-visible">
     <h2>2022</h2>
     <div class="gallery-grid" >
       <div class="card">
@@ -368,7 +368,7 @@ permalink: /travel/
     </div>
   </div>
 
-  <div id="2021" class="tab-content">
+  <div id="2021" class="tab-content is-visible">
     <h2>2021</h2>
     <div class="gallery-grid" >
       <div class="card">
@@ -414,7 +414,7 @@ permalink: /travel/
     </div>
   </div>
 
-  <div id="2020" class="tab-content">
+  <div id="2020" class="tab-content is-visible">
     <h2>2020</h2>
     <div class="gallery-grid" >
       <div class="card">
@@ -428,7 +428,7 @@ permalink: /travel/
     </div>
   </div>
 
-  <div id="pre-2018" class="tab-content">
+  <div id="pre-2018" class="tab-content is-visible">
     <h2>pre-2018</h2>
     <div class="gallery-grid" >
       <div class="card">
@@ -496,26 +496,24 @@ function openYear(evt, yearName) {
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tab-content");
   for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
+    tabcontent[i].classList.remove("is-visible");
   }
   tablinks = document.getElementsByClassName("tab-btn");
   for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
+    tablinks[i].classList.remove("active");
   }
 
   if (yearName === "All") {
     for (i = 0; i < tabcontent.length; i++) {
-      tabcontent[i].style.display = "block";
+      tabcontent[i].classList.add("is-visible");
     }
   } else {
-    document.getElementById(yearName).style.display = "block";
+    const targetElement = document.getElementById(yearName);
+    if (targetElement) {
+        targetElement.classList.add("is-visible");
+    }
   }
   
-  evt.currentTarget.className += " active";
+  evt.currentTarget.classList.add("active");
 }
-
-// Set "All" as default active tab
-document.addEventListener("DOMContentLoaded", function() {
-  openYear({currentTarget: document.querySelector('.tab-btn')}, 'All');
-});
 </script>
