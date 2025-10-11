@@ -51,3 +51,7 @@ To work with this project locally, you will need Ruby and Bundler installed.
         *   `video_credits`: An object with `name` and `url` for video attributions.
     *   **Layout:** The `_layouts/pagefigure.html` layout is responsible for rendering the galleries from the front matter data. It preserves the tabbed navigation for "Digital Photo", "Film Photo", and "Video".
     *   **Helper Script:** The user's `ReadFiles.ipynb` notebook has been updated to generate the required YAML front matter for new galleries, streamlining the content creation process.
+*   **Gallery Page Search**: The main gallery page (`_layouts/pagegallery.html`) includes a client-side search functionality.
+    *   **Implementation**: The search is handled by the `filterGalleries()` JavaScript function within the layout file. It filters the displayed locations based on user input.
+    *   **Behavior**: When a search query is entered, the year-based grouping is hidden, and a flat list of matching gallery cards is displayed. Clearing the search reverts to the tabbed, year-by-year view.
+    *   **Styling**: Styles for the search input bar are defined in `_sass/my-style.scss`.

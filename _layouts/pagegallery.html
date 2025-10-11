@@ -32,6 +32,9 @@ layout: page
             {% endfor %}
         </div>
 
+        <input type="text" id="searchInput" onkeyup="filterGalleries()" placeholder="Search for locations...">
+
+        <div id="gallery-content">
         {% for year in sorted_years %}
         <div id="{{ year }}" class="tab-content is-visible">
             <h2>{{ year }}</h2>
@@ -52,6 +55,9 @@ layout: page
             </div>
         </div>
         {% endfor %}
+        </div>
+        
+        <div id="search-results" class="gallery-grid" style="display: none;"></div>
     </div>
 
     <script>
@@ -78,6 +84,46 @@ layout: page
       }
       
       evt.currentTarget.classList.add("active");
+      // After changing tabs, clear the search and show all galleries
+      document.getElementById('searchInput').value = '';
+      filterGalleries();
+    }
+
+    function filterGalleries() {
+        const input = document.getElementById('searchInput');
+        const filter = input.value.toLowerCase();
+        const galleryContent = document.getElementById('gallery-content');
+        const searchResults = document.getElementById('search-results');
+        
+        if (filter.length > 0) {
+            galleryContent.style.display = 'none';
+            searchResults.innerHTML = '';
+            
+            const allCards = document.querySelectorAll('#gallery-content .card');
+            let matchesFound = false;
+
+            allCards.forEach(card => {
+                const title = card.querySelector('.card-text');
+                if (title) {
+                    const txtValue = title.textContent || title.innerText;
+                    if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                        searchResults.appendChild(card.cloneNode(true));
+                        matchesFound = true;
+                    }
+                }
+            });
+
+            if (!matchesFound) {
+                searchResults.innerHTML = '<p style="text-align: center; width: 100%;">No locations found.</p>';
+            }
+
+            searchResults.style.display = 'grid';
+
+        } else {
+            galleryContent.style.display = 'block';
+            searchResults.style.display = 'none';
+            searchResults.innerHTML = '';
+        }
     }
     </script>
 

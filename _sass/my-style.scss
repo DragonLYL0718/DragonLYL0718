@@ -447,3 +447,24 @@ video {
     width: 100%;
     height: auto;
 }
+
+/*
+================================================================================
+  Search Bar Styles
+================================================================================
+*/
+#searchInput {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+#searchInput:focus {
+  border-color: #4FB1BA;
+  outline: none;
+}
