@@ -39,6 +39,7 @@ To work with this project locally, you will need Ruby and Bundler installed.
 
 *   **Content Creation:** New content pages (like projects or travel entries) are created as Markdown files within their respective directories (e.g., `projects/`, `travel/gallery/`).
 *   **Configuration:** The main site configuration is managed in `_config.yml`. This includes the site title, author information, navigation menu, and theme settings.
-*   **Styling:** Custom styles can be added or modified in the `_sass` directory.
+*   **Styling:** Custom styles are centralized in `_sass/my-style.scss`. All inline `<style>` blocks from layouts have been moved here for better maintainability.
+*   **JavaScript for Dynamic Content:** When adding JavaScript for pages that are dynamically loaded by Hydejack (via PJAX), ensure scripts are initialized using `window.addEventListener('hy:pjax:end', myFunction)` in addition to `document.addEventListener('DOMContentLoaded', myFunction)` to handle both full page loads and AJAX navigation. Avoid `//` comments within `<script>` tags in HTML files; use `/* ... */` instead.
 *   **Data:** Site-wide data, such as author details and social media links, is stored in YAML files within the `_data` directory.
 *   **Layouts:** The overall HTML structure and page templates are defined in the `_layouts` directory.

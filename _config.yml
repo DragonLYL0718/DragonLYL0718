@@ -314,6 +314,8 @@ hydejack:
 # ----------------------------------------------------------------------------------------
 
 collections:
+    galleries:
+        output: true
     featured_categories:
         permalink: /:name/
         output: true

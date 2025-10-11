@@ -6,5 +6,80 @@ layout: page
 </head>
 
 <body>
+    <div class="tab-container">
+        <div class="tab-nav">
+            <button class="tab-btn active" onclick="openYear(event, 'All')">All</button>
+            {% assign years = site.galleries | map: "year" | uniq %}
+            {% assign sorted_years = '' | split: '' %}
+            {% assign pre_2018_year = '' %}
+
+            {% for year in years %}
+              {% if year == "pre-2018" %}
+                {% assign pre_2018_year = year %}
+              {% else %}
+                {% assign sorted_years = sorted_years | push: year %}
+              {% endif %}
+            {% endfor %}
+
+            {% assign sorted_years = sorted_years | sort | reverse %}
+
+            {% if pre_2018_year != '' %}
+              {% assign sorted_years = sorted_years | push: pre_2018_year %}
+            {% endif %}
+
+            {% for year in sorted_years %}
+            <button class="tab-btn" onclick="openYear(event, '{{ year }}')">{{ year }}</button>
+            {% endfor %}
+        </div>
+
+        {% for year in sorted_years %}
+        <div id="{{ year }}" class="tab-content is-visible">
+            <h2>{{ year }}</h2>
+            <div class="gallery-grid">
+                {% assign galleries_by_year = site.galleries | where: "year", year %}
+                {% for gallery in galleries_by_year %}
+                {% for item in gallery.items %}
+                <div class="card">
+                    <div class="image-overlay-container">
+                        <a href="{{ item.url }}">
+                            <img src="{{ item.image }}"/>
+                            <div class="card-text">{{ item.title }}</div>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <script>
+    function openYear(evt, yearName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tab-content");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].classList.remove("is-visible");
+      }
+      tablinks = document.getElementsByClassName("tab-btn");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].classList.remove("active");
+      }
+
+      if (yearName === "All") {
+        for (i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].classList.add("is-visible");
+        }
+      } else {
+        const targetElement = document.getElementById(yearName);
+        if (targetElement) {
+            targetElement.classList.add("is-visible");
+        }
+      }
+      
+      evt.currentTarget.classList.add("active");
+    }
+    </script>
+
     {{ content }}
 </body>
