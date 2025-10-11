@@ -43,3 +43,11 @@ To work with this project locally, you will need Ruby and Bundler installed.
 *   **JavaScript for Dynamic Content:** When adding JavaScript for pages that are dynamically loaded by Hydejack (via PJAX), ensure scripts are initialized using `window.addEventListener('hy:pjax:end', myFunction)` in addition to `document.addEventListener('DOMContentLoaded', myFunction)` to handle both full page loads and AJAX navigation. Avoid `//` comments within `<script>` tags in HTML files; use `/* ... */` instead.
 *   **Data:** Site-wide data, such as author details and social media links, is stored in YAML files within the `_data` directory.
 *   **Layouts:** The overall HTML structure and page templates are defined in the `_layouts` directory.
+*   **Data-Driven Travel Galleries:** The travel gallery pages in `travel/gallery/` have been refactored to be data-driven.
+    *   **Data Source:** Instead of hardcoding HTML in the markdown files, the gallery content is now generated from YAML front matter. The `images`, `films`, and `videos` keys in the front matter are used to populate the galleries.
+    *   **Data Structure:**
+        *   `images` and `films`: A list of objects, each with `url`, `thumbnail`, and `alt` properties.
+        *   `videos`: A list of objects, each with a `url` property.
+        *   `video_credits`: An object with `name` and `url` for video attributions.
+    *   **Layout:** The `_layouts/pagefigure.html` layout is responsible for rendering the galleries from the front matter data. It preserves the tabbed navigation for "Digital Photo", "Film Photo", and "Video".
+    *   **Helper Script:** The user's `ReadFiles.ipynb` notebook has been updated to generate the required YAML front matter for new galleries, streamlining the content creation process.
