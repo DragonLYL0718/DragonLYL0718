@@ -64,21 +64,29 @@ layout: page
     /*
     ================================================================================
       Gallery Page Script
-      - Handles tab switching for years.
+      - Handles tab switching for years via event delegation.
       - Handles client-side search/filtering of galleries.
       - PJAX-aware: Initializes on both direct load and dynamic navigation.
     ================================================================================
     */
     function initGalleryPage(event) {
-        const searchInput = document.getElementById('searchInput');
-        const galleryContent = document.getElementById('gallery-content');
-        const searchResults = document.getElementById('search-results');
         const tabContainer = document.querySelector('.tab-container');
 
         /* If the gallery elements don't exist on the page, do nothing. */
         if (!tabContainer) {
             return;
         }
+        
+        /* Prevent re-initialization on the same DOM tree */
+        if (tabContainer.dataset.galleryInitialized) {
+            return;
+        }
+        tabContainer.dataset.galleryInitialized = 'true';
+
+        const searchInput = document.getElementById('searchInput');
+        const galleryContent = document.getElementById('gallery-content');
+        const searchResults = document.getElementById('search-results');
+        const tabNav = tabContainer.querySelector('.tab-nav');
 
         const filterGalleries = () => {
             const filter = searchInput.value.toLowerCase();
@@ -134,31 +142,28 @@ layout: page
                 }
             }
             
-            evt.currentTarget.classList.add("active");
+            /* Use evt.target which is the clicked element (.tab-btn) */
+            evt.target.classList.add("active");
             
             searchInput.value = '';
             filterGalleries();
         };
 
-        /* Attach event listeners */
+        /* Attach event listeners using delegation */
         searchInput.addEventListener('keyup', filterGalleries);
-
-        const tabButtons = tabContainer.querySelectorAll('.tab-btn');
-        tabButtons.forEach(button => {
-            /* Remove old listeners from previous initializations to prevent duplicates */
-            const newButton = button.cloneNode(true);
-            button.parentNode.replaceChild(newButton, button);
-
-            newButton.addEventListener('click', (event) => {
-                openYear(event, newButton.dataset.year);
-            });
+        tabNav.addEventListener('click', (clickEvent) => {
+            /* Check if a tab button was clicked */
+            if (clickEvent.target.matches('.tab-btn')) {
+                openYear(clickEvent, clickEvent.target.dataset.year);
+            }
         });
 
         /* Set initial state for the 'All' tab on first load */
         if (event && event.type === 'DOMContentLoaded') {
             const allButton = tabContainer.querySelector('.tab-btn[data-year="All"]');
-            if (allButton && !tabContainer.querySelector('.tab-btn.active')) {
-                 openYear({ currentTarget: allButton }, 'All');
+            if (allButton) {
+                 /* Here, the event object is synthetic. We need `target` for openYear. */
+                 openYear({ target: allButton }, 'All');
             }
         }
     }
