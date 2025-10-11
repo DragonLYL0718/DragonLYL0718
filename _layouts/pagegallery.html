@@ -61,70 +61,86 @@ layout: page
     </div>
 
     <script>
-    function openYear(evt, yearName) {
-      var i, tabcontent, tablinks;
-      tabcontent = document.getElementsByClassName("tab-content");
-      for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].classList.remove("is-visible");
-      }
-      tablinks = document.getElementsByClassName("tab-btn");
-      for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].classList.remove("active");
-      }
+    function initGalleryPage() {
+        window.openYear = function(evt, yearName) {
+          var i, tabcontent, tablinks;
+          tabcontent = document.getElementsByClassName("tab-content");
+          for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].classList.remove("is-visible");
+          }
+          tablinks = document.getElementsByClassName("tab-btn");
+          for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].classList.remove("active");
+          }
 
-      if (yearName === "All") {
-        for (i = 0; i < tabcontent.length; i++) {
-          tabcontent[i].classList.add("is-visible");
-        }
-      } else {
-        const targetElement = document.getElementById(yearName);
-        if (targetElement) {
-            targetElement.classList.add("is-visible");
-        }
-      }
-      
-      evt.currentTarget.classList.add("active");
-      // After changing tabs, clear the search and show all galleries
-      document.getElementById('searchInput').value = '';
-      filterGalleries();
-    }
-
-    function filterGalleries() {
-        const input = document.getElementById('searchInput');
-        const filter = input.value.toLowerCase();
-        const galleryContent = document.getElementById('gallery-content');
-        const searchResults = document.getElementById('search-results');
-        
-        if (filter.length > 0) {
-            galleryContent.style.display = 'none';
-            searchResults.innerHTML = '';
-            
-            const allCards = document.querySelectorAll('#gallery-content .card');
-            let matchesFound = false;
-
-            allCards.forEach(card => {
-                const title = card.querySelector('.card-text');
-                if (title) {
-                    const txtValue = title.textContent || title.innerText;
-                    if (txtValue.toLowerCase().indexOf(filter) > -1) {
-                        searchResults.appendChild(card.cloneNode(true));
-                        matchesFound = true;
-                    }
-                }
-            });
-
-            if (!matchesFound) {
-                searchResults.innerHTML = '<p style="text-align: center; width: 100%;">No locations found.</p>';
+          if (yearName === "All") {
+            for (i = 0; i < tabcontent.length; i++) {
+              tabcontent[i].classList.add("is-visible");
             }
+          } else {
+            const targetElement = document.getElementById(yearName);
+            if (targetElement) {
+                targetElement.classList.add("is-visible");
+            }
+          }
+          
+          evt.currentTarget.classList.add("active");
+          // After changing tabs, clear the search and show all galleries
+          const searchInput = document.getElementById('searchInput');
+          if (searchInput) {
+            searchInput.value = '';
+            window.filterGalleries();
+          }
+        }
 
-            searchResults.style.display = 'grid';
+        window.filterGalleries = function() {
+            const input = document.getElementById('searchInput');
+            if (!input) return; // Exit if search input doesn't exist
 
-        } else {
-            galleryContent.style.display = 'block';
-            searchResults.style.display = 'none';
-            searchResults.innerHTML = '';
+            const filter = input.value.toLowerCase();
+            const galleryContent = document.getElementById('gallery-content');
+            const searchResults = document.getElementById('search-results');
+            
+            if (filter.length > 0) {
+                if (galleryContent) galleryContent.style.display = 'none';
+                if (searchResults) {
+                    searchResults.innerHTML = '';
+                
+                    const allCards = document.querySelectorAll('#gallery-content .card');
+                    let matchesFound = false;
+
+                    allCards.forEach(card => {
+                        const title = card.querySelector('.card-text');
+                        if (title) {
+                            const txtValue = title.textContent || title.innerText;
+                            if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                                searchResults.appendChild(card.cloneNode(true));
+                                matchesFound = true;
+                            }
+                        }
+                    });
+
+                    if (!matchesFound) {
+                        searchResults.innerHTML = '<p style="text-align: center; width: 100%;">No locations found.</p>';
+                    }
+
+                    searchResults.style.display = 'grid';
+                }
+
+            } else {
+                if (galleryContent) galleryContent.style.display = 'block';
+                if (searchResults) {
+                    searchResults.style.display = 'none';
+                    searchResults.innerHTML = '';
+                }
+            }
         }
     }
+
+    // Initialize for normal page loads
+    document.addEventListener('DOMContentLoaded', initGalleryPage);
+    // Initialize for Hydejack's PJAX navigation
+    window.addEventListener('hy:pjax:end', initGalleryPage);
     </script>
 
     {{ content }}

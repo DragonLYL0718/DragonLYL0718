@@ -453,8 +453,9 @@ video {
   Search Bar Styles
 ================================================================================
 */
-#searchInput {
+.tab-container > #searchInput {
   width: 100%;
+  max-width: none; /* Override any max-width from theme styles */
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
