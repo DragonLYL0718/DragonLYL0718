@@ -3,7 +3,7 @@ layout: pagefigure # 或者是你想要使用的任何布局
 title: Incheon
 description: >
   2025.1.23
-permalink: /travel/korea2025/incheon # 可选的，链接到这个页面的路径
+permalink: /travel/incheon2025/ # 可选的，链接到这个页面的路径
 ---
 
 <div class="figure-grid">

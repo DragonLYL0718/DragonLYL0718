@@ -3,7 +3,7 @@ layout: pagefigure # 或者是你想要使用的任何布局
 title: Boston
 description: >
   2024.5.21 - 2024.5.27
-permalink: /travel/usa2024/3 # 可选的，链接到这个页面的路径
+permalink: /travel/boston2024/ # 可选的，链接到这个页面的路径
 ---
 
 <div class="figure-grid">

@@ -3,7 +3,7 @@ layout: pagefigure # 或者是你想要使用的任何布局
 title: Gangneung
 description: >
   2025.1.19
-permalink: /travel/korea2025/gangneung # 可选的，链接到这个页面的路径
+permalink: /travel/gangneung2025/ # 可选的，链接到这个页面的路径
 ---
 
 <div class="figure-grid">

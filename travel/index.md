@@ -12,6 +12,14 @@ permalink: /travel/
 <div class="gallery-grid" >
 <div class="card">
     <div class="image-overlay-container">
+      <a href="/travel/leamington-spa2025">
+        <img src="https://travelfigure.rayleigh-lin.top/2025/Leamington-SpaC/_RAY9251-Pano.webp"/>
+        <div class="card-text">Leamington Spa, UK</div>
+      </a>
+    </div>
+  </div>
+<div class="card">
+    <div class="image-overlay-container">
       <a href="/travel/stratford-upon-avon2025">
         <img src="https://travelfigure.rayleigh-lin.top/2025/Stratford-upon-AvonC/_RAY9170.webp"/>
         <div class="card-text">Stratford-upon-Avon, UK</div>
@@ -92,9 +100,49 @@ permalink: /travel/
   </div>
   <div class="card">
     <div class="image-overlay-container">
-      <a href="/travel/korea2025/">
-        <img src="https://hobbyfigure.rayleigh-lin.top/2025DaeguC/_RAY0228.webp"/>
-        <div class="card-text">South Korea</div>
+      <a href="/travel/korea2025/daegu">
+        <img src="https://hobbyfigure.rayleigh-lin.top/2025DaeguC/_RAY0374.webp"/>
+        <div class="card-text">Daegu, South Korea</div>
+      </a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/travel/korea2025/seoul">
+        <img src="https://hobbyfigure.rayleigh-lin.top/2025SeoulC/_RAY0866.webp"/>
+        <div class="card-text">Seoul, South Korea</div>
+      </a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/travel/korea2025/gangneung">
+        <img src="https://hobbyfigure.rayleigh-lin.top/2025GangneungC/_RAY1120.webp"/>
+        <div class="card-text">Gangneung, South Korea</div>
+      </a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/travel/korea2025/incheon">
+        <img src="https://hobbyfigure.rayleigh-lin.top/2025IncheonC/_RAY1504.webp"/>
+        <div class="card-text">Incheon, South Korea</div>
+      </a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/travel/korea2025/jeonju">
+        <img src="https://hobbyfigure.rayleigh-lin.top/2025JeonjuC/_RAY3022.webp"/>
+        <div class="card-text">Jeonju, South Korea</div>
+      </a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/travel/korea2025/busan">
+        <img src="https://hobbyfigure.rayleigh-lin.top/2025BusanC/_RAY3327.webp"/>
+        <div class="card-text">Busan, South Korea</div>
       </a>
     </div>
   </div>
@@ -108,9 +156,17 @@ permalink: /travel/
   </div>
   <div class="card">
     <div class="image-overlay-container">
-      <a href="/travel/usa2025/">
-        <img src="https://hobbyfigure.rayleigh-lin.top/2025NewYorkC/_RAY2385.webp"/>
-        <div class="card-text">USA</div>
+      <a href="/travel/usa2025/newyork">
+        <img src="https://hobbyfigure.rayleigh-lin.top/2025NewYorkC/_RAY2056.webp"/>
+        <div class="card-text">New York, USA</div>
+      </a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/travel/usa2025/washingtondc">
+        <img src="https://hobbyfigure.rayleigh-lin.top/2025WashingtonDCC/_RAY2674.webp"/>
+        <div class="card-text">Washington, D.C., USA</div>
       </a>
     </div>
   </div>
@@ -121,17 +177,65 @@ permalink: /travel/
 <div class="gallery-grid" >
   <div class="card">
     <div class="image-overlay-container">
-      <a href="/travel/korea2024/">
-        <img src="https://hobbyfigure.rayleigh-lin.top/2024seoulc/_RAY9435.webp"/>
-        <div class="card-text">South Korea</div>
+      <a href="/travel/daejeon2024/">
+        <img src="https://hobbyfigure.rayleigh-lin.top/2024daejeonc/_RAY8410.webp"/>
+        <div class="card-text">Daejeon, South Korea</div>
       </a>
     </div>
   </div>
   <div class="card">
     <div class="image-overlay-container">
-      <a href="/travel/usa2024/">
+      <a href="/travel/seoul2024/">
+        <img src="https://hobbyfigure.rayleigh-lin.top/2024seoulc/_RAY9435.webp"/>
+        <div class="card-text">Seoul, South Korea</div>
+      </a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/travel/gyeongju2024/">
+        <img src="https://hobbyfigure.rayleigh-lin.top/2024GyeongjuC/_RAY9907.webp"/>
+        <div class="card-text">Gyeongju, South Korea</div>
+      </a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/travel/hawaii2024/">
+        <img src="https://hobbyfigure.rayleigh-lin.top/2024usa1c/_RAY5851.webp"/>
+        <div class="card-text">Hawaii, USA</div>
+      </a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/travel/washingtondc2024/">
         <img src="https://hobbyfigure.rayleigh-lin.top/2024usa2c/_RAY6088.webp"/>
-        <div class="card-text">USA</div>
+        <div class="card-text">Washington, D.C., USA</div>
+      </a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/travel/boston2024/">
+        <img src="https://hobbyfigure.rayleigh-lin.top/2024usa3c/_RAY6408.webp"/>
+        <div class="card-text">Boston, USA</div>
+      </a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/travel/rhode-island2024/">
+        <img src="https://hobbyfigure.rayleigh-lin.top/2024usa4c/_RAY6606.webp"/>
+        <div class="card-text">Rhode Island, USA</div>
+      </a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="image-overlay-container">
+      <a href="/travel/washington2024/">
+        <img src="https://hobbyfigure.rayleigh-lin.top/2024usa5c/_RAY8956-HDR.webp"/>
+        <div class="card-text">Washington, USA</div>
       </a>
     </div>
   </div>

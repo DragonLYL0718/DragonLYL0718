@@ -3,7 +3,7 @@ layout: pagefigure # 或者是你想要使用的任何布局
 title: Daejeon
 description: >
   2024.10 - 2024.11
-permalink: /travel/korea2024/daejeon # 可选的，链接到这个页面的路径
+permalink: /travel/daejeon2024/ # 可选的，链接到这个页面的路径
 ---
 
 <div class="figure-grid">
