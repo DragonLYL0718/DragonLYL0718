@@ -48,15 +48,6 @@ permalink: /resume/
   Nargiz Askarbekkyzy, **Yilong Lin**, Kongpyung (Justin) Moon, Andrea Bianchi, Seungwoo Je <br>
   _In Proceedings of IASDR 2023._
 
-## Patents
-
-- [P1] **一种景观生成系统**<br>
-  CN202411205899, granted
-- **一种景观生成系统**<br>
-  CN202411214664, pending
-- **一种手臂触觉模拟装置及触觉模拟方法**<br>
-  CN202410405743, pending
-
 ## Project
 ---
 - **[TaBot: Designing an Al-empowered Robotic Table to Promote Balanced Conversational Experiences](/projects/tabot/)** <br>
