@@ -24,7 +24,7 @@ permalink: /publications/
       <a href="https://doi.ieeecomputersociety.org/10.1109/TVCG.2025.3616825" target="_blank">Designing Hand and Forearm Gestures to Control Virtual Forearm for User-Initiated Forearm Deformation</a>
     </h3>
     <div class="publication-details">
-      <strong>Yilong Lin</strong>, Han Shi, Weitao Jiang, Xuesong Zhang, Hye-Young Jo, Hye-Young Jo, Seungwoo Je <br>
+      <strong>Yilong Lin</strong>, Han Shi, Weitao Jiang, Xuesong Zhang, Hye-Young Jo, Yoonji Kim, Seungwoo Je <br>
       <em>IEEE TVCG, Special Issue on ISMAR 2025.</em>
     </div>
   </div>
