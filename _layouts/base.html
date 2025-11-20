@@ -29,14 +29,16 @@ layout: compress
 
 <head>
   {% include head/index.html %}
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G3P4GRGGCC"></script>
+  {% if site.google_analytics %}
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
 
-    gtag('config', 'G-G3P4GRGGCC');
+    gtag('config', '{{ site.google_analytics }}');
   </script>
+  {% endif %}
 </head>
 
 <body class="{% include_cached base-classes %}">
