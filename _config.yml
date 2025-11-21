@@ -150,12 +150,6 @@ defaults:
               background: rgb(32,32,32)
               overlay: false
 
-    # Default Open Graph image for social sharing
-    - scope:
-          path: ""
-      values:
-          image: https://pageasset.rayleigh-lin.top/logo.webp
-
     # Don't include documents in assets in the sitemap
     - scope:
           path: assets/
@@ -292,6 +286,7 @@ hydejack:
     # seeing an old date.
     hide_dates: false
 
+    # TODO
     hide_last_modified: false
 
     # Note that dark mode only works in the PRO version of Hydejack.

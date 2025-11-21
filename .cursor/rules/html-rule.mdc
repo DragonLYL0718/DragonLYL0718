@@ -1,0 +1,10 @@
+---
+description: 
+globs: *.html
+alwaysApply: false
+---
+
+# Your rule content
+
+- 注意Hydejack 使用 AJAX 页面加载机制
+- script的注释不可以使用 //
