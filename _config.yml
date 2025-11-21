@@ -202,7 +202,7 @@ kramdown:
 
 # Set your Google Analytics id to receive `pageview` events.
 # To remove Google Anaylics from your page, remove the line below.
-google_analytics: G-G3P4GRGGCC
+# google_analytics: G-G3P4GRGGCC
 
 # Setting a disqus shortname will enable the comment section on
 # pages with `comments: true` in the front matter.
@@ -449,3 +449,7 @@ jekyll_compose:
                 - title: Project Link
                   url: https://example.com
 
+# 在适当的位置添加
+assets:
+    js:
+        - /assets/js/lang-switcher.js
