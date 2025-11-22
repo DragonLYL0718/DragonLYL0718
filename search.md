@@ -124,7 +124,7 @@ permalink: /search/
                     {% unless page.url contains '/assets/' or page.url contains '/licenses/' or page.url contains '/css/' or page.title == 'Search' or page.title == '404' or page.title == 'Redirect' or page.title == 'Home' %}
             {
                 title: {{ page.title | jsonify }},
-                url: {{ page.url | jsonify }},
+                url: {{ page.url | relative_url | jsonify }},
                 content: {{ page.content | strip_html | truncatewords: 50 | jsonify }}
             },
                     {% endunless %}
@@ -133,14 +133,14 @@ permalink: /search/
             {% for post in site.posts %}
             {
                 title: {{ post.title | jsonify }},
-                url: {{ post.url | jsonify }},
+                url: {{ post.url | relative_url | jsonify }},
                 content: {{ post.content | strip_html | truncatewords: 50 | jsonify }}
             },
             {% endfor %}
             {% for project in site.projects %}
             {
                 title: {{ project.title | jsonify }},
-                url: {{ project.url | jsonify }},
+                url: {{ project.url | relative_url | jsonify }},
                 content: {{ project.content | strip_html | truncatewords: 50 | jsonify }}
             }
             {% unless forloop.last %},{% endunless %}
