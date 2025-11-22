@@ -322,6 +322,13 @@
     background-color: rgba(79, 177, 186, 0.8);
     color: white;
 }
+
+@media (prefers-color-scheme: dark) {
+    .nav-button {
+        background-color: #333;
+        color: #e0e0e0;
+    }
+}
 .content-section {
     display: none;
 }
