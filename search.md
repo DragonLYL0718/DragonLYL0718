@@ -118,43 +118,31 @@ permalink: /search/
 
 <script>
     (function () {
-        const searchIndex = [
-            {% for page in site.pages %}
-                {% if page.title != nil and page.layout != nil %}
-                    {% unless page.url contains '/assets/' or page.url contains '/licenses/' or page.url contains '/css/' or page.title == 'Search' or page.title == '404' or page.title == 'Redirect' or page.title == 'Home' %}
-            {
-                title: {{ page.title | jsonify }},
-                url: {{ page.url | relative_url | jsonify }},
-                content: {{ page.content | strip_html | truncatewords: 50 | jsonify }}
-            },
-                    {% endunless %}
-                {% endif %}
-            {% endfor %}
-            {% for post in site.posts %}
-            {
-                title: {{ post.title | jsonify }},
-                url: {{ post.url | relative_url | jsonify }},
-                content: {{ post.content | strip_html | truncatewords: 50 | jsonify }}
-            },
-            {% endfor %}
-            {% for project in site.projects %}
-            {
-                title: {{ project.title | jsonify }},
-                url: {{ project.url | relative_url | jsonify }},
-                content: {{ project.content | strip_html | truncatewords: 50 | jsonify }}
-            }
-            {% unless forloop.last %},{% endunless %}
-            {% endfor %}
-        ];
-
         const searchInput = document.getElementById('searchInput');
         const searchResults = document.getElementById('searchResults');
+        let searchIndex = [];
+
+        // Fetch the search index
+        fetch('{{ "/search.json" | relative_url }}')
+            .then(response => response.json())
+            .then(data => {
+                searchIndex = data;
+            })
+            .catch(error => {
+                console.error('Error loading search index:', error);
+                searchResults.innerHTML = '<p style="text-align:center; color: var(--body-color);">Error loading search data.</p>';
+            });
 
         searchInput.addEventListener('input', function () {
             const query = this.value.toLowerCase();
             searchResults.innerHTML = '';
 
             if (query.length < 2) return;
+
+            if (!searchIndex.length) {
+                searchResults.innerHTML = '<p style="text-align:center; color: var(--body-color);">Loading search data...</p>';
+                return;
+            }
 
             const results = searchIndex.filter(item => {
                 return (item.title && item.title.toLowerCase().includes(query)) ||
