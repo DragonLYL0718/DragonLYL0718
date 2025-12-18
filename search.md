@@ -118,62 +118,99 @@ permalink: /search/
 
 <script>
     (function () {
-        const searchInput = document.getElementById('searchInput');
-        const searchResults = document.getElementById('searchResults');
         let searchIndex = [];
+        let searchIndexLoaded = false;
 
-        // Fetch the search index
-        fetch('{{ "/search.json" | relative_url }}')
-            .then(response => response.json())
-            .then(data => {
-                searchIndex = data;
-            })
-            .catch(error => {
-                console.error('Error loading search index:', error);
-                searchResults.innerHTML = '<p style="text-align:center; color: var(--body-color);">Error loading search data.</p>';
-            });
-
-        searchInput.addEventListener('input', function () {
-            const query = this.value.toLowerCase();
-            searchResults.innerHTML = '';
-
-            if (query.length < 2) return;
-
-            if (!searchIndex.length) {
-                searchResults.innerHTML = '<p style="text-align:center; color: var(--body-color);">Loading search data...</p>';
+        /* Function to initialize search */
+        function initSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const searchResults = document.getElementById('searchResults');
+            
+            /* Exit if elements don't exist (not on search page) */
+            if (!searchInput || !searchResults) {
                 return;
             }
 
-            const results = searchIndex.filter(item => {
-                return (item.title && item.title.toLowerCase().includes(query)) ||
-                       (item.content && item.content.toLowerCase().includes(query));
-            });
-
-            if (results.length > 0) {
-                results.forEach(item => {
-                    // Create container link
-                    const aContainer = document.createElement('a');
-                    aContainer.href = item.url;
-                    aContainer.className = 'search-result-item';
-                    
-                    // Create title element
-                    const title = document.createElement('span');
-                    title.className = 'search-result-title';
-                    title.textContent = item.title || item.url;
-                    
-                    // Create excerpt element
-                    const excerpt = document.createElement('p');
-                    excerpt.className = 'search-result-excerpt';
-                    excerpt.textContent = item.content;
-                    
-                    aContainer.appendChild(title);
-                    aContainer.appendChild(excerpt);
-
-                    searchResults.appendChild(aContainer);
-                });
-            } else {
-                searchResults.innerHTML = '<p style="text-align:center; color: var(--body-color);">No results found.</p>';
+            /* Load search index if not loaded */
+            if (!searchIndexLoaded) {
+                fetch('{{ "/search.json" | relative_url }}')
+                    .then(response => {
+                        if (!response.ok) {
+                             throw new Error("HTTP error " + response.status);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        searchIndex = data;
+                        searchIndexLoaded = true;
+                    })
+                    .catch(error => {
+                        console.error('Error loading search index:', error);
+                        searchResults.innerHTML = '<p style="text-align:center; color: var(--body-color);">Error loading search data: ' + error.message + '</p>';
+                    });
             }
-        });
+
+            /* Remove any existing listeners by cloning the element */
+            const newInput = searchInput.cloneNode(true);
+            searchInput.parentNode.replaceChild(newInput, searchInput);
+
+            /* Add input event listener */
+            newInput.addEventListener('input', function () {
+                const resultsContainer = document.getElementById('searchResults');
+                const query = this.value.toLowerCase();
+                resultsContainer.innerHTML = '';
+
+                if (query.length < 2) return;
+
+                if (!searchIndex.length) {
+                    resultsContainer.innerHTML = '<p style="text-align:center; color: var(--body-color);">Loading search data...</p>';
+                    return;
+                }
+
+                const results = searchIndex.filter(item => {
+                    return (item.title && item.title.toLowerCase().includes(query)) ||
+                           (item.content && item.content.toLowerCase().includes(query));
+                });
+
+                if (results.length > 0) {
+                    results.forEach(item => {
+                        /* Create container link */
+                        const aContainer = document.createElement('a');
+                        aContainer.href = item.url;
+                        aContainer.className = 'search-result-item';
+                        
+                        /* Create title element */
+                        const title = document.createElement('span');
+                        title.className = 'search-result-title';
+                        title.textContent = item.title || item.url;
+                        
+                        /* Create excerpt element */
+                        const excerpt = document.createElement('p');
+                        excerpt.className = 'search-result-excerpt';
+                        excerpt.textContent = item.content;
+                        
+                        aContainer.appendChild(title);
+                        aContainer.appendChild(excerpt);
+
+                        resultsContainer.appendChild(aContainer);
+                    });
+                } else {
+                    resultsContainer.innerHTML = '<p style="text-align:center; color: var(--body-color);">No results found.</p>';
+                }
+            });
+        }
+
+        /* Initialize on DOMContentLoaded */
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initSearch);
+        } else {
+            initSearch();
+        }
+
+        /* Re-initialize on Hydejack's push-state navigation */
+        /* Using multiple events to catch different versions/cases */
+        window.addEventListener('hy:pjax:end', initSearch);
+        document.addEventListener('hy-push-state-load', initSearch);
+        document.addEventListener('hy-push-state-ready', initSearch);
     })();
 </script>
