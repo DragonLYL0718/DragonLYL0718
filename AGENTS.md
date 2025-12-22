@@ -63,3 +63,15 @@ JEKYLL_ENV=production bundle exec jekyll serve
 ## 4. Reference
 For deep dives into specific bugs (especially JS/PJAX issues), consult:
 `assets/readme.md`
+
+## 5. Feature Documentation
+
+### 5.1 Interactive Map (Gallery)
+*   **Location**: `/travel/` (Gallery Page)
+*   **Implementation**: Leaflet.js + Leaflet.markercluster
+*   **Data Source**: `lat` and `lng` keys in `_galleries/*.md` files.
+*   **Styles**: Map styles are located in `_sass/my-style.scss` under the "Map Styles" section.
+*   **Dependencies**:
+    *   `leaflet.css` / `leaflet.js` (unpkg CDN)
+    *   `leaflet.markercluster` (unpkg CDN)
+
