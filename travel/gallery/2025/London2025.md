@@ -1,7 +1,7 @@
 ---
 layout: pagefigure
 title: London
-permalink: /travel/london2026
+permalink: /travel/london2025
 images:
 - url: https://travelfigure.rayleigh-lin.top/2025/London/_RAY0005.webp
   thumbnail: https://travelfigure.rayleigh-lin.top/2025/LondonC/_RAY0005.webp
