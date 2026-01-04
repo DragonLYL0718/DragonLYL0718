@@ -8,8 +8,12 @@ author1:
   # Used at the bottom of each page and at the top of the `about` layout
   # Markdown enabled, can use multiple paragraphs (enabled by `|`)
   about: |
-    ## Hi, I'm Yilong Lin (林毅龙, Rayleigh), an HCI researcher.
-
+    <div class="en">
+      <h2>Hi, I’m Yilong Lin (林毅龙, Rayleigh), an HCI researcher.</h2>
+    </div>
+    <div class="zh">
+      <h2>哈喽，我是林毅龙 (Rayleigh)，一名人机交互研究员。</h2>
+    </div>
   # This photo will be used in the about section
   picture:
     path: https://pageasset.rayleigh-lin.top/aboutlogo.webp

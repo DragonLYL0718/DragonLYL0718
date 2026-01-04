@@ -25,16 +25,18 @@
             </div>
 
             <div class="nav-span"></div>
+
+            <!-- Language Toggle Component -->
+            <a id="_lang-toggle" class="nav-btn no-hover" href="javascript:void(0)" aria-label="Toggle Language"
+                title="Switch Language / 切换语言">
+                <span class="icon-lang-custom"></span>
+            </a>
         </div>
     </div>
 </div>
 <hr class="sr-only" hidden />
 
 <style>
-    #navbar-search-dropdown {
-        /* Adjust positioning if needed to not go off-screen appropriately, though left:0 aligns with button */
-    }
-
     #navbar-search-results li {
         padding: 5px 0;
         border-bottom: 1px solid rgba(0, 0, 0, 0.05);
@@ -87,6 +89,62 @@
     body.dark-mode .search-match {
         background: rgba(255, 255, 0, 0.2);
         color: #fff;
+    }
+
+    /* Language Toggle Visibility */
+    /* By default show both or let logic handle - typically we hide the non-active one */
+    /* Assuming content is marked with .lang-en and .lang-zh */
+    body.lang-zh .lang-en,
+    body.lang-zh .en {
+        display: none !important;
+    }
+
+    body.lang-en .lang-zh,
+    body.lang-en .zh {
+        display: none !important;
+    }
+
+    /* Flex Order Control */
+    .nav-btn-bar {
+        display: flex !important;
+        align-items: center;
+    }
+
+    #_menu {
+        order: 1;
+    }
+
+    #navbar-search-component {
+        order: 2;
+    }
+
+    #_dark-mode {
+        order: 3 !important;
+    }
+
+    #_lang-toggle {
+        order: 4;
+    }
+
+    .nav-span {
+        order: 5;
+    }
+
+    /* Colored Icon using Mask */
+    .icon-lang-custom {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background-color: currentColor;
+        -webkit-mask-image: url('{{ "/assets/img/lang-icon.png" | relative_url }}');
+        mask-image: url('{{ "/assets/img/lang-icon.png" | relative_url }}');
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        vertical-align: middle;
     }
 </style>
 
@@ -297,5 +355,52 @@
         if (document.readyState === 'interactive' || document.readyState === 'complete') {
             deferredInit();
         }
+    })();
+
+    (function () {
+        const LANG_KEY = 'site_language';
+        const DEFAULT_LANG = 'en';
+
+        function getPreferredLang() {
+            const stored = localStorage.getItem(LANG_KEY);
+            if (stored) return stored;
+            const browser = navigator.language || navigator.userLanguage;
+            if (browser && browser.toLowerCase().startsWith('zh')) {
+                return 'zh';
+            }
+            return DEFAULT_LANG;
+        }
+
+        function setLang(lang) {
+            document.body.classList.remove('lang-zh', 'lang-en');
+            document.body.classList.add('lang-' + lang);
+            localStorage.setItem(LANG_KEY, lang);
+
+            const btn = document.getElementById('_lang-toggle');
+            if (btn) {
+                btn.setAttribute('title', lang === 'zh' ? 'Switch to English' : '切换到中文');
+            }
+        }
+
+        function toggleLang() {
+            const current = document.body.classList.contains('lang-zh') ? 'zh' : 'en';
+            const next = current === 'zh' ? 'en' : 'zh';
+            setLang(next);
+        }
+
+        const initialLang = getPreferredLang();
+        setLang(initialLang);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('_lang-toggle');
+            if (btn) {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    toggleLang();
+                });
+                btn.setAttribute('title', initialLang === 'zh' ? 'Switch to English' : '切换到中文');
+            }
+        });
     })();
 </script>

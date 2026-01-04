@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Boston
+title_zh: 波士顿
 description: '2024.5.21 - 2024.5.27
 
   '

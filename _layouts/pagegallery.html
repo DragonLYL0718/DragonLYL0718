@@ -13,7 +13,10 @@ layout: page
 
 <div class="tab-container" data-gallery-page="true">
     <div class="tab-nav">
-        <button class="tab-btn active" data-year="All" onclick="GalleryPage.openYear(event, 'All')">All</button>
+        <button class="tab-btn active" data-year="All" onclick="GalleryPage.openYear(event, 'All')">
+            <span class="en">All</span>
+            <span class="zh">全部</span>
+        </button>
 
         {% assign raw_years = site.galleries | map: "year" | uniq %}
         {% assign numeric_years = "" | split: "" %}
@@ -90,8 +93,10 @@ layout: page
             %} {% if group_older.size> 0 %}
             <div class="dropdown">
                 {% assign year_list_older = group_older | join: "," %}
-                <button class="tab-btn dropbtn" onclick="GalleryPage.openGroup(event, '{{ year_list_older }}')">Before
-                    2021</button>
+                <button class="tab-btn dropbtn" onclick="GalleryPage.openGroup(event, '{{ year_list_older }}')">
+                    <span class="en">Before 2021</span>
+                    <span class="zh">2021之前</span>
+                </button>
                 <div class="dropdown-content">
                     {% for y in group_older %}
                     <button class="tab-btn" onclick="GalleryPage.openYear(event, '{{ y }}')">{{ y }}</button>
@@ -100,10 +105,36 @@ layout: page
             </div>
             {% endif %}
 
-            <button class="tab-btn active-map" id="map-toggle-btn" onclick="GalleryPage.toggleMap(event)">Map</button>
+            <button class="tab-btn active-map" id="map-toggle-btn" onclick="GalleryPage.toggleMap(event)">
+                <span class="en">Map</span>
+                <span class="zh">地图</span>
+            </button>
     </div>
 
-    <input type="text" id="searchInput" placeholder="Search for locations..." onkeyup="GalleryPage.filterGalleries()">
+    <div class="search-container" style="position:relative;">
+        <input type="text" id="searchInput" class="en" placeholder="Search for locations..."
+            onkeyup="GalleryPage.filterGalleries()">
+        <input type="text" id="searchInputZh" class="zh" placeholder="搜索地点..." onkeyup="GalleryPage.filterGalleries()"
+            style="display:none;">
+    </div>
+    <!-- Simple script to toggle search input visibility based on body class -->
+    <style>
+        body.lang-zh #searchInput.en {
+            display: none;
+        }
+
+        body.lang-zh #searchInputZh.zh {
+            display: block !important;
+        }
+
+        body.lang-en #searchInputZh.zh {
+            display: none;
+        }
+
+        body.lang-en #searchInput.en {
+            display: block !important;
+        }
+    </style>
 
     <!-- Map Container moved outside tab content and visible by default -->
     <div id="Map" class="map-section" style="display: block; margin-bottom: 20px;">
@@ -113,7 +144,10 @@ layout: page
     <div id="gallery-content">
         {% for year in sorted_years %}
         <div id="{{ year }}" class="tab-content is-visible">
-            <h2>{{ year }}</h2>
+            <h2>
+                <span class="en">{{ year }}</span>
+                <span class="zh">{{ year }}年</span>
+            </h2>
             <div class="gallery-grid">
                 {% assign galleries_by_year = site.galleries | where: "year", year %}
                 {% for gallery in galleries_by_year %}
@@ -123,7 +157,10 @@ layout: page
                         <a href="{{ item.url }}">
                             <img class="lozad" data-src="{{ item.image }}"
                                 src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxIDEiPjwvc3ZnPg==" />
-                            <div class="card-text">{{ item.title }}</div>
+                            <div class="card-text">
+                                <span class="en">{{ item.title }}</span>
+                                <span class="zh">{{ item.title_zh | default: item.title }}</span>
+                            </div>
                         </a>
                     </div>
                 </div>
