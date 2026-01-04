@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Liverpool
+title_zh: 利物浦
 permalink: /travel/liverpool2026
 images:
 - url: https://travelfigure.rayleigh-lin.top/2026/Liverpool/_RAY0599.webp

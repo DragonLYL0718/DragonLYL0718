@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Daejeon
+title_zh: 大田
 description: '2024.10 - 2024.11
 
   '

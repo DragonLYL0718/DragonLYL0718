@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Sichuan
+title_zh: 四川
 description: '2025.6.23
 
   '

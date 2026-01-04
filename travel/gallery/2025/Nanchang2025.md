@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Nanchang
+title_zh: 南昌
 description: '2025.4.18 - 2025.4.20
 
   '

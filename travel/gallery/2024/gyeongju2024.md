@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Gyeongju
+title_zh: 庆州
 description: '2024.12.22
 
   '

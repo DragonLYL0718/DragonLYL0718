@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Hong Kong
+title_zh: 香港
 description: '2023.10.28
 
   '

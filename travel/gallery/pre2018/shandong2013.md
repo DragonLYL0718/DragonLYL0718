@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Shandong
+title_zh: 山东
 description: 2013.8.13-8.20
 permalink: /travel/shandong2013/
 images:

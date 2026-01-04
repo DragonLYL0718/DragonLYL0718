@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Worcester
+title_zh: 伍斯特
 permalink: /travel/worcester2025
 images:
 - url: https://travelfigure.rayleigh-lin.top/2025/Worcester/_RAY9504.webp

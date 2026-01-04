@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Foshan
+title_zh: 佛山
 permalink: /travel/foshan2021/
 images:
 - url: https://hobbyfigure.rayleigh-lin.top/2021Foshan/_MG_9977.webp

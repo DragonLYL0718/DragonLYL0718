@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: New York
+title_zh: 纽约
 description: '2025.2.16-2.17
 
   '

@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Jeonju
+title_zh: 全州
 description: '2025.3.9
 
   '

@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: London
+title_zh: 伦敦
 permalink: /travel/london2025
 images:
 - url: https://travelfigure.rayleigh-lin.top/2025/London/_RAY0005.webp

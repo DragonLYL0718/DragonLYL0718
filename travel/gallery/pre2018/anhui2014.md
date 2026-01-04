@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Anhui
+title_zh: 安徽
 description: 2014.7.24-7.25
 permalink: /travel/anhui2014/
 images:

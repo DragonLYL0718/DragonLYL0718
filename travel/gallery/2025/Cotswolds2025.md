@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Cotswolds
+title_zh: 科茨沃尔德
 permalink: /travel/cotswolds2025
 images:
 - url: https://travelfigure.rayleigh-lin.top/2025/Cotswolds/_RAY0503.webp

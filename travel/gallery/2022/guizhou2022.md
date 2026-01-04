@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Guizhou
+title_zh: 贵州
 description: '2022.7.3 - 2022.7.6
 
   '

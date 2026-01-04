@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Stratford-upon-Avon
+title_zh: 斯特拉特福
 description: '2025.9.13
 
   '

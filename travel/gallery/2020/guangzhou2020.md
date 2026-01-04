@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Guangzhou
+title_zh: 广州
 permalink: /travel/guangzhou2020/
 images:
   - url: https://hobbyfigure.rayleigh-lin.top/2020Guangzhou/IMG_9180.webp

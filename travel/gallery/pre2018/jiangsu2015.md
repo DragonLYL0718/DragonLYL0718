@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Jiangsu
+title_zh: 江苏
 description: 2015.7.19-7.26
 permalink: /travel/jiangsu2015/
 images:

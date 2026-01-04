@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Busan
+title_zh: 釜山
 description: '2025.3.22-2025.3.23
 
   '

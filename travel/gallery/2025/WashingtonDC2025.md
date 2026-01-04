@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Washington, D.C.
+title_zh: 华盛顿特区
 description: '2025.2.10-2.20
 
   '

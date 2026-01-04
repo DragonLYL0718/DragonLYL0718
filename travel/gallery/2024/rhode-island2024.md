@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Rhode Island
+title_zh: 罗德岛
 description: '2024.5.24
 
   '

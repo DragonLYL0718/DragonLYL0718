@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Dafen Village
+title_zh: 大芬油画村
 description: '2024.1.13
 
   '

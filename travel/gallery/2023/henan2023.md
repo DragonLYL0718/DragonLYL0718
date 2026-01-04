@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Henan
+title_zh: 河南
 description: '2023.6.25-2023.6.28
 
   '

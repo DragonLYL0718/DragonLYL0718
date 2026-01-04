@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Shanghai
+title_zh: 上海
 description: '2021.1.3 - 2021.1.8
 
   '

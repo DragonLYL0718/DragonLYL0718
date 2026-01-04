@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Leamington Spa
+title_zh: 皇家列明顿温泉
 permalink: /travel/leamington-spa2025
 images:
 - url: https://travelfigure.rayleigh-lin.top/2025/Leamington-Spa/_RAY9196.webp

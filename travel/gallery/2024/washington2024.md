@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Washington
+title_zh: 华盛顿州
 description: '2024.10.19 - 2024.10.26
 
   '

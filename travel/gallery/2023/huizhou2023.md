@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Huizhou
+title_zh: 惠州
 description: ''
 permalink: /travel/huizhou2023/
 images:

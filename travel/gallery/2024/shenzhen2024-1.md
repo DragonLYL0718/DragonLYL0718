@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Shenzhen Observatory, Dapeng Fortress
+title_zh: 深圳天文台，大鹏所城
 description: '2024.1.21
 
   '

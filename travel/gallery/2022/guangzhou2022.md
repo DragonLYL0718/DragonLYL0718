@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Guangzhou
+title_zh: 广州
 permalink: /travel/guangzhou2022/
 images:
 - url: https://hobbyfigure.rayleigh-lin.top/2022Guangzhou/_MG_1624.webp

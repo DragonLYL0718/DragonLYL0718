@@ -1,10 +1,11 @@
 ---
 layout: pagefigure
-title: Others
+title: Guangdong
+title_zh: 广东
 description: 'Fuoshan, Dongguan, Shenzhen
 
   '
-permalink: /travel/other2023/
+permalink: /travel/guangdong2023/
 images:
 - url: https://hobbyfigure.rayleigh-lin.top/guangdong2023/_RAY2588.webp
   thumbnail: https://hobbyfigure.rayleigh-lin.top/guangdong2023c/_RAY2588.webp

@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Hong Kong
+title_zh: 香港
 description: 2011.8.18-8.19
 permalink: /travel/hongkong2011/
 images:

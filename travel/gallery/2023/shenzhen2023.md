@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Shenzhen
+title_zh: 深圳
 description: ''
 permalink: /travel/shenzhen2023/
 images:

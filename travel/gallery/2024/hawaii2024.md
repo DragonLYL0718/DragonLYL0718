@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Hawaii
+title_zh: 夏威夷
 description: '2024.5.17 - 2024.5.18
 
   '

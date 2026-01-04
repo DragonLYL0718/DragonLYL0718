@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Gangneung
+title_zh: 江陵
 description: '2025.1.19
 
   '

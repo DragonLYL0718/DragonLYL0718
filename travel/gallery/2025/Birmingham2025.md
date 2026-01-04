@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Birmingham
+title_zh: 伯明翰
 permalink: /travel/birmingham2025
 images:
 - url: https://travelfigure.rayleigh-lin.top/2025/Birmingham/_RAY8949.webp

@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Seoul
+title_zh: 首尔
 description: '2024.12.15
 
   '

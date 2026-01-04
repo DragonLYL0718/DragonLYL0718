@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Warwick
+title_zh: 华威
 permalink: /travel/warwick2025
 images:
 - url: https://travelfigure.rayleigh-lin.top/2025/Warwick/_RAY9660.webp

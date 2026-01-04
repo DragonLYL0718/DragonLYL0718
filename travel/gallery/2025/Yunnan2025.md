@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Yunnan
+title_zh: 云南
 description: '2025.4.13 - 2025.4.17
 
   '

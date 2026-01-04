@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Huizhou
+title_zh: 惠州
 permalink: /travel/huizhou2021/
 images:
 - url: https://hobbyfigure.rayleigh-lin.top/2021Huizhou/_MG_9886.webp

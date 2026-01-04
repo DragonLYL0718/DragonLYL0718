@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Daegu
+title_zh: 大邱
 description: '2025.1.12
 
   '

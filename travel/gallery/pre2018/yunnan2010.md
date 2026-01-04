@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Yunnan
+title_zh: 云南
 description: 2010.8.5-8.13
 permalink: /travel/yunnan2010/
 images:

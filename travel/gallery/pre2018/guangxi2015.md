@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Guangxi & Guizhou
+title_zh: 广西与贵州
 description: 2015.8.1-8.8
 permalink: /travel/guangxi2015/
 images:

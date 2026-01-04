@@ -1,6 +1,7 @@
 ---
 layout: pagegallery # 或者是你想要使用的任何布局
 title: Shenzhen
+title_zh: 深圳
 description: >
   Shenzhen Observatory, Dapeng Fortress
 permalink: /travel/shenzhen2024/ # 可选的，链接到这个页面的路径

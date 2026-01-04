@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Xinjiang
+title_zh: 新疆
 description: '2025.6.13 - 2025.6.22
 
   '

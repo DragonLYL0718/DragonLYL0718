@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Coventry
+title_zh: 考文垂
 permalink: /travel/coventry2025
 images:
 - url: https://travelfigure.rayleigh-lin.top/2025/Coventry/_RAY9269.webp

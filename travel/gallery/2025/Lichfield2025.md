@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Lichfield
+title_zh: 利奇菲尔德
 permalink: /travel/lichfield2025
 images:
 images:

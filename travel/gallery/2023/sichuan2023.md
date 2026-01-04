@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Sichuan
+title_zh: 四川
 description: '2023.10.12-2023.10.15
 
   '

@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Incheon
+title_zh: 仁川
 description: '2025.1.23
 
   '

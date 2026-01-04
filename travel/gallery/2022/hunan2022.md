@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Hunan
+title_zh: 湖南
 description: '2022.6.23 - 2022.6.28
 
   '

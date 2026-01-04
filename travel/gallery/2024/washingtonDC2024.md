@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Washington, D.C.
+title_zh: 华盛顿特区
 description: '2024.5.19 - 2024.5.21
 
   '

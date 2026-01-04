@@ -1,6 +1,7 @@
 ---
 layout: pagefigure
 title: Xiamen
+title_zh: 厦门
 description: 2018.6.19-6.21
 permalink: /travel/xiamen2018/
 images:
