@@ -618,25 +618,39 @@ video {
 
 /*
 ================================================================================
-  Search Bar Styles
+  Search Bar Styles (Gallery Page)
 ================================================================================
 */
-.tab-container>#searchInput {
+.tab-container .search-container {
     width: 100%;
-    max-width: none;
-    /* Override any max-width from theme styles */
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    transition: border-color 0.3s;
+    margin: 1rem 0;
 }
 
-#searchInput:focus {
+.tab-container .search-container input[type="text"] {
+    width: 100%;
+    max-width: none;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background-color: var(--body-bg, #fff);
+    color: var(--body-color, #333);
+}
+
+.tab-container .search-container input[type="text"]:focus {
     border-color: #4FB1BA;
     outline: none;
+    box-shadow: 0 0 0 3px rgba(79, 177, 186, 0.2);
+}
+
+@media (prefers-color-scheme: dark) {
+    .tab-container .search-container input[type="text"] {
+        background-color: #2c2c2c;
+        border-color: #444;
+        color: #ddd;
+    }
 }
 
 /*

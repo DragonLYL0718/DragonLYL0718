@@ -311,14 +311,20 @@
 
   GalleryPage.filterGalleries = function () {
     const searchInput = document.getElementById('searchInput');
+    const searchInputZh = document.getElementById('searchInputZh');
     const galleryContent = document.getElementById('gallery-content');
     const searchResults = document.getElementById('search-results');
 
-    if (!searchInput || !galleryContent || !searchResults) {
+    if (!galleryContent || !searchResults) {
       return;
     }
 
-    const filter = searchInput.value.toLowerCase();
+    let filter = '';
+    if (searchInput && getComputedStyle(searchInput).display !== 'none') {
+      filter = searchInput.value.toLowerCase();
+    } else if (searchInputZh && getComputedStyle(searchInputZh).display !== 'none') {
+      filter = searchInputZh.value.toLowerCase();
+    }
 
     if (filter.length > 0) {
       galleryContent.style.display = 'none';
@@ -387,6 +393,7 @@
     }
 
     const searchInput = document.getElementById('searchInput');
+    const searchInputZh = document.getElementById('searchInputZh');
 
     if (state.isMapVisible) {
       if (!state.map) {
@@ -401,9 +408,6 @@
         tabcontent[i].classList.add('is-visible');
         tabcontent[i].style.display = 'block';
       }
-      if (searchInput) {
-        searchInput.style.display = 'block';
-      }
     } else {
       const targets = yearListStr.split(',');
       targets.forEach(function (y) {
@@ -413,15 +417,11 @@
           targetElement.style.display = 'block';
         }
       });
-      if (searchInput) {
-        searchInput.style.display = 'block';
-      }
     }
 
-    if (searchInput) {
-      searchInput.value = '';
-      GalleryPage.filterGalleries();
-    }
+    if (searchInput) searchInput.value = '';
+    if (searchInputZh) searchInputZh.value = '';
+    GalleryPage.filterGalleries();
   };
 
   function initGalleryPage() {
