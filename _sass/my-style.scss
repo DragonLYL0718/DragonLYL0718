@@ -46,7 +46,8 @@
     background-color: transparent;
     font-size: 1rem;
     font-weight: 500;
-    color: #888;
+    color: #555;
+    /* Darker grey for better visibility in light mode */
     transition: all 0.3s ease;
     border-bottom: 3px solid transparent;
     margin-bottom: -2px;
@@ -59,10 +60,23 @@
 }
 
 @media (prefers-color-scheme: dark) {
-    .tab-btn:hover {
+    body:not(.light-mode) .tab-btn {
+        color: #aaa;
+    }
+
+    body:not(.light-mode) .tab-btn:hover {
         color: #ddd;
         background-color: rgba(255, 255, 255, 0.1);
     }
+}
+
+body.dark-mode .tab-btn {
+    color: #aaa;
+}
+
+body.dark-mode .tab-btn:hover {
+    color: #ddd;
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .tab-btn.active {
@@ -110,10 +124,15 @@
 }
 
 @media (prefers-color-scheme: dark) {
-    .dropdown-content {
+    body:not(.light-mode) .dropdown-content {
         background-color: #2c2c2c;
         box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.5);
     }
+}
+
+body.dark-mode .dropdown-content {
+    background-color: #2c2c2c;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.5);
 }
 
 .dropdown-content .tab-btn {
@@ -136,10 +155,15 @@
 }
 
 @media (prefers-color-scheme: dark) {
-    .dropdown:hover .tab-btn.dropbtn {
+    body:not(.light-mode) .dropdown:hover .tab-btn.dropbtn {
         background-color: rgba(255, 255, 255, 0.1);
         color: #ddd;
     }
+}
+
+body.dark-mode .dropdown:hover .tab-btn.dropbtn {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ddd;
 }
 
 /*
@@ -635,8 +659,10 @@ video {
     border-radius: 6px;
     font-size: 16px;
     transition: all 0.3s ease;
-    background-color: var(--body-bg, #fff);
-    color: var(--body-color, #333);
+    background-color: #ffffff;
+    /* Explicitly white in light mode */
+    color: #333333;
+    /* Explicitly dark in light mode */
 }
 
 .tab-container .search-container input[type="text"]:focus {
@@ -646,11 +672,17 @@ video {
 }
 
 @media (prefers-color-scheme: dark) {
-    .tab-container .search-container input[type="text"] {
+    body:not(.light-mode) .tab-container .search-container input[type="text"] {
         background-color: #2c2c2c;
         border-color: #444;
         color: #ddd;
     }
+}
+
+body.dark-mode .tab-container .search-container input[type="text"] {
+    background-color: #2c2c2c;
+    border-color: #444;
+    color: #ddd;
 }
 
 /*
