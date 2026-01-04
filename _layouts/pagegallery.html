@@ -2,133 +2,145 @@
 layout: page
 ---
 
-<head>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
-    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
-    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+<div class="tab-container">
+    <div class="tab-nav">
+        <button class="tab-btn active" data-year="All" onclick="GalleryPage.openYear(event, 'All')">All</button>
+        {% assign years = site.galleries | map: "year" | uniq %}
+        {% assign sorted_years = '' | split: '' %}
+        {% assign pre_2018_year = '' %}
 
-</head>
+        {% for year in years %}
+        {% if year == "pre-2018" %}
+        {% assign pre_2018_year = year %}
+        {% else %}
+        {% assign sorted_years = sorted_years | push: year %}
+        {% endif %}
+        {% endfor %}
 
-<body>
-    <div class="tab-container">
-        <div class="tab-nav">
-            <button class="tab-btn active" data-year="All" onclick="GalleryPage.openYear(event, 'All')">All</button>
-            {% assign years = site.galleries | map: "year" | uniq %}
-            {% assign sorted_years = '' | split: '' %}
-            {% assign pre_2018_year = '' %}
+        {% assign sorted_years = sorted_years | sort | reverse %}
 
-            {% for year in years %}
-            {% if year == "pre-2018" %}
-            {% assign pre_2018_year = year %}
-            {% else %}
-            {% assign sorted_years = sorted_years | push: year %}
-            {% endif %}
-            {% endfor %}
+        {% if pre_2018_year != '' %}
+        {% assign sorted_years = sorted_years | push: pre_2018_year %}
+        {% endif %}
 
-            {% assign sorted_years = sorted_years | sort | reverse %}
-
-            {% if pre_2018_year != '' %}
-            {% assign sorted_years = sorted_years | push: pre_2018_year %}
-            {% endif %}
-
-            {% for year in sorted_years %}
-            {% unless year == "Map" %}
-            <button class="tab-btn" data-year="{{ year }}" onclick="GalleryPage.openYear(event, '{{ year }}')">{{ year
-                }}</button>
-            {% endunless %}
-            {% endfor %}
-            <button class="tab-btn" data-year="Map" onclick="GalleryPage.openYear(event, 'Map')">Map</button>
-        </div>
-
-        <input type="text" id="searchInput" placeholder="Search for locations..."
-            onkeyup="GalleryPage.filterGalleries()">
-
-        <div id="gallery-content">
-            {% for year in sorted_years %}
-            <div id="{{ year }}" class="tab-content is-visible">
-                <h2>{{ year }}</h2>
-                <div class="gallery-grid">
-                    {% assign galleries_by_year = site.galleries | where: "year", year %}
-                    {% for gallery in galleries_by_year %}
-                    {% for item in gallery.items %}
-                    <div class="card">
-                        <div class="image-overlay-container">
-                            <a href="{{ item.url }}">
-                                <img src="{{ item.image }}" />
-                                <div class="card-text">{{ item.title }}</div>
-                            </a>
-                        </div>
-                    </div>
-                    {% endfor %}
-                    {% endfor %}
-                </div>
-            </div>
-            {% endfor %}
-            <div id="Map" class="tab-content" style="display: none;">
-                <div id="map-container"></div>
-            </div>
-        </div>
-
-        <div id="search-results" class="gallery-grid" style="display: none;"></div>
+        {% for year in sorted_years %}
+        {% unless year == "Map" %}
+        <button class="tab-btn" data-year="{{ year }}" onclick="GalleryPage.openYear(event, '{{ year }}')">{{ year
+            }}</button>
+        {% endunless %}
+        {% endfor %}
+        <button class="tab-btn active-map" id="map-toggle-btn" onclick="GalleryPage.toggleMap(event)">Map</button>
     </div>
 
-    <script>
-        /*
-        ================================================================================
-          Gallery Page Script (Refactored for Reliability)
-          - Uses global namespace `window.GalleryPage` to persist across PJAX.
-          - Uses inline `onclick` handlers to avoid event binding race conditions.
-        ================================================================================
-        */
-        (function () {
-            /* Create namespace if not exists */
-            window.GalleryPage = window.GalleryPage || {};
+    <input type="text" id="searchInput" placeholder="Search for locations..." onkeyup="GalleryPage.filterGalleries()">
 
-            /* Data */
-            const galleryData = {{ site.galleries | jsonify
-        }};
+    <!-- Map Container moved outside tab content and visible by default -->
+    <div id="Map" class="map-section" style="display: block; margin-bottom: 20px;">
+        <div id="map-container" style="height: 400px; width: 100%;"></div>
+    </div>
 
-        /* State */
-        let map = null;
-        let markerClusterGroup = null;
+    <div id="gallery-content">
+        {% for year in sorted_years %}
+        <div id="{{ year }}" class="tab-content is-visible">
+            <h2>{{ year }}</h2>
+            <div class="gallery-grid">
+                {% assign galleries_by_year = site.galleries | where: "year", year %}
+                {% for gallery in galleries_by_year %}
+                {% for item in gallery.items %}
+                <div class="card">
+                    <div class="image-overlay-container">
+                        <a href="{{ item.url }}">
+                            <img class="lozad" data-src="{{ item.image }}"
+                                src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxIDEiPjwvc3ZnPg==" />
+                            <div class="card-text">{{ item.title }}</div>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 
-        /* Initialize Map */
-        window.GalleryPage.initMap = function () {
-            if (map) return; /* Already initialized */
-            const mapContainer = document.getElementById('map-container');
-            if (!mapContainer) return;
+    <div id="search-results" class="gallery-grid" style="display: none;"></div>
+</div>
 
-            map = L.map('map-container').setView([20, 0], 2);
+<script>
+    /*
+    ================================================================================
+      Gallery Page Script (Refactored for Reliability)
+      - Uses global namespace `window.GalleryPage` to persist across PJAX.
+      - Uses inline `onclick` handlers to avoid event binding race conditions.
+    ================================================================================
+    */
+    (function () {
+        /* Create namespace if not exists */
+        window.GalleryPage = window.GalleryPage || {};
 
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 19,
-                attribution: '© OpenStreetMap contributors'
-            }).addTo(map);
+        /* Data */
+        const galleryData = {{ site.galleries | jsonify
+    }};
 
-            markerClusterGroup = L.markerClusterGroup({
-                maxClusterRadius: 50,
-                iconCreateFunction: function (cluster) {
-                    const count = cluster.getChildCount();
-                    let size = 30;
-                    if (count > 10) size = 40;
-                    if (count > 50) size = 50;
+    /* State */
+    let map = null;
+    let markerClusterGroup = null;
+    let currentYear = 'All';
+    let isMapVisible = true;
 
-                    return L.divIcon({
-                        html: count,
-                        className: 'custom-marker-icon',
-                        iconSize: L.point(size, size),
-                        iconAnchor: [size / 2, size / 2]
-                    });
-                }
-            });
+    /* Initialize Map */
+    window.GalleryPage.initMap = function () {
+        if (map) return; /* Already initialized */
+        const mapContainer = document.getElementById('map-container');
+        if (!mapContainer) return;
 
-            galleryData.forEach(function (gallery) {
+        map = L.map('map-container').setView([20, 0], 2);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        markerClusterGroup = L.markerClusterGroup({
+            maxClusterRadius: 50,
+            iconCreateFunction: function (cluster) {
+                const count = cluster.getChildCount();
+                let size = 30;
+                if (count > 10) size = 40;
+                if (count > 50) size = 50;
+
+                return L.divIcon({
+                    html: count,
+                    className: 'custom-marker-icon',
+                    iconSize: L.point(size, size),
+                    iconAnchor: [size / 2, size / 2]
+                });
+            }
+        });
+
+        /* Initial population of markers */
+        window.GalleryPage.updateMapMarkers(currentYear);
+        map.addLayer(markerClusterGroup);
+    };
+
+    /* Update Markers based on Year */
+    window.GalleryPage.updateMapMarkers = function (year) {
+        if (!markerClusterGroup) return;
+
+        markerClusterGroup.clearLayers();
+
+        galleryData.forEach(function (gallery) {
+            /* Filter logic: if year is 'All', show everything. Else match gallery.year */
+            if (year === 'All' || gallery.year == year) {
                 if (gallery.items) {
                     gallery.items.forEach(function (item) {
                         if (item.lat && item.lng) {
@@ -151,130 +163,181 @@ layout: page
                         }
                     });
                 }
-            });
-            map.addLayer(markerClusterGroup);
-        };
+            }
+        });
+    };
 
-        /* Filter Function */
-        window.GalleryPage.filterGalleries = function () {
-            const searchInput = document.getElementById('searchInput');
-            const galleryContent = document.getElementById('gallery-content');
-            const searchResults = document.getElementById('search-results');
+    /* Toggle Map Visibility */
+    window.GalleryPage.toggleMap = function (evt) {
+        const mapDiv = document.getElementById("Map");
+        const btn = document.getElementById("map-toggle-btn");
 
-            if (!searchInput || !galleryContent || !searchResults) return;
+        isMapVisible = !isMapVisible;
 
-            const filter = searchInput.value.toLowerCase();
+        if (isMapVisible) {
+            mapDiv.style.display = 'block';
+            if (btn) {
+                btn.classList.add('active-map');
+                btn.classList.add('active');
+            }
 
-            if (filter.length > 0) {
-                galleryContent.style.display = 'none';
-                searchResults.innerHTML = '';
-
-                const allCards = galleryContent.querySelectorAll('.card');
-                let matchesFound = false;
-
-                allCards.forEach(function (card) {
-                    const title = card.querySelector('.card-text');
-                    if (title) {
-                        const txtValue = title.textContent || title.innerText;
-                        if (txtValue.toLowerCase().indexOf(filter) > -1) {
-                            searchResults.appendChild(card.cloneNode(true));
-                            matchesFound = true;
-                        }
-                    }
-                });
-
-                if (!matchesFound) {
-                    searchResults.innerHTML = '<p style="text-align: center; width: 100%;">No locations found.</p>';
-                }
-                searchResults.style.display = 'grid';
+            /* Initialize if not already done */
+            if (!map) {
+                window.GalleryPage.initMap();
             } else {
-                galleryContent.style.display = 'block';
-                searchResults.style.display = 'none';
-                searchResults.innerHTML = '';
+                /* Ensure markers are correct for current selection when showing */
+                window.GalleryPage.updateMapMarkers(currentYear);
+            }
 
-                /* Restore visibility: check active tab */
-                const activeBtn = document.querySelector('.tab-btn.active');
-                if (activeBtn && activeBtn.getAttribute('data-year') === 'Map') {
-                    /* Just ensure map is visible */
-                    const mapDiv = document.getElementById('Map');
-                    if (mapDiv) mapDiv.style.display = 'block';
+            setTimeout(function () { if (map) map.invalidateSize(); }, 100);
+        } else {
+            mapDiv.style.display = 'none';
+            if (btn) {
+                btn.classList.remove('active-map');
+                btn.classList.remove('active');
+            }
+        }
+    };
+
+    /* Filter Function (Search Input) */
+    window.GalleryPage.filterGalleries = function () {
+        const searchInput = document.getElementById('searchInput');
+        const galleryContent = document.getElementById('gallery-content');
+        const searchResults = document.getElementById('search-results');
+
+        if (!searchInput || !galleryContent || !searchResults) return;
+
+        const filter = searchInput.value.toLowerCase();
+
+        if (filter.length > 0) {
+            galleryContent.style.display = 'none';
+            searchResults.innerHTML = '';
+
+            const allCards = galleryContent.querySelectorAll('.card');
+            let matchesFound = false;
+
+            allCards.forEach(function (card) {
+                const title = card.querySelector('.card-text');
+                if (title) {
+                    const txtValue = title.textContent || title.innerText;
+                    if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                        searchResults.appendChild(card.cloneNode(true));
+                        matchesFound = true;
+                    }
                 }
+            });
+
+            if (!matchesFound) {
+                searchResults.innerHTML = '<p style="text-align: center; width: 100%;">No locations found.</p>';
             }
-        };
+            searchResults.style.display = 'grid';
+        } else {
+            galleryContent.style.display = 'block';
+            searchResults.style.display = 'none';
+            searchResults.innerHTML = '';
+        }
+    };
 
-        /* Tab Switching */
-        window.GalleryPage.openYear = function (evt, yearName) {
-            const tabContainer = document.querySelector('.tab-container');
-            if (!tabContainer) return;
+    /* Tab Switching */
+    window.GalleryPage.openYear = function (evt, yearName) {
+        currentYear = yearName;
 
-            const tabcontent = tabContainer.getElementsByClassName("tab-content");
-            for (let i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].classList.remove("is-visible");
-                tabcontent[i].style.display = 'none';
-            }
+        const tabContainer = document.querySelector('.tab-container');
+        if (!tabContainer) return;
 
-            const tablinks = tabContainer.getElementsByClassName("tab-btn");
-            for (let i = 0; i < tablinks.length; i++) {
+        const tabcontent = tabContainer.getElementsByClassName("tab-content");
+        for (let i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].classList.remove("is-visible");
+            tabcontent[i].style.display = 'none';
+        }
+
+        const tablinks = tabContainer.getElementsByClassName("tab-btn");
+        /* Only remove active from year tabs, not the map toggle */
+        for (let i = 0; i < tablinks.length; i++) {
+            if (!tablinks[i].classList.contains('active-map') && tablinks[i].id !== 'map-toggle-btn') {
                 tablinks[i].classList.remove("active");
             }
+        }
 
-            const searchInput = document.getElementById('searchInput');
+        const searchInput = document.getElementById('searchInput');
 
-            if (yearName === "All") {
-                for (let i = 0; i < tabcontent.length; i++) {
-                    if (tabcontent[i].id !== "Map") {
-                        tabcontent[i].classList.add("is-visible");
-                        tabcontent[i].style.display = 'block';
-                    }
+        /* Handle Map Filter Updates */
+        if (isMapVisible) {
+            window.GalleryPage.updateMapMarkers(yearName);
+        }
+
+        if (yearName === "All") {
+            for (let i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.add("is-visible");
+                tabcontent[i].style.display = 'block';
+            }
+            if (searchInput) searchInput.style.display = 'block';
+        } else {
+            const targetElement = document.getElementById(yearName);
+            if (targetElement) {
+                targetElement.classList.add("is-visible");
+                targetElement.style.display = 'block';
+            }
+            if (searchInput) searchInput.style.display = 'block';
+        }
+
+        if (evt && evt.target) {
+            evt.target.classList.add("active");
+        }
+
+        /* Reset Search when switching */
+        if (searchInput) {
+            searchInput.value = '';
+            window.GalleryPage.filterGalleries();
+        }
+    };
+
+    /* Initial setup on load */
+    const init = function () {
+        /* Need to set map button style initially */
+        const mapBtn = document.getElementById('map-toggle-btn');
+        if (mapBtn && isMapVisible) {
+            mapBtn.classList.add('active-map');
+            mapBtn.classList.add('active');
+        }
+
+        /* Initialize map immediately because it is visible by default */
+        window.GalleryPage.initMap();
+
+        /* Check active tab, default to All */
+        const activeBtn = document.querySelector('.tab-btn.active');
+        if (!activeBtn) {
+            const allBtn = document.querySelector('.tab-btn[data-year="All"]');
+            if (allBtn) window.GalleryPage.openYear({ target: allBtn }, 'All');
+        }
+
+        /* Initialize Lozad */
+        if (typeof lozad !== 'undefined') {
+            const observer = lozad('.lozad', {
+                /* Load images 200px before they enter viewport */
+                rootMargin: '200px',
+                loaded: function (el) {
+                    el.style.opacity = 1;
                 }
-                if (searchInput) searchInput.style.display = 'block';
-            } else if (yearName === "Map") {
-                const mapDiv = document.getElementById("Map");
-                if (mapDiv) {
-                    mapDiv.classList.add("is-visible");
-                    mapDiv.style.display = 'block';
-                    window.GalleryPage.initMap();
-                    setTimeout(function () { if (map) map.invalidateSize(); }, 100);
-                }
-                if (searchInput) searchInput.style.display = 'none';
-            } else {
-                const targetElement = document.getElementById(yearName);
-                if (targetElement) {
-                    targetElement.classList.add("is-visible");
-                    targetElement.style.display = 'block';
-                }
-                if (searchInput) searchInput.style.display = 'block';
-            }
+            });
+            observer.observe();
+        }
+    };
 
-            if (evt && evt.target) {
-                evt.target.classList.add("active");
-            }
+    /* Execute init immediately */
+    init();
 
-            /* Reset Search when switching */
-            if (searchInput) {
-                searchInput.value = '';
-                window.GalleryPage.filterGalleries();
-            }
-        };
-
-        /* Initial setup on load */
-        const init = function () {
-            /* Check active tab, default to All */
-            const activeBtn = document.querySelector('.tab-btn.active');
-            if (!activeBtn) {
-                const allBtn = document.querySelector('.tab-btn[data-year="All"]');
-                if (allBtn) window.GalleryPage.openYear({ target: allBtn }, 'All');
-            }
-        };
-
-        /* Execute init immediately */
-        init();
-
-        /* Re-run init on PJAX completion (mostly for redundant safety) */
-        window.addEventListener('hy:pjax:end', init);
+    /* Re-run init on PJAX completion (mostly for redundant safety) */
+    window.addEventListener('hy:pjax:end', init);
             
-        }) ();
-    </script>
+    }) ();
+</script>
 
-    {{ content }}
-</body>
+<style>
+    .lozad {
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+    }
+</style>
+
+{{ content }}
