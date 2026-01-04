@@ -8,6 +8,7 @@ This folder contains static assets used by the Jekyll site.
 - When adding inline `<script>` tags in HTML, avoid `//` comments; use `/* ... */`.
 - See `assets/readme.md` for Hydejack PJAX debugging notes.
 - `assets/js/pagegallery.js` powers the travel map/tabs and only initializes when `.tab-container[data-gallery-page="true"]` exists; it reads `site.galleries` JSON from `script#gallery-data`.
+- **Search Logic**: Inline in `_includes/body/menu.html` (not in `assets/js/`).
 
 ## 2. Styles
 - Most custom SCSS lives in `_sass/`; map styles live in `_sass/my-style.scss`.

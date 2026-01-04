@@ -10,6 +10,7 @@ This folder contains Jekyll layouts (HTML + Liquid) used by the site.
 ## 2. Layout Conventions
 - Keep layout changes minimal and prefer `_includes/` for reusable blocks.
 - If adding new layout files, ensure front matter and Liquid blocks are consistent with existing layouts.
+- See `_includes/AGENTS.md` for documentation on partials like `menu.html` (Navbar) and `nav.html`.
 
 ## 3. Specific Layouts
 

@@ -14,4 +14,7 @@ This folder contains SCSS partials used by the Jekyll build.
 - Avoid inline styles in layouts when possible; add SCSS here instead.
 
 ## 4. Component Styles
-- **Dropdowns**: `.dropdown` and `.dropdown-content` classes in `_sass/my-style.scss` handle the hover menus for gallery year grouping.
+
+## 5. Search Styles
+- **Location**: Inline within `_includes/body/menu.html`.
+- **Why**: To keep the search component self-contained. Global variables are still used where applicable.
