@@ -73,6 +73,8 @@ JEKYLL_ENV=production bundle exec jekyll serve
   - **Front Matter**: `images` list (url, thumbnail, alt).
 
 - **Implementation Details**:
+  - **Page Script**: `assets/js/pagegallery.js` defines `window.GalleryPage`, runs PJAX-safe init, and only activates when `.tab-container[data-gallery-page="true"]` exists.
+  - **Data Feed**: `_layouts/pagegallery.html` embeds `script#gallery-data` with `site.galleries` JSON for the map/list UI.
   - **Map**: Leaflet.js + Leaflet.markercluster
   - **Styles**: `_sass/my-style.scss` ("Map Styles" section)
 

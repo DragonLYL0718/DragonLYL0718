@@ -7,6 +7,7 @@ This folder contains static assets used by the Jekyll site.
 - Any DOM-binding logic must be PJAX-safe: initialize on `hy:pjax:end` and make init idempotent.
 - When adding inline `<script>` tags in HTML, avoid `//` comments; use `/* ... */`.
 - See `assets/readme.md` for Hydejack PJAX debugging notes.
+- `assets/js/pagegallery.js` powers the travel map/tabs and only initializes when `.tab-container[data-gallery-page="true"]` exists; it reads `site.galleries` JSON from `script#gallery-data`.
 
 ## 2. Styles
 - Most custom SCSS lives in `_sass/`; map styles live in `_sass/my-style.scss`.

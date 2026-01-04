@@ -17,6 +17,8 @@ This folder contains Jekyll layouts (HTML + Liquid) used by the site.
 - **Purpose**: Main entry point for `/travel/`.
 - **Features**: 
   - **Namespace**: `window.GalleryPage` (handles Map init, Filtering, Tab switching).
+  - **Script**: `assets/js/pagegallery.js` (loaded via `_includes/my-body.html`) and only initializes when `.tab-container[data-gallery-page="true"]` is present.
+  - **Data**: `script#gallery-data` contains `site.galleries` JSON for the map and lists.
   - **Views**: Toggles between Map view (Leaflet) and List view (Grid).
   - **Filtering**: Client-side filtering by "Year" (tabs/dropdowns) and "Location Name" (search input).
   - **Dynamic Menu**: Automatically groups years into 5-year blocks (e.g. 2021-2025) and "Before 2021".
