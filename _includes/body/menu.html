@@ -60,68 +60,85 @@
 
 <script>
     (function () {
-        const toggleBtn = document.getElementById('navbar-search-toggle');
-        const dropdown = document.getElementById('navbar-search-dropdown');
-        const input = document.getElementById('navbar-search-input');
-        const resultsList = document.getElementById('navbar-search-results');
-
-        let searchIndex = [];
-        let isIndexLoaded = false;
-
-        if (toggleBtn) {
-            toggleBtn.addEventListener('click', function (e) {
-                e.stopPropagation();
-                const isHidden = dropdown.style.display === 'none';
-                dropdown.style.display = isHidden ? 'block' : 'none';
-
-                if (isHidden) {
-                    input.focus();
-                    loadSearchIndex();
-                }
-            });
-        }
-
-        // Close on click outside
-        document.addEventListener('click', function (e) {
-            if (dropdown.style.display === 'block' && !dropdown.contains(e.target) && e.target !== toggleBtn && !toggleBtn.contains(e.target)) {
-                dropdown.style.display = 'none';
-            }
+        const state = window.NavbarSearchState || (window.NavbarSearchState = {
+            searchIndex: [],
+            isIndexLoaded: false,
+            isIndexLoading: false
         });
 
-        // Load search index
         function loadSearchIndex() {
-            if (isIndexLoaded) return;
+            if (state.isIndexLoaded || state.isIndexLoading) return;
 
+            state.isIndexLoading = true;
             const searchJsonUrl = '{{ "/search.json" | relative_url }}';
             fetch(searchJsonUrl)
-                .then(response => response.json())
-                .then(data => {
-                    searchIndex = data;
-                    isIndexLoaded = true;
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('HTTP error ' + response.status);
+                    }
+                    return response.json();
                 })
-                .catch(err => console.error('Failed to load search index', err));
+                .then(data => {
+                    state.searchIndex = data;
+                    state.isIndexLoaded = true;
+                })
+                .catch(err => console.error('Failed to load search index', err))
+                .finally(() => {
+                    state.isIndexLoading = false;
+                });
         }
 
-        // Search logic
-        if (input) {
-            input.addEventListener('input', function () {
-                const query = this.value.toLowerCase();
+        function initNavbarSearch() {
+            const root = document.getElementById('navbar-search-component');
+            if (!root) return;
 
-                if (query.length < 2) {
-                    resultsList.innerHTML = '';
-                    return;
-                }
+            const toggleBtn = document.getElementById('navbar-search-toggle');
+            const dropdown = document.getElementById('navbar-search-dropdown');
+            const input = document.getElementById('navbar-search-input');
+            const resultsList = document.getElementById('navbar-search-results');
 
-                if (!isIndexLoaded) return;
+            if (!toggleBtn || !dropdown || !input || !resultsList) return;
 
-                const results = searchIndex.filter(item => {
-                    const title = item.title ? item.title.toLowerCase() : '';
-                    const content = item.content ? item.content.toLowerCase() : '';
-                    return title.includes(query) || content.includes(query);
-                }).slice(0, 10);
+            if (!root.dataset.navbarSearchInitialized) {
+                root.dataset.navbarSearchInitialized = 'true';
 
-                if (results.length > 0) {
-                    resultsList.innerHTML = results.map(item => `
+                toggleBtn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    const isHidden = dropdown.style.display === 'none' || dropdown.style.display === '';
+                    dropdown.style.display = isHidden ? 'block' : 'none';
+
+                    if (isHidden) {
+                        input.focus();
+                        loadSearchIndex();
+                    }
+                });
+            }
+
+            if (!input.dataset.navbarSearchBound) {
+                input.dataset.navbarSearchBound = 'true';
+
+                input.addEventListener('input', function () {
+                    const query = this.value.toLowerCase();
+
+                    if (query.length < 2) {
+                        resultsList.innerHTML = '';
+                        return;
+                    }
+
+                    if (!state.isIndexLoaded) {
+                        resultsList.innerHTML = '<li style="opacity:0.6; font-size:0.9em; padding:5px;">Loading search data...</li>';
+                        loadSearchIndex();
+                        return;
+                    }
+
+                    const results = state.searchIndex.filter(item => {
+                        const title = item.title ? item.title.toLowerCase() : '';
+                        const content = item.content ? item.content.toLowerCase() : '';
+                        return title.includes(query) || content.includes(query);
+                    }).slice(0, 10);
+
+                    if (results.length > 0) {
+                        resultsList.innerHTML = results.map(item => `
             <li>
               <a href="${item.url}">
                 <div style="font-weight:bold; font-size: 0.9em; color: var(--heading-color);">${item.title}</div>
@@ -129,17 +146,46 @@
               </a>
             </li>
           `).join('');
-                } else {
-                    resultsList.innerHTML = '<li style="opacity:0.6; font-size:0.9em; padding:5px;">No results found</li>';
-                }
-            });
+                    } else {
+                        resultsList.innerHTML = '<li style="opacity:0.6; font-size:0.9em; padding:5px;">No results found</li>';
+                    }
+                });
 
-            // Close with Escape
-            input.addEventListener('keydown', function (e) {
-                if (e.key === 'Escape') {
-                    dropdown.style.display = 'none';
-                }
-            });
+                input.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape') {
+                        dropdown.style.display = 'none';
+                    }
+                });
+            }
+
+            if (!document.body.dataset.navbarSearchDocBound) {
+                document.body.dataset.navbarSearchDocBound = 'true';
+
+                document.addEventListener('click', function (e) {
+                    const dropdownEl = document.getElementById('navbar-search-dropdown');
+                    const toggleBtnEl = document.getElementById('navbar-search-toggle');
+
+                    if (!dropdownEl || !toggleBtnEl) return;
+                    if (dropdownEl.style.display !== 'block') return;
+
+                    if (dropdownEl.contains(e.target) || toggleBtnEl.contains(e.target)) {
+                        return;
+                    }
+
+                    dropdownEl.style.display = 'none';
+                });
+            }
+        }
+
+        const deferredInit = function () {
+            requestAnimationFrame(initNavbarSearch);
+        };
+
+        document.addEventListener('DOMContentLoaded', deferredInit, { once: true });
+        window.addEventListener('hy:pjax:end', deferredInit);
+
+        if (document.readyState === 'interactive' || document.readyState === 'complete') {
+            deferredInit();
         }
     })();
 </script>
