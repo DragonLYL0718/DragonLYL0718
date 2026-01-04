@@ -221,10 +221,13 @@
                 }
 
                 input.addEventListener('input', function () {
-                    const query = this.value.toLowerCase();
+                    const rawQuery = this.value.trim();
+                    const query = rawQuery.toLowerCase();
+                    const isCjkQuery = /[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uac00-\ud7af]/.test(rawQuery);
+                    const minLength = isCjkQuery ? 1 : 2;
                     selectedIndex = -1;
 
-                    if (query.length < 2) {
+                    if (query.length < minLength) {
                         resultsList.innerHTML = '';
                         return;
                     }
@@ -242,9 +245,10 @@
                         if (acc.length >= 10) return acc;
 
                         const title = item.title ? item.title.toLowerCase() : '';
+                        const titleZh = item.title_zh ? item.title_zh.toLowerCase() : '';
                         const content = item.content ? item.content.toLowerCase() : '';
 
-                        const titleMatch = title.includes(query);
+                        const titleMatch = title.includes(query) || titleZh.includes(query);
                         const contentMatches = [];
 
                         if (content && query) {
@@ -268,7 +272,7 @@
                             });
 
                             acc.push({
-                                title: item.title,
+                                displayTitle: isCjkQuery ? (item.title_zh || item.title) : (item.title || item.title_zh),
                                 url: item.url,
                                 date: item.date,
                                 image: item.image,
@@ -285,7 +289,7 @@
               <a href="${item.url}" style="display: flex; align-items: start; gap: 10px; text-decoration: none;">
                 ${item.image ? `<img src="${item.image}" alt="" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px; flex-shrink: 0; margin-top: 2px;">` : ''}
                 <div style="flex: 1; min-width: 0;">
-                    <div style="font-weight:bold; font-size: 0.9em; color: var(--heading-color);">${item.title}</div>
+                    <div style="font-weight:bold; font-size: 0.9em; color: var(--heading-color);">${item.displayTitle}</div>
                     ${item.snippets.length > 0 ?
                                 `<div class="search-snippet">${item.snippets.join('<br>')}</div>` :
                                 (item.date ? `<div style="font-size:0.7em; opacity:0.7;">${item.date}</div>` : '')
@@ -483,6 +487,11 @@
             const btn = document.getElementById('_lang-toggle');
             if (btn) {
                 btn.setAttribute('title', lang === 'zh' ? 'Switch to English' : '切换到中文');
+            }
+
+            const searchInput = document.getElementById('navbar-search-input');
+            if (searchInput) {
+                searchInput.placeholder = lang === 'zh' ? '搜索...' : 'Search...';
             }
         }
 
