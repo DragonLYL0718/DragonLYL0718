@@ -4,16 +4,19 @@ This folder contains Liquid partials used in layouts.
 
 ## 1. Key Components
 
-### 1.1 `body/menu.html` (Navbar & Search)
+### 1.1 `body/menu.html` (Navbar, Search, & Language Switch)
 - **Role**: Replaces the default sidebar navigation with a top navbar.
 - **Search Implementation**:
-  - **Logic**: Contains inline JavaScript for fetching `search.json`, filtering results, and rendering image previews.
-  - **Styles**: Contains inline CSS for the search dropdown and highlighted results (scoped to `#search-input` and related elements).
-  - **Reason for Inline**: Kept self-contained for easy portability and to avoid scattered dependencies for this specific feature.
+  - **Logic**: Inline JavaScript for fetching `search.json`. Now includes bilingual search inputs (`#searchInput` and `#searchInputZh`).
+  - **Styles**: Inline CSS for the search dropdown and highlighted results.
+- **Language Switcher**:
+  - **UI**: Added a toggle button with a custom mask-styled icon.
+  - **Logic**: Handles language state detection, `<body>` class toggling, and `localStorage` persistence.
+  - **Styles**: Includes `.en`/`.zh` visibility control rules.
 
-### 1.2 `body/nav.html` (Legacy Sidebar)
-- **Status**: Currently unused/bypassed in favor of `menu.html`.
-- **Note**: Modifying this file will not affect the live site's navigation if `menu.html` is the active include in the layout.
+### 1.2 `body/nav.html` & `body/sidebar-sticky.html` (Bilingual Sidebar)
+- **Role**: Supports the theme's sidebar (hidden on most pages by `menu.html` but kept for layout consistency).
+- **Localization**: Updated to support `title_zh` for menu items and bilingual site title/tagline.
 
 ## 2. Best Practices
 - **Inline Scripts**: Use `/* comments */` to avoid PJAX minification issues.

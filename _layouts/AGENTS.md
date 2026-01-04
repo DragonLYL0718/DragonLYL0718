@@ -11,6 +11,7 @@ This folder contains Jekyll layouts (HTML + Liquid) used by the site.
 - Keep layout changes minimal and prefer `_includes/` for reusable blocks.
 - If adding new layout files, ensure front matter and Liquid blocks are consistent with existing layouts.
 - See `_includes/AGENTS.md` for documentation on partials like `menu.html` (Navbar) and `nav.html`.
+- **Localization**: Many layouts (e.g., `page`, `about`, `pagegallery`) now support bilingual titles via `.en`/`.zh` spans.
 
 ## 3. Specific Layouts
 
@@ -22,6 +23,7 @@ This folder contains Jekyll layouts (HTML + Liquid) used by the site.
   - **Data**: `script#gallery-data` contains `site.galleries` JSON for the map and lists.
   - **Views**: Toggles between Map view (Leaflet) and List view (Grid).
   - **Filtering**: Client-side filtering by "Year" (tabs/dropdowns) and "Location Name" (search input).
+  - **Localization**: UI buttons (All, Map), headers, and card titles use `.en`/`.zh` spans for language-responsive display.
   - **Dynamic Menu**: Automatically groups years into 5-year blocks (e.g. 2021-2025) and "Before 2021".
 
 ### 3.2 `pagefigure.html` (Photo Gallery)

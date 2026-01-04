@@ -18,3 +18,7 @@ This folder contains SCSS partials used by the Jekyll build.
 ## 5. Search Styles
 - **Location**: Inline within `_includes/body/menu.html`.
 - **Why**: To keep the search component self-contained. Global variables are still used where applicable.
+
+## 6. Localization Styles
+- **Location**: Inline within `_includes/body/menu.html`.
+- **Purpose**: High-priority utility rules (e.g., `body.lang-zh .en { display: none !important; }`) that toggle content visibility based on the selected language.

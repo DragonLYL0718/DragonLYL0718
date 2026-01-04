@@ -92,6 +92,34 @@ JEKYLL_ENV=production bundle exec jekyll serve
 - **Exclusions**: `search.json` logic explicitly excludes `LICENSE` and utility pages.
 
 
-## 5. Development Workflow
+## 5. Localization (Bilingual Support)
+The site supports English (`en`) and Chinese (`zh`) via a language switcher.
+
+### 5.1 Language Switcher Implementation
+- **UI**: Added to the top navbar in `_includes/body/menu.html`.
+- **Logic**: 
+  - Detects preferred language from `localStorage` or browser settings.
+  - Toggles `<body>` class between `lang-en` and `lang-zh`.
+  - Persists selection in `localStorage`.
+- **Visibility Control**: 
+  - When `body.lang-zh`, elements with class `.en` are hidden (`display: none !important`).
+  - When `body.lang-en`, elements with class `.zh` are hidden.
+- **Icon**: Customized PNG icon used with CSS mask for theme-consistent coloring.
+
+### 5.2 Content Localization Patterns
+- **Standard Post/Page**: Wrap English content in `<div class="en">` and Chinese in `<div class="zh">`. For simpler elements (like titles), use `<span>`.
+- **Markdown vs HTML**: While Jekyll parses Markdown, complex bilingual structures (nesting divs/spans) may require using pure HTML within `.md` files to ensure consistent rendering.
+- **Front Matter**:
+  - `title_zh`: Chinese version of the page title.
+  - `description_zh`: Chinese meta description.
+  - `tagline_zh`: (Config only) Chinese site tagline.
+
+### 5.3 Component Support
+- **Menu/Nav**: `_includes/body/nav.html` and `_config.yml` (menu items) support `title_zh`.
+- **Sidebar**: `_includes/body/sidebar-sticky.html` displays bilingual site title and tagline.
+- **Layouts**: `_layouts/page.html` and `_layouts/about.html` are overridden to render bilingual titles automatically.
+- **Galleries**: `_layouts/pagegallery.html` supports localized UI elements and card titles.
+
+## 6. Development Workflow
 - **Start Local Server**: `bundle exec jekyll serve`
 - **Start Production Server (Locally)**: `JEKYLL_ENV=production bundle exec jekyll serve`

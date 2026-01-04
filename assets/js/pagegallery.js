@@ -467,10 +467,29 @@
     requestAnimationFrame(initGalleryPage);
   };
 
-  document.addEventListener('DOMContentLoaded', deferredInit, { once: true });
-  window.addEventListener('hy:pjax:end', deferredInit);
+  function bindInitEvents() {
+    if (GalleryPage._eventsBound) {
+      return;
+    }
+    GalleryPage._eventsBound = true;
 
-  if (document.readyState === 'interactive' || document.readyState === 'complete') {
-    deferredInit();
+    document.addEventListener('DOMContentLoaded', deferredInit, { once: true });
+    window.addEventListener('hy:pjax:end', deferredInit);
+    document.addEventListener('hy-push-state-load', deferredInit);
+    document.addEventListener('hy-push-state-ready', deferredInit);
+    document.addEventListener('hy-push-state-after', deferredInit);
+
+    const pushStateEl = document.getElementById('_pushState');
+    if (pushStateEl) {
+      pushStateEl.addEventListener('hy-push-state-load', deferredInit);
+      pushStateEl.addEventListener('hy-push-state-ready', deferredInit);
+      pushStateEl.addEventListener('hy-push-state-after', deferredInit);
+    }
+
+    if (document.readyState === 'interactive' || document.readyState === 'complete') {
+      deferredInit();
+    }
   }
+
+  bindInitEvents();
 })();
