@@ -1,13 +1,11 @@
 ---
 layout: page # 或者是你想要使用的任何布局
-title: Research Project.
+title: "VibroArm: Enhancing the Sensation of Forearm Deformation in Virtual Reality Using Vibrotactile Funneling Illusion"
 description: >
   Research Project.
 hide_description: true
 permalink: /publications/vibroarm/
 ---
-
-## VibroArm: Enhancing the Sensation of Forearm Deformation in Virtual Reality Using Vibrotactile Funneling Illusion
 
 ### Abstract
 

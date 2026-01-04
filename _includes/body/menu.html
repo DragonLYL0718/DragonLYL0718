@@ -1,0 +1,145 @@
+<div id="_navbar" class="navbar fixed-top">
+    <div class="content">
+        <span class="sr-only">{{ site.data.strings.jump_to | default:"Jump to" }}{{ site.data.strings.colon |
+            default:":" }}</span>
+        <div class="nav-btn-bar">
+            <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+                <span class="sr-only">{{ site.data.strings.navigation | default:"Navigation" }}</span>
+                <span class="icon-menu"></span>
+            </a>
+
+            <!-- Navbar Search Component -->
+            <div id="navbar-search-component" style="display:inline-block; position:relative;">
+                <button id="navbar-search-toggle" class="nav-btn no-hover" aria-label="Search">
+                    <span class="icon-search"></span>
+                </button>
+
+                <div id="navbar-search-dropdown"
+                    style="display:none; position:absolute; top:100%; left:0; width:300px; background:var(--body-bg); border:1px solid var(--border-color); box-shadow:0 4px 6px rgba(0,0,0,0.1); border-radius:4px; padding:10px; z-index:9999;">
+                    <input type="text" id="navbar-search-input" placeholder="Search..."
+                        style="width:100%; padding:8px; border:1px solid var(--border-color); border-radius:4px; background:var(--body-bg); color:var(--body-color);">
+                    <ul id="navbar-search-results"
+                        style="list-style:none; padding:0; margin-top:10px; max-height:300px; overflow-y:auto; margin-bottom:0;">
+                    </ul>
+                </div>
+            </div>
+
+            <div class="nav-span"></div>
+        </div>
+    </div>
+</div>
+<hr class="sr-only" hidden />
+
+<style>
+    #navbar-search-dropdown {
+        /* Adjust positioning if needed to not go off-screen appropriately, though left:0 aligns with button */
+    }
+
+    #navbar-search-results li {
+        padding: 5px 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    #navbar-search-results li a {
+        text-decoration: none;
+        display: block;
+    }
+
+    /* Dark mode tweaks if not handled by vars */
+    body.dark-mode #navbar-search-dropdown {
+        background: #2a2d2f;
+        border-color: #444;
+    }
+
+    body.dark-mode #navbar-search-input {
+        background: #333;
+        border-color: #555;
+        color: #fff;
+    }
+</style>
+
+<script>
+    (function () {
+        const toggleBtn = document.getElementById('navbar-search-toggle');
+        const dropdown = document.getElementById('navbar-search-dropdown');
+        const input = document.getElementById('navbar-search-input');
+        const resultsList = document.getElementById('navbar-search-results');
+
+        let searchIndex = [];
+        let isIndexLoaded = false;
+
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                const isHidden = dropdown.style.display === 'none';
+                dropdown.style.display = isHidden ? 'block' : 'none';
+
+                if (isHidden) {
+                    input.focus();
+                    loadSearchIndex();
+                }
+            });
+        }
+
+        // Close on click outside
+        document.addEventListener('click', function (e) {
+            if (dropdown.style.display === 'block' && !dropdown.contains(e.target) && e.target !== toggleBtn && !toggleBtn.contains(e.target)) {
+                dropdown.style.display = 'none';
+            }
+        });
+
+        // Load search index
+        function loadSearchIndex() {
+            if (isIndexLoaded) return;
+
+            const searchJsonUrl = '{{ "/search.json" | relative_url }}';
+            fetch(searchJsonUrl)
+                .then(response => response.json())
+                .then(data => {
+                    searchIndex = data;
+                    isIndexLoaded = true;
+                })
+                .catch(err => console.error('Failed to load search index', err));
+        }
+
+        // Search logic
+        if (input) {
+            input.addEventListener('input', function () {
+                const query = this.value.toLowerCase();
+
+                if (query.length < 2) {
+                    resultsList.innerHTML = '';
+                    return;
+                }
+
+                if (!isIndexLoaded) return;
+
+                const results = searchIndex.filter(item => {
+                    const title = item.title ? item.title.toLowerCase() : '';
+                    const content = item.content ? item.content.toLowerCase() : '';
+                    return title.includes(query) || content.includes(query);
+                }).slice(0, 10);
+
+                if (results.length > 0) {
+                    resultsList.innerHTML = results.map(item => `
+            <li>
+              <a href="${item.url}">
+                <div style="font-weight:bold; font-size: 0.9em; color: var(--heading-color);">${item.title}</div>
+                 ${item.date ? `<div style="font-size:0.7em; opacity:0.7;">${item.date}</div>` : ''}
+              </a>
+            </li>
+          `).join('');
+                } else {
+                    resultsList.innerHTML = '<li style="opacity:0.6; font-size:0.9em; padding:5px;">No results found</li>';
+                }
+            });
+
+            // Close with Escape
+            input.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') {
+                    dropdown.style.display = 'none';
+                }
+            });
+        }
+    })();
+</script>

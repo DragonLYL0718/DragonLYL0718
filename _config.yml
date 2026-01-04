@@ -70,9 +70,9 @@ menu:
     - title: Travel
       title_zh: 旅行
       url: /travel/
-    - title: Search
-      title_zh: 搜索
-      url: /search/
+    # - title: Search
+    #   title_zh: 搜索
+    #   url: /search/
     # - title: VR Lab
     #   title_zh: 虚拟现实实验室
     #   url: https://virtualrealitylab.netlify.app/

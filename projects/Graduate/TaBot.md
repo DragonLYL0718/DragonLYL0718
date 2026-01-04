@@ -1,13 +1,11 @@
 ---
 layout: pageproject # 或者是你想要使用的任何布局
-title: Exhibition Project
+title: "TaBot: Designing an Al-empowered Robotic Table to Promote Balanced Conversational Experiences"
 description: >
   Exhibition Project
 hide_description: true
 permalink: /projects/tabot/
 ---
-
-## TaBot: Designing an Al-empowered Robotic Table to Promote Balanced Conversational Experiences
 
 ### Abstract
 
