@@ -32,7 +32,7 @@
       }
 
       const existing = document.querySelector('link[href="' + href + '"]');
-      if (existing) {
+      if (existing && document.head.contains(existing)) {
         resolve();
         return;
       }
@@ -66,7 +66,7 @@
       }
 
       const existing = document.querySelector('script[src="' + src + '"]');
-      if (existing) {
+      if (existing && document.head.contains(existing)) {
         if (isReady && isReady()) {
           resolve();
           return;
