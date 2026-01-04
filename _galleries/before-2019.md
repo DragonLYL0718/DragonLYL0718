@@ -1,5 +1,5 @@
 ---
-year: "pre-2018"
+year: "Before 2019"
 items:
   - title: "Xiamen, China"
     image: "https://hobbyfigure.rayleigh-lin.top/2018XiamenC/IMG_20180620_084347.webp"

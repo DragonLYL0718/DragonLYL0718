@@ -54,14 +54,27 @@ JEKYLL_ENV=production bundle exec jekyll serve
 
 ## 4. Feature Documentation
 
-### 4.1 Interactive Map (Gallery)
-- **Location**: `/travel/`
-- **Implementation**: Leaflet.js + Leaflet.markercluster
-- **Data Source**: `lat` and `lng` keys in `_galleries/*.md`
-- **Styles**: `_sass/my-style.scss` ("Map Styles" section)
-- **Dependencies**:
-  - `leaflet.css` / `leaflet.js` (unpkg CDN)
-  - `leaflet.markercluster` (unpkg CDN)
+### 4.1 Travel Gallery System
+- **Overview**: The gallery system consists of two parts:
+  1. **Map & Index Data**: Metadata for the interactive map and gallery lists.
+  2. **Content Pages**: Actual photo gallery pages.
+
+- **Part 1: Map Data**
+  - **Location**: `_galleries/YYYY.md` or `_galleries/before-YYYY.md`
+  - **Structure**: YAML files containing a list of `items`.
+  - **Key Fields**: `lat`, `lng`, `url` (link to content page), `image` (thumbnail).
+  - **Usage**: Feeds `_layouts/pagegallery.html` to generate the global map and year-based lists.
+  - **Grouping**: Years > 2020 are dynamically grouped into 5-year blocks (e.g., 2026-2027). Older years are grouped under "Before 2021".
+
+- **Part 2: Content Pages**
+  - **Location**: `/travel/gallery/YYYY/CityName.md`
+  - **Layout**: `pagefigure`
+  - **Implementation**: Masonry grid + Lightbox + Lazy Loading.
+  - **Front Matter**: `images` list (url, thumbnail, alt).
+
+- **Implementation Details**:
+  - **Map**: Leaflet.js + Leaflet.markercluster
+  - **Styles**: `_sass/my-style.scss` ("Map Styles" section)
 
 ## 5. Development Workflow
 - **Start Local Server**: `bundle exec jekyll serve`

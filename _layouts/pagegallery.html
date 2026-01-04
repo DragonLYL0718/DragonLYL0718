@@ -14,31 +14,93 @@ layout: page
 <div class="tab-container">
     <div class="tab-nav">
         <button class="tab-btn active" data-year="All" onclick="GalleryPage.openYear(event, 'All')">All</button>
-        {% assign years = site.galleries | map: "year" | uniq %}
-        {% assign sorted_years = '' | split: '' %}
-        {% assign pre_2018_year = '' %}
 
-        {% for year in years %}
-        {% if year == "pre-2018" %}
-        {% assign pre_2018_year = year %}
+        {% assign raw_years = site.galleries | map: "year" | uniq %}
+        {% assign numeric_years = "" | split: "" %}
+        {% assign string_years = "" | split: "" %}
+
+        {% for y in raw_years %}
+        {% assign y_num = y | plus: 0 %}
+        {% if y_num > 0 %}
+        {% assign numeric_years = numeric_years | push: y %}
         {% else %}
-        {% assign sorted_years = sorted_years | push: year %}
+        {% assign string_years = string_years | push: y %}
         {% endif %}
         {% endfor %}
 
-        {% assign sorted_years = sorted_years | sort | reverse %}
+        {% assign numeric_years = numeric_years | sort | reverse %}
+        {% assign string_years = string_years | sort %}
 
-        {% if pre_2018_year != '' %}
-        {% assign sorted_years = sorted_years | push: pre_2018_year %}
+        {% assign sorted_years = numeric_years | concat: string_years %}
+
+        <!-- 1. Calculate Dynamic Blocks for years > 2020 -->
+        {% assign block_ids = "" %}
+        {% for y in sorted_years %}
+        {% assign y_num = y | plus: 0 %}
+        {% if y_num > 2020 %}
+        <!-- (y-1)/5 to get block index. e.g. 2021..2025 -> 404, 2026..2030 -> 405 -->
+        {% assign bid = y_num | minus: 1 | divided_by: 5 %}
+        {% assign block_ids = block_ids | append: "," | append: bid %}
+        {% endif %}
+        {% endfor %}
+
+        {% assign unique_bids = block_ids | remove_first: "," | split: "," | uniq %}
+
+        <!-- 2. Render Dynamic Dropdowns -->
+        {% for bid in unique_bids %}
+        {% assign current_block_years = "" | split: "" %}
+
+        {% for y in sorted_years %}
+        {% assign y_num = y | plus: 0 %}
+        {% if y_num > 2020 %}
+        {% assign this_bid = y_num | minus: 1 | divided_by: 5 | append: "" %}
+        {% if this_bid == bid %}
+        {% assign current_block_years = current_block_years | push: y %}
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+
+        {% if current_block_years.size > 0 %}
+        {% assign max_y = current_block_years.first %}
+        {% assign min_y = current_block_years.last %}
+        {% assign label = min_y | append: "-" | append: max_y %}
+        {% if min_y == max_y %}
+        {% assign label = min_y %}
         {% endif %}
 
-        {% for year in sorted_years %}
-        {% unless year == "Map" %}
-        <button class="tab-btn" data-year="{{ year }}" onclick="GalleryPage.openYear(event, '{{ year }}')">{{ year
-            }}</button>
-        {% endunless %}
+        <div class="dropdown">
+            {% assign year_list_str = current_block_years | join: "," %}
+            <button class="tab-btn dropbtn" onclick="GalleryPage.openGroup(event, '{{ year_list_str }}')">{{ label
+                }}</button>
+            <div class="dropdown-content">
+                {% for y in current_block_years %}
+                <button class="tab-btn" onclick="GalleryPage.openYear(event, '{{ y }}')">{{ y }}</button>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
         {% endfor %}
-        <button class="tab-btn active-map" id="map-toggle-btn" onclick="GalleryPage.toggleMap(event)">Map</button>
+
+        <!-- 3. Render 'Before 2021' Group for years <= 2020 -->
+        {% assign group_older = "" | split: "" %}
+        {% for y in sorted_years %}
+        {% assign y_num = y | plus: 0 %}
+        <!-- Check for string years (0) or years <= 2020 -->
+        {% if y == "pre-2018" or y_num <= 2020 %} {% assign group_older=group_older | push: y %} {% endif %} {% endfor
+            %} {% if group_older.size> 0 %}
+            <div class="dropdown">
+                {% assign year_list_older = group_older | join: "," %}
+                <button class="tab-btn dropbtn" onclick="GalleryPage.openGroup(event, '{{ year_list_older }}')">Before
+                    2021</button>
+                <div class="dropdown-content">
+                    {% for y in group_older %}
+                    <button class="tab-btn" onclick="GalleryPage.openYear(event, '{{ y }}')">{{ y }}</button>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            <button class="tab-btn active-map" id="map-toggle-btn" onclick="GalleryPage.toggleMap(event)">Map</button>
     </div>
 
     <input type="text" id="searchInput" placeholder="Search for locations..." onkeyup="GalleryPage.filterGalleries()">
@@ -132,15 +194,19 @@ layout: page
         map.addLayer(markerClusterGroup);
     };
 
-    /* Update Markers based on Year */
-    window.GalleryPage.updateMapMarkers = function (year) {
+    /* Update Markers based on Year or List of Years */
+    window.GalleryPage.updateMapMarkers = function (yearOrList) {
         if (!markerClusterGroup) return;
 
         markerClusterGroup.clearLayers();
 
+        // Convert input to array of strings for comparison
+        const targetYears = yearOrList === 'All' ? ['All'] : yearOrList.split(',');
+
         galleryData.forEach(function (gallery) {
-            /* Filter logic: if year is 'All', show everything. Else match gallery.year */
-            if (year === 'All' || gallery.year == year) {
+            /* Filter logic: if 'All', show everything. Else check if gallery.year is in targetYears */
+            const gYear = String(gallery.year);
+            if (targetYears[0] === 'All' || targetYears.includes(gYear)) {
                 if (gallery.items) {
                     gallery.items.forEach(function (item) {
                         if (item.lat && item.lng) {
@@ -238,24 +304,45 @@ layout: page
         }
     };
 
-    /* Tab Switching */
+    /* Tab Switching (Single Year) */
     window.GalleryPage.openYear = function (evt, yearName) {
-        currentYear = yearName;
+        // reuse openGroup logic but for single item
+        window.GalleryPage.openGroup(evt, yearName);
+    };
+
+    /* Tab Switching (Group or Single) */
+    window.GalleryPage.openGroup = function (evt, yearListStr) {
+        currentYear = yearListStr; // Store the list (e.g. "2021,2022")
 
         const tabContainer = document.querySelector('.tab-container');
         if (!tabContainer) return;
 
+        // Hide all
         const tabcontent = tabContainer.getElementsByClassName("tab-content");
         for (let i = 0; i < tabcontent.length; i++) {
             tabcontent[i].classList.remove("is-visible");
             tabcontent[i].style.display = 'none';
         }
 
+        // Deactivate all buttons
         const tablinks = tabContainer.getElementsByClassName("tab-btn");
-        /* Only remove active from year tabs, not the map toggle */
         for (let i = 0; i < tablinks.length; i++) {
             if (!tablinks[i].classList.contains('active-map') && tablinks[i].id !== 'map-toggle-btn') {
                 tablinks[i].classList.remove("active");
+            }
+        }
+
+        // Add active class to clicked button
+        // Note: For dropdown items, we might want to highlight the parent dropdown button too?
+        // But for now, just the clicked element.
+        if (evt && evt.target) {
+            evt.target.classList.add("active");
+
+            // If inside a dropdown, maybe highlight the dropbtn?
+            const parentDropdown = evt.target.closest('.dropdown');
+            if (parentDropdown) {
+                const dropbtn = parentDropdown.querySelector('.dropbtn');
+                if (dropbtn) dropbtn.classList.add('active');
             }
         }
 
@@ -263,26 +350,26 @@ layout: page
 
         /* Handle Map Filter Updates */
         if (isMapVisible) {
-            window.GalleryPage.updateMapMarkers(yearName);
+            window.GalleryPage.updateMapMarkers(yearListStr);
         }
 
-        if (yearName === "All") {
+        /* Show Content */
+        if (yearListStr === "All") {
             for (let i = 0; i < tabcontent.length; i++) {
                 tabcontent[i].classList.add("is-visible");
                 tabcontent[i].style.display = 'block';
             }
             if (searchInput) searchInput.style.display = 'block';
         } else {
-            const targetElement = document.getElementById(yearName);
-            if (targetElement) {
-                targetElement.classList.add("is-visible");
-                targetElement.style.display = 'block';
-            }
+            const targets = yearListStr.split(',');
+            targets.forEach(function (y) {
+                const targetElement = document.getElementById(y);
+                if (targetElement) {
+                    targetElement.classList.add("is-visible");
+                    targetElement.style.display = 'block';
+                }
+            });
             if (searchInput) searchInput.style.display = 'block';
-        }
-
-        if (evt && evt.target) {
-            evt.target.classList.add("active");
         }
 
         /* Reset Search when switching */

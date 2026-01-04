@@ -81,6 +81,42 @@
     }
 }
 
+/* Dropdown Styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 100px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1000;
+    border-radius: 4px;
+    top: 100%;
+    left: 0;
+}
+
+.dropdown-content .tab-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    border: none;
+    padding: 10px 15px;
+    margin: 0;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .tab-btn.dropbtn {
+    background-color: #f7f7f7;
+    color: #333;
+}
+
 /*
 ================================================================================
   Publication Layout Styles
