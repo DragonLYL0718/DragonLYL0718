@@ -140,7 +140,7 @@
 
                 input.addEventListener('input', function () {
                     const query = this.value.toLowerCase();
-                    selectedIndex = -1; // Reset selection on input
+                    selectedIndex = -1;
 
                     if (query.length < 2) {
                         resultsList.innerHTML = '';
@@ -189,7 +189,7 @@
                         updateSelection();
                     } else if (e.key === 'Enter') {
                         if (selectedIndex > -1 && items[selectedIndex]) {
-                            e.preventDefault(); // Prevent form submission if any
+                            e.preventDefault();
                             const link = items[selectedIndex].querySelector('a');
                             if (link) link.click();
                         }
