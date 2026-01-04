@@ -1,0 +1,36 @@
+{% if site.hydejack.dark_mode.dynamic %}
+<script>
+  window._sunrise = {{ site.hydejack.dark_mode.sunrise | default:"6"  }};
+  window._sunset =  {{ site.hydejack.dark_mode.sunset  | default:"18" }};
+  (function () {
+    var key = 'site_theme_mode';
+    var stored = null;
+    try {
+      stored = localStorage.getItem(key);
+    } catch (e) {
+      stored = null;
+    }
+
+    if (stored === 'light' || stored === 'dark') {
+      var body = document.body || document.documentElement;
+      var className = stored === 'light' ? 'light-mode' : 'dark-mode';
+      if (body && body.classList) {
+        body.classList.remove('light-mode', 'dark-mode');
+        body.classList.add(className);
+      }
+      return;
+    }
+
+    (function (e, s) {
+      var d = "light-mode";
+      var a = "dark-mode";
+      var o = (new Date).getHours();
+      if (!("matchMedia" in e && e.matchMedia("(prefers-color-scheme)"))) {
+        e = (o = o <= e._sunrise || o >= e._sunset ? a : d) == a ? d : a;
+        s.body.classList.add(o);
+        s.body.classList.remove(e);
+      }
+    })(window, document);
+  })();
+</script>
+{% endif %}
