@@ -50,11 +50,19 @@
     transition: all 0.3s ease;
     border-bottom: 3px solid transparent;
     margin-bottom: -2px;
+    border-radius: 6px 6px 0 0;
 }
 
 .tab-btn:hover {
     color: #333;
     background-color: #f7f7f7;
+}
+
+@media (prefers-color-scheme: dark) {
+    .tab-btn:hover {
+        color: #ddd;
+        background-color: rgba(255, 255, 255, 0.1);
+    }
 }
 
 .tab-btn.active {
@@ -91,21 +99,31 @@
     display: none;
     position: absolute;
     background-color: #fff;
-    min-width: 100px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    width: 100%;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1000;
-    border-radius: 4px;
-    top: 100%;
+    border-radius: 6px;
+    top: calc(100% - 2px);
     left: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+@media (prefers-color-scheme: dark) {
+    .dropdown-content {
+        background-color: #2c2c2c;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.5);
+    }
 }
 
 .dropdown-content .tab-btn {
     display: block;
     width: 100%;
-    text-align: left;
+    text-align: center;
     border: none;
     padding: 10px 15px;
     margin: 0;
+    border-radius: 0;
 }
 
 .dropdown:hover .dropdown-content {
@@ -115,6 +133,13 @@
 .dropdown:hover .tab-btn.dropbtn {
     background-color: #f7f7f7;
     color: #333;
+}
+
+@media (prefers-color-scheme: dark) {
+    .dropdown:hover .tab-btn.dropbtn {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: #ddd;
+    }
 }
 
 /*
