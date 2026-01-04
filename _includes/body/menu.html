@@ -56,6 +56,20 @@
         border-color: #555;
         color: #fff;
     }
+
+    body.dark-mode #navbar-search-input {
+        background: #333;
+        border-color: #555;
+        color: #fff;
+    }
+
+    .search-result-selected {
+        background-color: rgba(125, 125, 125, 0.1);
+    }
+
+    body.dark-mode .search-result-selected {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
 </style>
 
 <script>
@@ -116,9 +130,23 @@
 
             if (!input.dataset.navbarSearchBound) {
                 input.dataset.navbarSearchBound = 'true';
+                let selectedIndex = -1;
+
+                function updateSelection() {
+                    const items = resultsList.querySelectorAll('li');
+                    items.forEach((item, index) => {
+                        if (index === selectedIndex) {
+                            item.classList.add('search-result-selected');
+                            item.scrollIntoView({ block: 'nearest' });
+                        } else {
+                            item.classList.remove('search-result-selected');
+                        }
+                    });
+                }
 
                 input.addEventListener('input', function () {
                     const query = this.value.toLowerCase();
+                    selectedIndex = -1; // Reset selection on input
 
                     if (query.length < 2) {
                         resultsList.innerHTML = '';
@@ -138,8 +166,8 @@
                     }).slice(0, 10);
 
                     if (results.length > 0) {
-                        resultsList.innerHTML = results.map(item => `
-            <li>
+                        resultsList.innerHTML = results.map((item, index) => `
+            <li data-index="${index}">
               <a href="${item.url}">
                 <div style="font-weight:bold; font-size: 0.9em; color: var(--heading-color);">${item.title}</div>
                  ${item.date ? `<div style="font-size:0.7em; opacity:0.7;">${item.date}</div>` : ''}
@@ -152,8 +180,28 @@
                 });
 
                 input.addEventListener('keydown', function (e) {
-                    if (e.key === 'Escape') {
+                    const items = resultsList.querySelectorAll('li');
+                    if (items.length === 0) return;
+
+                    if (e.key === 'ArrowDown') {
+                        e.preventDefault();
+                        selectedIndex++;
+                        if (selectedIndex >= items.length) selectedIndex = 0;
+                        updateSelection();
+                    } else if (e.key === 'ArrowUp') {
+                        e.preventDefault();
+                        selectedIndex--;
+                        if (selectedIndex < 0) selectedIndex = items.length - 1;
+                        updateSelection();
+                    } else if (e.key === 'Enter') {
+                        if (selectedIndex > -1 && items[selectedIndex]) {
+                            e.preventDefault(); // Prevent form submission if any
+                            const link = items[selectedIndex].querySelector('a');
+                            if (link) link.click();
+                        }
+                    } else if (e.key === 'Escape') {
                         dropdown.style.display = 'none';
+                        selectedIndex = -1;
                     }
                 });
             }
