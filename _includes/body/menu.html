@@ -9,18 +9,18 @@
             </a>
 
             <!-- Navbar Search Component -->
-            <div id="navbar-search-component" style="display:inline-block; position:relative;">
+            <div id="navbar-search-component" class="navbar-search-component">
                 <button id="navbar-search-toggle" class="nav-btn no-hover" aria-label="Search">
                     <span class="icon-search"></span>
                 </button>
 
-                <div id="navbar-search-dropdown"
-                    style="display:none; position:absolute; top:100%; left:0; width:300px; background:var(--body-bg); border:1px solid var(--border-color); box-shadow:0 4px 6px rgba(0,0,0,0.1); border-radius:4px; padding:10px; z-index:9999;">
-                    <input type="text" id="navbar-search-input" placeholder="Search..."
-                        style="width:100%; padding:8px; border:1px solid var(--border-color); border-radius:4px; background:var(--body-bg); color:var(--body-color);">
-                    <ul id="navbar-search-results"
-                        style="list-style:none; padding:0; margin-top:10px; max-height:300px; overflow-y:auto; margin-bottom:0;">
-                    </ul>
+                <div class="navbar-search-input-wrapper">
+                    <input type="text" id="navbar-search-input"
+                        placeholder="{{ site.data.strings.search | default:'Search...' }}">
+                </div>
+
+                <div id="navbar-search-dropdown" class="navbar-search-dropdown">
+                    <ul id="navbar-search-results"></ul>
                 </div>
             </div>
 
@@ -37,8 +37,116 @@
 <hr class="sr-only" hidden />
 
 <style>
-    #navbar-search-results li {
+    /* Navbar Search Component Styles */
+    .navbar-search-component {
+        display: flex;
+        align-items: center;
+        position: relative;
+        order: 2;
+        flex-grow: 0;
+        transition: flex-grow 0.35s ease;
+    }
+
+    #navbar-search-toggle {
+        z-index: 2;
+        flex-shrink: 0;
+        opacity: 1;
+        transform: scale(1);
+        transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .navbar-search-input-wrapper {
+        position: relative;
+        overflow: hidden;
+        width: 0;
+        opacity: 0;
+        transition: width 0.35s ease, opacity 0.25s ease;
+        margin-left: 0;
+    }
+
+    /* Active State: Expanded */
+    .navbar-search-component.active {
+        flex-grow: 1;
+    }
+
+    .navbar-search-component.active #navbar-search-toggle {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+        transform: scale(0.8);
+    }
+
+    .navbar-search-component.active .navbar-search-input-wrapper {
+        width: 100%;
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* Closing State: Smooth transition back */
+    .navbar-search-component.closing {
+        flex-grow: 1;
+    }
+
+    .navbar-search-component.closing #navbar-search-toggle {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+        transform: scale(0.8);
+    }
+
+    .navbar-search-component.closing .navbar-search-input-wrapper {
+        width: 0;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    #navbar-search-input {
+        width: 100%;
+        padding: 6px 10px;
+        border: 1px solid var(--border-color);
+        border-radius: 20px;
+        background: var(--body-bg);
+        color: var(--body-color);
+        outline: none;
+        font-size: 0.9em;
+    }
+
+    #navbar-search-input:focus {
+        border-color: var(--link-color);
+    }
+
+    /* Dropdown Results */
+    .navbar-search-dropdown {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        margin-top: 5px;
+        width: 100%;
+        /* Match parent width */
+        background: var(--body-bg);
+        border: 1px solid var(--border-color);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
         padding: 5px 0;
+        z-index: 9999;
+    }
+
+    .navbar-search-component.active.has-results .navbar-search-dropdown {
+        display: block;
+    }
+
+    #navbar-search-results {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+
+    #navbar-search-results li {
+        padding: 8px 15px;
         border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     }
 
@@ -108,6 +216,8 @@
     .nav-btn-bar {
         display: flex !important;
         align-items: center;
+        width: 100%;
+        /* Ensure bar fills the container */
     }
 
     #_menu {
@@ -116,6 +226,13 @@
 
     #navbar-search-component {
         order: 2;
+    }
+
+    /* Smoothly collapse spacer when search is active */
+    .navbar-search-component.active~.nav-span,
+    .navbar-search-component.closing~.nav-span {
+        flex-grow: 0.0001;
+        width: 0;
     }
 
     #_dark-mode {
@@ -128,6 +245,10 @@
 
     .nav-span {
         order: 5;
+        flex-grow: 1;
+        width: auto;
+        /* Allow it to take space */
+        transition: flex-grow 0.4s ease, width 0.4s ease;
     }
 
     /* Colored Icon using Mask */
@@ -186,20 +307,60 @@
             const dropdown = document.getElementById('navbar-search-dropdown');
             const input = document.getElementById('navbar-search-input');
             const resultsList = document.getElementById('navbar-search-results');
+            const inputWrapper = root.querySelector('.navbar-search-input-wrapper');
 
-            if (!toggleBtn || !dropdown || !input || !resultsList) return;
+            if (!toggleBtn || !dropdown || !input || !resultsList || !inputWrapper) return;
+
+            let closeTimer = null;
+
+            function finishClose() {
+                root.classList.remove('closing', 'active');
+                if (closeTimer) {
+                    clearTimeout(closeTimer);
+                    closeTimer = null;
+                }
+            }
+
+            function closeSearch() {
+                if (!root.classList.contains('active') || root.classList.contains('closing')) return;
+
+                /* Add closing class to trigger shrink animation */
+                root.classList.add('closing');
+                root.classList.remove('has-results');
+
+                /* Wait for the animation to complete, then remove all classes */
+                closeTimer = window.setTimeout(function () {
+                    finishClose();
+                }, 380);
+            }
 
             if (!root.dataset.navbarSearchInitialized) {
                 root.dataset.navbarSearchInitialized = 'true';
 
+                // Toggle search expansion
                 toggleBtn.addEventListener('click', function (e) {
                     e.stopPropagation();
-                    const isHidden = dropdown.style.display === 'none' || dropdown.style.display === '';
-                    dropdown.style.display = isHidden ? 'block' : 'none';
+                    const isActive = root.classList.contains('active');
 
-                    if (isHidden) {
+                    if (isActive) {
+                        // Optional: if already active, clicking icon again handles submit or close?
+                        if (input.value.trim() !== '') {
+                            // perform default search if needed, or just focus
+                            input.focus();
+                        } else {
+                            closeSearch();
+                        }
+                    } else {
+                        root.classList.add('active');
                         input.focus();
-                        loadSearchIndex();
+                        loadSearchIndex(); // Load data when opening
+                    }
+                });
+
+                // Close when clicking outside
+                document.addEventListener('click', function (e) {
+                    if (!root.contains(e.target)) {
+                        closeSearch();
                     }
                 });
             }
@@ -229,11 +390,13 @@
 
                     if (query.length < minLength) {
                         resultsList.innerHTML = '';
+                        root.classList.remove('has-results');
                         return;
                     }
 
                     if (!state.isIndexLoaded) {
                         resultsList.innerHTML = '<li style="opacity:0.6; font-size:0.9em; padding:5px;">Loading search data...</li>';
+                        root.classList.add('has-results');
                         loadSearchIndex();
                         return;
                     }
@@ -284,6 +447,7 @@
 
 
                     if (results.length > 0) {
+                        root.classList.add('has-results');
                         resultsList.innerHTML = results.map((item, index) => `
             <li data-index="${index}">
               <a href="${item.url}" style="display: flex; align-items: start; gap: 10px; text-decoration: none;">
@@ -300,6 +464,7 @@
           `).join('');
                     } else {
                         resultsList.innerHTML = '<li style="opacity:0.6; font-size:0.9em; padding:5px;">No results found</li>';
+                        root.classList.add('has-results');
                     }
                 });
 
