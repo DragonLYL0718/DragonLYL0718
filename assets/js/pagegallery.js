@@ -157,6 +157,17 @@
     }
   }
 
+  function normalizeYearList(yearListStr) {
+    if (yearListStr === 'All') {
+      return ['All'];
+    }
+
+    return String(yearListStr || '')
+      .split(',')
+      .map(function (value) { return value.trim(); })
+      .filter(Boolean);
+  }
+
   function getTabContainer() {
     return document.querySelector('.tab-container[data-gallery-page="true"]');
   }
@@ -241,11 +252,12 @@
 
     state.markerClusterGroup.clearLayers();
 
-    const targetYears = yearOrList === 'All' ? ['All'] : yearOrList.split(',');
+    const targetYears = normalizeYearList(yearOrList);
+    const showAll = targetYears.length === 0 || targetYears[0] === 'All';
 
     state.galleryData.forEach(function (gallery) {
       const gYear = String(gallery.year);
-      if (targetYears[0] === 'All' || targetYears.includes(gYear)) {
+      if (showAll || targetYears.includes(gYear)) {
         if (gallery.items) {
           gallery.items.forEach(function (item) {
             if (item.lat && item.lng) {
@@ -360,7 +372,9 @@
   };
 
   GalleryPage.openGroup = function (evt, yearListStr) {
-    state.currentYear = yearListStr;
+    const targets = normalizeYearList(yearListStr);
+    const showAll = targets.length === 0 || targets[0] === 'All';
+    state.currentYear = showAll ? 'All' : targets.join(',');
 
     const tabContainer = getTabContainer();
     if (!tabContainer) {
@@ -399,29 +413,45 @@
       if (!state.map) {
         GalleryPage.initMap();
       } else {
-        GalleryPage.updateMapMarkers(yearListStr);
+        GalleryPage.updateMapMarkers(state.currentYear);
       }
     }
 
-    if (yearListStr === 'All') {
+    if (showAll) {
       for (let i = 0; i < tabcontent.length; i++) {
         tabcontent[i].classList.add('is-visible');
         tabcontent[i].style.display = 'block';
       }
     } else {
-      const targets = yearListStr.split(',');
+      let foundTarget = false;
       targets.forEach(function (y) {
         const targetElement = document.getElementById(y);
         if (targetElement) {
           targetElement.classList.add('is-visible');
           targetElement.style.display = 'block';
+          foundTarget = true;
         }
       });
+
+      if (!foundTarget) {
+        for (let i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].classList.add('is-visible');
+          tabcontent[i].style.display = 'block';
+        }
+        state.currentYear = 'All';
+        if (state.isMapVisible) {
+          GalleryPage.updateMapMarkers(state.currentYear);
+        }
+      }
     }
 
     if (searchInput) searchInput.value = '';
     if (searchInputZh) searchInputZh.value = '';
     GalleryPage.filterGalleries();
+
+    ensureLozad().then(function () {
+      initLozad();
+    });
   };
 
   function initGalleryPage() {
@@ -448,14 +478,20 @@
       mapBtn.classList.add('active');
     }
 
-    GalleryPage.initMap();
+    const allBtn = root.querySelector('.tab-btn[data-year="All"]');
+    if (allBtn) {
+      GalleryPage.openYear({ target: allBtn }, 'All');
+    } else {
+      GalleryPage.initMap();
+    }
 
-    const activeBtn = document.querySelector('.tab-btn.active');
-    if (!activeBtn) {
-      const allBtn = document.querySelector('.tab-btn[data-year="All"]');
-      if (allBtn) {
-        GalleryPage.openYear({ target: allBtn }, 'All');
-      }
+    if (!state.galleryData || state.galleryData.length === 0) {
+      setTimeout(function () {
+        state.galleryData = readGalleryData();
+        if (state.isMapVisible) {
+          GalleryPage.updateMapMarkers(state.currentYear);
+        }
+      }, 0);
     }
 
     ensureLozad().then(function () {
