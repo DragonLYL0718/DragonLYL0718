@@ -25,11 +25,16 @@ cover: true
 </div>
 
 <div class="zh">
+<p>
 目前我是 <a href="https://www.birmingham.ac.uk/">伯明翰大学</a> <a href="https://www.birmingham.ac.uk/schools/computer-science">计算机科学学院</a> 的一年级博士生，自 2025 年 9 月起师从 <a href="https://eyalofek.org/">Eyal Ofek 教授</a> 和 <a href="https://massimilianodiluca.info/">Massimiliano Di Luca 教授</a>。
-
+</p>
+<p>
 我最近在 <a href="https://www.sustech.edu.cn/en/">南方科技大学</a> <a href="https://designschool.sustech.edu.cn/en">设计学院</a> 完成了硕士学位，师从 <a href="https://immersivedesignresearch.com/seungwoo">Seungwoo Je 教授</a>。我本科毕业于 <a href="https://www.scut.edu.cn/en/">华南理工大学</a>。我还曾在 <a href="https://www.kaist.ac.kr/en/">韩国科学技术院 (KAIST)</a> 的 <a href="https://sites.google.com/view/kaist-witlab/">WIT 实验室</a> 担任访问学生研究员，师从 Ian Oakley 教授。
-
+</p>
+<p>
 我在人机交互方面的研究主要集中在 <strong>触觉、可穿戴设备、眼动追踪、视触觉错觉、化身和虚拟现实</strong>。
-
+</p>
+<p>
 如果您有兴趣与我合作，请随时给我发邮件！
+</p>
 </div>

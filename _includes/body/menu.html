@@ -632,53 +632,120 @@
 
     (function () {
         const LANG_KEY = 'site_language';
-        const DEFAULT_LANG = 'en';
+        const LANG_EN = 'en';
+        const LANG_ZH = 'zh';
 
-        function getPreferredLang() {
-            const stored = localStorage.getItem(LANG_KEY);
-            if (stored) return stored;
-            const browser = navigator.language || navigator.userLanguage;
-            if (browser && browser.toLowerCase().startsWith('zh')) {
-                return 'zh';
+        function safeGet(key) {
+            try {
+                return localStorage.getItem(key);
+            } catch (e) {
+                return null;
             }
-            return DEFAULT_LANG;
         }
 
-        function setLang(lang) {
-            document.body.classList.remove('lang-zh', 'lang-en');
-            document.body.classList.add('lang-' + lang);
-            localStorage.setItem(LANG_KEY, lang);
+        function safeSet(key, value) {
+            try {
+                localStorage.setItem(key, value);
+            } catch (e) {
+            }
+        }
 
+        function normalizeLang(value) {
+            if (value === LANG_EN || value === LANG_ZH) {
+                return value;
+            }
+            return null;
+        }
+
+        function detectBrowserLang() {
+            const languages = (navigator.languages && navigator.languages.length)
+                ? navigator.languages
+                : [navigator.language || navigator.userLanguage || ''];
+
+            for (let i = 0; i < languages.length; i++) {
+                const lang = (languages[i] || '').toLowerCase();
+                if (lang.startsWith('zh')) {
+                    return LANG_ZH;
+                }
+            }
+            return LANG_EN;
+        }
+
+        function getPreferredLang() {
+            const stored = normalizeLang(safeGet(LANG_KEY));
+            if (stored) return stored;
+            return detectBrowserLang();
+        }
+
+        function updateUi(lang) {
             const btn = document.getElementById('_lang-toggle');
             if (btn) {
-                btn.setAttribute('title', lang === 'zh' ? 'Switch to English' : '切换到中文');
+                btn.setAttribute('title', lang === LANG_ZH ? 'Switch to English' : '切换到中文');
             }
 
             const searchInput = document.getElementById('navbar-search-input');
             if (searchInput) {
-                searchInput.placeholder = lang === 'zh' ? '搜索...' : 'Search...';
+                searchInput.placeholder = lang === LANG_ZH ? '搜索...' : 'Search...';
+            }
+
+            if (document.documentElement) {
+                document.documentElement.setAttribute('lang', lang === LANG_ZH ? 'zh' : 'en');
             }
         }
 
+        function applyLang(lang) {
+            const body = document.body;
+            if (!body) return;
+
+            const normalized = normalizeLang(lang) || LANG_EN;
+            body.classList.remove('lang-zh', 'lang-en');
+            body.classList.add('lang-' + normalized);
+            updateUi(normalized);
+        }
+
+        function setLang(lang) {
+            const normalized = normalizeLang(lang) || LANG_EN;
+            applyLang(normalized);
+            safeSet(LANG_KEY, normalized);
+        }
+
         function toggleLang() {
-            const current = document.body.classList.contains('lang-zh') ? 'zh' : 'en';
-            const next = current === 'zh' ? 'en' : 'zh';
+            const body = document.body;
+            const current = body && body.classList.contains('lang-zh') ? LANG_ZH : LANG_EN;
+            const next = current === LANG_ZH ? LANG_EN : LANG_ZH;
             setLang(next);
         }
 
-        const initialLang = getPreferredLang();
-        setLang(initialLang);
-
-        document.addEventListener('DOMContentLoaded', () => {
+        function initLangToggle() {
             const btn = document.getElementById('_lang-toggle');
-            if (btn) {
-                btn.addEventListener('click', (e) => {
+            if (btn && !btn.dataset.langToggleBound) {
+                btn.dataset.langToggleBound = 'true';
+                btn.addEventListener('click', function (e) {
                     e.preventDefault();
                     e.stopPropagation();
                     toggleLang();
                 });
-                btn.setAttribute('title', initialLang === 'zh' ? 'Switch to English' : '切换到中文');
             }
-        });
+        }
+
+        function initLangPreference() {
+            setLang(getPreferredLang());
+            initLangToggle();
+        }
+
+        if (document.body) {
+            setLang(getPreferredLang());
+        }
+
+        const deferredInit = function () {
+            requestAnimationFrame(initLangPreference);
+        };
+
+        document.addEventListener('DOMContentLoaded', deferredInit, { once: true });
+        window.addEventListener('hy:pjax:end', deferredInit);
+
+        if (document.readyState === 'interactive' || document.readyState === 'complete') {
+            deferredInit();
+        }
     })();
 </script>
