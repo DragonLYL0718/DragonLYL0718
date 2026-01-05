@@ -361,6 +361,15 @@
                 });
             }
 
+            if (!resultsList.dataset.navbarSearchResultsBound) {
+                resultsList.dataset.navbarSearchResultsBound = 'true';
+                resultsList.addEventListener('click', function (e) {
+                    const link = e.target.closest('a');
+                    if (!link || !resultsList.contains(link)) return;
+                    closeSearch();
+                });
+            }
+
             if (!input.dataset.navbarSearchBound) {
                 input.dataset.navbarSearchBound = 'true';
                 let selectedIndex = -1;
@@ -482,7 +491,10 @@
                         if (selectedIndex > -1 && items[selectedIndex]) {
                             e.preventDefault();
                             const link = items[selectedIndex].querySelector('a');
-                            if (link) link.click();
+                            if (link) {
+                                closeSearch();
+                                link.click();
+                            }
                         }
                     } else if (e.key === 'Escape') {
                         dropdown.style.display = 'none';
