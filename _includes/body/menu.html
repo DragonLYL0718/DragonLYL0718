@@ -337,15 +337,12 @@
             if (!root.dataset.navbarSearchInitialized) {
                 root.dataset.navbarSearchInitialized = 'true';
 
-                // Toggle search expansion
                 toggleBtn.addEventListener('click', function (e) {
                     e.stopPropagation();
                     const isActive = root.classList.contains('active');
 
                     if (isActive) {
-                        // Optional: if already active, clicking icon again handles submit or close?
                         if (input.value.trim() !== '') {
-                            // perform default search if needed, or just focus
                             input.focus();
                         } else {
                             closeSearch();
@@ -353,11 +350,10 @@
                     } else {
                         root.classList.add('active');
                         input.focus();
-                        loadSearchIndex(); // Load data when opening
+                        loadSearchIndex();
                     }
                 });
 
-                // Close when clicking outside
                 document.addEventListener('click', function (e) {
                     if (!root.contains(e.target)) {
                         closeSearch();
