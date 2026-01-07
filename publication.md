@@ -6,98 +6,46 @@ description_zh: 出版物列表
 layout: publication
 hide_description: true
 permalink: /publications/
+publications:
+  - year: 2025
+    items:
+      - title: "Designing Hand and Forearm Gestures to Control Virtual Forearm for User-Initiated Forearm Deformation"
+        title_url: "https://doi.ieeecomputersociety.org/10.1109/TVCG.2025.3616825"
+        page_url: "/publications/armmapper/"
+        image: "https://pageasset.rayleigh-lin.top/project/2025%20ArmMapper/ArmMapper.webp"
+        image_alt: "Designing Hand and Forearm Gestures to Control Virtual Forearm for User-Initiated Forearm Deformation"
+        authors: "**Yilong Lin**, Han Shi, Weitao Jiang, Xuesong Zhang, Hye-Young Jo, Yoonji Kim, Seungwoo Je"
+        venue: "*IEEE TVCG, Special Issue on ISMAR 2025.*"
+      - title: "HapticWings: Enhancing the Experience of Extra Wing Motions in Virtual Reality through Dynamic 2D Weight Shifting"
+        title_url: "https://dl.acm.org/doi/10.1145/3715336.3735755"
+        page_url: "/publications/hapticwings/"
+        image: "https://pageasset.rayleigh-lin.top/project/2025%20HapticWings/Teaser.webp"
+        image_alt: "HapticWings: Enhancing the Experience of Extra Wing Motions in Virtual Reality through Dynamic 2D Weight Shifting"
+        authors: "Yingjie Chang, Junyu Chen, **Yilong Lin**, Xuesong Zhang, Seungwoo Je"
+        venue: "*In Proceedings of DIS 2025.*"
+  - year: 2024
+    items:
+      - title: "VibroArm: Enhancing the Sensation of Forearm Deformation in Virtual Reality Using Vibrotactile Funneling Illusion"
+        title_url: "https://ieeexplore.ieee.org/abstract/document/10765489"
+        page_url: "/publications/vibroarm/"
+        image: "https://pageasset.rayleigh-lin.top/project/2024%20vibroarm/vibroarm.webp"
+        image_alt: "VibroArm: Enhancing the Sensation of Forearm Deformation in Virtual Reality Using Vibrotactile Funneling Illusion"
+        authors: "**Yilong Lin**, Tianze Xie, Yingjie Chang, Hu Luo, Dangxiao Wang, Seungwoo Je"
+        venue: "*In Proceedings of ISMAR 2024.*"
+      - title: "ArmDeformation: Inducing the Sensation of Arm Deformation in Virtual Reality Using Skin-Stretching"
+        title_url: "https://dl.acm.org/doi/10.1145/3613904.3642518"
+        page_url: "/publications/armdeformation/"
+        image: "/projects/Graduate/ArmDeformation/armdef.webp"
+        image_alt: "ArmDeformation: Inducing the Sensation of Arm Deformation in Virtual Reality Using Skin-Stretching"
+        authors: "**Yilong Lin**, Peng Zhang, Eyal Ofek, Seungwoo Je"
+        venue: "*In Proceedings of CHI 2024.*"
+  - year: 2023
+    items:
+      - title: "Designing visuo-haptic illusions for Virtual Reality applications using floor-based shape-changing displays"
+        title_url: "https://dl.designresearchsociety.org/iasdr/iasdr2023/fullpapers/164/"
+        page_url: "/publications/visuohaptic"
+        image: "/projects/Graduate/visuohaptic/1.PNG"
+        image_alt: "Designing visuo-haptic illusions for Virtual Reality applications using floor-based shape-changing displays"
+        authors: "Nargiz Askarbekkyzy, **Yilong Lin**, Kongpyung (Justin) Moon, Andrea Bianchi, Seungwoo Je"
+        venue: "*In Proceedings of IASDR 2023.*"
 ---
-
-1. this list will be replaced by the toc
-{:toc .large-only}
-
-## 2025
-
-<div class="publication-item">
-  <div class="publication-image">
-    <a href="/publications/armmapper/">
-    <img src="https://pageasset.rayleigh-lin.top/project/2025%20ArmMapper/ArmMapper.webp" alt="Designing Hand and Forearm Gestures to Control Virtual Forearm for User-Initiated Forearm Deformation" loading="lazy" />
-    </a>
-  </div>
-  <div class="publication-content">
-    <h3 class="publication-title">
-      <a href="https://doi.ieeecomputersociety.org/10.1109/TVCG.2025.3616825" target="_blank">Designing Hand and Forearm Gestures to Control Virtual Forearm for User-Initiated Forearm Deformation</a>
-    </h3>
-    <div class="publication-details">
-      <strong>Yilong Lin</strong>, Han Shi, Weitao Jiang, Xuesong Zhang, Hye-Young Jo, Yoonji Kim, Seungwoo Je <br>
-      <em>IEEE TVCG, Special Issue on ISMAR 2025.</em>
-    </div>
-  </div>
-</div>
-
-<div class="publication-item">
-  <div class="publication-image">
-    <a href="/publications/hapticwings/">
-      <img src="https://pageasset.rayleigh-lin.top/project/2025%20HapticWings/Teaser.webp" alt="HapticWings: Enhancing the Experience of Extra Wing Motions in Virtual Reality through Dynamic 2D Weight Shifting" loading="lazy" />
-    </a>
-  </div>
-  <div class="publication-content">
-    <h3 class="publication-title">
-      <a href="https://dl.acm.org/doi/10.1145/3715336.3735755" target="_blank">HapticWings: Enhancing the Experience of Extra Wing Motions in Virtual Reality through Dynamic 2D Weight Shifting</a>
-    </h3>
-    <div class="publication-details">
-      Yingjie Chang, Junyu Chen, <strong>Yilong Lin</strong>, Xuesong Zhang, Seungwoo Je <br>
-      <em>In Proceedings of DIS 2025.</em>
-    </div>
-  </div>
-</div>
-
-## 2024
-
-<div class="publication-item">
-  <div class="publication-image">
-    <a href="/publications/vibroarm/">
-      <img src="https://pageasset.rayleigh-lin.top/project/2024%20vibroarm/vibroarm.webp" alt="VibroArm: Enhancing the Sensation of Forearm Deformation in Virtual Reality Using Vibrotactile Funneling Illusion" loading="lazy" />
-    </a>
-  </div>
-  <div class="publication-content">
-    <h3 class="publication-title">
-      <a href="https://ieeexplore.ieee.org/abstract/document/10765489" target="_blank">VibroArm: Enhancing the Sensation of Forearm Deformation in Virtual Reality Using Vibrotactile Funneling Illusion</a>
-    </h3>
-    <div class="publication-details">
-      <strong>Yilong Lin</strong>, Tianze Xie, Yingjie Chang, Hu Luo, Dangxiao Wang, Seungwoo Je <br>
-      <em>In Proceedings of ISMAR 2024.</em>
-    </div>
-  </div>
-</div>
-
-<div class="publication-item">
-  <div class="publication-image">
-    <a href="/publications/armdeformation/">
-      <img src="/projects/Graduate/ArmDeformation/armdef.webp" alt="ArmDeformation: Inducing the Sensation of Arm Deformation in Virtual Reality Using Skin-Stretching" loading="lazy" />
-    </a>
-  </div>
-  <div class="publication-content">
-    <h3 class="publication-title">
-      <a href="https://dl.acm.org/doi/10.1145/3613904.3642518" target="_blank">ArmDeformation: Inducing the Sensation of Arm Deformation in Virtual Reality Using Skin-Stretching</a>
-    </h3>
-    <div class="publication-details">
-      <strong>Yilong Lin</strong>, Peng Zhang, Eyal Ofek, Seungwoo Je <br>
-      <em>In Proceedings of CHI 2024.</em>
-    </div>
-  </div>
-</div>
-
-## 2023
-
-<div class="publication-item">
-  <div class="publication-image">
-    <a href="/publications/visuohaptic">
-      <img src="{{ site.baseurl }}/projects/Graduate/visuohaptic/1.PNG" alt="Designing visuo-haptic illusions for Virtual Reality applications using floor-based shape-changing displays" loading="lazy" />
-    </a>
-  </div>
-  <div class="publication-content">
-    <h3 class="publication-title">
-      <a href="https://dl.designresearchsociety.org/iasdr/iasdr2023/fullpapers/164/" target="_blank">Designing visuo-haptic illusions for Virtual Reality applications using floor-based shape-changing displays</a>
-    </h3>
-    <div class="publication-details">
-      Nargiz Askarbekkyzy, <strong>Yilong Lin</strong>, Kongpyung (Justin) Moon, Andrea Bianchi, Seungwoo Je <br>
-      <em>In Proceedings of IASDR 2023.</em>
-    </div>
-  </div>
-</div>
