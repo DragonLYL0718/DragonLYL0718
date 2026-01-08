@@ -16,3 +16,215 @@ layout: base
 
 {% include components/dingbat.html %}
 {% include body/comments.html %}
+
+<script>
+  (function () {
+    /* Fix Chinese TOC - copy from English TOC if needed */
+    function fixChineseToc() {
+      var enToc = document.querySelector('.en #markdown-toc, .en > ol.large-only');
+      var zhTocContainer = document.querySelector('.zh > ol.large-only');
+
+      if (!enToc || !zhTocContainer) return;
+
+      /* Check if Chinese TOC needs to be populated (contains placeholder text) */
+      var firstLi = zhTocContainer.querySelector('li');
+      if (firstLi && firstLi.textContent.includes('this ordered seed list')) {
+        /* Copy content from English TOC */
+        zhTocContainer.innerHTML = enToc.innerHTML;
+      }
+
+      /* Always add the ID for consistent styling (header via CSS :before) */
+      zhTocContainer.id = 'markdown-toc-zh';
+    }
+
+    function fixBilingualToc() {
+      var enToc = document.querySelector('.en #markdown-toc, .en > ol.large-only');
+      var zhToc = document.querySelector('.zh > ol.large-only, .zh #markdown-toc-zh');
+
+      function filterToc(tocElement, lang) {
+        if (!tocElement) return;
+        var links = tocElement.querySelectorAll('a');
+        links.forEach(function (link) {
+          var href = link.getAttribute('href');
+          if (!href || !href.startsWith('#')) return;
+
+          try {
+            var targetId = decodeURIComponent(href.substring(1));
+            var target = document.getElementById(targetId);
+
+            if (target) {
+              var parentZh = target.closest('.zh');
+              var parentEn = target.closest('.en');
+
+              if (lang === 'en') {
+                if (parentZh && !parentEn) {
+                  var li = link.closest('li');
+                  if (li) li.style.display = 'none';
+                }
+              } else if (lang === 'zh') {
+                if (parentEn && !parentZh) {
+                  var li = link.closest('li');
+                  if (li) li.style.display = 'none';
+                }
+              }
+            }
+          } catch (e) {
+            console.warn('TOC filter error', e);
+          }
+        });
+      }
+
+      if (enToc) filterToc(enToc, 'en');
+      if (zhToc) filterToc(zhToc, 'zh');
+    }
+
+    /* Sticky TOC using JavaScript (position: fixed) */
+    var stickyScrollHandlers = [];
+
+    function initStickyToc() {
+      /* Remove old scroll handlers */
+      stickyScrollHandlers.forEach(function (handler) {
+        window.removeEventListener('scroll', handler);
+      });
+      stickyScrollHandlers = [];
+
+      var enToc = document.querySelector('.en #markdown-toc, .en > ol.large-only');
+      var zhToc = document.querySelector('.zh #markdown-toc-zh, .zh > ol.large-only');
+
+      var tocs = [enToc, zhToc].filter(Boolean);
+      if (tocs.length === 0) return;
+
+      tocs.forEach(function (toc) {
+        /* Reset any previous inline styles */
+        toc.style.position = '';
+        toc.style.top = '';
+        toc.style.right = '';
+        toc.style.width = '';
+        toc.style.maxHeight = '';
+        toc.classList.remove('toc-fixed');
+        toc.removeAttribute('data-sticky-init');
+      });
+
+      var allowSticky = window.matchMedia('(min-width: 64em)').matches;
+      if (!allowSticky) return;
+
+      var isLargeScreen = window.matchMedia('(min-width: 104rem)').matches;
+
+      /* Fixed width and right position for TOC */
+      var tocWidth = 328; /* 20.5rem * 16px */
+      var viewportWidth = document.documentElement.clientWidth;
+      var tocRight = 16;
+
+      if (isLargeScreen) {
+        var contentWidth = 864; /* 54rem * 16px */
+        var contentLeft = (viewportWidth - contentWidth) / 2;
+        tocRight = contentLeft - tocWidth - 64; /* 4rem gap */
+
+        /* If tocRight is negative, calculate based on content right edge */
+        if (tocRight < 16) {
+          tocRight = viewportWidth - contentLeft - contentWidth - tocWidth - 64;
+          if (tocRight < 16) tocRight = 16;
+        }
+      }
+
+      tocs.forEach(function (toc) {
+
+        /* Wait for layout to stabilize */
+        requestAnimationFrame(function () {
+          var rect = toc.getBoundingClientRect();
+          var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          var originalTop = rect.top + scrollTop;
+          var originalRight = viewportWidth - rect.right;
+          var originalWidth = rect.width;
+          var topOffset = 16;
+
+          /* Use calculated or measured values */
+          var fixedRight = Math.max(originalRight, 16);
+          if (isLargeScreen && originalRight <= 0) {
+            fixedRight = Math.max(tocRight, 16);
+          }
+          var fixedWidth = originalWidth > 0 ? originalWidth : tocWidth;
+
+          function onScroll() {
+            var currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (currentScroll > originalTop - topOffset) {
+              toc.style.position = 'fixed';
+              toc.style.top = '1rem';
+              toc.style.setProperty('right', fixedRight + 'px', 'important');
+              toc.style.setProperty('width', fixedWidth + 'px', 'important');
+              toc.style.maxHeight = 'calc(100vh - 2rem)';
+              toc.style.left = 'auto';
+              toc.classList.add('toc-fixed');
+            } else {
+              toc.style.position = '';
+              toc.style.top = '';
+              toc.style.right = '';
+              toc.style.width = '';
+              toc.style.maxHeight = '';
+              toc.style.left = '';
+              toc.classList.remove('toc-fixed');
+            }
+          }
+
+          stickyScrollHandlers.push(onScroll);
+          window.addEventListener('scroll', onScroll, { passive: true });
+          onScroll();
+        });
+      });
+    }
+
+    /* Handle language switch - update TOC visibility */
+    function handleLanguageSwitch() {
+      var enToc = document.querySelector('.en #markdown-toc, .en > ol.large-only');
+      var zhToc = document.querySelector('.zh #markdown-toc-zh, .zh > ol.large-only');
+
+      var isZh = document.body.classList.contains('lang-zh');
+
+      if (enToc) {
+        enToc.style.display = isZh ? 'none' : '';
+      }
+      if (zhToc) {
+        zhToc.style.display = isZh ? '' : 'none';
+      }
+    }
+
+    /* Watch for language class changes on body */
+    function observeLanguageChanges() {
+      var observer = new MutationObserver(function (mutations) {
+        mutations.forEach(function (mutation) {
+          if (mutation.attributeName === 'class') {
+            handleLanguageSwitch();
+            /* Reinitialize sticky after language switch */
+            setTimeout(initStickyToc, 50);
+          }
+        });
+      });
+
+      observer.observe(document.body, { attributes: true });
+    }
+
+    var deferredInit = function () {
+      requestAnimationFrame(function () {
+        fixChineseToc();
+        fixBilingualToc();
+        handleLanguageSwitch();
+        setTimeout(initStickyToc, 100);
+      });
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function () {
+        deferredInit();
+        observeLanguageChanges();
+      });
+    } else {
+      deferredInit();
+      observeLanguageChanges();
+    }
+    window.addEventListener('hy:pjax:end', deferredInit);
+    window.addEventListener('resize', function () {
+      setTimeout(initStickyToc, 100);
+    });
+  })();
+</script>

@@ -7,6 +7,9 @@ permalink: /resume/
 ---
 
 <div class="en" markdown="1">
+1. this ordered seed list will be replaced by the toc
+{:toc .large-only}
+
 ## Education
 ---
 - 2025.9 - expected 2029<br>
@@ -68,6 +71,9 @@ permalink: /resume/
 </div>
 
 <div class="zh" markdown="1">
+1. this ordered seed list will be replaced by the toc
+{:toc .large-only}
+
 ## 教育经历
 ---
 - 2025.9 - 预计 2029<br>
@@ -126,3 +132,5 @@ permalink: /resume/
 **[Seungwoo Je 教授](http://immersivedesignresearch.com/seungwoo) | Immersive Design Group, 南方科技大学助理教授**<br>
 **[Eyal Ofek 教授](https://eyalofek.org/) | 计算机科学系, 伯明翰大学讲席教授**
 </div>
+
+

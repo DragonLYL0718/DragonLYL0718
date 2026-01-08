@@ -716,3 +716,126 @@ body.dark-mode .tab-container .search-container input[type="text"] {
     padding: 0 !important;
 
 }
+
+/*
+================================================================================
+  Sticky Table of Contents
+  (CSS positioning and sticky behavior for bilingual TOC)
+================================================================================
+*/
+
+/* 
+ * The theme positions #markdown-toc absolutely to the right on large screens.
+ * For bilingual pages, the TOC is inside .en/.zh divs, so we need to 
+ * reposition it and make it sticky via JavaScript (position: fixed).
+ * 
+ * Chinese TOC uses #markdown-toc-zh ID (set by JS) to get matching header style.
+ */
+
+/* Chinese TOC header - mimic #markdown-toc:before */
+#markdown-toc-zh {
+    position: relative;
+
+    &:before {
+        content: "目录";
+        font-size: 0.667rem;
+        font-weight: bold;
+        font-style: normal;
+        letter-spacing: 0.025rem;
+        text-transform: uppercase;
+        color: var(--menu-text);
+        position: absolute;
+        top: 0;
+        left: 1rem;
+    }
+}
+
+/* Large screens (104rem+): Position TOC to the right side */
+@media screen and (min-width: 104rem) {
+
+    /* Override theme's default #markdown-toc positioning when inside .en/.zh */
+    .en>#markdown-toc,
+    .en>ol.large-only,
+    .zh>ol.large-only,
+    .zh>#markdown-toc-zh {
+        position: absolute !important;
+        z-index: 4;
+        width: 20.5rem !important;
+        right: -25rem !important;
+        left: auto !important;
+        top: 0;
+        margin: 0 !important;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        background-color: var(--body-bg);
+        padding: 1.2rem 1rem 0.5rem 2.5rem;
+        border-left: 1px solid var(--border-color);
+        max-height: calc(100vh - 4rem);
+    }
+
+    /* Make parent containers position relative */
+    .en,
+    .zh {
+        position: relative;
+    }
+
+}
+
+/* Medium screens (64em to 104rem): Show TOC inline at top */
+@media screen and (min-width: 64em) and (max-width: 103.99rem) {
+
+    .en>#markdown-toc,
+    .en>ol.large-only,
+    .zh>ol.large-only,
+    .zh>#markdown-toc-zh {
+        display: block !important;
+        position: relative !important;
+        right: auto !important;
+        left: auto !important;
+        width: auto !important;
+        max-height: 50vh;
+        overflow-y: auto;
+        background-color: var(--body-bg);
+        z-index: 10;
+        padding: 1.2rem 1rem 0.5rem 2.5rem;
+        margin-bottom: 2rem;
+        border-left: 1px solid var(--border-color);
+    }
+
+    /* Chinese TOC header position for medium screens */
+    #markdown-toc-zh:before {
+        left: 1rem;
+    }
+}
+
+/* When fixed by JavaScript - use higher specificity */
+.en>.toc-fixed,
+.zh>.toc-fixed,
+#markdown-toc.toc-fixed,
+#markdown-toc-zh.toc-fixed {
+    position: fixed !important;
+    z-index: 100;
+}
+
+/* Smooth scrollbar for TOC */
+#markdown-toc,
+#markdown-toc-zh,
+.en ol.large-only,
+.zh ol.large-only {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-color) transparent;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--border-color);
+        border-radius: 3px;
+    }
+}
