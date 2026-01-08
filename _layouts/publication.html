@@ -6,13 +6,6 @@ layout: page
 
 <div class="publication-container">
     {% if publication_sections %}
-    <ul class="toc large-only">
-        {% for section in publication_sections %}
-        {% if section.year %}
-        <li><a href="#year-{{ section.year | append: '' | slugify }}">{{ section.year }}</a></li>
-        {% endif %}
-        {% endfor %}
-    </ul>
     {% endif %}
 
     {{ content }}
