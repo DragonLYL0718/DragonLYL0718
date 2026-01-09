@@ -10,15 +10,19 @@ This folder contains SCSS partials used by the Jekyll build.
 - Travel map styles live in `_sass/my-style.scss` under the "Map Styles" section.
 - Keep map-related styles together to avoid PJAX-specific regressions.
 
-## 3. Inline Styles
+## 3. TOC Styles
+- Sticky Table of Contents styles live in `_sass/my-style.scss`.
+- Handles bilingual TOC positioning (`.en`/`.zh`) and sticky behavior on large screens.
+
+## 4. Inline Styles
 - Avoid inline styles in layouts when possible; add SCSS here instead.
 
-## 4. Component Styles
+## 5. Component Styles
 
-## 5. Search Styles
+## 6. Search Styles
 - **Location**: Inline within `_includes/body/menu.html`.
 - **Why**: To keep the search component self-contained. Global variables are still used where applicable.
 
-## 6. Localization Styles
+## 7. Localization Styles
 - **Location**: Inline within `_includes/body/menu.html`.
 - **Purpose**: High-priority utility rules (e.g., `body.lang-zh .en { display: none !important; }`) that toggle content visibility based on the selected language.

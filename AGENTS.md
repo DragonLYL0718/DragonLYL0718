@@ -48,6 +48,7 @@ JEKYLL_ENV=production bundle exec jekyll serve
 ## 3. Key Locations
 - `_config.yml`: Jekyll and theme configuration.
 - `_includes/` and `_layouts/`: Liquid templates and page layouts.
+  - Critical: `_includes/my-head.html` (Dark Mode logic).
 - `assets/`: Static assets and Hydejack JS notes (`assets/readme.md`, `assets/AGENTS.md`).
 - `_sass/my-style.scss`: Custom styles, including map styles.
 - `_galleries/`: Gallery data for the travel map (see `_galleries/AGENTS.md`).
