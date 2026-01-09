@@ -1,855 +1,395 @@
-var pageState = {
-    resourcesLoaded: false,
-    domReady: false,
-    contentInitialized: false,
-    jekyllContentReady: false,
-    loadingImagesInProgress: false,
-    scrollTimer: null,
-    observers: {
-        content: null,
-        video: null,
-        film: null,
-        lozad: null,
-        imageIntersection: null
-    },
-    masonry: {
-        image: null,
-        film: null
-    }
-};
+(function () {
+    'use strict';
 
-function loadMissingResources(callback) {
-    let loadedCount = 0;
-    const totalResources = 4;
-    const resourceMap = [
-        { check: typeof Masonry === 'undefined', src: '/assets/js/masonry.pkgd.min.js' },
-        { check: typeof imagesLoaded === 'undefined', src: '/assets/js/imagesloaded.pkgd.min.js' },
-        { check: typeof lozad === 'undefined', src: '/assets/js/lozad.js' },
-        { check: typeof lightbox === 'undefined', src: '/assets/js/lightbox-plus-jquery.js' }
-    ];
-
-    function checkAllLoaded() {
-        loadedCount++;
-        if (loadedCount >= totalResources && callback) {
-            pageState.resourcesLoaded = true;
-            callback();
+    var pageState = {
+        resourcesLoaded: false,
+        domReady: false,
+        contentInitialized: false,
+        masonry: {
+            image: null,
+            film: null
+        },
+        observers: {
+            intersection: null
         }
-    }
+    };
 
-    resourceMap.forEach(function (resource) {
-        if (resource.check) {
-            var script = document.createElement('script');
-            script.src = resource.src;
-            script.onload = checkAllLoaded;
-            document.head.appendChild(script);
-        } else {
-            checkAllLoaded();
-        }
-    });
-}
+    // --- resource loading ---
+    function loadMissingResources(callback) {
+        let loadedCount = 0;
+        const resources = [
+            { check: () => typeof Masonry !== 'undefined', src: '/assets/js/masonry.pkgd.min.js' },
+            { check: () => typeof imagesLoaded !== 'undefined', src: '/assets/js/imagesloaded.pkgd.min.js' },
+            { check: () => typeof lozad !== 'undefined', src: '/assets/js/lozad.js' },
+            { check: () => typeof lightbox !== 'undefined', src: '/assets/js/lightbox-plus-jquery.js' }
+        ];
 
-function detectJekyllContentVisibility() {
-    var contentSection = document.getElementById('image-section');
-    var hasContent = contentSection && contentSection.innerHTML.trim() !== '';
-
-    if (hasContent) {
-        pageState.jekyllContentReady = true;
-        document.dispatchEvent(new CustomEvent('jekyll-content-ready'));
-        initPage();
-
-        requestAnimationFrame(function () {
-            var grid = document.querySelector('.figure-grid');
-            if (grid) {
-                var msnry = Masonry.data(grid);
-                if (msnry) {
-                    msnry.layout();
-                } else {
-                    initMasonry();
-                }
+        function checkAllLoaded() {
+            loadedCount++;
+            if (loadedCount >= resources.length && callback) {
+                pageState.resourcesLoaded = true;
+                callback();
             }
+        }
 
+        resources.forEach(function (res) {
+            if (!res.check()) {
+                var script = document.createElement('script');
+                script.src = res.src;
+                script.onload = checkAllLoaded;
+                script.onerror = checkAllLoaded; // Proceed even if one fails
+                document.head.appendChild(script);
+            } else {
+                checkAllLoaded();
+            }
+        });
+    }
+
+    // --- Core Initialization ---
+    function initPage() {
+        document.body.classList.add('initialized');
+
+        loadMissingResources(function () {
             var initialContent = handleInitialContent();
+            setupButtonHandlers();
             updateNavigationButtons(
                 initialContent.hasImage,
                 initialContent.hasVideo,
                 initialContent.hasFilm
             );
-        });
-    } else {
-        requestAnimationFrame(detectJekyllContentVisibility);
-    }
-}
 
-function setupMutationObserver() {
-    if (pageState.observers.content) {
-        pageState.observers.content.disconnect();
-    }
-
-    var contentContainer = document.getElementById('content-container');
-    var contentSection = document.getElementById('image-section');
-    var videoSection = document.getElementById('video-section');
-    var filmSection = document.getElementById('film-section');
-
-    if (!contentSection && !videoSection && !filmSection && !contentContainer) {
-        requestAnimationFrame(setupMutationObserver);
-        return;
-    }
-
-    pageState.observers.content = new MutationObserver(function (mutations) {
-        let contentChanged = false;
-
-        mutations.forEach(function (mutation) {
-            if (mutation.type === 'childList' && !pageState.contentInitialized) {
-                contentChanged = true;
-            }
-        });
-
-        if (contentChanged) {
-            var contentDetails = {
-                hasImage: contentSection && contentSection.querySelector('.figure-grid'),
-                hasVideo: videoSection && videoSection.querySelector('.video-grid'),
-                hasFilm: filmSection && filmSection.querySelector('.film-grid')
-            };
-
-            if (contentDetails.hasImage || contentDetails.hasVideo || contentDetails.hasFilm) {
-                pageState.contentInitialized = true;
-                updateNavigationButtons(
-                    contentDetails.hasImage,
-                    contentDetails.hasVideo,
-                    contentDetails.hasFilm
-                );
-                initPage();
-            }
-        }
-    });
-
-    if (contentContainer) {
-        pageState.observers.content.observe(contentContainer, { childList: true, subtree: true });
-    }
-
-    [contentSection, videoSection, filmSection].forEach(function (section) {
-        if (section) {
-            pageState.observers.content.observe(section, { childList: true, subtree: true });
-        }
-    });
-}
-
-function initPage() {
-    // Removed early return to allow re-initialization on PJAX navigation
-    // if (document.body.classList.contains('initialized') && !pageState.contentInitialized) {
-    //     return;
-    // }
-
-    document.body.classList.add('initialized');
-
-    var libStatus = {
-        masonry: typeof Masonry !== 'undefined',
-        imagesLoaded: typeof imagesLoaded !== 'undefined',
-        lozad: typeof lozad !== 'undefined',
-        lightbox: typeof lightbox !== 'undefined'
-    };
-
-    if (!libStatus.masonry || !libStatus.imagesLoaded || !libStatus.lozad || !libStatus.lightbox) {
-        loadMissingResources(function () {
-            requestAnimationFrame(initPage);
-        });
-        return;
-    }
-
-    var initialContent = handleInitialContent();
-    setupButtonHandlers();
-    updateNavigationButtons(
-        initialContent.hasImage,
-        initialContent.hasVideo,
-        initialContent.hasFilm
-    );
-
-    if (initialContent.hasImage) {
-        initMasonry();
-        loadInitialImages();
-    }
-
-    if (initialContent.hasVideo) {
-        initVideoLazyLoad();
-    }
-
-    if (initialContent.hasFilm) {
-        initFilmMasonry();
-    }
-
-    if (typeof lightbox !== 'undefined') {
-        lightbox.option({
-            'resizeDuration': 200,
-            'wrapAround': true,
-            'fitImagesInViewport': true,
-            'disableScrolling': true
-        });
-    }
-
-    pageState.contentInitialized = true;
-
-    requestAnimationFrame(function () {
-        loadActiveTabContent();
-
-        setTimeout(function () {
-            updateActiveLayout();
-        }, 100);
-    });
-}
-
-function loadInitialImages() {
-    var activeSection = document.querySelector('.content-section.active');
-    if (!activeSection) return;
-
-    var sectionId = activeSection.id;
-    var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-    var loadDistance = viewportHeight * 1.2;
-
-    if (sectionId === 'image-section') {
-        var lazyImages = activeSection.querySelectorAll('img.lozad:not(.loaded)');
-        processVisibleElements(lazyImages, loadDistance, '.figure-grid-item');
-    } else if (sectionId === 'film-section') {
-        var lazyFilmImages = activeSection.querySelectorAll('img.film-lozad:not(.loaded)');
-        processVisibleElements(lazyFilmImages, loadDistance, '.film-grid-item');
-    }
-
-    function processVisibleElements(elements, loadDistance, itemSelector) {
-        elements.forEach(function (el) {
-            var rect = el.getBoundingClientRect();
-            if (rect.top < loadDistance) {
-                if (el.dataset.src && !el.src) {
-                    el.src = el.dataset.src;
-                    el.style.visibility = 'visible';
-                    el.classList.add('loaded');
-                    var item = el.closest(itemSelector);
-                    if (item) {
-                        item.classList.add('loaded');
-                    }
-                }
-            }
-        });
-        updateActiveLayout();
-    }
-}
-
-function updateActiveLayout() {
-    var activeSection = document.querySelector('.content-section.active');
-    if (!activeSection) return;
-
-    var sectionId = activeSection.id;
-
-    if (sectionId === 'image-section') {
-        var grid = document.querySelector('.figure-grid');
-        if (grid) {
-            var msnry = Masonry.data(grid);
-            if (msnry) msnry.layout();
-        }
-    } else if (sectionId === 'film-section') {
-        var filmGrid = document.querySelector('.film-grid');
-        if (filmGrid) {
-            var filmMsnry = Masonry.data(filmGrid);
-            if (filmMsnry) filmMsnry.layout();
-        }
-    }
-}
-
-function handleInitialContent() {
-    var containers = document.querySelectorAll('[data-type]');
-    var imageGrid = document.querySelector('.figure-grid');
-
-    var contentDetails = {
-        hasVideo: false,
-        hasFilm: false,
-        hasImage: imageGrid !== null && imageGrid.innerHTML.trim() !== ''
-    };
-
-    containers.forEach(function (container) {
-        var type = container.getAttribute('data-type');
-
-        if (type === 'video') {
-            var videoContainer = document.getElementById('video-container');
-            if (videoContainer) {
-                videoContainer.appendChild(container.cloneNode(true));
-                container.setAttribute('data-processed', 'true');
-                contentDetails.hasVideo = true;
-            }
-        } else if (type === 'film') {
-            var filmContainer = document.getElementById('film-container');
-            if (filmContainer) {
-                filmContainer.appendChild(container.cloneNode(true));
-                container.setAttribute('data-processed', 'true');
-                contentDetails.hasFilm = true;
-            }
-        }
-    });
-
-    containers.forEach(function (container) {
-        if (container.getAttribute('data-processed') === 'true') {
-            container.remove();
-        }
-    });
-
-    if (!contentDetails.hasImage && (contentDetails.hasVideo || contentDetails.hasFilm)) {
-        if (contentDetails.hasVideo) {
-            var videoButton = document.querySelector('.video-button');
-            if (videoButton) {
-                videoButton.click();
-            }
-        } else if (contentDetails.hasFilm) {
-            var filmButton = document.querySelector('.film-button');
-            if (filmButton) {
-                filmButton.click();
-            }
-        }
-    }
-
-    return contentDetails;
-}
-
-function updateNavigationButtons(hasImage, hasVideo, hasFilm) {
-    var contentNav = document.querySelector('.content-nav');
-    if (!contentNav) {
-        return;
-    }
-
-    var contentTypeCount = (hasImage ? 1 : 0) + (hasVideo ? 1 : 0) + (hasFilm ? 1 : 0);
-    var imageButton = document.querySelector('.image-button');
-    var videoButton = document.querySelector('.video-button');
-    var filmButton = document.querySelector('.film-button');
-
-    if (!imageButton || !videoButton || !filmButton) {
-        return;
-    }
-
-    [imageButton, videoButton, filmButton].forEach(function (btn) {
-        btn.style.display = 'none';
-    });
-
-    if (contentTypeCount <= 1) {
-        contentNav.style.display = 'none';
-    } else {
-        contentNav.style.display = 'flex';
-
-        if (hasImage) imageButton.style.display = 'inline-block';
-        if (hasVideo) videoButton.style.display = 'inline-block';
-        if (hasFilm) filmButton.style.display = 'inline-block';
-    }
-
-    if (!hasImage && hasVideo) {
-        imageButton.classList.remove('active');
-        videoButton.classList.add('active');
-        document.getElementById('image-section').classList.remove('active');
-        document.getElementById('video-section').classList.add('active');
-        document.getElementById('video-section').style.display = 'block';
-        document.getElementById('image-section').style.display = 'none';
-    } else if (!hasImage && !hasVideo && hasFilm) {
-        imageButton.classList.remove('active');
-        filmButton.classList.add('active');
-        document.getElementById('image-section').classList.remove('active');
-        document.getElementById('film-section').classList.add('active');
-        document.getElementById('film-section').style.display = 'block';
-        document.getElementById('image-section').style.display = 'none';
-    } else if (hasImage) {
-        imageButton.classList.add('active');
-        document.getElementById('image-section').classList.add('active');
-        document.getElementById('image-section').style.display = 'block';
-    }
-}
-
-function setupButtonHandlers() {
-    var navButtons = document.querySelectorAll('.nav-button');
-
-    navButtons.forEach(function (button) {
-        var newButton = button.cloneNode(true);
-        button.parentNode.replaceChild(newButton, button);
-    });
-
-    navButtons = document.querySelectorAll('.nav-button');
-    navButtons.forEach(function (button) {
-        button.addEventListener('click', function (e) {
-            e.preventDefault();
-            var target = this.getAttribute('data-target');
-
-            navButtons.forEach(function (btn) {
-                btn.classList.remove('active');
-            });
-            this.classList.add('active');
-
-            var sections = document.querySelectorAll('.content-section');
-            sections.forEach(function (section) {
-                section.classList.remove('active');
-                section.style.display = 'none';
-            });
-
-            var targetSection = document.getElementById(target);
-            if (targetSection) {
-                targetSection.classList.add('active');
-                targetSection.style.display = 'block';
-
-                if (target === 'image-section') {
-                    initMasonry();
-                } else if (target === 'video-section') {
-                    initVideoLazyLoad();
-                } else if (target === 'film-section') {
-                    initFilmMasonry();
-                }
-
-                requestAnimationFrame(loadActiveTabContent);
-            }
-        });
-    });
-}
-
-function loadActiveTabContent() {
-    var activeSection = document.querySelector('.content-section.active');
-    if (!activeSection) return;
-
-    var sectionId = activeSection.id;
-
-    if (sectionId === 'image-section') {
-        loadVisibleImages();
-    } else if (sectionId === 'video-section') {
-        loadVisibleVideos();
-    } else if (sectionId === 'film-section') {
-        loadVisibleFilmImages();
-    }
-}
-
-function initMasonry() {
-    var grid = document.querySelector('.figure-grid');
-    if (!grid) return null;
-
-    var existingMasonry = Masonry.data(grid);
-    if (existingMasonry) {
-        existingMasonry.layout();
-        imagesLoaded(grid).on('progress', function () {
-            existingMasonry.layout();
-        }).on('always', function () {
-            existingMasonry.layout();
-        });
-        return existingMasonry;
-    }
-
-    try {
-        var msnry = new Masonry(grid, {
-            itemSelector: '.figure-grid-item',
-            columnWidth: '.figure-grid-sizer',
-            percentPosition: true
-        });
-
-        pageState.masonry.image = msnry;
-
-        if (pageState.observers.lozad) {
-            pageState.observers.lozad.observer.disconnect();
-        }
-
-        pageState.observers.lozad = lozad('.content-section.active .lozad', {
-            rootMargin: '200px 0px',
-            threshold: 0.01,
-            loaded: function (el) {
-                el.classList.add('loaded');
-                var item = el.closest('.figure-grid-item');
-                if (item) {
-                    item.classList.add('loaded');
-                }
-
-                el.style.visibility = 'visible';
-                el.style.opacity = '1';
-
-                imagesLoaded(el, function () {
-                    updateActiveLayout();
+            // Initialize global lightbox options
+            if (typeof lightbox !== 'undefined') {
+                lightbox.option({
+                    'resizeDuration': 200,
+                    'wrapAround': true,
+                    'fitImagesInViewport': true,
+                    'disableScrolling': true
                 });
             }
+
+            // Init active section
+            var activeSection = document.querySelector('.content-section.active');
+            if (activeSection) {
+                initSection(activeSection.id);
+            }
+
+            pageState.contentInitialized = true;
         });
-
-        pageState.observers.lozad.observe();
-
-        imagesLoaded(grid).on('progress', function () {
-            updateActiveLayout();
-        }).on('always', function () {
-            updateActiveLayout();
-            requestAnimationFrame(function () {
-                updateActiveLayout();
-            });
-        });
-
-        return msnry;
-    } catch (e) {
-        return null;
-    }
-}
-
-function loadVisibleImages() {
-    var activeSection = document.querySelector('.content-section.active');
-    if (!activeSection || activeSection.id !== 'image-section' || pageState.loadingImagesInProgress) {
-        return;
     }
 
-    pageState.loadingImagesInProgress = true;
+    function initSection(sectionId) {
+        if (sectionId === 'image-section') {
+            initMasonryGrid('.figure-grid', '.figure-grid-item', '.figure-grid-sizer', 'image');
+        } else if (sectionId === 'film-section') {
+            initMasonryGrid('.film-grid', '.film-grid-item', '.film-grid-sizer', 'film');
+        } else if (sectionId === 'video-section') {
+            observeMedia(document.getElementById('video-section'));
+        }
+    }
 
-    if (!pageState.observers.imageIntersection) {
-        pageState.observers.imageIntersection = new IntersectionObserver(function (entries) {
-            var visibleImages = entries
-                .filter(entry => entry.isIntersecting)
-                .map(entry => entry.target)
-                .filter(img => img.dataset.src && !img.getAttribute('data-loaded') && !img.getAttribute('data-loading'));
+    // --- Masonry & Layout ---
+    function initMasonryGrid(gridSelector, itemSelector, sizerSelector, type) {
+        var grid = document.querySelector(gridSelector);
+        if (!grid) return;
 
-            if (visibleImages.length === 0) {
-                pageState.loadingImagesInProgress = false;
+        // If already initialized, just layout
+        if (pageState.masonry[type]) {
+            pageState.masonry[type].layout();
+            return;
+        }
+
+        // Check if Masonry data exists loosely
+        if (typeof Masonry !== 'undefined') {
+            var existing = Masonry.data(grid);
+            if (existing) {
+                pageState.masonry[type] = existing;
+                existing.layout();
                 return;
             }
-
-            var maxImagesPerBatch = 5;
-            var imagesToLoad = visibleImages.slice(0, maxImagesPerBatch);
-            var loadedCount = 0;
-
-            imagesToLoad.forEach(function (img) {
-                var src = img.getAttribute('data-src');
-                img.setAttribute('data-loading', 'true');
-                img.style.opacity = '0';
-                img.style.transition = 'opacity 0.3s ease';
-
-                img.onload = function () {
-                    img.removeAttribute('data-src');
-                    img.setAttribute('data-loaded', 'true');
-                    img.removeAttribute('data-loading');
-                    img.style.opacity = '1';
-                    var gridItem = img.closest('.figure-grid-item');
-                    if (gridItem) gridItem.classList.add('loaded');
-
-                    loadedCount++;
-                    updateActiveLayout();
-
-                    if (loadedCount >= imagesToLoad.length) {
-                        pageState.loadingImagesInProgress = false;
-                        requestAnimationFrame(loadVisibleImages);
-                    }
-                };
-
-                img.onerror = function () {
-                    img.removeAttribute('data-loading');
-                    loadedCount++;
-
-                    if (loadedCount >= imagesToLoad.length) {
-                        pageState.loadingImagesInProgress = false;
-                        requestAnimationFrame(loadVisibleImages);
-                    }
-                };
-
-                img.src = src;
-            });
-        }, {
-            rootMargin: '200px',
-            threshold: 0.01
-        });
-    }
-
-    var imgElements = activeSection.querySelectorAll('img[data-src]:not([data-loaded="true"]):not([data-loading="true"])');
-    imgElements.forEach(function (img) {
-        pageState.observers.imageIntersection.observe(img);
-    });
-}
-
-function initFilmMasonry() {
-    var filmSection = document.getElementById('film-section');
-    if (!filmSection || !filmSection.classList.contains('active')) {
-        return;
-    }
-
-    var grid = filmSection.querySelector('.film-grid');
-    if (!grid) {
-        return;
-    }
-
-    var existingMasonry = Masonry.data(grid);
-    if (existingMasonry) {
-        existingMasonry.layout();
-        return existingMasonry;
-    }
-
-    try {
-        var msnry = new Masonry(grid, {
-            itemSelector: '.film-grid-item',
-            columnWidth: '.film-grid-sizer',
-            percentPosition: true,
-            transitionDuration: '0.3s'
-        });
-
-        pageState.masonry.film = msnry;
-
-        if (pageState.observers.film) {
-            pageState.observers.film.disconnect();
         }
 
-        pageState.observers.film = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    var img = entry.target;
-                    var src = img.getAttribute('data-src');
-
-                    if (src && !img.hasAttribute('data-loading') && !img.hasAttribute('data-loaded')) {
-                        img.setAttribute('data-loading', 'true');
-                        img.style.opacity = '0';
-                        img.style.transition = 'opacity 0.3s ease';
-
-                        img.onload = function () {
-                            img.removeAttribute('data-src');
-                            img.removeAttribute('data-loading');
-                            img.setAttribute('data-loaded', 'true');
-                            img.classList.add('loaded');
-                            img.style.opacity = '1';
-
-                            var gridItem = img.closest('.film-grid-item');
-                            if (gridItem) {
-                                gridItem.classList.add('loaded');
-                            }
-
-                            updateActiveLayout();
-                            pageState.observers.film.unobserve(img);
-                        };
-
-                        img.onerror = function () {
-                            img.removeAttribute('data-loading');
-                            pageState.observers.film.unobserve(img);
-                        };
-
-                        img.src = src;
-                    }
-                }
+        try {
+            var msnry = new Masonry(grid, {
+                itemSelector: itemSelector,
+                columnWidth: sizerSelector,
+                percentPosition: true,
+                transitionDuration: '0.3s'
             });
-        }, {
-            rootMargin: '200px',
-            threshold: 0.01
+
+            pageState.masonry[type] = msnry;
+
+            // Bind layout updates to image loads
+            if (typeof imagesLoaded !== 'undefined') {
+                imagesLoaded(grid).on('progress', function () {
+                    msnry.layout();
+                });
+            }
+
+            // Start observing lazy items in this grid
+            observeMedia(grid);
+
+        } catch (e) {
+            console.warn('Masonry init failed', e);
+        }
+    }
+
+    function updateActiveLayout() {
+        // Debounce or requestAnimationFrame could be added here if called frequently
+        requestAnimationFrame(function () {
+            var activeSection = document.querySelector('.content-section.active');
+            if (activeSection) {
+                if (activeSection.id === 'image-section' && pageState.masonry.image) {
+                    pageState.masonry.image.layout();
+                } else if (activeSection.id === 'film-section' && pageState.masonry.film) {
+                    pageState.masonry.film.layout();
+                }
+            }
         });
+    }
 
-        var lazyFilmImages = filmSection.querySelectorAll('img.film-lozad:not(.loaded)');
-        lazyFilmImages.forEach(function (img) {
-            pageState.observers.film.observe(img);
+    // --- Unified Lazy Loading ---
+    function observeMedia(rootElement) {
+        if (!rootElement) return;
+
+        // Select all lazy targets
+        // We look for .lozad, .film-lozad, or video[data-src]
+        var targets = rootElement.querySelectorAll('img[data-src], video[data-src]');
+
+        if (!pageState.observers.intersection) {
+            pageState.observers.intersection = new IntersectionObserver(handleIntersection, {
+                rootMargin: '200px', // Preload before coming into view
+                threshold: 0
+            });
+        }
+
+        targets.forEach(function (el) {
+            if (!el.classList.contains('loaded') && !el.dataset.loading) {
+                pageState.observers.intersection.observe(el);
+            }
         });
-
-        imagesLoaded(grid).on('progress', function () {
-            updateActiveLayout();
-        }).on('always', function () {
-            updateActiveLayout();
-        });
-
-        return msnry;
-    } catch (e) {
-        return null;
-    }
-}
-
-function loadVisibleFilmImages() {
-    var filmSection = document.getElementById('film-section');
-    if (!filmSection || !filmSection.classList.contains('active')) {
-        return;
     }
 
-    if (!pageState.observers.film) {
-        initFilmMasonry();
-        return;
-    }
-
-    var lazyImages = filmSection.querySelectorAll('img.film-lozad:not(.loaded):not([data-loading])');
-    lazyImages.forEach(function (img) {
-        pageState.observers.film.observe(img);
-    });
-}
-
-function initVideoLazyLoad() {
-    var videoSection = document.getElementById('video-section');
-    if (!videoSection || !videoSection.classList.contains('active')) {
-        return;
-    }
-
-    if (pageState.observers.video) {
-        pageState.observers.video.disconnect();
-    }
-
-    pageState.observers.video = new IntersectionObserver(function (entries) {
+    function handleIntersection(entries, observer) {
         entries.forEach(function (entry) {
             if (entry.isIntersecting) {
-                var video = entry.target;
-                var src = video.getAttribute('data-src');
-                var poster = video.getAttribute('data-poster');
-
-                if (src && !video.hasAttribute('data-loading') && !video.hasAttribute('data-loaded')) {
-                    video.setAttribute('data-loading', 'true');
-
-                    if (poster) {
-                        video.setAttribute('poster', poster);
-                    }
-
-                    var existingSource = video.querySelector('source');
-                    if (existingSource) {
-                        existingSource.src = src;
-                    } else {
-                        var source = document.createElement('source');
-                        source.src = src;
-                        source.type = 'video/mp4';
-                        video.appendChild(source);
-                    }
-
-                    video.load();
-                    video.removeAttribute('data-src');
-                    video.setAttribute('data-loaded', 'true');
-                    video.removeAttribute('data-loading');
-
-                    var videoItem = video.closest('.video-item');
-                    if (videoItem) {
-                        videoItem.classList.add('loaded');
-                    }
-
-                    pageState.observers.video.unobserve(video);
-                }
+                var el = entry.target;
+                loadMedia(el);
+                observer.unobserve(el);
             }
         });
-    }, {
-        rootMargin: '100px',
-        threshold: 0.1
-    });
-
-    var lazyVideos = videoSection.querySelectorAll('video[data-src]:not([data-loaded="true"]):not([data-loading="true"])');
-    lazyVideos.forEach(function (video) {
-        pageState.observers.video.observe(video);
-    });
-}
-
-function loadVisibleVideos() {
-    var videoSection = document.getElementById('video-section');
-    if (!videoSection || !videoSection.classList.contains('active')) {
-        return;
     }
 
-    if (!pageState.observers.video) {
-        initVideoLazyLoad();
-        return;
+    function loadMedia(el) {
+        if (el.dataset.loading || el.classList.contains('loaded')) return;
+
+        el.dataset.loading = 'true';
+        var src = el.getAttribute('data-src');
+        if (!src) return;
+
+        // Visual fade-in prep
+        el.style.opacity = '0';
+        el.style.transition = 'opacity 0.3s ease';
+
+        if (el.tagName.toLowerCase() === 'video') {
+            var poster = el.getAttribute('data-poster');
+            if (poster) el.setAttribute('poster', poster);
+
+            var source = el.querySelector('source');
+            if (!source) {
+                source = document.createElement('source');
+                source.type = 'video/mp4';
+                el.appendChild(source);
+            }
+            source.src = src;
+            el.load();
+
+            // For video, we assume 'loaded' when it can play or just immediately
+            // Often purely setting src is enough to start buffering.
+            stepLoaded(el);
+        } else {
+            // Image
+            var img = new Image();
+            img.onload = function () {
+                el.src = src;
+                stepLoaded(el);
+            };
+            img.onerror = function () {
+                // Handle error if needed, essentially just stop loading state
+                el.removeAttribute('data-loading');
+            };
+            img.src = src;
+        }
     }
 
-    var lazyVideos = videoSection.querySelectorAll('video[data-src]:not([data-loaded="true"]):not([data-loading="true"])');
-    lazyVideos.forEach(function (video) {
-        pageState.observers.video.observe(video);
-    });
-}
+    function stepLoaded(el) {
+        el.removeAttribute('data-src');
+        el.removeAttribute('data-loading');
+        el.classList.add('loaded');
+        el.style.opacity = '1';
+        el.style.visibility = 'visible';
 
-window.addEventListener('scroll', function () {
-    if (pageState.scrollTimer) {
-        cancelAnimationFrame(pageState.scrollTimer);
+        // Notify parent item for CSS styling
+        var parentItem = el.closest('.figure-grid-item, .film-grid-item, .video-item');
+        if (parentItem) parentItem.classList.add('loaded');
+
+        // Trigger layout update
+        updateActiveLayout();
     }
 
-    pageState.scrollTimer = requestAnimationFrame(function () {
-        var activeSection = document.querySelector('.content-section.active');
-        if (activeSection) {
-            if (activeSection.id === 'image-section') {
-                if (!pageState.loadingImagesInProgress) {
-                    loadVisibleImages();
+
+    // --- Dom & Content Handling ---
+    function handleInitialContent() {
+        var containers = document.querySelectorAll('[data-type]');
+        var imageGrid = document.querySelector('.figure-grid');
+
+        var content = {
+            hasImage: !!(imageGrid && imageGrid.innerHTML.trim()),
+            hasVideo: false,
+            hasFilm: false
+        };
+
+        // Move scattered content into containers
+        containers.forEach(function (container) {
+            var type = container.getAttribute('data-type');
+            if (type === 'video') {
+                var vContainer = document.getElementById('video-container');
+                if (vContainer) {
+                    vContainer.appendChild(container.cloneNode(true));
+                    content.hasVideo = true;
                 }
-            } else if (activeSection.id === 'film-section') {
-                loadVisibleFilmImages();
-            } else if (activeSection.id === 'video-section') {
-                loadVisibleVideos();
+            } else if (type === 'film') {
+                var fContainer = document.getElementById('film-container');
+                if (fContainer) {
+                    fContainer.appendChild(container.cloneNode(true));
+                    content.hasFilm = true;
+                }
+            }
+            container.remove();
+        });
+
+        // Auto-switch tabs if image section is empty but others exist
+        if (!content.hasImage) {
+            if (content.hasVideo) {
+                switchTab('video-section');
+            } else if (content.hasFilm) {
+                switchTab('film-section');
             }
         }
-    });
-}, { passive: true });
 
-function initializeTab(tabId) {
-    var contentSections = document.querySelectorAll('.content-section');
-    contentSections.forEach(function (section) {
-        section.classList.remove('active');
-        section.style.display = 'none';
-    });
-
-    var activeSection = document.getElementById(tabId + '-section');
-    if (activeSection) {
-        activeSection.classList.add('active');
-        activeSection.style.display = 'block';
+        return content;
     }
 
-    var navButtons = document.querySelectorAll('.nav-button');
-    navButtons.forEach(function (button) {
-        button.classList.remove('active');
-        if (button.getAttribute('data-target') === tabId + '-section') {
-            button.classList.add('active');
-        }
-    });
-
-    if (tabId === 'image') {
-        requestAnimationFrame(function () {
-            initMasonry();
-            loadVisibleImages();
-        });
-    } else if (tabId === 'film') {
-        requestAnimationFrame(function () {
-            initFilmMasonry();
-            loadVisibleFilmImages();
-        });
-    } else if (tabId === 'video') {
-        requestAnimationFrame(function () {
-            initVideoLazyLoad();
-            loadVisibleVideos();
-        });
-    }
-}
-
-window.onerror = function (msg, url, line, col, error) {
-    return false;
-};
-
-document.addEventListener('DOMContentLoaded', function () {
-    pageState.domReady = true;
-    setupMutationObserver();
-    detectJekyllContentVisibility();
-    loadMissingResources(function () {
-        initPage();
-    });
-
-    var activeTabId = 'image';
-    var activeNavButton = document.querySelector('.nav-button.active');
-    if (activeNavButton) {
-        var targetSectionId = activeNavButton.getAttribute('data-target');
-        if (targetSectionId && targetSectionId.endsWith('-section')) {
-            activeTabId = targetSectionId.replace('-section', '');
+    function switchTab(targetId) {
+        var targetBtn = document.querySelector('.nav-button[data-target="' + targetId + '"]');
+        if (targetBtn) {
+            // Simulate click or just manually trigger logic
+            // Ideally we reuse the click handler logic defined in setupButtonHandlers
+            targetBtn.click();
+        } else {
+            // Manual fallback
+            document.querySelectorAll('.content-section').forEach(s => {
+                s.classList.remove('active');
+                s.style.display = 'none';
+            });
+            var sec = document.getElementById(targetId);
+            if (sec) {
+                sec.classList.add('active');
+                sec.style.display = 'block';
+            }
         }
     }
 
-    initializeTab(activeTabId);
-});
+    function updateNavigationButtons(hasImage, hasVideo, hasFilm) {
+        var nav = document.querySelector('.content-nav');
+        if (!nav) return;
 
-window.addEventListener('load', function () {
-    pageState.domReady = true;
+        var btnImage = document.querySelector('.image-button');
+        var btnVideo = document.querySelector('.video-button');
+        var btnFilm = document.querySelector('.film-button');
 
-    if (!pageState.jekyllContentReady) {
-        detectJekyllContentVisibility();
+        if (btnImage) btnImage.style.display = hasImage ? 'inline-block' : 'none';
+        if (btnVideo) btnVideo.style.display = hasVideo ? 'inline-block' : 'none';
+        if (btnFilm) btnFilm.style.display = hasFilm ? 'inline-block' : 'none';
+
+        var count = (hasImage ? 1 : 0) + (hasVideo ? 1 : 0) + (hasFilm ? 1 : 0);
+        nav.style.display = count > 1 ? 'flex' : 'none';
     }
 
-    if (!document.querySelector('.figure-grid-item.loaded')) {
-        initPage();
+    function setupButtonHandlers() {
+        var navButtons = document.querySelectorAll('.nav-button');
+        navButtons.forEach(function (btn) {
+            // Clone to remove old listeners (cleanup)
+            var newBtn = btn.cloneNode(true);
+            btn.parentNode.replaceChild(newBtn, btn);
+        });
+
+        // Re-select
+        navButtons = document.querySelectorAll('.nav-button');
+        navButtons.forEach(function (btn) {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                var target = this.getAttribute('data-target');
+
+                // Update active state
+                navButtons.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                // Show section
+                document.querySelectorAll('.content-section').forEach(function (bs) {
+                    bs.classList.remove('active');
+                    bs.style.display = 'none';
+                });
+
+                var targetSection = document.getElementById(target);
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                    targetSection.style.display = 'block';
+                    initSection(target);
+                }
+            });
+        });
     }
-});
 
-document.addEventListener('jekyll-content-ready', function () {
-    initPage();
-});
 
-window.addEventListener('hy:load', function () {
-    pageState.contentInitialized = false;
-    detectJekyllContentVisibility();
-    setupMutationObserver();
-    loadMissingResources(function () {
-        initPage();
-    });
-});
+    // --- Lifecycle ---
 
-(function () {
-    setupMutationObserver();
-
-    if (document.readyState === 'complete' || document.readyState === 'interactive') {
-        detectJekyllContentVisibility();
-        loadMissingResources(function () {
+    function detectContent() {
+        var contentSection = document.getElementById('image-section');
+        // Simple check if content is injected
+        if (contentSection && contentSection.innerHTML.trim() !== '') {
+            document.dispatchEvent(new CustomEvent('jekyll-content-ready'));
             initPage();
-        });
+        } else {
+            requestAnimationFrame(detectContent);
+        }
     }
-})();
 
-pageState.loadingImagesInProgress = false;
+    // Observer for PJAX or dynamic content injection
+    var mutationObserver = new MutationObserver(function (mutations) {
+        var needed = false;
+        for (var i = 0; i < mutations.length; i++) {
+            if (mutations[i].addedNodes.length > 0) {
+                needed = true;
+                break;
+            }
+        }
+
+        if (needed) {
+            var contentSection = document.getElementById('image-section');
+            if (contentSection && contentSection.innerHTML.trim() !== '' && !pageState.contentInitialized) {
+                detectContent();
+            }
+        }
+    });
+
+    var container = document.getElementById('content-container') || document.body;
+    mutationObserver.observe(container, { childList: true, subtree: true });
+
+    // Initial check
+    detectContent();
+
+    // Export if needed for debugging
+    window.GalleryOptimized = pageState;
+
+})();

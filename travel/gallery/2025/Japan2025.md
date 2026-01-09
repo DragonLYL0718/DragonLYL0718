@@ -1,6 +1,6 @@
 ---
 layout: pagefigure
-title: Japan2025
+title: Japan
 title_zh: 日本
 description: '2025.4.26-5.6
 
