@@ -205,7 +205,23 @@
       return;
     }
 
-    state.map = L.map('map-container').setView([20, 0], 2);
+    state.map = L.map('map-container', { scrollWheelZoom: false }).setView([20, 0], 2);
+
+    const mapDiv = document.getElementById('Map');
+    const overlay = document.getElementById('map-overlay');
+    if (mapDiv && overlay) {
+      mapDiv.addEventListener('wheel', function (e) {
+        if (e.ctrlKey || e.metaKey) {
+          overlay.classList.remove('visible');
+        } else {
+          overlay.classList.add('visible');
+          if (overlay.timeout) clearTimeout(overlay.timeout);
+          overlay.timeout = setTimeout(function () {
+            overlay.classList.remove('visible');
+          }, 1500);
+        }
+      }, { passive: true });
+    }
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
@@ -508,6 +524,32 @@
       return;
     }
     GalleryPage._eventsBound = true;
+
+    document.addEventListener('keydown', function (e) {
+      if (e.ctrlKey || e.metaKey) {
+        if (state.map) {
+          state.map.scrollWheelZoom.enable();
+        }
+        const overlay = document.getElementById('map-overlay');
+        if (overlay) {
+          overlay.classList.remove('visible');
+        }
+      }
+    });
+
+    document.addEventListener('keyup', function (e) {
+      if (e.key === 'Control' || e.key === 'Meta') {
+        if (state.map) {
+          state.map.scrollWheelZoom.disable();
+        }
+      }
+    });
+
+    window.addEventListener('blur', function () {
+      if (state.map) {
+        state.map.scrollWheelZoom.disable();
+      }
+    });
 
     document.addEventListener('DOMContentLoaded', deferredInit, { once: true });
     window.addEventListener('hy:pjax:end', deferredInit);

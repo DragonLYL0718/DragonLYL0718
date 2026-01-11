@@ -128,9 +128,62 @@ layout: page
     </style>
 
     <!-- Map Container moved outside tab content and visible by default -->
-    <div id="Map" class="map-section" style="display: block; margin-bottom: 20px;">
-        <div id="map-container" style="height: 400px; width: 100%;"></div>
+    <div id="Map" class="map-section" style="display: block; margin-bottom: 20px; position: relative;">
+        <div id="map-container" style="height: 400px; width: 100%; z-index: 1;"></div>
+        <div id="map-overlay" class="map-overlay">
+            <div class="map-overlay-content">
+                <span class="en">Use ctrl + scroll to zoom the map</span>
+                <span class="zh">按住 ctrl + 滚轮缩放地图</span>
+            </div>
+        </div>
     </div>
+
+    <style>
+        .map-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.45);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .map-overlay.visible {
+            opacity: 1;
+        }
+
+        .map-overlay-content {
+            color: white;
+            font-size: 22px;
+            font-weight: 500;
+            text-align: center;
+            font-family: inherit;
+        }
+
+        .map-overlay-content .zh {
+            display: none;
+        }
+
+        .map-overlay-content .en {
+            display: block;
+        }
+
+        /* Language switching logic matches existing pattern */
+        body.lang-zh .map-overlay-content .en {
+            display: none;
+        }
+
+        body.lang-zh .map-overlay-content .zh {
+            display: block;
+        }
+    </style>
 
     <div id="gallery-content">
         {% for year in sorted_years %}
