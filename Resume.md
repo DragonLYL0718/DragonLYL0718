@@ -33,6 +33,9 @@ permalink: /resume/
 
 ## Publications
 ---
+- [C5] **GazeZoom: Exploration of Gaze-Assisted Multimodal Techniques for Panning and Zooming**<br>
+  **Yilong Lin**, Mingyu Han, Weitao Jiang, Seungwoo Je, Ian Oakley<br>
+  *In Proceedings of CHI 2026. (To Appear)*
 - [J1] **[Designing Hand and Forearm Gestures to Control Virtual Forearm for User-Initiated Forearm Deformation](https://doi.ieeecomputersociety.org/10.1109/TVCG.2025.3616825)**<br>
   **Yilong Lin**, Han Shi, Weitao Jiang, Xuesong Zhang, Hye-Young Jo, Yoonji Kim, Seungwoo Je<br>
   *IEEE TVCG, Special Issue on ISMAR 2025.*
@@ -59,8 +62,8 @@ permalink: /resume/
 ## Invited reviewer
 ---
 - **AHs '25**
-- **ACM CHI '26, '25** (1 Special Recognition for Outstanding Review)
-- **ACM UIST '25, '24** (2 Special Recognitions for Outstanding Reviews)
+- **ACM CHI '26, '25** (2 Special Recognition for Outstanding Review)
+- **ACM UIST '25, '24** (2 Special Recognition for Outstanding Review)
 - **SIGGRAPH Asia '24**
 
 ## References
@@ -97,6 +100,9 @@ permalink: /resume/
 
 ## 发表论文
 ---
+- [C5] **GazeZoom: Exploration of Gaze-Assisted Multimodal Techniques for Panning and Zooming**<br>
+  **Yilong Lin**, Mingyu Han, Weitao Jiang, Seungwoo Je, Ian Oakley<br>
+  *In Proceedings of CHI 2026. (To Appear)*
 - [J1] **[Designing Hand and Forearm Gestures to Control Virtual Forearm for User-Initiated Forearm Deformation](https://doi.ieeecomputersociety.org/10.1109/TVCG.2025.3616825)**<br>
   **Yilong Lin**, Han Shi, Weitao Jiang, Xuesong Zhang, Hye-Young Jo, Yoonji Kim, Seungwoo Je<br>
   *IEEE TVCG, Special Issue on ISMAR 2025.*
