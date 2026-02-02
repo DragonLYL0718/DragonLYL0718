@@ -66,13 +66,13 @@ permalink: /resume/
   *US12524024B1, 2026-01-13*
 - [P4] **一种景观生成系统**<br>
   Seungwoo Je, Tianze Xie, **Yilong Lin**, Yuxin Ma, Kaihan Wang, Zezheng Guan, Yingjie Chang<br>
-  *CN118704836A, 2024-09-27*
+  *CN118815251A, 2024-10-22*
 - [P3] **一种景观生成系统**<br>
   Seungwoo Je, Tianze Xie, **Yilong Lin**, Yuxin Ma, Kaihan Wang, Zezheng Guan, Yingjie Chang<br>
-  *CN118815251A, 2024-10-22*
+  *CN223410557U, 2024-10-03*
 - [P2] **一种景观生成系统**<br>
   Seungwoo Je, Tianze Xie, **Yilong Lin**, Yuxin Ma, Kaihan Wang, Zezheng Guan, Yingjie Chang<br>
-  *CN223410557U, 2024-10-03*
+  *CN118704836A, 2024-09-27*
 - [P1] **一种手臂触觉模拟装置及触觉模拟方法**<br>
   Seungwoo Je, **Yilong Lin**<br>
   *CN118295530A, 2024-07-05*
@@ -150,13 +150,13 @@ permalink: /resume/
   *US12524024B1, 2026-01-13*
 - [P4] **一种景观生成系统**<br>
   Seungwoo Je, Tianze Xie, **Yilong Lin**, Yuxin Ma, Kaihan Wang, Zezheng Guan, Yingjie Chang<br>
-  *CN118704836A, 2024-09-27*
+  *CN118815251A, 2024-10-22*
 - [P3] **一种景观生成系统**<br>
   Seungwoo Je, Tianze Xie, **Yilong Lin**, Yuxin Ma, Kaihan Wang, Zezheng Guan, Yingjie Chang<br>
-  *CN118815251A, 2024-10-22*
+  *CN223410557U, 2024-10-03*
 - [P2] **一种景观生成系统**<br>
   Seungwoo Je, Tianze Xie, **Yilong Lin**, Yuxin Ma, Kaihan Wang, Zezheng Guan, Yingjie Chang<br>
-  *CN223410557U, 2024-10-03*
+  *CN118704836A, 2024-09-27*
 - [P1] **一种手臂触觉模拟装置及触觉模拟方法**<br>
   Seungwoo Je, **Yilong Lin**<br>
   *CN118295530A, 2024-07-05*
