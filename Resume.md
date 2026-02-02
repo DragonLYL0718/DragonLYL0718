@@ -55,22 +55,39 @@ permalink: /resume/
 
 ## Project
 ---
-- **[TaBot: Designing an Al-empowered Robotic Table to Promote Balanced Conversational Experiences](/projects/tabot/)**<br>
+- [PJ1] **[TaBot: Designing an Al-empowered Robotic Table to Promote Balanced Conversational Experiences](/projects/tabot/)**<br>
   [X - Group](https://www.hci-xgroup.com/), [Immersive Design Group](https://immersivedesignresearch.com/).<br>
   *Shenzhen Art Museum (New Venue)*
 
+## Patents
+---
+- [P5] **[Shape variable display array](https://patents.google.com/patent/US12524024B1/en)**<br>
+  Seungwoo Je, Tianze Xie, **Yilong Lin**, Yuxin Ma, Kaihan Wang, Zezheng Guan, Yingjie Chang<br>
+  *US12524024B1, 2026-01-13*
+- [P4] **一种景观生成系统**<br>
+  Seungwoo Je, Tianze Xie, **Yilong Lin**, Yuxin Ma, Kaihan Wang, Zezheng Guan, Yingjie Chang<br>
+  *CN118704836A, 2024-09-27*
+- [P3] **一种景观生成系统**<br>
+  Seungwoo Je, Tianze Xie, **Yilong Lin**, Yuxin Ma, Kaihan Wang, Zezheng Guan, Yingjie Chang<br>
+  *CN118815251A, 2024-10-22*
+- [P2] **一种景观生成系统**<br>
+  Seungwoo Je, Tianze Xie, **Yilong Lin**, Yuxin Ma, Kaihan Wang, Zezheng Guan, Yingjie Chang<br>
+  *CN223410557U, 2024-10-03*
+- [P1] **一种手臂触觉模拟装置及触觉模拟方法**<br>
+  Seungwoo Je, **Yilong Lin**<br>
+  *CN118295530A, 2024-07-05*
+
 ## Invited reviewer
 ---
-- **AHs '25**
 - **ACM CHI '26, '25** (2 Special Recognition for Outstanding Review)
 - **ACM UIST '25, '24** (2 Special Recognition for Outstanding Review)
 - **SIGGRAPH Asia '24**
+- **AHs '25**
 
 ## References
 ---
-**[Prof. Seungwoo JE](http://immersivedesignresearch.com/seungwoo) | Immersive Design Group Director, Assistant Professor at SUSTech**<br>
-**[Prof. Eyal Ofek](https://eyalofek.org/) | Chair of Computer Science, Professor at UoB**
-
+**[Prof. Eyal Ofek](https://eyalofek.org/) | Chair of Computer Science, Professor at UoB**<br>
+**[Prof. Seungwoo JE](http://immersivedesignresearch.com/seungwoo) | Immersive Design Group Director, Assistant Professor at SUSTech**
 </div>
 
 <div class="zh" markdown="1">
@@ -122,21 +139,39 @@ permalink: /resume/
 
 ## 项目
 ---
-- **[TaBot: Designing an Al-empowered Robotic Table to Promote Balanced Conversational Experiences](/projects/tabot/)**<br>
+- [PJ1] **[TaBot: Designing an Al-empowered Robotic Table to Promote Balanced Conversational Experiences](/projects/tabot/)**<br>
   [X - Group](https://www.hci-xgroup.com/), [Immersive Design Group](https://immersivedesignresearch.com/).<br>
   *深圳美术馆 (新馆)*
 
+## 专利
+---
+- [P5] **[Shape variable display array](https://patents.google.com/patent/US12524024B1/en)**<br>
+  Seungwoo Je, Tianze Xie, **Yilong Lin**, Yuxin Ma, Kaihan Wang, Zezheng Guan, Yingjie Chang<br>
+  *US12524024B1, 2026-01-13*
+- [P4] **一种景观生成系统**<br>
+  Seungwoo Je, Tianze Xie, **Yilong Lin**, Yuxin Ma, Kaihan Wang, Zezheng Guan, Yingjie Chang<br>
+  *CN118704836A, 2024-09-27*
+- [P3] **一种景观生成系统**<br>
+  Seungwoo Je, Tianze Xie, **Yilong Lin**, Yuxin Ma, Kaihan Wang, Zezheng Guan, Yingjie Chang<br>
+  *CN118815251A, 2024-10-22*
+- [P2] **一种景观生成系统**<br>
+  Seungwoo Je, Tianze Xie, **Yilong Lin**, Yuxin Ma, Kaihan Wang, Zezheng Guan, Yingjie Chang<br>
+  *CN223410557U, 2024-10-03*
+- [P1] **一种手臂触觉模拟装置及触觉模拟方法**<br>
+  Seungwoo Je, **Yilong Lin**<br>
+  *CN118295530A, 2024-07-05*
+
 ## 审稿人
 ---
-- **AHs '25**
-- **ACM CHI '26, '25** (1 次杰出审稿)
+- **ACM CHI '26, '25** (2 次杰出审稿)
 - **ACM UIST '25, '24** (2 次杰出审稿)
 - **SIGGRAPH Asia '24**
+- **AHs '25**
 
 ## 推荐人
 ---
-**[Seungwoo Je 教授](http://immersivedesignresearch.com/seungwoo) | Immersive Design Group, 南方科技大学助理教授**<br>
-**[Eyal Ofek 教授](https://eyalofek.org/) | 计算机科学系, 伯明翰大学讲席教授**
+**[Eyal Ofek 教授](https://eyalofek.org/) | 计算机科学系, 伯明翰大学讲席教授**<br>
+**[Seungwoo Je 教授](http://immersivedesignresearch.com/seungwoo) | Immersive Design Group, 南方科技大学助理教授**
 </div>
 
 
