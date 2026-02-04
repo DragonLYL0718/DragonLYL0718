@@ -14,18 +14,18 @@ permalink: /resume/
 ---
 - 2025.9 - expected 2029<br>
   **[University of Birmingham](https://www.birmingham.ac.uk/) | Computer Science | Ph.D. (Fully Funded)**<br>
-  Advisor: Prof. [Eyal Ofek](https://eyalofek.org/) & Prof. [Massimiliano Di Luca](https://massimilianodiluca.info/)
+  Advisor: [Prof. Eyal Ofek](https://eyalofek.org/) & [Prof. Massimiliano Di Luca](https://massimilianodiluca.info/)
 - 2022.9 - 2025.7 <br>
   **[Southern University of Science and Technology](https://www.sustech.edu.cn/en/) | Intelligent Manufacturing and Robotics | Master**<br>
-  Advisor: Prof. [Seungwoo Je](https://immersivedesignresearch.com/seungwoo)
+  Advisor: [Prof. Seungwoo Je](https://immersivedesignresearch.com/seungwoo)
 - 2018.9 - 2022.7 <br>
   **[South China University of Technology](https://www.scut.edu.cn/en/) | Automation | Bachelor**
 
 ## Experience
 ---
 - 2024.9 - 2025.3<br>
-  **[Korea Advanced Institute of Science & Technology](https://www.kaist.ac.kr/en/) | [Wearable and Interactive Technology Lab](https://sites.google.com/view/kaist-witlab/) | Visiting Student Researcher**<br>
-  Advisor: Prof. Ian Oakley
+  **[Korea Advanced Institute of Science & Technology](https://www.kaist.ac.kr/en/) | [Wearable and Interactive Technology Lab](https://wit.kaist.ac.kr) | Visiting Student Researcher**<br>
+  Advisor: [Prof. Ian Oakley](https://wit.kaist.ac.kr/team)
 
 ## Research Interests
 ---
@@ -33,7 +33,7 @@ permalink: /resume/
 
 ## Publications
 ---
-- [C5] **GazeZoom: Exploration of Gaze-Assisted Multimodal Techniques for Panning and Zooming**<br>
+- [C5] **[GazeZoom: Exploration of Gaze-Assisted Multimodal Techniques for Panning and Zooming](https://doi.org/10.1145/3772318.3790749)**<br>
   **Yilong Lin**, Mingyu Han, Weitao Jiang, Seungwoo Je, Ian Oakley<br>
   *In Proceedings of CHI 2026. (To Appear)*
 - [J1] **[Designing Hand and Forearm Gestures to Control Virtual Forearm for User-Initiated Forearm Deformation](https://doi.ieeecomputersociety.org/10.1109/TVCG.2025.3616825)**<br>
@@ -108,8 +108,8 @@ permalink: /resume/
 ## 工作经历
 ---
 - 2024.9 - 2025.3<br>
-  **[韩国科学技术院 (KAIST)](https://www.kaist.ac.kr/en/) | [WIT Lab](https://sites.google.com/view/kaist-witlab/) | 访问学生研究员**<br>
-  导师: Ian Oakley 教授
+  **[韩国科学技术院 (KAIST)](https://www.kaist.ac.kr/en/) | [WIT Lab](https://wit.kaist.ac.kr) | 访问学生研究员**<br>
+  导师: [Ian Oakley 教授](https://wit.kaist.ac.kr/team)
 
 ## 研究兴趣
 ---
@@ -117,7 +117,7 @@ permalink: /resume/
 
 ## 发表论文
 ---
-- [C5] **GazeZoom: Exploration of Gaze-Assisted Multimodal Techniques for Panning and Zooming**<br>
+- [C5] **[GazeZoom: Exploration of Gaze-Assisted Multimodal Techniques for Panning and Zooming](https://doi.org/10.1145/3772318.3790749)**<br>
   **Yilong Lin**, Mingyu Han, Weitao Jiang, Seungwoo Je, Ian Oakley<br>
   *In Proceedings of CHI 2026. (To Appear)*
 - [J1] **[Designing Hand and Forearm Gestures to Control Virtual Forearm for User-Initiated Forearm Deformation](https://doi.ieeecomputersociety.org/10.1109/TVCG.2025.3616825)**<br>

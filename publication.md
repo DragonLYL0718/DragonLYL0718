@@ -7,6 +7,15 @@ layout: publication
 hide_description: true
 permalink: /publications/
 publications:
+  - year: 2026
+    items:
+      - title: "GazeZoom: Exploration of Gaze-Assisted Multimodal Techniques for Panning and Zooming"
+        title_url: "https://doi.org/10.1145/3772318.3790749"
+        page_url: "/publications/gazezoom/"
+        image: "https://pageasset.rayleigh-lin.top/project/2026%20GazeZoom/Teaser.webp"
+        image_alt: "GazeZoom: Exploration of Gaze-Assisted Multimodal Techniques for Panning and Zooming"
+        authors: "**Yilong Lin**, Mingyu Han, Weitao Jiang, Seungwoo Je, Ian Oakley"
+        venue: "*In Proceedings of CHI 2026.*"
   - year: 2025
     items:
       - title: "Designing Hand and Forearm Gestures to Control Virtual Forearm for User-Initiated Forearm Deformation"
